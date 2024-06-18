@@ -1,0 +1,233 @@
+<div class="page-client">
+	{% IF favorites_goods_empty %}
+	<p class="notice notice--attention">Ваш список избранных товаров пуст. Вы можете выбрать товары из <a href="{CATALOG_URL}" title="Перейти в каталог">Каталога</a>.</p>
+	{% ELSE %}
+	<!-- Избранные товары -->
+	<div class="products__grid">
+		{% FOR favorites_goods %}
+		<div class="product__item" data-id="{favorites_goods.ID}" itemscope itemtype="https://schema.org/Product">
+			<form class="product__form" action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post">
+				<input type="hidden" name="hash" value="{HASH}">
+				<input type="hidden" name="form[goods_id]" value="{favorites_goods.ID}">
+				<input type="hidden" name="form[goods_mod_id]" value="{favorites_goods.MIN_PRICE_NOW_ID}">
+				<input type="hidden" name="form[goods_name]" value="{favorites_goods.NAME}">
+				<input type="hidden" name="form[goods_desc]" value="{favorites_goods.DESCRIPTION_SHORT}" itemprop="description">
+				<input type="hidden" name="form[goods_sku]" value="{favorites_goods.ART_NUMBER}" itemprop="sku">
+				<!-- Стикеры -->
+				{% IF favorites_goods.IS_NEW || favorites_goods.IS_TOP || favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > favorites_goods.MIN_PRICE_NOW || favorites_goods.MIN_PRICE_OLD > favorites_goods.MIN_PRICE_NOW %}
+				<div class="product__sticker">
+					{% IF favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > favorites_goods.MIN_PRICE_NOW %}
+					<span class="sticker sticker--sales">%</span>
+					{% ELSEIF favorites_goods.MIN_PRICE_OLD > favorites_goods.MIN_PRICE_NOW %}
+					<span class="sticker sticker--sales">%</span>
+					{% ENDIF %}
+					{% IF favorites_goods.IS_NEW %}
+					<span class="sticker sticker--new"></span>
+					{% ENDIF %}
+					{% IF favorites_goods.IS_TOP %}
+					<span class="sticker sticker--best"></span>
+					{% ENDIF %}
+				</div>
+				{% ENDIF %}
+
+				<!-- Изображение -->
+				<a class="product__image" href="{favorites_goods.URL_MIN_PRICE_NOW | url_amp}">
+					<picture>
+						<source srcset="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{favorites_goods.IMAGE_MEDIUM}{% ENDIF %}">
+						<img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{favorites_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{favorites_goods.NAME}" loading="lazy" itemprop="image">
+					</picture>
+				</a>
+
+				<!-- Информация товара -->
+				<div class="product__shop">
+					<!-- Цена -->
+					<div class="product__price {CURRENCY_CHAR_CODE}" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+						<meta itemprop="price" content="{favorites_goods.MIN_PRICE_NOW}">
+						<meta itemprop="priceCurrency" content="{CURRENCY_CHAR_CODE}">
+						<meta itemprop="availability" content="{% IF favorites_goods.MAX_REST_VALUE>0 %}http://schema.org/InStock{% ELSE %}http://schema.org/OutOfStock{% ENDIF %}">
+						<meta itemprop="priceValidUntil" content="{favorites_goods.MAX_DISCOUNT_EXPIRED_AT | date('Y-m-d')}">
+						{% IF favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > favorites_goods.MIN_PRICE_NOW %}
+						<s class="price__old" data-price="{favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT}">{favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</s>
+						{% ELSEIF favorites_goods.MIN_PRICE_OLD > favorites_goods.MIN_PRICE_NOW %}
+						<s class="price__old" data-price="{favorites_goods.MIN_PRICE_OLD}">{favorites_goods.MIN_PRICE_OLD | money_format}</s>
+						{% ENDIF %}
+						<b class="price__now" data-price="{favorites_goods.MIN_PRICE_NOW}">{favorites_goods.MIN_PRICE_NOW | money_format}</b>
+					</div>
+
+					<!-- Название товара -->
+					<a class="product__name" href="{favorites_goods.URL_MIN_PRICE_NOW | url_amp}" title="{favorites_goods.NAME}" itemprop="url">
+						<span itemprop="name">{favorites_goods.NAME}</span>
+					</a>
+
+					<!-- Добавление товара в ... -->
+					<div class="product__addto">
+						<!-- Добавление товара в избранное и сравнение и в корзину -->
+						<div class="product__links">
+							<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
+							{% IFNOT SETTINGS_COMPARE_DISABLE && favorites_goods.IS_HAS_IN_COMPARE_LIST %}
+							<a class="product__link add-compare is-added"
+								 title="Убрать &laquo;{favorites_goods.NAME}&raquo; из списка сравнения с другими товарами"
+								 href="{COMPARE_DELETE_URL}?id={favorites_goods.MIN_PRICE_NOW_ID}"
+								 rel="nofollow">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="20" height="20" aria-hidden="true">
+									<path d="M511.791 0a35.717 35.717 0 0 1 35.704 35.72v357.209c0 9.474-3.759 18.56-10.458 25.259a35.693 35.693 0 0 1-50.496 0 35.738 35.738 0 0 1-10.458-25.259V35.72a35.73 35.73 0 0 1 10.458-25.258A35.704 35.704 0 0 1 511.791 0z" />
+									<path d="M832.102 312.816a35.807 35.807 0 0 1 .683 13.93 35.71 35.71 0 0 1-26.68 29.41l-571.3 142.885a35.85 35.85 0 0 1-13.923.678 35.725 35.725 0 0 1-23.447-14.076 35.755 35.755 0 0 1-1.93-39.668c2.414-4.023 5.597-7.531 9.366-10.325s8.052-4.821 12.604-5.956l571.302-142.885a35.687 35.687 0 0 1 37.371 13.392 35.74 35.74 0 0 1 5.952 12.613z" />
+									<path d="M815.151 290.477c8.226 4.693 14.251 12.463 16.751 21.6s1.271 18.894-3.422 27.124L638.046 672.598a35.717 35.717 0 0 1-9.135 10.526 35.706 35.706 0 0 1-26.372 7.202 35.713 35.713 0 0 1-29.965-26.035c-1.233-4.527-1.566-9.25-.977-13.905s2.091-9.148 4.416-13.222l190.434-333.397a35.718 35.718 0 0 1 21.594-16.759c9.131-2.501 18.884-1.222 27.11 3.471z" />
+									<path
+												d="M779.729 290.483a35.697 35.697 0 0 1 48.704 13.288l190.434 333.396a35.741 35.741 0 0 1 4.762 13.316 35.756 35.756 0 0 1-6.976 26.837 35.633 35.633 0 0 1-10.645 9.31 35.64 35.64 0 0 1-13.423 4.45 35.72 35.72 0 0 1-26.654-7.612 35.734 35.734 0 0 1-9.05-10.867L766.447 339.205a35.727 35.727 0 0 1 13.282-48.724zm-571.3 142.882c8.22-4.693 17.969-5.935 27.101-3.443s16.903 8.512 21.602 16.734l190.432 333.393a35.663 35.663 0 0 1 4.762 13.321c.687 4.71.422 9.515-.777 14.123s-3.307 8.93-6.199 12.715a35.673 35.673 0 0 1-24.065 13.756 35.65 35.65 0 0 1-14.095-1.114 35.712 35.712 0 0 1-21.61-17.365L195.146 482.092a35.74 35.74 0 0 1-3.441-27.115 35.727 35.727 0 0 1 16.724-21.611z" />
+									<path d="M243.85 433.361a35.736 35.736 0 0 1 13.33 48.725L66.746 815.479c-4.697 8.23-12.469 14.259-21.608 16.755s-18.893 1.259-27.119-3.443c-8.226-4.698-14.25-12.471-16.745-21.615s-1.259-18.901 3.438-27.132l190.433-333.393a35.702 35.702 0 0 1 48.704-13.337v.047z" />
+									<path
+												d="M0 797.76c0-9.472 3.762-18.56 10.458-25.259s15.778-10.462 25.248-10.462h380.867c9.47 0 18.554 3.763 25.248 10.462s10.458 15.787 10.458 25.259a226.27 226.27 0 0 1-66.234 159.97c-42.409 42.428-99.929 66.261-159.905 66.261s-117.495-23.834-159.905-66.261A226.267 226.267 0 0 1 0 797.76zm75.555 35.721c8.049 33.903 27.292 64.094 54.618 85.7a154.725 154.725 0 0 0 191.934 0 154.848 154.848 0 0 0 54.618-85.7H75.554zm495.747-178.603a35.714 35.714 0 0 1 35.704-35.721h380.868a35.704 35.704 0 0 1 25.25 10.462 35.733 35.733 0 0 1 10.458 25.259c0 29.709-5.85 59.127-17.216 86.575a226.186 226.186 0 0 1-122.385 122.436 226.063 226.063 0 0 1-173.082 0 226.166 226.166 0 0 1-122.385-122.436 226.356 226.356 0 0 1-17.212-86.575zm75.555 35.72a154.837 154.837 0 0 0 54.618 85.7c27.324 21.602 61.137 33.357 95.966 33.357s68.642-11.755 95.966-33.357a154.869 154.869 0 0 0 54.622-85.7H646.858z" />
+								</svg>
+								<span>В Сравнении</span>
+							</a>
+							{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
+							<a class="product__link add-compare"
+								 title="Добавить &laquo;{favorites_goods.NAME}&raquo; в список сравнения с другими товарами"
+								 href="{COMPARE_ADD_URL}?id={favorites_goods.MIN_PRICE_NOW_ID}"
+								 rel="nofollow">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="20" height="20" aria-hidden="true">
+									<path d="M511.791 0a35.717 35.717 0 0 1 35.704 35.72v357.209c0 9.474-3.759 18.56-10.458 25.259a35.693 35.693 0 0 1-50.496 0 35.738 35.738 0 0 1-10.458-25.259V35.72a35.73 35.73 0 0 1 10.458-25.258A35.704 35.704 0 0 1 511.791 0z" />
+									<path d="M832.102 312.816a35.807 35.807 0 0 1 .683 13.93 35.71 35.71 0 0 1-26.68 29.41l-571.3 142.885a35.85 35.85 0 0 1-13.923.678 35.725 35.725 0 0 1-23.447-14.076 35.755 35.755 0 0 1-1.93-39.668c2.414-4.023 5.597-7.531 9.366-10.325s8.052-4.821 12.604-5.956l571.302-142.885a35.687 35.687 0 0 1 37.371 13.392 35.74 35.74 0 0 1 5.952 12.613z" />
+									<path d="M815.151 290.477c8.226 4.693 14.251 12.463 16.751 21.6s1.271 18.894-3.422 27.124L638.046 672.598a35.717 35.717 0 0 1-9.135 10.526 35.706 35.706 0 0 1-26.372 7.202 35.713 35.713 0 0 1-29.965-26.035c-1.233-4.527-1.566-9.25-.977-13.905s2.091-9.148 4.416-13.222l190.434-333.397a35.718 35.718 0 0 1 21.594-16.759c9.131-2.501 18.884-1.222 27.11 3.471z" />
+									<path
+												d="M779.729 290.483a35.697 35.697 0 0 1 48.704 13.288l190.434 333.396a35.741 35.741 0 0 1 4.762 13.316 35.756 35.756 0 0 1-6.976 26.837 35.633 35.633 0 0 1-10.645 9.31 35.64 35.64 0 0 1-13.423 4.45 35.72 35.72 0 0 1-26.654-7.612 35.734 35.734 0 0 1-9.05-10.867L766.447 339.205a35.727 35.727 0 0 1 13.282-48.724zm-571.3 142.882c8.22-4.693 17.969-5.935 27.101-3.443s16.903 8.512 21.602 16.734l190.432 333.393a35.663 35.663 0 0 1 4.762 13.321c.687 4.71.422 9.515-.777 14.123s-3.307 8.93-6.199 12.715a35.673 35.673 0 0 1-24.065 13.756 35.65 35.65 0 0 1-14.095-1.114 35.712 35.712 0 0 1-21.61-17.365L195.146 482.092a35.74 35.74 0 0 1-3.441-27.115 35.727 35.727 0 0 1 16.724-21.611z" />
+									<path d="M243.85 433.361a35.736 35.736 0 0 1 13.33 48.725L66.746 815.479c-4.697 8.23-12.469 14.259-21.608 16.755s-18.893 1.259-27.119-3.443c-8.226-4.698-14.25-12.471-16.745-21.615s-1.259-18.901 3.438-27.132l190.433-333.393a35.702 35.702 0 0 1 48.704-13.337v.047z" />
+									<path
+												d="M0 797.76c0-9.472 3.762-18.56 10.458-25.259s15.778-10.462 25.248-10.462h380.867c9.47 0 18.554 3.763 25.248 10.462s10.458 15.787 10.458 25.259a226.27 226.27 0 0 1-66.234 159.97c-42.409 42.428-99.929 66.261-159.905 66.261s-117.495-23.834-159.905-66.261A226.267 226.267 0 0 1 0 797.76zm75.555 35.721c8.049 33.903 27.292 64.094 54.618 85.7a154.725 154.725 0 0 0 191.934 0 154.848 154.848 0 0 0 54.618-85.7H75.554zm495.747-178.603a35.714 35.714 0 0 1 35.704-35.721h380.868a35.704 35.704 0 0 1 25.25 10.462 35.733 35.733 0 0 1 10.458 25.259c0 29.709-5.85 59.127-17.216 86.575a226.186 226.186 0 0 1-122.385 122.436 226.063 226.063 0 0 1-173.082 0 226.166 226.166 0 0 1-122.385-122.436 226.356 226.356 0 0 1-17.212-86.575zm75.555 35.72a154.837 154.837 0 0 0 54.618 85.7c27.324 21.602 61.137 33.357 95.966 33.357s68.642-11.755 95.966-33.357a154.869 154.869 0 0 0 54.622-85.7H646.858z" />
+								</svg>
+								<span>Сравнить</span>
+							</a>
+							{% ENDIF %}
+
+							<!-- Если есть возможность добавить товар в Избранное -->
+							{% IF favorites_goods.IS_HAS_IN_FAVORITES_LIST %}
+							<a class="product__link add-favorites is-added"
+								 data-action-is-add="0"
+								 title="Убрать &laquo;{favorites_goods.NAME}&raquo; из Избранного"
+								 href="{FAVORITES_DELETE_URL}?id={favorites_goods.MIN_PRICE_NOW_ID}"
+								 rel="nofollow">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="20" height="20" aria-hidden="true">
+									<path
+												d="M747.998 78.438c-85.18 0-159.851 37.982-215.94 109.842A363.748 363.748 0 0 0 512 216.738a361.966 361.966 0 0 0-20.058-28.458C435.852 116.42 361.18 78.438 276 78.438c-160.912 0-276 134.734-276 296.408C0 559.71 151.514 733.94 491.273 939.768c6.37 3.857 13.551 5.786 20.727 5.786s14.357-1.929 20.727-5.786C872.486 733.944 1024 559.715 1024 374.848c0-161.59-114.995-296.41-276.002-296.41zm90.317 526.597C767.582 683.96 660.689 767.066 512 858.68c-148.69-91.614-255.58-174.72-326.314-253.641C114.57 525.688 80 450.389 80 374.848c0-116.408 78.668-216.41 196-216.41 59.752 0 110.7 25.98 151.43 77.22 32.567 40.978 46.289 83.292 46.387 83.594a39.997 39.997 0 0 0 76.369 0c.128-.404 13.436-41.398 44.937-81.75 40.947-52.464 92.386-79.066 152.875-79.066C865.455 158.436 944 258.534 944 374.846c0 75.544-34.569 150.838-105.685 230.189z" />
+								</svg>
+								<span>В избранном</span>
+							</a>
+							{% ELSE %}
+							<a class="product__link add-favorites"
+								 data-action-is-add="1"
+								 title="Добавить &laquo;{favorites_goods.NAME}&raquo; в Избранное"
+								 href="{FAVORITES_ADD_URL}?id={favorites_goods.MIN_PRICE_NOW_ID}"
+								 rel="nofollow">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="20" height="20" aria-hidden="true">
+									<path
+												d="M747.998 78.438c-85.18 0-159.851 37.982-215.94 109.842A363.748 363.748 0 0 0 512 216.738a361.966 361.966 0 0 0-20.058-28.458C435.852 116.42 361.18 78.438 276 78.438c-160.912 0-276 134.734-276 296.408C0 559.71 151.514 733.94 491.273 939.768c6.37 3.857 13.551 5.786 20.727 5.786s14.357-1.929 20.727-5.786C872.486 733.944 1024 559.715 1024 374.848c0-161.59-114.995-296.41-276.002-296.41zm90.317 526.597C767.582 683.96 660.689 767.066 512 858.68c-148.69-91.614-255.58-174.72-326.314-253.641C114.57 525.688 80 450.389 80 374.848c0-116.408 78.668-216.41 196-216.41 59.752 0 110.7 25.98 151.43 77.22 32.567 40.978 46.289 83.292 46.387 83.594a39.997 39.997 0 0 0 76.369 0c.128-.404 13.436-41.398 44.937-81.75 40.947-52.464 92.386-79.066 152.875-79.066C865.455 158.436 944 258.534 944 374.846c0 75.544-34.569 150.838-105.685 230.189z" />
+								</svg>
+								<span>Избранное</span>
+							</a>
+							{% ENDIF %}
+						</div>
+
+						<!-- Добавление товара в корзину -->
+						<div class="product__cart">
+							<!-- Добавление в корзину -->
+							{% IF favorites_goods.MAX_REST_VALUE=0 %}
+							<button class="product__add add-notify" type="button" title="Уведомить о поступлении" data-dialog="#dialogNotify">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+									<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="93.091" d="M823.999 872.001H200c-88.366 0-160-71.633-160-160V312c0-88.366 71.634-160 160-160h623.999c88.367 0 160 71.634 160 160v400.001c0 88.367-71.633 160-160 160z" />
+									<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="93.091" d="m200 312 255.432 263.432c31.243 31.241 81.898 31.241 113.139 0L823.998 312M200 712.001 392 512m239.999 0 192 200.001" />
+								</svg>
+								<span>Уведомить</span>
+							</button>
+							{% ELSE %}
+							<a class="product__add button button-secondary {% IF favorites_goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
+								 href="{% IF favorites_goods.COUNT_MODIFICATION > 1 %}{favorites_goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={favorites_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={favorites_goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
+								 title="Добавить в корзину &laquo;{favorites_goods.NAME}&raquo;"
+								 rel="nofollow">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 23" width="24" height="24" aria-hidden="true">
+									<path stroke="currentColor"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-miterlimit="10"
+												stroke-width="2"
+												d="M1.815 1.815a8.71 8.71 0 0 1 3.928 7.277v5.296a4.311 4.311 0 0 0 4.317 4.306h6.69a4.315 4.315 0 0 0 4.187-3.258l1.145-4.55C22.619 8.75 21 6.68 18.792 6.68H8.852c-2.655 0-4.209-1.852-4.209-1.852" />
+									<path stroke="currentColor" d="M8.549 23c-.596 0-1.08-.482-1.08-1.076 0-.595.484-1.077 1.08-1.077.596 0 1.08.482 1.08 1.076 0 .595-.484 1.077-1.08 1.077ZM17.14 23c-.597 0-1.08-.482-1.08-1.076 0-.595.483-1.077 1.08-1.077.595 0 1.078.482 1.078 1.076 0 .595-.483 1.077-1.079 1.077Z" />
+									<path stroke="currentColor"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-miterlimit="10"
+												stroke-width="2"
+												d="M18.793 10.125H9.196" />
+								</svg>
+								<span>В корзину</span>
+							</a>
+							{% ENDIF %}
+						</div>
+					</div>
+
+					<!-- Наличие -->
+					<!-- <div class="product__available {% IF favorites_goods.MAX_REST_VALUE = 0 %}available--zero{% ELSEIF favorites_goods.MAX_REST_VALUE > 9 %}available--alot{% ELSE %}available--few{% ENDIF %}">
+				<b>
+					{% IF favorites_goods.MAX_REST_VALUE = 0 %}
+					Нет
+					{% ELSE %}
+					{favorites_goods.MAX_REST_VALUE}
+					{% FOR mods %}
+					{favorites_goods.mods.MEASURE_NAME}{break}
+					{% ENDFOR %}
+					{% ENDIF %}
+				</b>
+				<span>в наличии</span>
+			</div> -->
+
+					<!-- Атрибуты -->
+					<!-- {% IFNOT favorites_goods.goods_attr_list_empty %}
+			<dl class="product__attr">
+				{% FOR goods_attr_list %}
+				{% IF favorites_goods.goods_attr_list.index > 3 %}{break}{% ENDIF %}
+				<div class="product__attr-item">
+					<dt>{favorites_goods.goods_attr_list.NAME}:</dt>
+					<dd>{favorites_goods.goods_attr_list.VALUE}</dd>
+				</div>
+				{% ENDFOR goods_attr_list %}
+			</dl>
+			{% ENDIF %} -->
+
+					<!-- Артикул товара -->
+					<!-- {% IF favorites_goods.ART_NUMBER %}
+			<div class="product__art" itemprop="sku">{favorites_goods.ART_NUMBER}</div>
+			{% ENDIF %} -->
+
+					<!-- Краткое Описание -->
+					<!-- {% IF favorites_goods.DESCRIPTION_SHORT %}
+			<div class="product__desc" itemprop="description">{favorites_goods.DESCRIPTION_SHORT}</div>
+			{% ENDIF %} -->
+
+					<!-- Рейтинг -->
+					<!-- {% IFNOT SETTINGS_OPINION_DISABLE %}
+			<div class="product__ratings ratings">
+				{% IF favorites_goods.OPINION_RATING_VALUE %}
+				<span itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+					<meta itemprop="worstRating" content="1">
+					<meta itemprop="bestRating" content="10">
+					<meta itemprop="ratingValue" content="{favorites_goods.OPINION_RATING_VALUE}">
+					<meta itemprop="reviewCount" content="{favorites_goods.OPINION_RATING_CNT_ALL}">
+					<span class="ratings__value" data-value="{favorites_goods.OPINION_RATING_VALUE}" style="width:{favorites_goods.OPINION_RATING_VALUE}0%"></span>
+				</span>
+				<span class="ratings__count">{favorites_goods.OPINION_RATING_CNT_ALL}</span>
+				{% ELSE %}
+				<span class="ratings__value" style="width:0%">Рейтинг не определён</span>
+				{% ENDIF %}
+			</div>
+			{% ENDIF %} -->
+
+					<!-- Быстрый просмотр -->
+					<!-- <button class="product__quickview" type="button">Быстрый просмотр</button> -->
+
+				</div>
+			</form>
+		</div>
+		{% ENDFOR %}
+	</div>
+	{% ENDIF %}
+</div>
