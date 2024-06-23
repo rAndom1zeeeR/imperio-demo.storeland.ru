@@ -13,13 +13,14 @@ body {
 	color: var(--color-black);
 	font-weight: normal;
 	font-size: var(--text-size-medium);
-	font-family: Overpass, Arial, sans-serif;
+	font-family: Jost, Arial, sans-serif;
+	font-style: normal;
 	line-height: 1;
-	background: var(--color-background);
+	background: white;
 	scrollbar-gutter: stable;
 }
 *, *::before, *::after {box-sizing: border-box;}
-.container {min-width: 320px;max-width: 1200px;margin-inline: auto;padding-inline: 16px;}
+.container {margin-inline: auto;padding-inline: 16px;}
 
 /*
 ** Скролбары
@@ -39,7 +40,6 @@ a:active, a.is-active {color: var(--color-secondary);}
 p {margin-block: 16px;overflow: hidden;line-height: 1.375;word-wrap: break-word;}
 small {font-size: var(--text-size-small);}
 img {width: 100%;height: 100%;object-fit: contain;}
-.page-index main {background-color: var(--color-white);}
 main {padding-block: 20px;}
 @media all and (min-width: 768px) {
 	main {padding-block: 40px;}
@@ -100,26 +100,16 @@ button, .button, .paymentFormSubmitLink, .paymentFormTbodySubmitButton {
 	padding-inline: 32px;
 }
 button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodySubmitButton:active {color: var(--color-black);background-color: var(--color-primary-hover)}
-.button-unstyled {
-	height: auto;
-	padding: 0;
-	font-weight: normal;
-	background: none;
-	border: none;
-}
-.button-unstyled:active {color: var(--color-secondary);background: none;}
 .button-link {
 	justify-content: flex-start;
 	height: auto;
 	padding: 0;
-	color: var(--color-secondary);
 	font-weight: normal;
-	text-decoration: underline;
 	background: none;
 	border: none;
 }
 .button-link--gray {color: var(--color-gray);}
-.button-link:active, .button-link.is-active {color: var(--color-black);background: none;}
+.button-link:active, .button-link.is-active {color: var(--color-secondary);background: none;}
 .button-close {
 	width: 32px;
 	height: 32px;
@@ -139,8 +129,7 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 button:disabled {opacity: 0.5;pointer-events: none;}
 @media (hover: hover) and (pointer: fine) {
 	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: var(--color-black);background-color: var(--color-primary-hover)}
-	.button-unstyled:hover {color: var(--color-secondary);background: none;}
-	.button-link:hover {color: var(--color-black);background: none;}
+	.button-link:hover {color: var(--color-secondary);background: none;}
 	.button-secondary:hover {color: var(--color-white);background-color: var(--color-secondary-hover);}
 	.button-close:hover {color: var(--color-black);background-color: var(--color-background);}
 	.button-empty:hover {background-color: var(--color-gray-hover);}
@@ -898,7 +887,8 @@ dialog::backdrop {z-index: 3;}
 /*
 ** Адаптивность
 */
-@media all and (min-width: 480px) and (max-width: 639px) {
+
+/* @media all and (min-width: 480px) and (max-width: 639px) {
 	.container {min-width: 448px;}
 }
 @media all and (min-width: 640px) and (max-width: 767px) {
@@ -912,5 +902,13 @@ dialog::backdrop {z-index: 3;}
 }
 @media all and (min-width: 1200px) {
 	.container {width: 1200px;}
-}
+} */
 
+/* @media all and (min-width: 1200px) and (max-width: 1439px) {
+} */
+@media all and (min-width: 1440px) and (max-width: 1919px) {
+	.container {padding-inline: 24px;}
+}
+@media all and (min-width: 1920px) {
+	.container {padding-inline: 150px;}
+}

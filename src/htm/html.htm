@@ -26,9 +26,9 @@
 	{% ENDIF %}
 
 	<!-- Основные Стили для всех страниц -->
-	<link rel="stylesheet" type="text/css" href="/design/overpass.css?design=THEMENAME">
+	<link rel="stylesheet" type="text/css" href="/design/fonts.css?design=THEMENAME">
 	<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}default.css?design=THEMENAME">
-	<!-- <link rel="stylesheet" type="text/css" href="{ASSETS_JS_PATH}main.css?design=THEMENAME"> -->
+	<link rel="stylesheet" type="text/css" href="{ASSETS_JS_PATH}main.css?design=THEMENAME">
 	<!-- <link rel="stylesheet" type="text/css" href="{ASSETS_JS_PATH}main.min.css?design=THEMENAME"> -->
 	<!-- Подключаемые скрипты -->
 	<script src="{ASSETS_JS_PATH}jquery.min.js?design=THEMENAME"></script>
@@ -55,18 +55,18 @@
 		<!-- Шапка -->
 		<header id="header">
 			<div class="container">
-				<div class="header__inner">
-					<div class="logo-text">Производство и продажа мебели в Нижнем Новгороде и НО</div>
+				<div class="header__inner header__inner--top">
+					<div class="header__slogan">Производство и продажа мебели в Нижнем Новгороде и НО</div>
 
-					<nav class="mainnav" itemscope itemtype="https://schema.org/SiteNavigationElement">
+					<nav class="header__mainnav mainnav" itemscope itemtype="https://schema.org/SiteNavigationElement">
 						<ul class="mainnav__list">
-							<li class="mainnav__item">
-								<a class="mainnav__link is-discount"
-									 href="{DISCOUNT_URL}"
-									 title="Перейти в Акции"
-									 itemprop="url">
-									<span itemprop="name">Sale</span>
-								</a>
+							<li class="mainnav__item mainnav__item--more">
+								<button class="mainnav__link button-link" type="button">
+									<span>Покупателям</span>
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="12" height="12" aria-hidden="true">
+										<path d="M129.1 183.3 237.3 75c4.7-4.8 4.7-12.5 0-17.2-4.8-4.8-12.5-4.8-17.2 0l-99.7 99.7-99.7-99.7C16 53 8.3 53 3.5 57.8c-4.7 4.8-4.7 12.5 0 17.2l108.4 108.3c4.7 4.7 12.5 4.7 17.2 0z" />
+									</svg>
+								</button>
 							</li>
 							{% FOR menu %}
 							{% FOR header %}
@@ -82,34 +82,24 @@
 							{% ENDFOR %}
 							{% ENDFOR %}
 							{% ENDFOR %}
-							<li class="mainnav__item mainnav__item--more">
-								<button class="mainnav__link button-unstyled" type="button">
-									<span>Ещё</span>
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="12" height="12" aria-hidden="true">
-										<path d="M129.1 183.3 237.3 75c4.7-4.8 4.7-12.5 0-17.2-4.8-4.8-12.5-4.8-17.2 0l-99.7 99.7-99.7-99.7C16 53 8.3 53 3.5 57.8c-4.7 4.8-4.7 12.5 0 17.2l108.4 108.3c4.7 4.7 12.5 4.7 17.2 0z" />
-									</svg>
-								</button>
-							</li>
 						</ul>
 						<ul class="mainnav__dropdown"></ul>
 					</nav>
 
 					{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
-					<div class="contacts">
+					<div class="header__contacts">
 						<a class="contacts__link" href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}{SETTINGS_STORE_PHONE_CITY_CODE1}{SETTINGS_STORE_PHONE_NUMBER1}">
-							<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-								<path
-											d="M16.249 15.5304L15.8319 14.8339C15.0817 13.5971 14.0465 12.1776 12.6885 12.1776C12.437 12.1776 12.1878 12.2282 11.9412 12.3307L11.2123 12.6432C11.1458 12.6708 11.0811 12.7022 11.0126 12.7355C10.8261 12.8262 10.6146 12.929 10.397 12.929C9.86027 12.929 9.23841 12.2305 8.64621 10.9623C8.06503 9.71762 8.1021 9.06508 8.23551 8.73673C8.38273 8.37447 8.72505 8.21959 9.09282 8.08041C9.14396 8.06101 9.19015 8.04342 9.23507 8.02493L9.97312 7.71418C11.8959 6.9101 11.1806 4.10014 10.9461 3.17889L10.7472 2.3868C10.5771 1.734 10.1263 0 8.63088 0C8.35404 0 8.05871 0.064496 7.75337 0.191774C7.55303 0.271334 4.79603 1.39672 3.79719 3.37382C2.60343 5.72716 2.82416 8.88296 4.45262 12.7515C6.0689 16.625 8.16479 18.9942 10.6821 19.7933C11.1139 19.9305 11.6019 19.9999 12.1327 19.9999H12.133C13.8702 19.9999 15.5851 19.2608 15.7243 19.1994C16.3232 18.9457 16.7104 18.5601 16.8749 18.0532C17.1538 17.1937 16.6859 16.2519 16.249 15.5304ZM15.5878 17.6356C15.5495 17.7534 15.4166 17.8609 15.1929 17.9551L15.1809 17.9603C15.1654 17.9672 13.6131 18.647 12.1326 18.6469C11.7409 18.6469 11.3907 18.5988 11.0916 18.5037C8.97077 17.8305 7.1573 15.72 5.70041 12.2286C4.2327 8.7416 3.99817 5.96836 5.00431 3.98495C5.78557 2.43858 8.23145 1.45761 8.25545 1.44823L8.26988 1.44237C8.40916 1.38391 8.534 1.35306 8.63088 1.35306C8.929 1.35306 9.20034 1.81545 9.43613 2.72173L9.63413 3.51048C10.0613 5.18828 9.9963 6.23771 9.44939 6.46647L8.71486 6.77587C8.68563 6.78796 8.65145 6.80068 8.61374 6.81502C8.208 6.96864 7.36369 7.28814 6.98186 8.22735C6.63538 9.0796 6.77881 10.1615 7.41989 11.535C8.28332 13.3835 9.25708 14.2821 10.3968 14.2821C10.9258 14.2821 11.3504 14.0757 11.604 13.9525C11.6507 13.9298 11.6925 13.909 11.7374 13.8904L12.4674 13.5774C12.5427 13.546 12.615 13.5307 12.6884 13.5307C13.0398 13.5307 13.6698 13.8786 14.673 15.5325L15.0899 16.2285C15.6036 17.0767 15.6442 17.4618 15.5878 17.6356Z" />
-							</svg>
 							<span>{SETTINGS_STORE_PHONE_COUNTRY_CODE1} {SETTINGS_STORE_PHONE_CITY_CODE1} {SETTINGS_STORE_PHONE_NUMBER1}</span>
 						</a>
-						<button class="button-link" data-dialog="#dialogCallback">Заказать звонок</button>
+						<button class="button-link" data-dialog="#dialogCallback">Обратный звонок</button>
 					</div>
 					{% ENDIF SETTINGS_STORE_PHONE_NUMBER1 %}
+				</div>
 
-					<div class="logo" itemscope itemtype="http://schema.org/Organization">
+				<div class="header__inner header__inner--middle">
+					<div class="header__logo" itemscope itemtype="http://schema.org/Organization">
 						<a href="{INDEX_PAGE_URL}" itemprop="url">
-							<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="image" width="224" height="76">
+							<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="image" width="215" height="62">
 							<meta itemprop="name" content="{SETTINGS_STORE_NAME}">
 							<meta itemprop="telephone" content="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
 							<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
@@ -118,7 +108,7 @@
 						</a>
 					</div>
 
-					<div class="search" itemscope itemtype="https://schema.org/WebSite" role="search">
+					<div class="header__search" itemscope itemtype="https://schema.org/WebSite" role="search">
 						<link itemprop="url" href="{INDEX_PAGE_URL}">
 						<button class="search__icon" type="submit" aria-label="Открыть мобильный поиск" title="Открыть мобильный поиск">
 							<svg class="search__icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
@@ -170,7 +160,7 @@
 						</div>
 					</div>
 
-					<div class="addto">
+					<div class="header__addto">
 						<!-- Личный кабинет -->
 						<a class="addto__link login" href="{USER_SETTINGS_URL}" title="Перейти в Личный кабинет" data-dialog="#dialogLogin" rel="nofollow">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
@@ -353,7 +343,7 @@
 
 		<!-- Слайдшоу -->
 		{% IF index_page %}
-		<section id="slideshow" aria-label="Слайдшоу">
+		<section id="slideshow" aria-label="Слайдшоу" hidden>
 			<div class="container">
 				<div class="slideshow__inner">
 					<div class="slideshow__slider swiper">
@@ -451,7 +441,7 @@
 
 		<!-- Каталог -->
 		{% IFNOT catalog_empty %}
-		<section id="catalog" class="section section--black">
+		<section id="catalog" class="section section--black" hidden>
 			<div class="container">
 				<div class="section__inner">
 					<div class="headline">
@@ -499,7 +489,7 @@
 
 		<!-- Хиты продаж -->
 		{% IFNOT index_page_favorites_goods_empty %}
-		<section id="pdtBest" class="section">
+		<section id="pdtBest" class="section" hidden>
 			<div class="container">
 				<header class="headline headline--navigation">
 					<a href="{CATALOG_TOP_SALES_URL}" title="Перейти в Хиты продаж">
@@ -744,7 +734,7 @@
 
 		<!-- Распродажа -->
 		{% IFNOT index_page_sale_goods_empty %}
-		<section id="pdtSales" class="section section--black">
+		<section id="pdtSales" class="section section--black" hidden>
 			<div class="container">
 				<div class="section__inner">
 					<header class="headline">
@@ -1004,7 +994,7 @@
 
 		<!-- Новинки -->
 		{% IFNOT index_page_new_goods_empty %}
-		<section id="pdtNew" class="section">
+		<section id="pdtNew" class="section" hidden>
 			<div class="container">
 				<header class="headline headline--navigation">
 					<a href="{CATALOG_NEW_URL}" title="Перейти в Новинки">
@@ -1295,7 +1285,7 @@
 
 		<!-- Товары на главной -->
 		{% IFNOT index_page_goods_empty %}
-		<section id="pdtSale" class="section pdt__visible">
+		<section id="pdtSale" class="section pdt__visible" hidden>
 			<div class="container">
 				<header class="headline headline--navigation">
 					<a href="{CATALOG_INDEX_PAGE_URL}" title="Перейти в Товары на главной">
@@ -1543,7 +1533,7 @@
 
 		<!-- Новости -->
 		{% IF news_list_shop_empty=0 || news_list_all_empty=0 %}
-		<section id="news" class="section section--black {news_list_shop_empty} {news_list_all_empty}">
+		<section id="news" class="section section--black {news_list_shop_empty} {news_list_all_empty}" hidden>
 			<div class="container">
 				<div class="section__inner">
 					<header class="headline">
@@ -1638,7 +1628,7 @@
 
 		{% ELSE %}
 		<!-- Основная часть -->
-		<main id="main">
+		<main id="main" hidden>
 			<div class="container">
 				<!-- Основные блоки заголовков -->
 				<header class="headline">
@@ -1925,7 +1915,7 @@
 
 		<!-- Вы смотрели -->
 		{% IFNOT recently_viewed_goods_empty && index_page=0 && MOD_LNAME != cart %}
-		<section id="viewed">
+		<section id="viewed" hidden>
 			<div class="container">
 				<header class="headline headline--navigation">
 					<h2 class="headline__title">Вы смотрели</h2>
@@ -2168,7 +2158,7 @@
 		{% ENDIF index_page %}
 
 		<!-- Подписка -->
-		<section id="subscribe">
+		<section id="subscribe" hidden>
 			<div class="container">
 				<div class="subscribe__inner">
 					<div class="subscribe__block">
@@ -2270,7 +2260,7 @@
 		</section>
 
 		<!-- Подвал -->
-		<footer>
+		<footer id="footer" hidden>
 			<div class="container">
 				<div class="footer__inner">
 					<div class="footer__block footer-about">

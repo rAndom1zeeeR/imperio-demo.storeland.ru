@@ -2,29 +2,23 @@
 ** Основные переменные шаблона
 */
 :root {
-	--color-black: #495257;
-	--color-white: #FFF;
-	--color-border: #E0EDEF;
-	--color-gray: #B6C2CE;
-	--color-gray-hover: #DDE3E9;
-	--color-background: #F4F9FF;
-	--color-primary: #B7FD4F;
-	--color-primary-hover: #DBFEA7;
-	--color-secondary: #19D1DE;
-	--color-secondary-hover: #8CE8EE;
+	--color-primary-text: #635258;
+	--color-primary: #657984;
+	--color-secondary: #B78D70;
+	--color-tertiary: #F1BDBC;
+	--color-disabled: #CDC6CE;
 	--color-shadow: #49525720;
-	--color-error: #FF6750;
-	--color-gradient: linear-gradient(118.26deg, #3F6277 3.56%, #04A0AB 50.14%, #4CDEAF 102.93%);
+	--color-border: rgb(205 198 206 / 50%);
+	--color-gray: #B6C2CE;
+	--color-error: #F9504D;
 	--scrollbar-width: 16px;
 	--scrollbar-width-thin: 8px;
 	--transition: all 300ms ease;
 	--duration: 300ms;
+	--font-primary: 'Jost', 'Arial', sans-serif;
+	--font-secondary: 'Gilroy', 'Jost', 'Arial', sans-serif;
 
 	/* Глобальные настройки переменных */
-	--icon-size-small: 14px;
-	--icon-size-regular: 16px;
-	--icon-size-medium: 20px;
-	--icon-size-large: 24px;
 	--button-small: 32px;
 	--button-medium: 40px;
 	--button-large: 48px;
@@ -33,6 +27,10 @@
 	--text-size-regular: 14px;
 	--text-size-medium: 16px;
 	--text-size-large: 18px;
+	--icon-size-small: 14px;
+	--icon-size-regular: 16px;
+	--icon-size-medium: 20px;
+	--icon-size-large: 24px;
 	--heading-01: 40px;
 	--heading-02: 32px;
 	--heading-03: 24px;
@@ -40,3 +38,45 @@
 	--heading-05: 18px;
 	--heading-06: 16px;
 }
+
+
+/*
+** Шапка
+*/
+#header {padding-block: 16px;}
+.header__inner {display: flex;flex-wrap: wrap;gap: 16px 32px;align-items: center;}
+.header__slogan {margin-right: auto;}
+.header__contacts {display: flex;gap: 16px;}
+.header__contacts .contacts__link {font-weight: bold;font-size: var(--text-size-large);font-family: var(--font-secondary);line-height: 22px;}
+.mainnav {position: relative;}
+.mainnav__list {
+	display: flex;
+	align-items: center;
+	width: 480px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	list-style: none;
+}
+.mainnav__link {padding-inline: 20px;white-space: nowrap;}
+.is-opened .mainnav__item--more button {color: var(--color-secondary);}
+.is-opened .mainnav__item--more svg {transform: rotate(180deg);}
+.mainnav__dropdown {
+	position: absolute;
+	left: 0;
+	z-index: 6;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	width: 160px;
+	margin: 12px 0 0;
+	padding: 16px 0;
+	list-style: none;
+	background-color: white;
+	border: 1px solid var(--color-secondary);
+	border-radius: 4px;
+	transform: scale(1, 0);
+	transform-origin: right top;
+	transition: transform var(--duration);
+}
+.mainnav.is-opened .mainnav__dropdown, .mainnav__dropdown.is-opened {transform: scale(1);}

@@ -351,10 +351,14 @@ function Mainnav(selector = document) {
 
   function mainnavItemsHandle() {
     if (getClientWidth() < 1024) return;
-    let mainnavItemsWidth = mainnavMore.clientWidth;
+    let mainnavItemsWidth = 0;
+    console.log("[DEBUG]: mainnavItemsWidth11", mainnavItemsWidth);
     mainnavItems.forEach((item) => {
       mainnavItemsWidth += item.clientWidth;
-      if (mainnavItemsWidth > mainnavList.clientWidth && !item.classList.contains("mainnav__item--more")) {
+      console.log("[DEBUG]: mainnavItemsWidth", mainnavItemsWidth);
+      console.log("[DEBUG]: mainnavList.clientWidth", mainnavList.clientWidth);
+      // console.log("[DEBUG]: item", item.classList.contains("mainnav__item--more"));
+      if (mainnavItemsWidth > mainnavList.clientWidth) {
         mainnavDropdown.append(item);
       } else {
         mainnavList.append(item);
@@ -367,6 +371,7 @@ function Mainnav(selector = document) {
 
   mainnavMore.addEventListener("click", (event) => {
     event.preventDefault();
+    mainnavMore.classList.toggle("is-active");
     OverlayOpener(mainnav, handleOpened);
   });
 
