@@ -64,4 +64,4 @@ typings/
 storeland-uploader-config.json
 .idea/
 .vscode/
-# build/
+build/
