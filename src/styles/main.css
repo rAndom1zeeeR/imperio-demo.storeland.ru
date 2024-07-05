@@ -8,13 +8,15 @@
 	--color-tertiary: #F1BDBC;
 	--color-disabled: #CDC6CE;
 	--color-shadow: #49525720;
-	--color-border: rgb(205 198 206 / 50%);
+	--color-border: #CDC6CE;
+	--color-border-secondary: rgb(205 198 206 / 50%);
 	--color-gray: #B6C2CE;
 	--color-error: #F9504D;
 	--scrollbar-width: 16px;
 	--scrollbar-width-thin: 8px;
 	--transition: all 300ms ease;
 	--duration: 300ms;
+	--border-radius: 4px;
 	--font-primary: 'Jost', 'Arial', sans-serif;
 	--font-secondary: 'Gilroy', 'Jost', 'Arial', sans-serif;
 
@@ -27,6 +29,10 @@
 	--text-size-regular: 14px;
 	--text-size-medium: 16px;
 	--text-size-large: 18px;
+	--text-height-small: 16px;
+	--text-height-regular: 18px;
+	--text-height-medium: 20px;
+	--text-height-large: 24px;
 	--icon-size-small: 14px;
 	--icon-size-regular: 16px;
 	--icon-size-medium: 20px;
@@ -39,15 +45,49 @@
 	--heading-06: 16px;
 }
 
+/*
+** Наведение на иконки 
+*/
+.icon-hover__active {opacity: 0;}
+.icon-hover__active, .icon-hover__inert {transition: opacity var(--duration);}
+.icon-hover:active .icon-hover__active {opacity: 1;}
+.icon-hover:active .icon-hover__inert {opacity: 0;}
+@media (hover: hover) and (pointer: fine) {
+	.icon-hover:hover .icon-hover__active {opacity: 1;}
+	.icon-hover:hover .icon-hover__inert {opacity: 0;}
+}
 
 /*
 ** Шапка
 */
 #header {padding-block: 16px;}
-.header__inner {display: flex;flex-wrap: wrap;gap: 16px 32px;align-items: center;}
+.header__inner {display: flex;flex-wrap: wrap;gap: 16px 40px;align-items: center;}
 .header__slogan {margin-right: auto;}
 .header__contacts {display: flex;gap: 16px;}
-.header__contacts .contacts__link {font-weight: bold;font-size: var(--text-size-large);font-family: var(--font-secondary);line-height: 22px;}
+.header__contacts .contacts__link {font-weight: bold;font-size: var(--text-size-large);font-family: var(--font-secondary);line-height: var(--text-height-large);}
+.header__addto {display: flex;align-items: center;margin-left: auto;column-gap: 32px;}
+.addto__link {
+	position: relative;
+	display: flex;
+	align-items: center;
+	font-size: var(--text-size-large);
+	line-height: var(--text-height-large);
+	column-gap: 16px;
+}
+.addto__count {
+	position: absolute;
+	top: -6px;
+	right: -12px;
+	color: var(--color-secondary);
+	font-size: var(--text-size-regular);
+	line-height: 20px;
+}
+.is-empty .addto__count {display: none;}
+
+
+
+
+/* Шапка. Меню */
 .mainnav {position: relative;}
 .mainnav__list {
 	display: flex;
@@ -74,9 +114,55 @@
 	list-style: none;
 	background-color: white;
 	border: 1px solid var(--color-secondary);
-	border-radius: 4px;
+	border-radius: var(--border-radius);
 	transform: scale(1, 0);
 	transform-origin: right top;
 	transition: transform var(--duration);
 }
 .mainnav.is-opened .mainnav__dropdown, .mainnav__dropdown.is-opened {transform: scale(1);}
+
+/* Шапка. Поиск */
+.header__search {width: 490px;}
+.search {flex-grow: 1;text-align: right;}
+.search__form {position: relative;display: flex;align-items: center;text-align: left;}
+.search__form button {position: absolute;height: 100%;}
+.search__form button svg {flex-shrink: 0;}
+.search__icon {
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	color: var(--color-gray);
+	background-color: white;
+	border-color: var(--color-border);
+}
+.search__submit {right: 0;pointer-events: none;padding-inline: 16px;}
+.search--success .search__submit {pointer-events: all;}
+.search__submit svg {display: none;}
+.search__reset {right: 88px;width: 16px;opacity: 0;pointer-events: none;}
+.search--filled .search__reset {opacity: 1;pointer-events: all;}
+.search__loader {position: absolute;top: 16px;right: 120px;opacity: 0;}
+.search__loader span {
+	position: absolute;
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	border: 2px solid;
+	border-color: var(--color-gray) transparent transparent transparent;
+	border-radius: 100%;
+	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+.search__loader span:nth-child(1) {animation-delay: -0.45s;}
+.search__loader span:nth-child(2) {animation-delay: -0.3s;}
+.search__loader span:nth-child(3) {animation-delay: -0.15s;}
+.search--loading .search__loader {opacity: 1;}
+.search__input {padding-inline: 48px;font-size: var(--text-size-regular);}
+.search__label {position: absolute;left: 16px;}
+@keyframes lds-ring {
+	0% {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}
+}
+@media all and (min-width: 480px) {
+	.search__icon {display: none;}
+}
+.search__results {display: none;}
