@@ -2453,21 +2453,6 @@ function swiperMediumIndex(selector) {
  */
 function swiperShow() {
   const id = "#slideshow";
-  const swiperBanner = new Swiper(id + " .slideshow__banner-image", {
-    loop: false,
-    preloadImages: false,
-    watchSlidesProgress: true,
-    watchOverflow: true,
-    hashNavigation: false,
-    slidesPerView: "1",
-    spaceBetween: 16,
-    speed: 400,
-    allowTouchMove: false,
-    autoplay: {
-      enabled: false,
-      delay: 5000,
-    },
-  });
   const swiperSlider = new Swiper(id + " .slideshow__slider", {
     loop: false,
     preloadImages: false,
@@ -2493,31 +2478,7 @@ function swiperShow() {
       type: "bullets",
       dynamicBullets: false,
     },
-    thumbs: {
-      swiper: swiperBanner,
-    },
-    on: {
-      init: function () {
-        handleSlideCounter(this);
-      },
-      realIndexChange: function () {
-        handleSlideCounter(this);
-        handleSlideSync(this.realIndex);
-      },
-    },
   });
-
-  function handleSlideCounter(slider) {
-    const current = document.querySelector(".slideshow__navigation-current");
-    const total = document.querySelector(".slideshow__navigation-total");
-    current.innerHTML = slider.realIndex + 1;
-    total.innerHTML = slider.slides.length;
-  }
-
-  function handleSlideSync(index) {
-    swiperSlider.slideTo(index);
-    swiperBanner.slideTo(index);
-  }
 }
 
 /**
@@ -2617,7 +2578,8 @@ function Form(id, successMessage, errorMessage) {
 document.addEventListener("DOMContentLoaded", function () {
   Dialogs();
   Passwords();
-  Mainnav();
+  Mainnav(".header__mainnav");
+  Mainnav(".header__catalog");
   CartClear();
   CartRemove();
   Addto();
