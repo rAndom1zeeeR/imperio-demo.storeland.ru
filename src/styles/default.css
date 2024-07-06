@@ -98,13 +98,7 @@ main {padding-block: 20px;}
 /*
 ** Описание HTML 
 */
-.html-description {
-	padding: 20px;
-	overflow: hidden;
-	line-height: 1.25;
-	border: 1px solid var(--color-border);
-	border-radius: 20px;
-}
+.html-description {overflow: hidden;line-height: 1.25;}
 
 /*
 ** Если не включен JavaScript

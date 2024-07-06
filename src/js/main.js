@@ -2256,10 +2256,10 @@ function swiperSmall(selector) {
         slidesPerView: 2,
       },
       480: {
-        slidesPerView: 2,
+        slidesPerView: 3,
       },
       640: {
-        slidesPerView: 3,
+        slidesPerView: 4,
       },
       768: {
         slidesPerView: 4,
@@ -2267,8 +2267,11 @@ function swiperSmall(selector) {
       1024: {
         slidesPerView: 5,
       },
-      1200: {
-        slidesPerView: 5,
+      1440: {
+        slidesPerView: 7,
+      },
+      1920: {
+        slidesPerView: 8,
       },
     },
   });
@@ -2579,7 +2582,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Dialogs();
   Passwords();
   Mainnav(".header__mainnav");
-  Mainnav(".header__catalog");
+  Mainnav(".catalog__mainnav");
   CartClear();
   CartRemove();
   Addto();
