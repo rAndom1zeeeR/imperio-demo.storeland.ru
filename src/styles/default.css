@@ -815,13 +815,14 @@ dialog::backdrop {z-index: 3;}
 	right: 12px;
 	width: 32px;
 	height: 32px;
-	color: var(--color-gray);
-	background-color: var(--color-background);
-	border-radius: 10px;
+	padding: 0;
+	color: var(--color-text-primary);
+	background: none;
+	border-radius: var(--border-radius);
 }
-.dialog__close:active {color: var(--color-text-primary);background-color: var(--color-background);}
+.dialog__close:active {color: var(--color-secondary);border-color: currentcolor;}
 @media (hover: hover) and (pointer: fine) {
-	.dialog__close:hover {color: var(--color-text-primary);background-color: var(--color-background);}
+	.dialog__close:hover {color: var(--color-secondary);border-color: currentcolor;}
 }
 @media all and (max-width: 479px) {
 	.dialog__container {padding: 20px;}

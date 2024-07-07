@@ -2350,7 +2350,7 @@ function swiperLarge(selector) {
     simulateTouch: true,
     grabCursor: true,
     slidesPerView: 3,
-    spaceBetween: 12,
+    spaceBetween: 16,
     preloadImages: false,
     navigation: {
       nextEl: selector + " .swiper-button-next",
@@ -2374,19 +2374,28 @@ function swiperLarge(selector) {
         slidesPerView: 1.5,
       },
       480: {
-        slidesPerView: 1.75,
+        slidesPerView: 2,
       },
       640: {
-        slidesPerView: 2.25,
+        slidesPerView: 2,
       },
       768: {
-        slidesPerView: 2.5,
+        slidesPerView: 2,
       },
       1024: {
-        slidesPerView: 2.75,
+        slidesPerView: 2,
       },
       1200: {
         slidesPerView: 3,
+        spaceBetween: 32,
+      },
+      1440: {
+        slidesPerView: 3,
+        spaceBetween: 32,
+      },
+      1920: {
+        slidesPerView: 3,
+        spaceBetween: 32,
       },
     },
   });

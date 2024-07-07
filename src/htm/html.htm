@@ -1513,95 +1513,190 @@
 		{% ENDIF index_page_goods_empty %}
 
 		<!-- Новости -->
-		{% IF news_list_shop_empty=0 || news_list_all_empty=0 %}
-		<section id="news" class="section section--black {news_list_shop_empty} {news_list_all_empty}" hidden>
+		{% IF news_list_shop_empty=0 || news_list_all_empty=0 || news_list_shop_empty=0 || news_list_articles_empty=0 || news_list_mass_media_empty=0 %}
+		<section id="news" class="section">
 			<div class="container">
 				<div class="section__inner">
-					<header class="headline">
-						<a href="{DISCOUNT_URL}" title="Перейти в Новости">
-							<h2 class="headline__title">Наш блог</h2>
-						</a>
-					</header>
-					<div class="swiper">
-						<div class="swiper-wrapper">
-							<!-- Список Новостей -->
-							{% IFNOT news_list_shop_empty %}
-							{% FOR news_list_shop %}
-							<div class="swiper-slide">
-								<article class="news__item">
-									<picture class="news__images">
-										<source srcset="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
-										<img src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_shop.TITLE}" loading="lazy">
-									</picture>
-
-									{% IF news_list_shop.SHOW_TIME %}
-									<time class="news__date" datetime="{news_list_shop.TIME | date('Y-m-d')}"><span>{news_list_shop.TIME | date('d.m.Y')}</span></time>
-									{% ENDIF %}
-
-									<a class="news__title" href="{news_list_shop.URL}" title="Перейти к странице &laquo;{news_list_shop.TITLE}&raquo;">
-										<h3>{news_list_shop.TITLE}</h3>
-									</a>
-
-									{% IF news_list_shop.TEXT_SHORT %}
-									<p class="news__desc">
-										<span>{news_list_shop.TEXT_SHORT}</span>
-									</p>
-									{% ENDIF %}
-
-									<a class="news__button button button-link" href="{news_list_shop.URL}" title="Перейти к странице &laquo;{news_list_shop.TITLE}&raquo;">
-										<span>Читать далее</span>
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="14" height="14" aria-hidden="true">
-											<path
-														d="M46.546 557.928h818.555L618.737 804.053a46.522 46.522 0 0 0-10.435 15.094 46.45 46.45 0 0 0-3.773 17.949 46.462 46.462 0 0 0 13.629 33.284 46.582 46.582 0 0 0 33.316 13.618 46.585 46.585 0 0 0 17.966-3.773 46.469 46.469 0 0 0 15.109-10.421l325.821-325.5a46.463 46.463 0 0 0 13.629-32.878c0-12.329-4.9-24.151-13.629-32.876L684.549 153.051A46.569 46.569 0 0 0 651.812 140a46.585 46.585 0 0 0-32.512 13.619c-8.627 8.622-13.522 20.285-13.629 32.476s4.588 23.936 13.066 32.707l246.364 246.124H46.546a46.574 46.574 0 0 0-32.913 13.619A46.49 46.49 0 0 0 0 511.426c0 12.335 4.904 24.162 13.633 32.883s20.568 13.619 32.913 13.619z" />
-										</svg>
-									</a>
-								</article>
-							</div>
-							{% ENDFOR %}
-							{% ENDIF news_list_shop_empty %}
-
-							<!-- Список Всех Новостей -->
+					<header class="headline headline--tabs">
+						<div class="tabs">
 							{% IFNOT news_list_all_empty %}
-							{% FOR news_list_all %}
-							<div class="swiper-slide">
-								<article class="news__item">
-									<picture class="news__images">
-										<source srcset="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
-										<img src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_all.TITLE}" loading="lazy">
-									</picture>
-
-									{% IF news_list_all.SHOW_TIME %}
-									<time class="news__date" datetime="{news_list_all.TIME | date('Y-m-d')}"><span>{news_list_all.TIME | date('d.m.Y')}</span></time>
-									{% ENDIF %}
-
-									<a class="news__title" href="{news_list_all.URL}" title="Перейти к странице &laquo;{news_list_all.TITLE}&raquo;">
-										<h3>{news_list_all.TITLE}</h3>
-									</a>
-
-									{% IF news_list_all.TEXT_SHORT %}
-									<p class="news__desc">
-										<span>{news_list_all.TEXT_SHORT}</span>
-									</p>
-									{% ENDIF %}
-
-									<a class="news__button button button-link" href="{news_list_all.URL}" title="Перейти к странице &laquo;{news_list_all.TITLE}&raquo;">
-										<span>Читать далее</span>
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="14" height="14" aria-hidden="true">
-											<path
-														d="M46.546 557.928h818.555L618.737 804.053a46.522 46.522 0 0 0-10.435 15.094 46.45 46.45 0 0 0-3.773 17.949 46.462 46.462 0 0 0 13.629 33.284 46.582 46.582 0 0 0 33.316 13.618 46.585 46.585 0 0 0 17.966-3.773 46.469 46.469 0 0 0 15.109-10.421l325.821-325.5a46.463 46.463 0 0 0 13.629-32.878c0-12.329-4.9-24.151-13.629-32.876L684.549 153.051A46.569 46.569 0 0 0 651.812 140a46.585 46.585 0 0 0-32.512 13.619c-8.627 8.622-13.522 20.285-13.629 32.476s4.588 23.936 13.066 32.707l246.364 246.124H46.546a46.574 46.574 0 0 0-32.913 13.619A46.49 46.49 0 0 0 0 511.426c0 12.335 4.904 24.162 13.633 32.883s20.568 13.619 32.913 13.619z" />
-										</svg>
-									</a>
-								</article>
-							</div>
-							{% ENDFOR %}
+							<a class="tabs__link is-active" href="{NEWS_URL}" title="Перейти в Новости" data-tab="news_list_all">
+								<span>Новости</span>
+							</a>
 							{% ENDIF news_list_all_empty %}
+							{% IFNOT news_list_shop_empty %}
+							<a class="tabs__link is-active" href="{NEWS_URL}" title="Перейти в Новости" data-tab="news_list_shop">
+								<span>Новости</span>
+							</a>
+							{% ENDIF news_list_shop_empty %}
+							{% IFNOT news_list_mass_media_empty %}
+							<a class="tabs__link" href="{NEWS_URL}" title="Перейти в Матариалы СМИ" data-tab="news_list_mass_media">
+								<span>Матариалы СМИ</span>
+							</a>
+							{% ENDIF news_list_mass_media_empty %}
+							{% IFNOT news_list_articles_empty %}
+							<a class="tabs__link" href="{NEWS_URL}" title="Перейти в Статьи" data-tab="news_list_articles">
+								<span>Статьи</span>
+							</a>
+							{% ENDIF news_list_articles_empty %}
 						</div>
 						<div class="swiper-navigation">
 							<div class="swiper-button-prev"></div>
-							<div class="swiper-pagination"></div>
 							<div class="swiper-button-next"></div>
 						</div>
+					</header>
+
+					<!-- Список Всех Новостей -->
+					{% IFNOT news_list_all_empty %}
+					<div class="tabs__content" data-tab-content="news_list_all">
+						<div class="swiper">
+							<div class="swiper-wrapper">
+								{% FOR news_list_all %}
+								<div class="swiper-slide">
+									<article class="news__item">
+										<picture class="news__images">
+											<source srcset="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
+											<img src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_all.TITLE}" loading="lazy">
+										</picture>
+
+										{% IF news_list_all.SHOW_TIME %}
+										<time class="news__date" datetime="{news_list_all.TIME | date('Y-m-d')}"><span>{news_list_all.TIME | date('d.m.Y')}</span></time>
+										{% ENDIF %}
+
+										<a class="news__title" href="{news_list_all.URL}" title="Перейти к странице &laquo;{news_list_all.TITLE}&raquo;">
+											<h3>{news_list_all.TITLE}</h3>
+										</a>
+
+										{% IF news_list_all.TEXT_SHORT %}
+										<p class="news__desc">
+											<span>{news_list_all.TEXT_SHORT}</span>
+										</p>
+										{% ENDIF %}
+
+										<a class="news__button button button-underline" href="{news_list_all.URL}" title="Перейти к странице &laquo;{news_list_all.TITLE}&raquo;">
+											<span>Подробнее</span>
+										</a>
+									</article>
+								</div>
+								{% ENDFOR %}
+							</div>
+						</div>
 					</div>
+					{% ENDIF news_list_all_empty %}
+
+					<!-- Список Новостей -->
+					{% IFNOT news_list_shop_empty %}
+					<div class="tabs__content" data-tab-content="news_list_shop">
+						<div class="swiper">
+							<div class="swiper-wrapper">
+								{% FOR news_list_shop %}
+								<div class="swiper-slide">
+									<article class="news__item">
+										<picture class="news__images">
+											<source srcset="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
+											<img src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_shop.TITLE}" loading="lazy">
+										</picture>
+
+										{% IF news_list_shop.SHOW_TIME %}
+										<time class="news__date" datetime="{news_list_shop.TIME | date('Y-m-d')}"><span>{news_list_shop.TIME | date('d.m.Y')}</span></time>
+										{% ENDIF %}
+
+										<a class="news__title" href="{news_list_shop.URL}" title="Перейти к странице &laquo;{news_list_shop.TITLE}&raquo;">
+											<h3>{news_list_shop.TITLE}</h3>
+										</a>
+
+										{% IF news_list_shop.TEXT_SHORT %}
+										<p class="news__desc">
+											<span>{news_list_shop.TEXT_SHORT}</span>
+										</p>
+										{% ENDIF %}
+
+										<a class="news__button button button-underline" href="{news_list_shop.URL}" title="Перейти к странице &laquo;{news_list_shop.TITLE}&raquo;">
+											<span>Подробнее</span>
+										</a>
+									</article>
+								</div>
+								{% ENDFOR %}
+							</div>
+						</div>
+					</div>
+					{% ENDIF news_list_shop_empty %}
+
+					<!-- Список Матариалы СМИ -->
+					{% IFNOT news_list_mass_media_empty %}
+					<div class="tabs__content" data-tab-content="news_list_mass_media" hidden>
+						<div class="swiper">
+							<div class="swiper-wrapper">
+								{% FOR news_list_mass_media %}
+								<div class="swiper-slide">
+									<article class="news__item">
+										<picture class="news__images">
+											<source srcset="{% IF news_list_mass_media.IMG %}{news_list_mass_media.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
+											<img src="{% IF news_list_mass_media.IMG %}{news_list_mass_media.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_mass_media.TITLE}" loading="lazy">
+										</picture>
+
+										{% IF news_list_mass_media.SHOW_TIME %}
+										<time class="news__date" datetime="{news_list_mass_media.TIME | date('Y-m-d')}"><span>{news_list_mass_media.TIME | date('d.m.Y')}</span></time>
+										{% ENDIF %}
+
+										<a class="news__title" href="{news_list_mass_media.URL}" title="Перейти к странице &laquo;{news_list_mass_media.TITLE}&raquo;">
+											<h3>{news_list_mass_media.TITLE}</h3>
+										</a>
+
+										{% IF news_list_mass_media.TEXT_SHORT %}
+										<p class="news__desc">
+											<span>{news_list_mass_media.TEXT_SHORT}</span>
+										</p>
+										{% ENDIF %}
+
+										<a class="news__button button button-underline" href="{news_list_mass_media.URL}" title="Перейти к странице &laquo;{news_list_mass_media.TITLE}&raquo;">
+											<span>Подробнее</span>
+										</a>
+									</article>
+								</div>
+								{% ENDFOR %}
+							</div>
+						</div>
+					</div>
+					{% ENDIF news_list_mass_media_empty %}
+
+					<!-- Список Статьи -->
+					{% IFNOT news_list_articles_empty %}
+					<div class="tabs__content" data-tab-content="news_list_articles" hidden>
+						<div class="swiper">
+							<div class="swiper-wrapper">
+								{% FOR news_list_articles %}
+								<div class="swiper-slide">
+									<article class="news__item">
+										<picture class="news__images">
+											<source srcset="{% IF news_list_articles.IMG %}{news_list_articles.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
+											<img src="{% IF news_list_articles.IMG %}{news_list_articles.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_articles.TITLE}" loading="lazy">
+										</picture>
+
+										{% IF news_list_articles.SHOW_TIME %}
+										<time class="news__date" datetime="{news_list_articles.TIME | date('Y-m-d')}"><span>{news_list_articles.TIME | date('d.m.Y')}</span></time>
+										{% ENDIF %}
+
+										<a class="news__title" href="{news_list_articles.URL}" title="Перейти к странице &laquo;{news_list_articles.TITLE}&raquo;">
+											<h3>{news_list_articles.TITLE}</h3>
+										</a>
+
+										{% IF news_list_articles.TEXT_SHORT %}
+										<p class="news__desc">
+											<span>{news_list_articles.TEXT_SHORT}</span>
+										</p>
+										{% ENDIF %}
+
+										<a class="news__button button button-underline" href="{news_list_articles.URL}" title="Перейти к странице &laquo;{news_list_articles.TITLE}&raquo;">
+											<span>Подробнее</span>
+										</a>
+									</article>
+								</div>
+								{% ENDFOR %}
+							</div>
+						</div>
+					</div>
+					{% ENDIF news_list_articles_empty %}
 				</div>
 			</div>
 		</section>
@@ -2128,108 +2223,6 @@
 		{% ENDIF index_page %}
 
 		<!-- Подписка -->
-		<section id="subscribe" hidden>
-			<div class="container">
-				<div class="subscribe__inner">
-					<div class="subscribe__block">
-						{% IF SETTINGS_STORE_EMAIL_MAIN %}
-						<h3><a href="mailto:{SETTINGS_STORE_EMAIL_MAIN}">{SETTINGS_STORE_EMAIL_MAIN}</a></h3>
-						<span class="subscribe__label">Наша почта</span>
-						{% ENDIF %}
-						<ul class="social__links">
-							<li>
-								<a class="social__link vk" href="https://vk.com/" title="VK.com" target="_blank">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.962 511.962" width="24" height="24" aria-hidden="true">
-										<path
-													d="M250.503 400.807h30.592s9.248-1.024 13.952-6.112c4.352-4.672 4.192-13.44 4.192-13.44s-.608-41.056 18.464-47.104c18.784-5.952 42.912 39.68 68.48 57.248 19.328 13.28 34.016 10.368 34.016 10.368l68.384-.96s35.776-2.208 18.816-30.336c-1.376-2.304-9.888-20.8-50.848-58.816-42.88-39.808-37.12-33.344 14.528-102.176 31.456-41.92 44.032-67.52 40.096-78.464-3.744-10.432-26.88-7.68-26.88-7.68l-76.928.448s-5.696-.768-9.952 1.76c-4.128 2.496-6.784 8.256-6.784 8.256s-12.192 32.448-28.448 60.032c-34.272 58.208-48 61.28-53.6 57.664-13.024-8.416-9.76-33.856-9.76-51.904 0-56.416 8.544-79.936-16.672-86.016-8.384-2.016-14.528-3.36-35.936-3.584-27.456-.288-50.72.096-63.872 6.528-8.768 4.288-15.52 13.856-11.392 14.4 5.088.672 16.608 3.104 22.72 11.424 7.904 10.72 7.616 34.848 7.616 34.848s4.544 66.4-10.592 74.656c-10.4 5.664-24.64-5.888-55.2-58.72-15.648-27.04-27.488-56.96-27.488-56.96s-2.272-5.568-6.336-8.544c-4.928-3.616-11.84-4.768-11.84-4.768l-73.152.448s-10.976.32-15.008 5.088c-3.584 4.256-.288 13.024-.288 13.024s57.28 133.984 122.112 201.536c59.488 61.92 127.008 57.856 127.008 57.856z" />
-									</svg>
-									<span>vk</span>
-								</a>
-							</li>
-							<li>
-								<a class="social__link whatsapp" href="https://whatsapp.com/" title="Whatsapp.com" target="_blank">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" aria-hidden="true">
-										<path
-													d="M256.1 0h-.1C114.8 0 0 114.8 0 256c0 56 18 107.9 48.7 150l-31.9 95.1 98.4-31.5C155.7 496.5 204 512 256.1 512 397.2 512 512 397.2 512 256S397.2 0 256.1 0zM405 361.5c-6.2 17.4-30.7 31.9-50.2 36.1-13.4 2.8-30.8 5.1-89.7-19.3-75.2-31.2-123.7-107.6-127.5-112.6-3.6-5-30.4-40.5-30.4-77.2s18.7-54.6 26.2-62.3c6.2-6.3 16.4-9.2 26.2-9.2 3.2 0 6 .2 8.6.3 7.5.3 11.3.8 16.3 12.6 6.2 14.9 21.2 51.6 23 55.4 1.8 3.8 3.6 8.9 1.1 13.9-2.4 5.1-4.5 7.4-8.3 11.7s-7.4 7.7-11.1 12.4c-3.5 4.1-7.4 8.4-3 15.9 4.4 7.4 19.4 31.9 41.5 51.6 28.6 25.4 51.7 33.6 60 37 6.2 2.6 13.5 2 18-2.8 5.7-6.2 12.8-16.4 20-26.5 5.1-7.2 11.6-8.1 18.4-5.6 6.9 2.4 43.5 20.5 51 24.2 7.5 3.8 12.5 5.6 14.3 8.7 1.8 3.4 1.8 18.2-4.4 35.7z" />
-									</svg>
-									<span>whatsapp</span>
-								</a>
-							</li>
-							<li>
-								<a class="social__link viber" href="https://viber.com/" title="Viber.com" target="_blank">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-										<path
-													d="M23.155 13.893c.716-6.027-.344-9.832-2.256-11.553l.001-.001C17.814-.6 7.392-1.035 3.7 2.471 2.042 4.186 1.458 6.703 1.394 9.819c-.064 3.117-.14 8.956 5.301 10.54H6.7l-.005 2.419s-.037.98.589 1.177c.716.232 1.04-.223 3.267-2.883 3.724.323 6.584-.417 6.909-.525.752-.252 5.007-.815 5.695-6.654zM10.918 19.37s-2.357 2.939-3.09 3.702c-.24.248-.503.225-.499-.267 0-.323.018-4.016.018-4.016-4.613-1.322-4.341-6.294-4.291-8.895.05-2.602.526-4.733 1.93-6.168C8.225.689 17.362 1.368 19.69 3.556c2.846 2.523 1.833 9.651 1.839 9.894-.585 4.874-4.033 5.183-4.667 5.394-.271.09-2.786.737-5.944.526z" />
-										<path d="M12.222 4.297c-.385 0-.385.6 0 .605 2.987.023 5.447 2.105 5.474 5.924 0 .403.59.398.585-.005h-.001c-.032-4.115-2.718-6.501-6.058-6.524z" />
-										<path
-													d="M16.151 10.193c-.009.398.58.417.585.014.049-2.269-1.35-4.138-3.979-4.335-.385-.028-.425.577-.041.605 2.28.173 3.481 1.729 3.435 3.716zm-.63 2.581c-.494-.286-.997-.108-1.205.173l-.435.563c-.221.286-.634.248-.634.248-3.014-.797-3.82-3.951-3.82-3.951s-.037-.427.239-.656l.544-.45c.272-.216.444-.736.167-1.247-.74-1.337-1.237-1.798-1.49-2.152-.266-.333-.666-.408-1.082-.183h-.009c-.865.506-1.812 1.453-1.509 2.428.517 1.028 1.467 4.305 4.495 6.781 1.423 1.171 3.675 2.371 4.631 2.648l.009.014c.942.314 1.858-.67 2.347-1.561v-.007c.217-.431.145-.839-.172-1.106-.562-.548-1.41-1.153-2.076-1.542z" />
-										<path d="M13.169 8.104c.961.056 1.427.558 1.477 1.589.018.403.603.375.585-.028-.064-1.346-.766-2.096-2.03-2.166-.385-.023-.421.582-.032.605z" />
-									</svg>
-									<span>viber</span>
-								</a>
-							</li>
-							<li>
-								<a class="social__link telegram" href="https://www.telegram.com/" title="telegram.com" target="_blank">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-										<path d="m9.417 15.181-.397 5.584c.568 0 .814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931L23.93 3.821l.001-.001c.321-1.496-.541-2.081-1.527-1.714l-21.29 8.151c-1.453.564-1.431 1.374-.247 1.741l5.443 1.693L18.953 5.78c.595-.394 1.136-.176.691.218z" />
-									</svg>
-									<span>telegram</span>
-								</a>
-							</li>
-							<li>
-								<a class="social__link odnoklassniki" href="https://ok.ru/" title="Odnoklassniki" target="_blank">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.479 512.479" width="24" height="24" aria-hidden="true">
-										<path d="M256.239 277.333c76.583 0 138.667-62.083 138.667-138.667S332.823 0 256.239 0 117.573 62.083 117.573 138.667c.094 76.544 62.122 138.572 138.666 138.666zm0-213.333c41.237 0 74.667 33.429 74.667 74.667s-33.429 74.667-74.667 74.667-74.667-33.429-74.667-74.667S215.002 64 256.239 64z" />
-										<path
-													d="M392.069 343.04a53.72 53.72 0 0 0 24.171-44.8 38.698 38.698 0 0 0-21.696-35.307 40.534 40.534 0 0 0-42.667 4.011c-56.983 41.543-134.27 41.543-191.253 0a40.747 40.747 0 0 0-42.667-4.011 38.74 38.74 0 0 0-21.717 35.285 53.78 53.78 0 0 0 24.171 44.8 246.275 246.275 0 0 0 62.507 29.867 212.318 212.318 0 0 0 11.627 3.243l-64.469 63.04c-16.912 16.409-17.321 43.42-.912 60.333 16.409 16.912 43.42 17.321 60.333.912.352-.342.698-.689 1.038-1.043l65.707-68.011 65.835 68.139c16.395 16.925 43.407 17.355 60.332.96 16.925-16.395 17.355-43.407.96-60.332a42.943 42.943 0 0 0-1.047-1.044l-64.363-62.976a270.92 270.92 0 0 0 11.669-3.264 245.352 245.352 0 0 0 62.441-29.802z" />
-									</svg>
-									<span>odnoklassniki</span>
-								</a>
-							</li>
-							<li>
-								<a class="social__link youtube" href="https://youtube.com/" title="YouTube.com" target="_blank">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" aria-hidden="true">
-										<path
-													d="M490.2 113.9c-13.9-24.7-29-29.2-59.6-31-30.7-2-107.8-2.9-174.5-2.9-66.9 0-144 .9-174.7 2.9-30.6 1.8-45.7 6.3-59.7 31C7.4 138.6 0 181.1 0 255.9v.3c0 74.5 7.4 117.3 21.7 141.7 14 24.7 29.1 29.2 59.7 31.3 30.7 1.8 107.8 2.8 174.7 2.8 66.8 0 143.9-1.1 174.6-2.8 30.7-2.1 45.8-6.6 59.6-31.3 14.4-24.4 21.7-67.2 21.7-141.7V255.9c0-74.8-7.3-117.3-21.8-142zM192 352V160l160 96-160 96z" />
-									</svg>
-									<span>YouTube</span>
-								</a>
-							</li>
-						</ul>
-						<span class="subscribe__label">Наши соц сети</span>
-					</div>
-					<div class="subscribe__block">
-						<h3>Подпишитесь на рассылку</h3>
-						<p>Получайте всю информацию о скидках и акциях в чиле первых!</p>
-						<form method="post" action="{CALLBACK_URL}" enctype="multipart/form-data">
-							<input type="hidden" name="hash" value="{HASH}">
-							<input class="callbackredirect" type="hidden" name="return_to" value="{CALLBACK_URL}">
-							<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="Подписка - {FORM_CALLBACK_PERSON}">
-							<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="Подписка - {FORM_CALLBACK_PHONE}">
-
-							<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
-							{ANTISPAM_CODE}
-							<div class="form__field form__field--icon">
-								<input type="email" name="form[callback_email]" value="{FORM_CALLBACK_EMAIL}" placeholder="Введите e-mail" autocomplete="off" required>
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
-									<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="93.0909" stroke="currentColor" d="M823.999 872.001h-623.999c-88.366 0-160-71.633-160-160v-400.001c0-88.366 71.634-160 160-160h623.999c88.367 0 160 71.634 160 160v400.001c0 88.367-71.633 160-160 160z"></path>
-									<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="93.0909" stroke="currentColor" d="M200 312l255.432 263.432c31.243 31.241 81.898 31.241 113.139 0l255.427-263.432M200 712.001l192-200.001M631.999 512l192 200.001"></path>
-								</svg>
-							</div>
-
-							<button class="form__button" type="submit">Подписаться</button>
-
-							<small class="form__pp">
-								Нажимая на кнопку &laquo;Подписаться&raquo;, Вы соглашаетесь с
-								<a href="#dialogPolicy" data-dialog="#dialogPolicy">политикой конфиденциальности</a>
-							</small>
-						</form>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Обратная связь -->
 		<section id="subscribe" class="section">
 			<div class="subscribe__top">
 				<div class="container">
@@ -2255,7 +2248,61 @@
 							<a class="button-underline" href="{CATALOG_URL}" title=""><span>Узнать</span></a>
 						</div>
 						<div class="subscribe__item">
-							<div class="subscribe__icons"></div>
+							<ul class="social__links">
+								<li>
+									<a class="social__link vk" href="https://vk.com/" title="VK.com" target="_blank">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+											<path
+														d="M518.187 832c148.139 0 95.317-93.781 106.752-120.747-.171-20.139-.341-39.509.341-51.285 9.387 2.645 31.531 13.867 77.269 58.325C773.162 789.546 791.21 832 848.256 832h105.003c33.28 0 50.603-13.781 59.264-25.344 8.363-11.179 16.555-30.805 7.595-61.355-23.424-73.557-160.043-200.576-168.533-213.973 1.28-2.475 3.328-5.76 4.395-7.467h-.085c26.965-35.627 129.877-189.824 145.024-251.52a.796.796 0 0 0 .085-.341c8.192-28.16.683-46.421-7.083-56.747C982.23 199.808 963.628 192 938.497 192H833.494c-35.157 0-61.824 17.707-75.307 50.005-22.571 57.387-85.973 175.403-133.504 217.173-1.451-59.179-.469-104.363.299-137.941C626.518 255.744 631.467 192 563.499 192H398.464c-42.581 0-83.328 46.507-39.211 101.717 38.571 48.384 13.867 75.349 22.187 209.579-32.427-34.773-90.112-128.683-130.901-248.704-11.435-32.469-28.757-62.549-77.525-62.549H68.011C25.43 192.043 0 215.254 0 254.123 0 341.419 193.237 832 518.187 832zM173.013 256.043c9.259 0 10.197 0 17.067 19.499 41.771 123.008 135.467 305.024 203.904 305.024 51.413 0 51.413-52.693 51.413-72.533l-.043-157.952c-2.816-52.267-21.845-78.293-34.347-94.08l149.675.171c.085.725-.853 174.72.427 216.875 0 59.861 47.531 94.165 121.728 19.072C761.13 403.756 815.274 271.66 817.45 266.284c3.2-7.68 5.973-10.283 16.043-10.283h105.429c-.043.128-.043.256-.085.384-9.6 44.8-104.363 187.563-136.064 231.893-.512.683-.981 1.408-1.451 2.133-13.952 22.784-25.301 47.957 1.92 83.371 2.475 2.987 8.96 9.984 18.347 19.712 29.184 30.123 129.28 133.12 138.155 174.08-5.888.939-12.288.256-111.488.469-21.12 0-37.632-31.573-100.651-95.147-56.661-55.125-93.44-77.653-126.933-77.653-65.024 0-60.288 52.779-59.691 116.608.213 69.205-.213 47.317.256 51.669-3.797 1.493-14.677 4.48-43.051 4.48-270.72 0-447.019-429.696-453.803-511.829 2.347-.213 34.645-.085 108.629-.128z" />
+										</svg>
+										<span>vk</span>
+									</a>
+								</li>
+								<li>
+									<a class="social__link telegram" href="https://www.telegram.com/" title="telegram.com" target="_blank">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+											<path d="M512 1024c282.325 0 512-229.675 512-512S794.325 0 512 0 0 229.675 0 512s229.675 512 512 512zm0-960c247.04 0 448 200.96 448 448S759.04 960 512 960 64 759.04 64 512 264.96 64 512 64z" />
+											<path
+														d="m336.897 603.947 66.901-29.056-18.773 18.816a32.012 32.012 0 0 0-9.387 22.613v125.227c0 28.672 34.645 42.581 54.612 22.613l67.157-67.157 146.347 73.173c18.944 9.472 41.856-1.749 45.781-22.912l83.499-459.136c4.395-24.704-19.925-44.672-43.179-35.541L187.307 464.939c-24.32 9.472-27.563 42.752-5.547 56.789L306.944 601.6c8.96 5.717 20.267 6.613 29.952 2.347zm362.922-270.805L634.24 693.888l-128.853-64.384c-12.459-6.229-27.307-3.627-36.907 6.016l-28.843 28.843v-34.688l128.299-128.299c24.875-24.875-3.115-65.92-35.371-51.968l-205.524 89.173-57.771-36.864 430.548-168.576z" />
+										</svg>
+										<span>telegram</span>
+									</a>
+								</li>
+								<li>
+									<a class="social__link whatsapp" href="https://whatsapp.com/" title="Whatsapp.com" target="_blank">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+											<path
+														d="M568.747 771.243c172.8 41.131 233.6-106.667 203.136-161.835-12.203-22.016-121.856-64.299-127.189-66.347-47.104-17.152-64.512 14.848-97.152 56.96-62.677-31.36-104.704-56.064-147.883-126.293 2.432-3.029 5.675-6.613 8.107-9.344 15.104-16.896 43.392-48.384 24.107-86.912-16.213-32.299-24.277-54.827-30.208-71.339-17.195-47.829-30.293-60.8-89.515-60.8-61.653 0-109.483 81.024-109.483 150.784 0 152.277 204.715 336.597 366.08 375.125zm-256.598-461.91c12.8 0 19.285.427 22.528.939 6.912 14.635 13.909 45.184 39.68 92.715-4.011 14.976-60.971 50.091-34.56 95.488 53.973 91.648 107.989 123.435 185.387 161.92 51.541 23.296 68.011-18.901 100.693-55.979 15.147 6.144 66.261 28.757 88.704 40.107-2.005 44.203-44.672 84.992-130.987 64.427-148.139-35.371-316.971-202.027-316.971-312.875.043-42.155 29.611-86.741 45.525-86.741z" />
+											<path
+														d="M3.542 984.956c-5.589 20.224 9.557 40.491 30.848 40.491 7.68 0-4.864 1.963 249.515-64 103.552 52.736 182.272 51.072 232.533 55.808 450.347 0 670.933-549.248 361.003-868.821-424.832-410.624-1086.464 99.669-809.6 602.752L3.542 984.957zm822.954-796.672c7.381 13.483 219.093 204.416 101.205 489.728-72.576 175.787-240.043 284.117-427.691 273.963-152.661-8.491-192.17-63.019-220.288-55.552L79.914 948.476l53.12-193.024c2.304-8.277 1.152-17.109-3.115-24.533-255.275-440.49 321.962-893.397 696.576-542.634z" />
+										</svg>
+										<span>whatsapp</span>
+									</a>
+								</li>
+								<li>
+									<a class="social__link youtube" href="https://youtube.com/" title="YouTube.com" target="_blank">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+											<path d="M424.066 335.191c-21.205-12.672-48.384 2.645-48.384 27.477v298.665c0 24.96 27.221 40.064 48.384 27.52l250.413-149.12c20.821-12.416 20.779-42.539.043-54.997L424.067 335.191zm15.618 269.865V419.031l155.947 93.139-155.947 92.885z" />
+											<path
+														d="M849.237 139.57c-198.528-29.483-475.861-29.483-674.475 0-79.445 11.776-142.037 74.155-155.691 155.136-25.429 150.316-25.429 284.332 0 434.604 13.653 81.024 76.245 143.36 155.691 155.136 99.499 14.763 218.624 22.144 337.707 22.144 118.869 0 237.696-7.339 336.811-22.101 79.36-11.776 141.909-74.112 155.648-155.136 25.429-150.315 25.429-284.373 0-434.689-13.653-80.939-76.245-143.317-155.691-155.093zm92.587 579.116c-9.088 53.589-50.048 94.805-101.973 102.485C647.083 849.8 377.43 849.8 184.15 821.128c-51.968-7.723-92.971-48.896-102.016-102.485-24.491-144.811-24.491-268.416 0-413.313 9.088-53.589 50.048-94.72 102.059-102.485 96.512-14.293 212.181-21.461 327.765-21.461 115.669 0 231.339 7.168 327.851 21.461 51.968 7.723 92.971 48.896 102.016 102.485 24.491 144.897 24.491 268.502 0 413.356z" />
+										</svg>
+										<span>YouTube</span>
+									</a>
+								</li>
+								<li>
+									<a class="social__link viber" href="https://viber.com/" title="Viber.com" target="_blank">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+											<path
+														d="M269.995 869.466c-1.323 62.507-8.704 133.931 45.696 151.168 53.333 17.365 84.267-25.515 153.813-112.555 259.328 17.707 488.235-55.211 518.869-316.629 27.435-232.407-8.021-406.274-99.285-489.004C755.243-25.81 319.573-43.773 160.085 108.675 94.421 176.984 62.421 277.208 59.434 424.11c-2.432 119.98-7.381 365.314 210.56 445.356zm-146.56-444.034c2.645-129.835 28.928-216.405 81.792-271.445C338.39 26.755 733.014 41.475 845.44 149.336c75.051 67.968 104.021 226.389 79.403 434.647-22.357 190.976-145.323 223.573-191.616 235.819-95.872 25.301-187.264 30.805-274.944 23.211-23.083-2.475-32.171 19.371-40.576 27.307-41.771 50.219-71.893 86.485-79.701 91.349-5.76-8.576-4.864-49.152-4.181-81.749-2.091-14.677 11.051-55.253-23.211-64.427-193.92-57.259-189.525-273.707-187.179-390.06z" />
+											<path
+														d="M245.847 340.488c34.176 68.139 67.499 188.545 195.454 293.334C485.717 670.43 618.666 754.91 670.72 754.91c74.368 0 159.317-116.992 97.109-169.173-27.989-27.349-67.371-54.272-92.629-69.077-.043-.043-.085-.043-.085-.043-65.579-37.931-101.504 31.872-105.771 34.603-96.085 86.016-214.441-63.403-131.499-135.681 10.197-12.672 71.04-42.027 34.944-108.757-32-57.899-53.118-77.824-65.065-94.336-63.019-78.677-199.381 52.011-161.877 128.043zm391.422 229.249c4.352 2.731 42.283 19.328 87.552 63.403 5.76 4.821-32.64 60.629-57.088 57.429-4.821-2.176-39.68-10.496-114.56-56.277 71.083-24.149 70.485-61.995 84.096-64.555zM352.855 252.936c2.645-1.408 4.011-1.493 3.883-1.835 12.288 17.109 30.635 33.408 59.904 86.357 7.765 14.379-11.392 19.968-23.765 32.597-17.621 15.616-30.549 34.219-38.485 54.741-26.197-49.451-37.931-85.077-49.877-109.995-4.779-22.699 28.032-50.261 48.341-61.867z" />
+											<path d="M546.645 364.805c.469.043 46.891 5.973 55.211 55.936 7.04 42.41 70.016 31.018 63.104-10.496-12.928-77.611-78.251-105.259-111.061-109.013-42.027-4.736-49.237 58.709-7.253 63.573z" />
+											<path d="M513.323 226.812c.725 0 101.461-1.792 167.04 68.352 64.768 69.291 50.475 170.027 50.347 170.923-6.528 41.515 56.533 52.523 63.189 9.941.853-5.333 19.669-132.096-66.773-224.597-85.803-91.819-210.603-88.96-215.765-88.619-43.733 1.451-38.443 67.328 1.963 64z" />
+										</svg>
+										<span>viber</span>
+									</a>
+								</li>
+							</ul>
 							<h4 class="subscribe__subtitle">Следите за новостями</h4>
 							<p class="subscribe__text">Присоединяйтесь к нашим социальным сетям</p>
 						</div>
@@ -2908,7 +2955,10 @@
 				swiperBrands("#brands");
 				swiperMedium('#advantages');
 				swiperLarge('#discounts');
-				swiperLarge('#news');
+				swiperLarge('[data-tab-content="news_list_all"]');
+				swiperLarge('[data-tab-content="news_list_shop"]');
+				swiperLarge('[data-tab-content="news_list_articles"]');
+				swiperLarge('[data-tab-content="news_list_mass_media"]');
 				VisibleItems('#pdtSale');
 			});
 		</script>
