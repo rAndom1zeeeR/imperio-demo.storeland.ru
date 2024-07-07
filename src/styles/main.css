@@ -200,8 +200,7 @@
 .slideshow__content {position: relative;z-index: 1;max-width: 520px;}
 .slideshow__title {font-weight: bold;font-size: 60px;}
 .slideshow__subtitle {margin-top: 12px;font-weight: normal;font-size: 32px;line-height: 38px;}
-.slideshow__button {margin-top: 24px;color: var(--color-text-secondary);font-size: 22px;}
-.slideshow__button span {border-bottom: 1px solid currentcolor;}
+.slideshow__button {margin-top: 24px;font-size: 22px;}
 .slideshow__image {position: absolute;right: 0;}
 
 /*
@@ -273,8 +272,7 @@
 .banners__image {position: absolute;top: 16px;right: 16px;}
 .banners__title {font-size: 36px;line-height: 44px;}
 .banners__subtitle {margin-top: 16px;font-size: 20px;}
-.banners__button {margin-top: 16px;color: var(--color-text-secondary);font-size: var(--text-size-large);}
-.banners__button span {border-bottom: 1px solid currentcolor;}
+.banners__button {margin-top: 16px;}
 
 /*
 ** Преимущества
@@ -304,3 +302,16 @@
 .footer-about__item {margin-bottom: 24px;}
 .payments__links {display: flex;gap: 16px;}
 .footer__bottom {margin-top: 40px;padding-top: 16px;border-top: 1px solid var(--color-border);}
+
+/*
+** Подписаться
+*/
+#subscribe {background-color: #C0E8CC;padding-block: 48px;}
+.subscribe__items {display: grid;grid-template-columns: repeat(3, 1fr);gap: 32px;}
+.subscribe__title {margin-bottom: 24px;font-size: var(--heading-01);}
+.subscribe__subtitle {margin-top: 8px;}
+.subscribe__text {margin-block: 12px 16px;font-size: var(--text-size-large);}
+.subscribe__bottom {margin-top: 48px;padding-top: 48px;border-top: 1px solid var(--color-border);}
+.subscribe__form {display: grid;grid-template-columns: 452px 490px 240px 300px; gap: 48px;align-items: center;}
+.subscribe__form .form__pp {font-size: var(--text-size-regular);line-height: var(--text-height-regular);}
+.subscribe__form .form__text {font-size: var(--text-size-large);}

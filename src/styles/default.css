@@ -150,11 +150,24 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 	border: none;
 }
 .button-link:active, .button-link.is-active {color: var(--color-secondary);background: none;}
+.button-underline {
+	justify-content: flex-start;
+	height: auto;
+	padding: 0;
+	color: var(--color-text-secondary);
+	font-size: var(--text-size-large);
+	font-family: var(--font-secondary);
+	background: none;
+	border: none;
+}
+.button-underline span {border-bottom: 1px solid currentcolor;}
+.button-underline:active, .button-underline.is-active {color: var(--color-secondary);background: none;}
 @media (hover: hover) and (pointer: fine) {
 	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: white;background-color: var(--color-secondary)}
 	.button-secondary:hover {color: white;background-color: var(--color-text-primary);border-color: var(--color-text-primary);}
 	.button-icon:hover {color: var(--color-text-primary);background: none;}
 	.button-link:hover {color: var(--color-secondary);background: none;}
+	.button-underline:hover {color: var(--color-secondary);background: none;}
 }
 
 /* .button-close {
@@ -327,6 +340,12 @@ h6 {font-size: var(--heading-06);}
 ** Поле формы
 */
 fieldset.form__fields {margin: 0;padding: 0;border: 0;}
+.form__fields {position: relative;}
+.form__field:not(:first-child) {margin-top: 12px;}
+.form__label {display: block;margin-bottom: 8px;font-weight: bold;font-size: var(--text-size-regular);}
+.form__label small {display: none;}
+.form__label[required] small {display: inline;}
+.form__text {margin: 0;}
 .form__buttons {
 	display: flex;
 	flex-wrap: wrap;
@@ -334,18 +353,6 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 	align-items: center;
 	margin-top: 20px;
 }
-.form__fields {position: relative;}
-.form__field:not(:first-child) {margin-top: 12px;}
-.form__field label, .form__label {
-	display: block;
-	margin-bottom: 8px;
-	color: var(--color-gray);
-	font-weight: bold;
-	font-size: var(--text-size-regular);
-}
-.form__field label small {display: none;}
-.form__field label[required] small {display: inline;}
-.form__label {margin-bottom: 0;}
 
 /*
 ** Поле формы с иконкой
@@ -382,7 +389,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 /*
 ** Политика конфиденциальности
 */
-.form__pp {display: block;color: var(--color-gray);}
+.form__pp {display: block;}
 .form__pp a {color: currentcolor;text-decoration: underline;}
 .form__pp a:active {color: var(--color-secondary);}
 @media (hover: hover) and (pointer: fine) {
