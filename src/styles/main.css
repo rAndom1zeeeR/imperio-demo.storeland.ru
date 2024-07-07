@@ -283,7 +283,24 @@
 .advantage__title {margin-top: 24px;font-weight: bold;font-size: var(--heading-04);}
 .advantage__text {margin: 12px 0 0;font-size: var(--text-size-large);line-height: var(--text-height-large);}
 
+/*
+** Описание на главной
+*/
 .main__inner {display: flex;gap: 168px;align-items: flex-start;}
 .main__desc {flex-shrink: 0;width: 520px;}
 .main__desc .headline__title {font-size: var(--heading-01);}
 .main__advantage {flex-grow: 1;}
+
+/*
+** Подвал
+*/
+.footer__inner {display: grid;grid-template-columns: repeat(4, 1fr);gap: 32px;}
+.footer__title {margin-bottom: 16px;}
+.footer__links {margin: 0;padding: 0;list-style: none;}
+.footer__link {display: block;font-size: var(--text-size-medium);line-height: 32px;}
+.footer-contacts__label {line-height: 32px;}
+.footer-contacts__callback {margin-top: 16px;color: var(--color-primary);font-size: var(--text-size-regular);font-family: var(--font-secondary);}
+.footer-contacts__item:not(:first-child) {margin-top: 16px;}
+.footer-about__item {margin-bottom: 24px;}
+.payments__links {display: flex;gap: 16px;}
+.footer__bottom {margin-top: 40px;padding-top: 16px;border-top: 1px solid var(--color-border);}

@@ -690,16 +690,17 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 /*
 ** Страница: Связь с администрацией
 */
-.contacts__label {
-	display: block;
-	margin-bottom: 8px;
-	color: var(--color-gray);
-	font-weight: bold;
-	font-size: var(--text-size-regular);
-}
+.contacts__label {display: block;margin-bottom: 8px;font-size: var(--text-size-medium);}
 .contacts__block:not(:first-child) {margin-top: 24px;}
-.contacts__link {display: flex;gap: 8px;align-items: center;}
-.contacts__link:not(:first-child) {margin-top: 12px;}
+.contacts__link {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	font-weight: bold;
+	font-size: var(--text-size-large);
+	font-family: var(--font-secondary);
+}
+.contacts__link:not(:first-child) {margin-top: 10px;}
 
 /* Карта */
 .map iframe {width: 100%;border: 2px solid var(--color-border);border-radius: 10px;}
