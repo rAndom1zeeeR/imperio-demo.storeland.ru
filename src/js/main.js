@@ -2590,8 +2590,8 @@ function Form(id, successMessage, errorMessage) {
 document.addEventListener("DOMContentLoaded", function () {
   Dialogs();
   Passwords();
-  Mainnav(".header__mainnav");
-  Mainnav(".catalog__mainnav");
+  Mainnav(document.querySelector("#header"));
+  Mainnav(document.querySelector("#catalog"));
   CartClear();
   CartRemove();
   Addto();

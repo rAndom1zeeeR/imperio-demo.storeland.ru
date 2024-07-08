@@ -189,7 +189,7 @@
 ** Каталог
 */
 #catalog {padding-block: 16px;}
-#catalog .mainnav__list {margin-inline: -16px;}
+#catalog .mainnav__list {margin-inline: -16px;width: 100%;}
 .catalog__mainnav .mainnav__link {font-size: var(--text-size-large);line-height: var(--text-height-large);}
 
 /*
@@ -297,8 +297,15 @@
 .footer__links {margin: 0;padding: 0;list-style: none;}
 .footer__link {display: block;font-size: var(--text-size-medium);line-height: 32px;}
 .footer-contacts__label {line-height: 32px;}
-.footer-contacts__callback {margin-top: 16px;color: var(--color-primary);font-size: var(--text-size-regular);font-family: var(--font-secondary);}
+.footer-contacts__callback {
+	margin-top: 16px;
+	color: var(--color-primary);
+	font-weight: bold;
+	font-size: var(--text-size-regular);
+	font-family: var(--font-secondary);
+}
 .footer-contacts__item:not(:first-child) {margin-top: 16px;}
+.footer-contacts__phones a {display: flex;}
 .footer-about__item {margin-bottom: 24px;}
 .payments__links {display: flex;gap: 16px;}
 .footer__bottom {margin-top: 40px;padding-top: 16px;border-top: 1px solid var(--color-border);}
@@ -326,7 +333,7 @@
 .social__link span {display: none;}
 
 /*
-** Подписаться
+** Новости
 */
 .news__item {position: relative;}
 .news__images {
@@ -363,6 +370,9 @@
 	border-radius: var(--border-radius);
 }
 
+/*
+** Табы
+*/
 .tabs {display: flex;gap: 32px;}
 .tabs__link {font-weight: bold;font-size: var(--heading-03);opacity: 0.5;}
 .tabs__link.is-active, .tabs__link:active {color: var(--color-text-secondary);opacity: 1;}

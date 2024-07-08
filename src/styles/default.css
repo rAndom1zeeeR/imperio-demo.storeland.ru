@@ -700,7 +700,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 .contacts__label {display: block;margin-bottom: 8px;font-size: var(--text-size-medium);}
 .contacts__block:not(:first-child) {margin-top: 24px;}
 .contacts__link {
-	display: flex;
+	display: inline-flex;
 	gap: 8px;
 	align-items: center;
 	font-weight: bold;
