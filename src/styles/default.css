@@ -134,7 +134,7 @@ button, .button, .paymentFormSubmitLink, .paymentFormTbodySubmitButton {
 	fill: currentcolor;
 	padding-inline: 32px;
 }
-button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodySubmitButton:active {color: white;background-color: var(--color-secondary);}
+button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodySubmitButton:active {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
 .button-secondary {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
 .button-secondary:active {color: white;background-color: var(--color-text-primary);border-color: var(--color-text-primary);}
 .button-tertiary {color: white;background-color: var(--color-tertiary);border-color: var(--color-tertiary);}
@@ -409,36 +409,20 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 */
 .sticker {
 	position: relative;
+	padding: 2px 8px;
 	color: white;
 	font-weight: bold;
-	font-size: var(--text-size-regular);
-	font-style: italic;
-	padding-inline: 16px;
-}
-.sticker::after {
-	position: absolute;
-	top: -6px;
-	left: 2px;
-	z-index: -1;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 24px;
+	font-size: var(--text-size-small);
 	border-radius: var(--border-radius);
-	transform: skew(-20deg);
-	content: "";
 }
 .sticker::before {position: relative;z-index: 2;}
-.sticker--sales::after {background: var(--color-error);}
-.sticker--sale::after {background: var(--color-error);}
-.sticker--sale::before {content: 'sale';}
-.sticker--best::after {background: #A35DFC;}
-.sticker--best::before {content: 'hit';}
-.sticker--new::after {background: #33FD90;}
-.sticker--new::before {content: 'new';}
-.sticker--empty::after {background: var(--color-text-primary);}
-.sticker--empty::before {content: 'нет в наличии';}
+.sticker--sales {background: var(--color-error);}
+.sticker--sale {background: var(--color-error);}
+.sticker--sale::before {content: 'Скидка';}
+.sticker--best {background: var(--color-primary);}
+.sticker--best::before {content: 'Хит';}
+.sticker--new {background: var(--color-secondary);}
+.sticker--new::before {content: 'Новинка';}
 
 /*
 ** Количество
@@ -487,13 +471,13 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 	display: block;
 	width: 80px;
 	height: 16px;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E0EDEF' viewBox='0 0 1024 1024'%3E%3Cpath d='M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23635258' viewBox='0 0 1024 1024'%3E%3Cpath d='M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z'/%3E%3C/svg%3E");
 	background-repeat: repeat-x;
 }
 .ratings__value {
 	position: absolute;
 	height: 100%;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23B7FD4F' viewBox='0 0 1024 1024'%3E%3Cpath d='M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23657984' viewBox='0 0 1024 1024'%3E%3Cpath d='M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z'/%3E%3C/svg%3E");
 	background-repeat: repeat-x;
 }
 

@@ -2292,7 +2292,7 @@ function swiperMedium(selector) {
     simulateTouch: true,
     grabCursor: true,
     slidesPerView: 4,
-    spaceBetween: 12,
+    spaceBetween: 0,
     preloadImages: false,
     navigation: {
       nextEl: selector + " .swiper-button-next",
