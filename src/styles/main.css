@@ -465,5 +465,16 @@
 	.product__item:hover .product__addto {transform: scale(1, 1);}
 }
 
-#pdtBest .swiper-wrapper {padding-bottom: 210px;}
-#pdtBest .swiper {margin-bottom: -210px;}
+
+/*
+** Товары таблицей
+*/
+.products__grid {display: grid;grid-template-columns: repeat(4, 1fr);gap: 12px;}
+.products__grid.swiper-wrapper {gap: 0;}
+
+
+/*
+** Товары таблицей в Слайдере
+*/
+.swiper--products {margin-bottom: -210px;}
+.swiper--products .swiper-wrapper {padding-bottom: 210px;}
