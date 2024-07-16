@@ -449,8 +449,8 @@
 /*
 ** Подвал
 */
-.footer__inner {display: grid;grid-template-columns: repeat(4, 1fr);gap: 32px;}
-.footer__title {margin-bottom: 16px;}
+.footer__inner {display: grid;grid-template-columns: 100%;gap: 20px;}
+.footer__title {margin-bottom: 10px;font-size: var(--heading-06);}
 .footer__links {margin: 0;padding: 0;list-style: none;}
 .footer__link {display: block;font-size: var(--text-size-medium);line-height: 32px;}
 .footer-contacts__label {line-height: 32px;}
@@ -463,9 +463,26 @@
 }
 .footer-contacts__item:not(:first-child) {margin-top: 20px;}
 .footer-contacts__phones a {display: flex;}
-.footer-about__item {margin-bottom: 24px;}
-.payments__links {display: flex;gap: 16px;}
-.footer__bottom {margin-top: 40px;padding-top: 16px;border-top: 1px solid var(--color-border);}
+.footer-about__contacts {margin-bottom: 24px;}
+.payments__links {display: flex;flex-wrap: wrap;gap: 16px;}
+.footer__top {padding-top: 40px;}
+.footer__bottom {margin-top: 20px;border-top: 1px solid var(--color-border);}
+@media all and (min-width: 480px) {
+	.footer__inner {grid-template-columns: repeat(2, 1fr);}
+	.footer__title {margin-bottom: 16px;font-size: var(--heading-05);line-height: 24px;}
+	.footer__bottom {margin-top: 32px;}
+}
+@media all and (min-width: 640px) and (max-width: 1023px) {
+	.footer__inner {grid-template-columns: repeat(3, 1fr);}
+	.footer-about {display: grid;grid-column: 1 / 4;grid-template-columns: inherit;gap: 20px;}
+	.footer-about__item:nth-child(2) {grid-column: 3 / 4;}
+}
+@media all and (min-width: 768px) {
+	.footer__inner, .footer-about {gap: 32px;}
+}
+@media all and (min-width: 1024px) {
+	.footer__inner {grid-template-columns: repeat(4, 1fr);}
+}
 
 /*
 ** Подписаться
