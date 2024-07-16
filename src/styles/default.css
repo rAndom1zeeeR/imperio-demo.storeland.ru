@@ -34,10 +34,10 @@
 	--icon-size-large: 24px;
 	--heading-01: 40px;
 	--heading-02: 32px;
-	--heading-03: 24px;
-	--heading-04: 20px;
-	--heading-05: 18px;
-	--heading-06: 16px;
+	--heading-03: 28px;
+	--heading-04: 24px;
+	--heading-05: 20px;
+	--heading-06: 18px;
 }
 
 /*
@@ -691,7 +691,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 	font-size: var(--text-size-large);
 	font-family: var(--font-secondary);
 }
-.contacts__link:not(:first-child) {margin-top: 10px;}
+.contacts__link + .contacts__link {margin-top: 12px;}
 
 /* Карта */
 .map iframe {width: 100%;border: 2px solid var(--color-border);border-radius: 10px;}
