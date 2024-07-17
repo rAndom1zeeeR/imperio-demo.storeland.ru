@@ -431,19 +431,56 @@
 /*
 ** Преимущества
 */
-.advantage__items {display: grid;grid-template-columns: repeat(2, 1fr);gap: 50px 168px;}
-.advantage__title {margin-top: 24px;font-weight: bold;font-size: var(--heading-04);}
-.advantage__text {margin: 12px 0 0;font-size: var(--text-size-large);line-height: var(--text-height-large);}
+.advantage__items {display: grid;grid-template-columns: repeat(2, 1fr);gap: 24px;}
+.advantage__item {
+	display: flex;
+	flex-flow: column wrap;
+	gap: 12px;
+	align-items: center;
+	text-align: center;
+}
+.advantage__title {font-weight: bold;font-size: var(--text-size-medium);font-family: var(--font-secondary);line-height: var(--text-height-medium);}
+.advantage__text {margin: 0;font-size: var(--text-size-medium);line-height: var(--text-height-medium);}
+.advantage__icon {flex-shrink: 0;}
+@media all and (min-width: 480px) {
+	.advantage__items {row-gap: 32px;}
+	.advantage__item {flex-flow: row nowrap;gap: 16px;text-align: left;}
+}
+@media all and (min-width: 640px) {
+	.advantage__items {grid-template-columns: repeat(4, 1fr);}
+	.advantage__item {flex-direction: column;gap: 12px;align-items: flex-start;text-align: left;}
+}
+@media all and (min-width: 1024px) {
+	.advantage__item {gap: 24px;}
+	.advantage__text {margin-top: -10px;font-size: var(--text-size-large);line-height: var(--text-height-large);}
+	.advantage__icon {width: 70px;height: 70px;}
+	.advantage__title {font-size: var(--heading-05);}
+}
+@media all and (min-width: 1440px) {
+	.advantage__items {grid-template-columns: repeat(2, 1fr);gap: 32px;}
+}
+@media all and (min-width: 1920px) {
+	.advantage__items {gap: 48px 120px;}
+	.advantage__title {margin-top: 24px;font-size: var(--heading-04);}
+}
+@media all and (max-width: 767px) {
+	.advantage__text {display: none;}
+}
 
 /*
 ** Описание на главной
 */
-.main__inner {display: flex;flex-wrap: wrap;gap: 40px 168px;align-items: flex-start;}
-.main__desc {flex-shrink: 0;width: 100%;}
+.main__inner {display: flex;flex-wrap: wrap;row-gap: 40px;align-items: flex-start;}
+.main__desc {flex-shrink: 0;width: 100%;padding-right: 120px;}
 .main__desc .headline__title {font-size: var(--heading-01);}
 .main__advantage {flex-grow: 1;}
 @media all and (min-width: 1440px) {
-	.main__desc {width: 520px;}
+	.main__desc {width: 50%;}
+	.main__advantage {width: 50%;}
+}
+@media all and (min-width: 1920px) {
+	.main__desc {width: 40%;}
+	.main__advantage {width: 60%;}
 }
 
 /*
@@ -684,4 +721,4 @@
 */
 #viewed .product__attr {display: none;}
 
-.section, #main {display: none !important;}
+.section {display: none !important;}
