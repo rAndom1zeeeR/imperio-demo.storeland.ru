@@ -256,7 +256,7 @@ function DialogsCloser(dialog) {
   button.setAttribute("aria-label", "Закрыть модальное окно");
   button.setAttribute("data-dialog-close", "");
   button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="10" height="10" aria-hidden="true"><path d="M340.44 474.989a52.36 52.36 0 0 1 0 74.022L27.905 861.433a95.21 95.21 0 0 0-.013 134.669 95.267 95.267 0 0 0 134.706.013l312.548-312.461a52.365 52.365 0 0 1 37.015-15.331 52.365 52.365 0 0 1 37.015 15.331L861.71 996.115a95.292 95.292 0 0 0 67.471 27.878 95.303 95.303 0 0 0 67.402-28.045c37.13-37.376 36.119-98.202-1.166-135.475L683.869 549.011A52.316 52.316 0 0 1 668.533 512a52.314 52.314 0 0 1 3.986-20.031 52.3 52.3 0 0 1 11.35-16.98l311.702-311.616c37.132-37.12 38.207-97.587 1.358-134.976-8.822-8.951-19.328-16.068-30.913-20.941a95.309 95.309 0 0 0-73.234-.278 95.28 95.28 0 0 0-31.072 20.707L549.138 340.346a52.372 52.372 0 0 1-74.03 0L163.443 28.73C126.313-8.39 65.829-9.478 28.43 27.373a95.182 95.182 0 0 0-.526 135.181l312.535 312.435z" /></svg>`;
-  dialog.prepend(button);
+  dialog.append(button);
   return button;
 }
 
@@ -515,6 +515,8 @@ function AddtoCart(doc = document) {
       CartRemove();
       CartClear();
     });
+    // console.log("[DEBUG]: event", event.currentTarget);
+    event.currentTarget.parentElement.classList.add("has-in-cart");
   }
 
   // Обновление корзины
@@ -626,6 +628,7 @@ function AddtoOrder(doc = document) {
       CartRemove();
       CartClear();
     });
+    event.currentTarget.parentElement.classList.add("has-in-cart");
   }
 
   function handleAddtoOrderOpen(data) {
@@ -729,21 +732,24 @@ function StickerSales(selector, type = "percent") {
 /**
  * Фильтры.
  * Используется в функциях: на странице Товары(каталог).
- * Использует функции: noUiSlider
+ * Использует функции: Jquery ui slider
  */
 function Filters() {
   const sidebar = document.querySelector(".sidebar");
   // console.log("[DEBUG]: sidebar", sidebar);
   if (!sidebar) return;
   // Выбора фильтра
-  const filterLists = document.querySelectorAll(".filter__list");
-  // console.log("[DEBUG]: filterInputs", filterInputs);
+  const filters = sidebar.querySelector(".filters");
+  const sortbar = sidebar.querySelector(".sortbar");
+  if (!filters) return;
+  const filterLists = sidebar.querySelectorAll(".filter__list");
   if (filterLists.length !== 0) {
     let filtersChecked = 0;
     filterLists.forEach((list) => {
       let filterChecked = 0;
-      list.querySelectorAll("input").forEach((input) => {
-        input.addEventListener("click", function (event) {
+      list.querySelectorAll("input[type=checkbox]").forEach((input) => {
+        // console.log("[DEBUG]: input", input);
+        input.addEventListener("click", (event) => {
           event.target.form.submit();
         });
 
@@ -754,87 +760,22 @@ function Filters() {
 
         const filterOpenerCount = document.querySelector(".filters__open b");
         if (filterOpenerCount) {
-          filterOpenerCount.innerHTML = filtersChecked;
+          filterOpenerCount.innerHTML = filtersChecked > 0 ? filtersChecked : "";
         }
       });
 
       const filterListCount = list.querySelector(".filter__title b");
+      // console.log("[DEBUG]: filterChecked", filterChecked);
       if (filterListCount) {
-        filterListCount.innerHTML = filterChecked;
+        filterListCount.innerHTML = filterChecked > 0 ? filterChecked : "";
       }
     });
   }
 
-  function filterPriceSlider() {
-    const priceFilter = document.querySelector(".filters-price");
-    if (!priceFilter) return;
-    const priceSlider = priceFilter.querySelector(".filters-price__slider");
-    const [priceMinValue, priceMaxValue, priceMinRange, priceMaxRange, priceMin, priceMax] = getMinMaxPrice(priceFilter);
-    const priceValues = [priceMin, priceMax];
-    console.log("[DEBUG]: filterPriceSlider priceValues", priceValues);
-    // console.log("[DEBUG]: priceMinValue", priceMinValue);
-    // console.log("[DEBUG]: priceMinRange", priceMinRange);
-    // console.log("[DEBUG]: priceMaxValue", priceMaxValue);
-    // console.log("[DEBUG]: priceMaxRange", priceMaxRange);
-    // Запуск слайдера
-    noUiSlider.create(priceSlider, {
-      start: [priceMinValue, priceMaxValue],
-      step: 100,
-      margin: 0,
-      connect: true,
-      range: {
-        min: priceMinRange,
-        max: priceMaxRange,
-      },
-      format: {
-        from: function (value) {
-          return Math.round(value);
-        },
-        to: function (value) {
-          return Math.round(value);
-        },
-      },
-    });
-
-    // Обновление значения при изменении слайдера
-    priceSlider.noUiSlider.on("update", function (values, handle) {
-      // console.log("[DEBUG]: filterPriceSlider values", values, handle);
-      priceValues[handle].value = values[handle];
-      priceValues[handle].setAttribute("value", values[handle]);
-    });
-    // Отображение кнопок применить и сбросить при изменении слайдера
-    priceSlider.noUiSlider.on("change", function () {
-      handlePriceButtonsVisibility(priceFilter);
-    });
-    handlePriceButtonsVisibility(priceFilter);
-
-    function handlePriceButtonsVisibility(priceFilter) {
-      const [priceMinValue, priceMaxValue, priceMinRange, priceMaxRange] = getMinMaxPrice(priceFilter);
-      const isPriceChanged = priceMinValue !== priceMinRange || priceMaxValue !== priceMaxRange;
-      if (isPriceChanged) {
-        priceFilter.classList.add("has-filters");
-      } else {
-        priceFilter.classList.remove("has-filters");
-      }
-    }
-
-    // Отображение кнопок применить и сбросить если изменен диапазон цен
-    function getMinMaxPrice(priceFilter) {
-      const priceMin = priceFilter.querySelector("#filter-price-min");
-      const priceMax = priceFilter.querySelector("#filter-price-max");
-      const priceMinValue = parseInt(priceMin.value);
-      const priceMaxValue = parseInt(priceMax.value);
-      const priceMinRange = parseInt(priceMin.min);
-      const priceMaxRange = parseInt(priceMax.max);
-      return [priceMinValue, priceMaxValue, priceMinRange, priceMaxRange, priceMin, priceMax];
-    }
-  }
-  filterPriceSlider();
-
-  function filterOpener() {
+  // Открытие фильтров
+  function filterOpener(filters) {
     const filtersOpen = document.querySelector(".filters__open");
-    const sidebar = document.querySelector(".sidebar");
-    const sidebarTitle = sidebar.querySelector(".filters__header");
+    const sidebarTitle = filters.querySelector(".sidebar__header");
 
     filtersOpen.addEventListener("click", handleFiltersOpen);
     sidebar.addEventListener("click", handleSidebarOutside);
@@ -859,17 +800,74 @@ function Filters() {
 
     function handleSidebarOpen() {
       filtersOpen.classList.add("is-active");
+      filters.removeAttribute("hidden");
       sidebar.removeAttribute("hidden");
+      sortbar.setAttribute("hidden", "");
       document.body.classList.add("is-bodylock");
     }
 
     function handleSidebarClose() {
       filtersOpen.classList.remove("is-active");
+      filters.setAttribute("hidden", "");
       sidebar.setAttribute("hidden", "");
+      sortbar.setAttribute("hidden", "");
       document.body.classList.remove("is-bodylock");
     }
   }
-  filterOpener();
+  filterOpener(filters);
+
+  // Фильтр цены
+  function filterPrice() {
+    const priceFilterMinAvailable = parseInt($('[name="form[filter][available_price][min]"]').val()), // Минимальное значение цены для фильтра
+      priceFilterMaxAvailable = parseInt($('[name="form[filter][available_price][max]"]').val()), // Максимальное значение цены для фильтра
+      priceSliderBlock = $("#goods-filter-price-slider"), // Максимальное значение цены для фильтра
+      priceInputMin = $("#filter-price-min"), // Поле ввода текущего значения цены "От"
+      priceInputMax = $("#filter-price-max"), // Поле ввода текущего значения цены 'До'
+      priceSubmitButtonBlock = $(".filters-price__buttons"); // Блок с кнопкой, которую есть смысл нажимать только тогда, когда изменялся диапазон цен.
+
+    // Слайдер, который используется для удобства выбора цены
+    priceSliderBlock.slider({
+      range: true,
+      min: priceFilterMinAvailable,
+      max: priceFilterMaxAvailable,
+      values: [parseInt($("#filter-price-min").val()), parseInt($("#filter-price-max").val())],
+      slide: function (event, ui) {
+        priceInputMin.val(ui.values[0]);
+        priceInputMax.val(ui.values[1]);
+        priceSubmitButtonBlock.css("display", "flex");
+      },
+    });
+
+    // При изменении минимального значения цены
+    priceInputMin.keyup(function () {
+      let newVal = parseInt($(this).val());
+      if (newVal < priceFilterMinAvailable) {
+        newVal = priceFilterMinAvailable;
+      }
+      priceSliderBlock.slider("values", 0, newVal);
+      priceSubmitButtonBlock.css("display", "flex");
+    });
+
+    // При изменении максимального значения цены
+    priceInputMax.keyup(function () {
+      let newVal = parseInt($(this).val());
+      if (newVal > priceFilterMaxAvailable) {
+        newVal = priceFilterMaxAvailable;
+      }
+      priceSliderBlock.slider("values", 1, newVal);
+      priceSubmitButtonBlock.css("display", "flex");
+    });
+
+    // Активный фильтр цены
+    if (priceInputMin.val() > priceFilterMinAvailable || priceInputMax.val() < priceFilterMaxAvailable) {
+      $(".filters-price").addClass("has-filters");
+      $(".toolbar").addClass("has-filters");
+    } else {
+      $(".filters-price").removeClass("has-filters");
+      $(".toolbar").removeClass("has-filters");
+    }
+  }
+  filterPrice();
 }
 
 /**
@@ -890,6 +888,62 @@ function Toolbar() {
     // console.log("[DEBUG]: form", event.target.closest("form"));
     event.target.closest("form").submit();
   }
+
+  const sidebar = document.querySelector(".sidebar");
+  const sortbar = sidebar.querySelector(".sortbar");
+  const filters = sidebar.querySelector(".filters");
+
+  // Открытие фильтров
+  function sidebarOpener(sortbar) {
+    const sidebarOpen = document.querySelector(".toolbar__open");
+    const sidebarTitle = sortbar.querySelector(".sidebar__header");
+
+    sidebarOpen.addEventListener("click", handleSidebarOpen);
+    sidebarTitle.addEventListener("click", handleSidebarClose);
+    sidebar.addEventListener("click", handleSidebarOutside);
+
+    function handleSidebarOutside(event) {
+      const target = event.currentTarget;
+      const isClickedOutside = event.target === target;
+      if (isClickedOutside) {
+        handleSidebarClose();
+      }
+    }
+
+    function handleSidebarOpen(event) {
+      event.preventDefault();
+      if (sidebarOpen.classList.contains("is-active")) {
+        handleSidebarClose();
+      } else {
+        handleSidebarOpen();
+      }
+    }
+
+    function handleSidebarOpen() {
+      sidebarOpen.classList.add("is-active");
+      sidebar.removeAttribute("hidden");
+      sortbar.removeAttribute("hidden");
+      filters.setAttribute("hidden", "");
+      document.body.classList.add("is-bodylock");
+    }
+
+    function handleSidebarClose() {
+      sidebarOpen.classList.remove("is-active");
+      sidebar.setAttribute("hidden", "");
+      sortbar.setAttribute("hidden", "");
+      filters.setAttribute("hidden", "");
+      document.body.classList.remove("is-bodylock");
+    }
+  }
+  sidebarOpener(sortbar);
+
+  const sortbarInputs = sortbar.querySelectorAll("input");
+  sortbarInputs.forEach((input) => {
+    input.addEventListener("click", (event) => {
+      console.log("click2", event);
+      handleToolbarSelectChange(event);
+    });
+  });
 }
 
 /**
@@ -1274,11 +1328,15 @@ function Opinions() {
     } else if (generally === "bad") {
       countBad += 1;
     }
-    // console.log("[DEBUG]: rating", rating);
-    // console.log("[DEBUG]: generally", generally);
   });
-  // console.log("[DEBUG]: countGood", countGood);
-  // console.log("[DEBUG]: countBad", countBad);
+
+  // Добавить отзыв
+  const opinionAdd = container.querySelector(".opinion__score-button");
+  opinionAdd.addEventListener("click", () => {
+    setTimeout(() => {
+      document.getElementById("goods_opinion_name").focus();
+    }, 100);
+  });
 
   // Рекомендуемый %
   const scoreTotal = container.querySelector(".opinion__score-total");
@@ -1299,7 +1357,7 @@ function Opinions() {
   // Показать/скрыть все отзывы
   const opinionButton = container.querySelector(".opinion__button");
   if (opinionButton) {
-    opinionButton.style.display = opinionsLength > 4 ? "" : "none";
+    opinionButton.style.display = opinionsLength > 3 ? "" : "none";
     opinionButton.addEventListener("click", (event) => {
       const items = container.querySelector(".opinion__items");
       items.classList.toggle("opinion__items--show");
@@ -1317,7 +1375,6 @@ function Opinions() {
   // Рейтинг при добавлении отзыва
   const stars = container.querySelectorAll(".form__rating label");
   let starsActive;
-  let starsSelect;
 
   stars.forEach((element, index) => {
     element.addEventListener("mouseover", () => {
@@ -1661,7 +1718,6 @@ function Cart() {
         OrderCoupons();
         container.classList.remove("is-loading");
         contrainerAjax.removeAttribute("hidden");
-
         new AirDatepicker("#order_delivery_convenient_date", {
           autoClose: true,
           onSelect: function ({datepicker}) {
@@ -1744,6 +1800,11 @@ function CartClear() {
         // console.log("[DEBUG]: getHtmlFromUrl data", data);
         document.querySelectorAll(".cart").forEach((element) => element.classList.add("is-empty"));
         document.querySelectorAll(".cart .addto__item").forEach((element) => element.remove());
+        const productViewCart = document.querySelector(".productView__cart");
+        // console.log("[DEBUG]: productView2", productView);
+        if (productViewCart) {
+          productViewCart.classList.remove("has-in-cart");
+        }
       });
     }
   });
@@ -1785,6 +1846,11 @@ function CartRemove() {
                 element.remove();
               }
             });
+          }
+          const productView = document.querySelector(".productView");
+          // console.log("[DEBUG]: productView2", productView);
+          if (productView.getAttribute("data-mod-id") === modId) {
+            productView.querySelector(".productView__cart").classList.remove("has-in-cart");
           }
           CartCountUppdate(cartCounts, newCount);
           CartCountendUppdate(cartCountends, data.querySelector(".cart-countend"));

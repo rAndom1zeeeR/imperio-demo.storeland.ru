@@ -372,7 +372,13 @@
 	aspect-ratio: 1 / 1;
 }
 .categories__images::after {position: absolute;z-index: 2;content: '';inset: 0;}
-.categories__name {margin-top: 12px;font-size: var(--text-size-large);line-height: var(--text-height-large);text-align: center;}
+.categories__name {
+	margin-top: 12px;
+	overflow: hidden;
+	font-size: var(--text-size-large);
+	line-height: var(--text-height-large);
+	text-align: center;
+}
 .categories__name span {
 	display: -webkit-box;
 	text-overflow: ellipsis;
