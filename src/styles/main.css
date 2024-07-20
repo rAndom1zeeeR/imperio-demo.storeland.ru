@@ -49,21 +49,33 @@
 /*
 ** Скеции
 */
-.section {margin-block: 64px;position: relative;}
+.section {margin-block: 40px;position: relative;}
 .section:hover {z-index: 2;}
+@media all and (min-width: 1440px) {
+	.section {margin-block: 60px;}
+}
 
 /*
 ** Заголовки основных блоков
 */
 .headline {margin-bottom: 16px;}
 .headline nav {margin-bottom: 12px;}
-.headline__title {font-size: var(--heading-03);}
+.headline__title {font-size: var(--heading-04);}
 .headline__title small {font-size: var(--text-size-regular);white-space: nowrap;text-transform: lowercase;}
 .headline--navigation {display: flex;gap: 12px;align-items: center;justify-content: space-between;}
-.headline--navigation .swiper-navigation {position: relative;display: flex;align-items: center;width: 96px;}
+.headline--navigation .swiper-navigation {
+	position: relative;
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	width: 96px;
+}
 .headline--navigation :is(.swiper-button-prev, .swiper-button-next) {background-color: #CDC6CE40;border-radius: 100%;}
 .headline--navigation :is(.swiper-button-prev, .swiper-button-next)::after {--swiper-navigation-size: 16px;}
 .headline--navigation .swiper-button-disabled {--swiper-navigation-size: 38px;}
+@media all and (max-width: 479px) {
+	.headline__title {font-size: var(--heading-05);line-height: 1.25;}
+}
 
 
 /*
@@ -120,7 +132,13 @@
 }
 
 /* Шапка. Добавить в... */
-.header__addto {display: flex;align-items: center;margin-left: auto;column-gap: 32px;}
+.header__addto {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+	column-gap: 32px;
+}
 .addto__link {
 	position: relative;
 	display: flex;
@@ -318,7 +336,7 @@
 @media all and (min-width: 1920px) {
 	.slideshow__inner {height: 500px;padding-inline: 0;}
 	.slideshow__title {font-size: 60px;}
-	.slideshow__subtitle {margin-top: 16px;font-size: 32px;line-height: 38px;}
+	.slideshow__subtitle {margin-top: 12px;font-size: var(--heading-02);line-height: 38px;}
 	.slideshow__button {margin-top: 24px;font-size: 22px;line-height: 24px;}
 	.slideshow__image {right: 2%;}
 	.slideshow__content {max-width: 520px;}
@@ -471,11 +489,11 @@
 ** Описание на главной
 */
 .main__inner {display: flex;flex-wrap: wrap;row-gap: 40px;align-items: flex-start;}
-.main__desc {flex-shrink: 0;width: 100%;padding-right: 120px;}
+.main__desc {flex-shrink: 0;width: 100%;}
 .main__desc .headline__title {font-size: var(--heading-01);}
 .main__advantage {flex-grow: 1;}
 @media all and (min-width: 1440px) {
-	.main__desc {width: 50%;}
+	.main__desc {width: 50%;padding-right: 120px;}
 	.main__advantage {width: 50%;}
 }
 @media all and (min-width: 1920px) {
@@ -721,4 +739,4 @@
 */
 #viewed .product__attr {display: none;}
 
-.section {display: none !important;}
+.section:nth-child(n+5) {display: none !important;}

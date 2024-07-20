@@ -2234,8 +2234,8 @@ function swiperSmall(selector) {
     watchSlidesProgress: true,
     simulateTouch: true,
     grabCursor: true,
-    slidesPerView: 5,
-    spaceBetween: 12,
+    slidesPerView: 8,
+    spaceBetween: 0,
     preloadImages: false,
     navigation: {
       nextEl: selector + " .swiper-button-next",

@@ -163,7 +163,7 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 .button-underline span {border-bottom: 1px solid currentcolor;}
 .button-underline:active, .button-underline.is-active {color: var(--color-secondary);background: none;}
 @media (hover: hover) and (pointer: fine) {
-	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: white;background-color: var(--color-secondary)}
+	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
 	.button-secondary:hover {color: white;background-color: var(--color-text-primary);border-color: var(--color-text-primary);}
 	.button-icon:hover {color: var(--color-text-primary);background: none;}
 	.button-link:hover {color: var(--color-secondary);background: none;}
