@@ -387,7 +387,7 @@
 		{% IFNOT catalog_empty %}
 		<section id="categories" class="section">
 			<div class="container">
-				<div class="headline headline--navigation">
+				<header class="headline headline--navigation">
 					<a href="{CATALOG_URL}" title="Перейти в Каталог">
 						<h2 class="headline__title">Мы производим и продаем</h2>
 					</a>
@@ -395,7 +395,7 @@
 						<div class="swiper-button-prev"></div>
 						<div class="swiper-button-next"></div>
 					</div>
-				</div>
+				</header>
 				<div class="swiper">
 					<div class="categories__grid swiper-wrapper">
 						{% FOR catalog_full %}
@@ -421,7 +421,7 @@
 				<div class="advantages__items">
 					<div class="advantages__item">
 						<h4 class="advantages__title">Регулярные скидки до&nbsp;80%</h4>
-						<svg class="advantages__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="70" height="70" aria-hidden="true">
+						<svg class="advantages__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="50" height="50" aria-hidden="true">
 							<path fill="#f1bdbc" d="M961.716 513.283c-.075 119.539-47.612 234.158-132.165 318.672S630.345 963.963 510.787 964c-119.606-.075-234.287-47.644-318.822-132.245S59.962 632.447 60 512.859a450.969 450.969 0 0 1 132.165-318.814A451.104 451.104 0 0 1 511.071 62c119.583.038 234.256 47.551 318.814 132.095S961.963 393.295 962 512.859l-.284.424z" />
 							<path fill="#635258"
 										d="M5.97 612.084c0-9.964 8.078-18.041 18.042-18.041h162.555c9.964 0 18.041 8.078 18.041 18.041v94.754c0 9.965-8.078 18.041-18.041 18.041-9.965 0-18.041-8.076-18.041-18.041v-76.712H42.054v342.932h126.472V801.592c0-9.964 8.076-18.041 18.041-18.041 9.964 0 18.041 8.078 18.041 18.041v189.507c0 9.965-8.078 18.041-18.041 18.041H24.012c-9.964 0-18.042-8.076-18.042-18.041V612.084z" />
@@ -433,7 +433,7 @@
 					</div>
 					<div class="advantages__item">
 						<h4 class="advantages__title">Всегда быстрая и качественная доставка</h4>
-						<svg class="advantages__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="70" height="70" aria-hidden="true">
+						<svg class="advantages__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="50" height="50" aria-hidden="true">
 							<path fill="#f1bdbc" d="M966.687 570.8a453.456 453.456 0 0 1-132.895 320.429 453.595 453.595 0 0 1-320.521 132.772 453.6 453.6 0 0 1-320.579-132.974A453.452 453.452 0 0 1 60 570.373c.038-120.248 47.84-235.557 132.894-320.572s200.397-132.772 320.663-132.772c120.242.038 235.548 47.812 320.571 132.823s132.807 200.297 132.845 320.521l-.285.427z" />
 							<path fill="#635258" d="M893.504 854c0 11.046 8.954 20 20 20h90.492c11.045 0 20-8.954 20-20V677.553c0-3.49-.914-6.919-2.649-9.947l-108-188.39a20.003 20.003 0 0 0-17.351-10.053H706.654c-11.046 0-20 8.954-20 20s8.954 20 20 20h177.753l99.588 173.716v151.12h-70.492c-11.046 0-20 8.954-20 20z" />
 							<path fill="#635258"
@@ -448,7 +448,7 @@
 					</div>
 					<div class="advantages__item">
 						<h4 class="advantages__title">Только экологичные материалы</h4>
-						<svg class="advantages__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="70" height="70" aria-hidden="true">
+						<svg class="advantages__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="50" height="50" aria-hidden="true">
 							<path fill="#f1bdbc" d="M966.687 453.771A453.456 453.456 0 0 1 833.792 774.2a453.595 453.595 0 0 1-320.521 132.772 453.6 453.6 0 0 1-320.579-132.974A453.452 453.452 0 0 1 60 453.344c.038-120.248 47.84-235.557 132.894-320.571S393.291 0 513.557 0c120.242.038 235.548 47.813 320.571 132.823S966.935 333.12 966.973 453.344l-.285.427z" />
 							<path fill="#635258"
 										d="M5.97 612.084c0-9.965 8.078-18.043 18.042-18.043h162.555c9.964 0 18.041 8.078 18.041 18.043v94.754c0 9.964-8.078 18.041-18.041 18.041-9.965 0-18.043-8.078-18.043-18.041v-76.712H42.053v342.93h126.471V801.592c0-9.965 8.078-18.043 18.043-18.043 9.964 0 18.041 8.078 18.041 18.043v189.506c0 9.965-8.078 18.043-18.041 18.043H24.012c-9.964 0-18.042-8.078-18.042-18.043V612.085z" />
@@ -462,7 +462,7 @@
 					</div>
 					<div class="advantages__item">
 						<h4 class="advantages__title">Квалифицированная помощь в&nbsp;выборе</h4>
-						<svg class="advantages__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="70" height="70" aria-hidden="true">
+						<svg class="advantages__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="50" height="50" aria-hidden="true">
 							<path fill="#f1bdbc" d="M966.687 570.8a453.456 453.456 0 0 1-132.895 320.429 453.595 453.595 0 0 1-320.521 132.772 453.6 453.6 0 0 1-320.579-132.974A453.452 453.452 0 0 1 60 570.373c.038-120.248 47.84-235.557 132.894-320.572s200.397-132.772 320.663-132.772c120.242.038 235.548 47.812 320.571 132.823s132.807 200.297 132.845 320.521l-.285.427z" />
 							<path fill="#635258"
 										d="M575.108 619.017a19.265 19.265 0 0 0-13.239-5.313 18.555 18.555 0 0 0-13.037 5.595l-78.209 80.055a18.721 18.721 0 0 0-3.609 5.594c-.255.666-.483 1.34-.673 2.023a20.785 20.785 0 0 0-.783 2.442l-4.146 25.695c-20.22 16.975-49.524 17.458-70.298 1.175l-27.93-21.903a580.042 580.042 0 0 1-91.437-89.667l-22.493-27.546c-16.703-20.446-16.857-49.813-.373-70.441l25.53-4.721a17.843 17.843 0 0 0 2.619-.92 15.05 15.05 0 0 0 1.864-.647 18.235 18.235 0 0 0 5.455-3.736l78.209-80.055c7.191-7.361 7.064-19.171-.282-26.387L202.532 253.686a16.285 16.285 0 0 0-13.384-5.32c-.664.099-1.327.237-1.973.41a18.142 18.142 0 0 0-5.063 1.084 18.615 18.615 0 0 0-6.074 4.118l-91.146 93.477C-30.093 465.259-28.002 654.18 89.547 769.404l133.396 130.762c117.64 115.007 305.959 112.911 421.018-4.684l13.147-13.476 78.209-80.036c7.183-7.371 7.055-19.181-.3-26.388L575.109 619.018zM189.665 293.413l133.116 130.469-52.133 53.375-133.114-130.478 52.132-53.366zm427.574 575.991c-100.656 102.934-265.465 104.774-368.377 4.109L115.485 742.761C12.601 641.958 10.774 476.647 111.403 373.594l.209-.2 121.194 118.788a18.44 18.44 0 0 0-6.864 4.236c-33.176 33.987-35.54 87.545-5.5 124.337l22.493 27.527a619.282 619.282 0 0 0 97.347 95.444l27.93 21.931c37.376 29.267 90.737 25.704 123.904-8.291a18.692 18.692 0 0 0 4.073-6.96l121.186 118.797-.136.2zm26.167-26.788-133.114-130.48 52.133-53.384 133.114 130.487-52.133 53.377z" />
@@ -481,10 +481,14 @@
 		{% IFNOT index_page_sale_goods_empty %}
 		<section id="pdtSales" class="section">
 			<div class="container">
-				<header class="headline">
+				<header class="headline headline--navigation">
 					<a href="{DISCOUNT_URL}" title="Перейти в Распродажа">
 						<h2 class="headline__title">Ликвидация</h2>
 					</a>
+					<div class="swiper-navigation">
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+					</div>
 				</header>
 				<div class="swiper swiper--products">
 					<div class="products__grid swiper-wrapper">
@@ -675,11 +679,6 @@
 							</form>
 						</div>
 						{% ENDFOR %}
-					</div>
-					<div class="swiper-navigation">
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-pagination"></div>
-						<div class="swiper-button-next"></div>
 					</div>
 				</div>
 			</div>
@@ -1430,8 +1429,8 @@
 							<div class="swiper-slide">
 								<article class="news__item">
 									<picture class="news__images">
-										<source srcset="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
-										<img src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_all.TITLE}" loading="lazy">
+										<source srcset="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}">
+										<img src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{news_list_all.TITLE}" loading="lazy">
 									</picture>
 
 									{% IF news_list_all.SHOW_TIME %}
@@ -1468,8 +1467,8 @@
 							<div class="swiper-slide">
 								<article class="news__item">
 									<picture class="news__images">
-										<source srcset="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
-										<img src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_shop.TITLE}" loading="lazy">
+										<source srcset="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}">
+										<img src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{news_list_shop.TITLE}" loading="lazy">
 									</picture>
 
 									{% IF news_list_shop.SHOW_TIME %}
@@ -1506,8 +1505,8 @@
 							<div class="swiper-slide">
 								<article class="news__item">
 									<picture class="news__images">
-										<source srcset="{% IF news_list_mass_media.IMG %}{news_list_mass_media.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
-										<img src="{% IF news_list_mass_media.IMG %}{news_list_mass_media.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_mass_media.TITLE}" loading="lazy">
+										<source srcset="{% IF news_list_mass_media.IMG %}{news_list_mass_media.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}">
+										<img src="{% IF news_list_mass_media.IMG %}{news_list_mass_media.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{news_list_mass_media.TITLE}" loading="lazy">
 									</picture>
 
 									{% IF news_list_mass_media.SHOW_TIME %}
@@ -1544,8 +1543,8 @@
 							<div class="swiper-slide">
 								<article class="news__item">
 									<picture class="news__images">
-										<source srcset="{% IF news_list_articles.IMG %}{news_list_articles.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}">
-										<img src="{% IF news_list_articles.IMG %}{news_list_articles.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=ACCORD{% ENDIF %}" alt="{news_list_articles.TITLE}" loading="lazy">
+										<source srcset="{% IF news_list_articles.IMG %}{news_list_articles.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}">
+										<img src="{% IF news_list_articles.IMG %}{news_list_articles.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{news_list_articles.TITLE}" loading="lazy">
 									</picture>
 
 									{% IF news_list_articles.SHOW_TIME %}
@@ -2793,8 +2792,8 @@
 				swiperMedium("#pdtSales");
 				swiperMedium('#pdtBest');
 				swiperMedium('#pdtNew');
-				swiperBrands("#brands");
 				swiperMedium('#advantages');
+				swiperBrands("#brands");
 				swiperLarge('[data-tab-content="news_list_all"]');
 				swiperLarge('[data-tab-content="news_list_shop"]');
 				swiperLarge('[data-tab-content="news_list_articles"]');
@@ -2818,9 +2817,6 @@
 		<!-- Дата выбор -->
 		<script defer src="{ASSETS_JS_PATH}air-datepicker.js?design=THEMENAME"></script>
 		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}air-datepicker.css?design=THEMENAME">
-		<!-- Цена слайдер -->
-		<script defer src="{ASSETS_JS_PATH}nouislider.min.js?design=THEMENAME"></script>
-		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}nouislider.min.css?design=THEMENAME">
 		<!-- Модальные окна -->
 		<script defer src="{ASSETS_JS_PATH}fancybox.umd.js?design=THEMENAME"></script>
 		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}fancybox.css?design=THEMENAME">
@@ -2832,7 +2828,6 @@
 		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}swiper.min.css?design=THEMENAME">
 		<!-- Подключаемые скрипты -->
 		<script defer src="{ASSETS_JS_PATH}search.js?design=THEMENAME"></script>
-		<script defer src="{ASSETS_JS_PATH}forall.js?design=THEMENAME"></script>
 		<script defer src="{ASSETS_JS_PATH}main.js?design=THEMENAME"></script>
 	</div>
 </body>

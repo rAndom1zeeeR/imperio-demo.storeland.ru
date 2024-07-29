@@ -162,12 +162,15 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 }
 .button-underline span {border-bottom: 1px solid currentcolor;}
 .button-underline:active, .button-underline.is-active {color: var(--color-secondary);background: none;}
+.button-disabled, .add-notify {color: white;background-color: var(--color-disabled);border-color: var(--color-disabled);}
+.button-disabled:active, .add-notify:active {background-color: var(--color-disabled);border-color: var(--color-disabled);}
 @media (hover: hover) and (pointer: fine) {
 	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
 	.button-secondary:hover {color: white;background-color: var(--color-text-primary);border-color: var(--color-text-primary);}
 	.button-icon:hover {color: var(--color-text-primary);background: none;}
 	.button-link:hover {color: var(--color-secondary);background: none;}
 	.button-underline:hover {color: var(--color-secondary);background: none;}
+	.button-disabled:hover {background-color: var(--color-disabled);border-color: var(--color-disabled);}
 }
 
 /* .button-close {
@@ -182,15 +185,12 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 .button-close:active {color: var(--color-text-primary);background-color: white;}
 .button-small {gap: 8px;height: 40px;font-size: var(--text-size-regular);padding-inline: 20px;}
 .button-large {gap: 12px;height: 60px;font-size: var(--text-size-large);padding-inline: 40px;}
-.button-empty, .add-notify {color: white;background-color: var(--color-disabled);border-color: var(--color-disabled);}
-.button-empty:active, .add-notify:active {background-color: var(--color-disabled);border-color: var(--color-disabled);}
 button:disabled {opacity: 0.5;pointer-events: none;}
 @media (hover: hover) and (pointer: fine) {
 	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: var(--color-text-primary);background-color: var(--color-primary)}
 	.button-link:hover {color: var(--color-secondary);background: none;}
 	.button-secondary:hover {color: white;background-color: var(--color-text-primary);}
 	.button-close:hover {color: var(--color-text-primary);background-color: white;}
-	.button-empty:hover {background-color: var(--color-gray);}
 	.add-notify:hover {background-color: var(--color-gray);}
 } */
 
@@ -480,6 +480,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23657984' viewBox='0 0 1024 1024'%3E%3Cpath d='M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z'/%3E%3C/svg%3E");
 	background-repeat: repeat-x;
 }
+.ratings__count {display: none;}
 
 /*
 ** Тулбар

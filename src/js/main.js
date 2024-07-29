@@ -1758,7 +1758,7 @@ function CartMinSum() {
 
   if (cartMins.length === 0) {
     cartButtonStart.removeAttribute("disabled");
-    cartButtonStart.classList.remove("button-empty");
+    cartButtonStart.classList.remove("button-disabled");
   }
 
   cartMins.forEach((cartMin) => {
@@ -1771,12 +1771,12 @@ function CartMinSum() {
       const diff = minPrice - totalSum;
       price.querySelector(".num").innerHTML = getMoneyFormat(diff);
       cartButtonStart.setAttribute("disabled", "");
-      cartButtonStart.classList.add("button-empty");
+      cartButtonStart.classList.add("button-disabled");
       cartMin.classList.remove("is-hide");
       cartMin.parentElement.classList.add("is-min");
     } else {
       cartButtonStart.removeAttribute("disabled");
-      cartButtonStart.classList.remove("button-empty");
+      cartButtonStart.classList.remove("button-disabled");
       cartMin.classList.add("is-hide");
       cartMin.parentElement.classList.remove("is-min");
     }
@@ -2188,11 +2188,13 @@ function Opener() {
   });
 
   const catalogButton = document.querySelector(".catalog__button");
-  catalogButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    const parentTarget = event.currentTarget.parentElement;
-    OverlayOpener(parentTarget, handleCatalogOpened);
-  });
+  if (catalogButton) {
+    catalogButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      const parentTarget = event.currentTarget.parentElement;
+      OverlayOpener(parentTarget, handleCatalogOpened);
+    });
+  }
 
   function handleCatalogOpened(event) {
     OverlayCloser(event, ".mainnav__catalog", handleCatalogOpened);
@@ -2376,7 +2378,7 @@ function swiperMedium(selector) {
         slidesPerView: 1,
       },
       320: {
-        slidesPerView: 1,
+        slidesPerView: 2,
       },
       375: {
         slidesPerView: 2,
@@ -2391,9 +2393,15 @@ function swiperMedium(selector) {
         slidesPerView: 3,
       },
       1024: {
-        slidesPerView: 4,
+        slidesPerView: 3,
       },
       1200: {
+        slidesPerView: 3,
+      },
+      1440: {
+        slidesPerView: 4,
+      },
+      1920: {
         slidesPerView: 4,
       },
     },
