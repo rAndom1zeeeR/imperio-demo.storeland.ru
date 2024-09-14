@@ -2590,6 +2590,66 @@ function swiperBrands(selector) {
 }
 
 /**
+ * Слайдер Обычный на главной.
+ * Используется в функциях: на главной странице
+ * Использует функции: Swiper
+ */
+function swiperBanners(selector) {
+  const slider = document.querySelector(selector);
+  if (!slider) return;
+  const swiper = new Swiper(selector + " .swiper", {
+    loop: false,
+    autoplay: false,
+    autoHeight: true,
+    watchSlidesProgress: true,
+    simulateTouch: true,
+    grabCursor: true,
+    slidesPerView: 3,
+    spaceBetween: 16,
+    preloadImages: false,
+    initialSlide: 2,
+    navigation: {
+      nextEl: selector + " .swiper-button-next",
+      prevEl: selector + " .swiper-button-prev",
+    },
+    pagination: {
+      enabled: true,
+      el: selector + " .swiper-pagination",
+      clickable: true,
+      type: "bullets",
+      dynamicBullets: true,
+      dynamicMainBullets: 1,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      320: {
+        slidesPerView: 1.1,
+      },
+      480: {
+        slidesPerView: 1.3,
+      },
+      640: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 2,
+      },
+      1440: {
+        slidesPerView: 3,
+      },
+      1920: {
+        slidesPerView: 3,
+      },
+    },
+  });
+}
+
+/**
  * Авторизация без обновления страницы.
  * Используется в функциях: на главной странице
  * Использует функции: getHtmlFromPost
