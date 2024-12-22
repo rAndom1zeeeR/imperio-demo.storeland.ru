@@ -352,11 +352,11 @@ function Mainnav(selector = document) {
   function mainnavItemsHandle() {
     if (getClientWidth() < 1024) return;
     let mainnavItemsWidth = 0;
-    console.log("[DEBUG]: mainnavItemsWidth11", mainnavItemsWidth);
+    // console.log("[DEBUG]: mainnavItemsWidth11", mainnavItemsWidth);
     mainnavItems.forEach((item) => {
       mainnavItemsWidth += item.clientWidth;
-      console.log("[DEBUG]: mainnavItemsWidth", mainnavItemsWidth);
-      console.log("[DEBUG]: mainnavList.clientWidth", mainnavList.clientWidth);
+      // console.log("[DEBUG]: mainnavItemsWidth", mainnavItemsWidth);
+      // console.log("[DEBUG]: mainnavList.clientWidth", mainnavList.clientWidth);
       // console.log("[DEBUG]: item", item.classList.contains("mainnav__item--more"));
       if (mainnavItemsWidth > mainnavList.clientWidth) {
         mainnavDropdown.append(item);
@@ -2564,6 +2564,12 @@ function swiperShow() {
       type: "bullets",
       dynamicBullets: false,
     },
+    scrollbar: {
+      enabled: true,
+      el: id + " .swiper-scrollbar",
+      snapOnRelease: true,
+      draggable: true,
+    },
   });
 }
 
@@ -2620,15 +2626,21 @@ function swiperBanners(selector) {
       dynamicBullets: true,
       dynamicMainBullets: 1,
     },
+    scrollbar: {
+      enabled: true,
+      el: selector + " .swiper-scrollbar",
+      snapOnRelease: true,
+      draggable: true,
+    },
     breakpoints: {
       0: {
         slidesPerView: 1,
       },
       320: {
-        slidesPerView: 1.1,
+        slidesPerView: 1.2,
       },
       480: {
-        slidesPerView: 1.3,
+        slidesPerView: 1.2,
       },
       640: {
         slidesPerView: 2,
@@ -2641,9 +2653,11 @@ function swiperBanners(selector) {
       },
       1440: {
         slidesPerView: 3,
+        spaceBetween: 32,
       },
       1920: {
         slidesPerView: 3,
+        spaceBetween: 32,
       },
     },
   });

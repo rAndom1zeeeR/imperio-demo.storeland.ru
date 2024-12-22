@@ -157,6 +157,7 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 	color: var(--color-text-secondary);
 	font-size: var(--text-size-large);
 	font-family: var(--font-secondary);
+	line-height: var(--text-height-large);
 	background: none;
 	border: none;
 }
