@@ -2,27 +2,14 @@
 <div class="products">
 	<!-- Вывод категорий -->
 	{% IFNOT nested_categories_list_empty %}
-	<ul class="categories__grid {% IFNOT IS_FULL_CATALOG && goods_empty=0 %}has-goods{% ENDIF %}">
+	<ul class="categories__grid{% IFNOT IS_FULL_CATALOG && goods_empty=0 %} has-goods{% ENDIF %}">
 		{% FOR nested_categories_list %}
 		<li class="categories__item" data-id="{nested_categories_list.ID}">
 			<a class="categories__images" href="{nested_categories_list.URL}" title="Перейти к категории &laquo;{nested_categories_list.NAME}&raquo;">
 				<img src="{% IF nested_categories_list.IMAGE_MEDIUM %}{nested_categories_list.IMAGE_MEDIUM}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{nested_categories_list.NAME}" loading="lazy">
 			</a>
-			<div class="categories__content">
-				<div class="categories__name">
-					<span>{nested_categories_list.NAME}</span>
-				</div>
-				{% IF nested_categories_list.GOODS_COUNT %}
-				<div class="categories__count">
-					{nested_categories_list.GOODS_COUNT} товар{nested_categories_list.GOODS_COUNT | gen_word_end("","а","ов")}
-				</div>
-				{% ENDIF %}
-				<span class="categories__icon">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="14" height="14" aria-hidden="true">
-						<path
-									d="M46.546 557.928h818.555L618.737 804.053a46.522 46.522 0 0 0-10.435 15.094 46.45 46.45 0 0 0-3.773 17.949 46.462 46.462 0 0 0 13.629 33.284 46.582 46.582 0 0 0 33.316 13.618 46.585 46.585 0 0 0 17.966-3.773 46.469 46.469 0 0 0 15.109-10.421l325.821-325.5a46.463 46.463 0 0 0 13.629-32.878c0-12.329-4.9-24.151-13.629-32.876L684.549 153.051A46.569 46.569 0 0 0 651.812 140a46.585 46.585 0 0 0-32.512 13.619c-8.627 8.622-13.522 20.285-13.629 32.476s4.588 23.936 13.066 32.707l246.364 246.124H46.546a46.574 46.574 0 0 0-32.913 13.619A46.49 46.49 0 0 0 0 511.426c0 12.335 4.904 24.162 13.633 32.883s20.568 13.619 32.913 13.619z" />
-					</svg>
-				</span>
+			<div class="categories__name">
+				<span>{nested_categories_list.NAME}</span>
 			</div>
 		</li>
 		{% ENDFOR %}

@@ -236,7 +236,7 @@
 								</svg>
 								<div class="addto__title {CURRENCY_CHAR_CODE}">
 									<span>Корзина</span>
-									<data class="price__now cart-discount" value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</data>
+									<data class="addto__price price__now cart-discount" value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</data>
 								</div>
 								<data class="addto__count cart-count" value="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</data>
 							</a>
@@ -1579,7 +1579,7 @@
 
 		{% ELSE %}
 		<!-- Основная часть -->
-		<main id="main">
+		<main id="main" class="section">
 			<div class="container">
 				<!-- Основные блоки заголовков -->
 				<header class="headline">
@@ -1866,7 +1866,7 @@
 
 		<!-- Вы смотрели -->
 		{% IFNOT recently_viewed_goods_empty && MOD_LNAME != cart %}
-		<section id="viewed">
+		<section id="viewed" class="section">
 			<div class="container">
 				<header class="headline headline--navigation">
 					<h2 class="headline__title">Ранее Вы смотрели</h2>
@@ -2061,6 +2061,7 @@
 		{% ENDIF index_page %}
 
 		<!-- Подписка -->
+		{% IF index_page %}
 		<section id="subscribe" class="section">
 			<div class="subscribe__top">
 				<div class="container">
@@ -2174,6 +2175,7 @@
 				</div>
 			</div>
 		</section>
+		{% ENDIF index_page %}
 
 		<!-- Подвал -->
 		<footer id="footer">
