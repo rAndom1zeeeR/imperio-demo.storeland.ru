@@ -7,7 +7,7 @@ let preprocessor = "scss", // Preprocessor (sass, scss, less, styl),
   baseDir = "src", // Base directory path without «/» at the end
   buildDir = "build", // Base directory path without «/» at the end
   online = true, // If «false» - Browsersync will work offline without internet connection
-  WAIT_TIME = 5; // Время задержки перед обновлением страницы.
+  WAIT_TIME = 0; // Время задержки перед обновлением страницы.
 
 let paths = {
   scripts: {
@@ -57,7 +57,7 @@ const csso = require("gulp-csso");
 const {SECRET_KEY, SITE} = require("./storeland-uploader-config.json");
 const href = `${SITE}/api/v1/site_files/save`;
 
-async function checkConfig(cb) {
+function checkConfig(cb) {
   if (!SECRET_KEY) {
     cb(new Error(`Не задан ${chalk.red(`SECRET_KEY`)} в файле ` + chalk.red(`storeland-uploader-config.json`)));
   }

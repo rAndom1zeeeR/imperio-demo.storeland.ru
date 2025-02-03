@@ -735,14 +735,11 @@ function StickerSales(selector, type = "percent") {
  * Использует функции: Jquery ui slider
  */
 function Filters() {
-  const sidebar = document.querySelector(".sidebar");
-  // console.log("[DEBUG]: sidebar", sidebar);
-  if (!sidebar) return;
   // Выбора фильтра
-  const filters = sidebar.querySelector(".filters");
-  const sortbar = sidebar.querySelector(".sortbar");
+  const filters = document.querySelector(".filters");
+  // console.log("[DEBUG]: filters", filters);
   if (!filters) return;
-  const filterLists = sidebar.querySelectorAll(".filter__list");
+  const filterLists = filters.querySelectorAll(".filter__list");
   if (filterLists.length !== 0) {
     let filtersChecked = 0;
     filterLists.forEach((list) => {
@@ -775,42 +772,44 @@ function Filters() {
   // Открытие фильтров
   function filterOpener(filters) {
     const filtersOpen = document.querySelector(".filters__open");
-    const sidebarTitle = filters.querySelector(".sidebar__header");
+    const filtersTitle = filters.querySelector(".filters__header");
+
+    if (!filtersOpen) return;
+    if (!filtersTitle) return;
 
     filtersOpen.addEventListener("click", handleFiltersOpen);
-    sidebar.addEventListener("click", handleSidebarOutside);
-    sidebarTitle.addEventListener("click", handleSidebarClose);
+    filtersTitle.addEventListener("click", handleFiltersClose);
+    filters.addEventListener("click", handleFiltersOutside);
 
-    function handleSidebarOutside(event) {
+    function handleFiltersOutside(event) {
       const target = event.currentTarget;
       const isClickedOutside = event.target === target;
+      // console.log("[DEBUG]: event", event);
+      // console.log("[DEBUG]: target", target);
+      // console.log("[DEBUG]: isClickedOutside", isClickedOutside);
       if (isClickedOutside) {
-        handleSidebarClose();
+        handleFiltersClose();
       }
     }
 
     function handleFiltersOpen(event) {
       event.preventDefault();
       if (filtersOpen.classList.contains("is-active")) {
-        handleSidebarClose();
+        handleFiltersClose();
       } else {
-        handleSidebarOpen();
+        handleFiltersOpen();
       }
     }
 
-    function handleSidebarOpen() {
+    function handleFiltersOpen() {
       filtersOpen.classList.add("is-active");
       filters.removeAttribute("hidden");
-      sidebar.removeAttribute("hidden");
-      sortbar.setAttribute("hidden", "");
       document.body.classList.add("is-bodylock");
     }
 
-    function handleSidebarClose() {
+    function handleFiltersClose() {
       filtersOpen.classList.remove("is-active");
       filters.setAttribute("hidden", "");
-      sidebar.setAttribute("hidden", "");
-      sortbar.setAttribute("hidden", "");
       document.body.classList.remove("is-bodylock");
     }
   }
@@ -826,17 +825,19 @@ function Filters() {
       priceSubmitButtonBlock = $(".filters-price__buttons"); // Блок с кнопкой, которую есть смысл нажимать только тогда, когда изменялся диапазон цен.
 
     // Слайдер, который используется для удобства выбора цены
-    priceSliderBlock.slider({
-      range: true,
-      min: priceFilterMinAvailable,
-      max: priceFilterMaxAvailable,
-      values: [parseInt($("#filter-price-min").val()), parseInt($("#filter-price-max").val())],
-      slide: function (event, ui) {
-        priceInputMin.val(ui.values[0]);
-        priceInputMax.val(ui.values[1]);
-        priceSubmitButtonBlock.css("display", "flex");
-      },
-    });
+    // if (priceSliderBlock) {
+    //   priceSliderBlock.slider({
+    //     range: true,
+    //     min: priceFilterMinAvailable,
+    //     max: priceFilterMaxAvailable,
+    //     values: [parseInt($("#filter-price-min").val()), parseInt($("#filter-price-max").val())],
+    //     slide: function (event, ui) {
+    //       priceInputMin.val(ui.values[0]);
+    //       priceInputMax.val(ui.values[1]);
+    //       priceSubmitButtonBlock.css("display", "flex");
+    //     },
+    //   });
+    // }
 
     // При изменении минимального значения цены
     priceInputMin.keyup(function () {
@@ -868,6 +869,24 @@ function Filters() {
     }
   }
   filterPrice();
+
+  // Фильтр сворачиваний
+  function filterCollapse() {
+    const filterCollapse = document.querySelectorAll(".filter__list");
+    if (filterCollapse.length === 0) return;
+
+    filterCollapse.forEach((filter) => {
+      const filterTitle = filter.querySelector(".filter__title");
+
+      // Фильтр цены не сворачивается
+      if (filter.classList.contains("filters-price")) return;
+
+      filterTitle?.addEventListener("click", () => {
+        filterTitle.parentElement.classList.toggle("has-filters");
+      });
+    });
+  }
+  filterCollapse();
 }
 
 /**
@@ -888,62 +907,6 @@ function Toolbar() {
     // console.log("[DEBUG]: form", event.target.closest("form"));
     event.target.closest("form").submit();
   }
-
-  const sidebar = document.querySelector(".sidebar");
-  const sortbar = sidebar.querySelector(".sortbar");
-  const filters = sidebar.querySelector(".filters");
-
-  // Открытие фильтров
-  function sidebarOpener(sortbar) {
-    const sidebarOpen = document.querySelector(".toolbar__open");
-    const sidebarTitle = sortbar.querySelector(".sidebar__header");
-
-    sidebarOpen.addEventListener("click", handleSidebarOpen);
-    sidebarTitle.addEventListener("click", handleSidebarClose);
-    sidebar.addEventListener("click", handleSidebarOutside);
-
-    function handleSidebarOutside(event) {
-      const target = event.currentTarget;
-      const isClickedOutside = event.target === target;
-      if (isClickedOutside) {
-        handleSidebarClose();
-      }
-    }
-
-    function handleSidebarOpen(event) {
-      event.preventDefault();
-      if (sidebarOpen.classList.contains("is-active")) {
-        handleSidebarClose();
-      } else {
-        handleSidebarOpen();
-      }
-    }
-
-    function handleSidebarOpen() {
-      sidebarOpen.classList.add("is-active");
-      sidebar.removeAttribute("hidden");
-      sortbar.removeAttribute("hidden");
-      filters.setAttribute("hidden", "");
-      document.body.classList.add("is-bodylock");
-    }
-
-    function handleSidebarClose() {
-      sidebarOpen.classList.remove("is-active");
-      sidebar.setAttribute("hidden", "");
-      sortbar.setAttribute("hidden", "");
-      filters.setAttribute("hidden", "");
-      document.body.classList.remove("is-bodylock");
-    }
-  }
-  sidebarOpener(sortbar);
-
-  const sortbarInputs = sortbar.querySelectorAll("input");
-  sortbarInputs.forEach((input) => {
-    input.addEventListener("click", (event) => {
-      console.log("click2", event);
-      handleToolbarSelectChange(event);
-    });
-  });
 }
 
 /**
@@ -2295,6 +2258,8 @@ function scrollTop(offsetTop) {
  */
 function swiperSmall(selector) {
   const related = document.querySelector(selector);
+  // console.log("[DEBUG]: related", related);
+
   if (!related) return;
   const swiper = new Swiper(selector + " .swiper", {
     loop: false,
@@ -2343,6 +2308,7 @@ function swiperSmall(selector) {
       },
     },
   });
+  // console.log("[DEBUG]: swiper", swiper);
 }
 
 /**
@@ -2670,6 +2636,7 @@ function swiperBanners(selector) {
  */
 function Autorization() {
   const block = document.getElementById("dialogLogin");
+  if (!block) return;
   const form = block.querySelector("form");
   if (!form) return;
 
@@ -2697,6 +2664,7 @@ function Autorization() {
  */
 function Form(id, successMessage, errorMessage) {
   const block = document.getElementById(id);
+  if (!block) return;
   const form = block.querySelector("form");
   if (!form) return;
 

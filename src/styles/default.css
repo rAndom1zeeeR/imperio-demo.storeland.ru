@@ -2,7 +2,6 @@
 ** Основные переменные шаблона
 */
 :root {
-	--color-text-primary: #635258;
 	--color-primary: #657984;
 	--color-secondary: #B78D70;
 	--color-tertiary: #F1BDBC;
@@ -10,8 +9,11 @@
 	--color-shadow: #49525720;
 	--color-border: #CDC6CE;
 	--color-border-secondary: rgb(205 198 206 / 50%);
+	--color-border-tertiary: #635258;
 	--color-gray: #B6C2CE;
 	--color-error: #F9504D;
+	--color-text-primary: #635258;
+	--color-text-secondary: #423B3D;
 	--scrollbar-width: 16px;
 	--scrollbar-width-thin: 8px;
 	--transition: all 300ms ease;
@@ -136,7 +138,7 @@ button, .button, .paymentFormSubmitLink, .paymentFormTbodySubmitButton {
 }
 button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodySubmitButton:active {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
 .button-secondary {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
-.button-secondary:active {color: white;background-color: var(--color-text-primary);border-color: var(--color-text-primary);}
+.button-secondary:active {color: white;background-color: var(--color-text-primary);border-color: var(--color-border-tertiary);}
 .button-tertiary {color: white;background-color: var(--color-tertiary);border-color: var(--color-tertiary);}
 .button-tertiary:active {color: white;background-color: var(--color-primary);border-color: var(--color-primary);}
 .button-icon {padding: 0;color: var(--color-border);background: none;border: none;}
@@ -167,7 +169,7 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 .button-disabled:active, .add-notify:active {background-color: var(--color-disabled);border-color: var(--color-disabled);}
 @media (hover: hover) and (pointer: fine) {
 	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
-	.button-secondary:hover {color: white;background-color: var(--color-text-primary);border-color: var(--color-text-primary);}
+	.button-secondary:hover {color: white;background-color: var(--color-text-primary);border-color: var(--color-border-tertiary);}
 	.button-icon:hover {color: var(--color-text-primary);background: none;}
 	.button-link:hover {color: var(--color-secondary);background: none;}
 	.button-underline:hover {color: var(--color-secondary);background: none;}
@@ -259,11 +261,12 @@ input[type="file"] {
 	background-size: 14px;
 	content: '';
 }
+.square:disabled {background-color: var(--color-disabled);border-color: var(--color-disabled);cursor: default;}
 .square:checked {background-color: var(--color-primary);border-color: var(--color-primary);}
-.square:checked::after {background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");}
+.square:checked::after {background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath fill='%23fff' d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");}
 @media (hover: hover) and (pointer: fine) {
-	.square:hover {background-color: var(--color-primary);border-color: var(--color-primary-hover);}
-	.square:hover::after {background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");}
+	.square:hover {background-color: var(--color-primary);border-color: var(--color-primary);}
+	.square:hover::after {background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath fill='%23fff' d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");}
 }
 
 /*
@@ -284,7 +287,7 @@ textarea.is-success {border-color: var(--color-primary-hover);}
 	display: block;
 	width: 14px;
 	height: 14px;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath fill='%23B6C2CE' d='m14.782 299.54 457.332 501.892a54.737 54.737 0 0 0 18.151 13.135c6.861 3.056 14.257 4.633 21.732 4.633s14.873-1.577 21.732-4.633a54.696 54.696 0 0 0 18.152-13.135l457.335-501.892c20.64-22.648 19.534-58.288-2.481-79.529-22.015-21.238-56.643-20.098-77.28 2.559L511.997 680.687 94.543 222.57c-20.638-22.657-55.265-23.8-77.28-2.559-22.012 21.245-23.123 56.881-2.481 79.529z'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath fill='%23635258' d='m14.782 299.54 457.332 501.892a54.737 54.737 0 0 0 18.151 13.135c6.861 3.056 14.257 4.633 21.732 4.633s14.873-1.577 21.732-4.633a54.696 54.696 0 0 0 18.152-13.135l457.335-501.892c20.64-22.648 19.534-58.288-2.481-79.529-22.015-21.238-56.643-20.098-77.28 2.559L511.997 680.687 94.543 222.57c-20.638-22.657-55.265-23.8-77.28-2.559-22.012 21.245-23.123 56.881-2.481 79.529z'/%3E%3C/svg%3E");
 	background-repeat: no-repeat;
 	background-size: contain;
 	content: '';
@@ -505,28 +508,11 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 .toolbar {margin-bottom: 20px;}
 .toolbar__form {display: flex;gap: 16px;align-items: center;}
 .toolbar__label {display: none;}
-.toolbar__selects select {
-	height: 32px;
-	padding-left: 8px;
-	background-color: transparent;
-	border: 0;
-	border-bottom: 2px solid var(--color-border);
-	border-radius: 0;
-}
+.toolbar__selects select {height: auto;padding-inline: 16px;background-color: transparent;border: 0;}
 .toolbar__selects::after {right: 0;}
-.toolbar__views {display: flex;gap: 12px;align-items: center;}
-.views__icon {display: inherit;color: var(--color-gray);fill: currentcolor;}
-.views__icon.is-active {color: var(--color-secondary);cursor: default;}
-.toolbar__filters {margin-inline: auto;}
-@media all and (min-width: 1024px) {
-	.toolbar__filters {display: none;}
-	.toolbar__views {margin-left: auto;}
-}
-@media all and (max-width: 639px) {
-	.views__icon:first-child {display: none;}
-	.toolbar__selects select {padding-inline: 4px 16px;}
-	.toolbar__views {gap: 8px;}
-}
+.toolbar__views {display: flex;align-items: center;}
+.views__icon {display: flex;align-items: center;justify-content: center;}
+.views__icon.is-active {cursor: default;}
 
 /*
 ** Страницы
