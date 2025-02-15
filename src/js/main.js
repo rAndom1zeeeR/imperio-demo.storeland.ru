@@ -825,19 +825,19 @@ function Filters() {
       priceSubmitButtonBlock = $(".filters-price__buttons"); // Блок с кнопкой, которую есть смысл нажимать только тогда, когда изменялся диапазон цен.
 
     // Слайдер, который используется для удобства выбора цены
-    // if (priceSliderBlock) {
-    //   priceSliderBlock.slider({
-    //     range: true,
-    //     min: priceFilterMinAvailable,
-    //     max: priceFilterMaxAvailable,
-    //     values: [parseInt($("#filter-price-min").val()), parseInt($("#filter-price-max").val())],
-    //     slide: function (event, ui) {
-    //       priceInputMin.val(ui.values[0]);
-    //       priceInputMax.val(ui.values[1]);
-    //       priceSubmitButtonBlock.css("display", "flex");
-    //     },
-    //   });
-    // }
+    if (priceSliderBlock) {
+      priceSliderBlock.slider({
+        range: true,
+        min: priceFilterMinAvailable,
+        max: priceFilterMaxAvailable,
+        values: [parseInt($("#filter-price-min").val()), parseInt($("#filter-price-max").val())],
+        slide: function (event, ui) {
+          priceInputMin.val(ui.values[0]);
+          priceInputMax.val(ui.values[1]);
+          priceSubmitButtonBlock.css("display", "flex");
+        },
+      });
+    }
 
     // При изменении минимального значения цены
     priceInputMin.keyup(function () {

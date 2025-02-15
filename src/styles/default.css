@@ -506,7 +506,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 ** Тулбар
 */
 .toolbar {margin-bottom: 20px;}
-.toolbar__form {display: flex;gap: 16px;align-items: center;}
+.toolbar__form {display: flex;flex-wrap: wrap;gap: 16px;align-items: center;}
 .toolbar__label {display: none;}
 .toolbar__selects select {height: auto;padding-inline: 16px;background-color: transparent;border: 0;}
 .toolbar__selects::after {right: 0;}
@@ -515,28 +515,24 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 .views__icon.is-active {cursor: default;}
 
 /*
-** Страницы
+** Пагинация
 */
 .pages {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: center;
 	margin: 16px 0 0;
 	padding: 0;
 	list-style: none;
 }
-.pages__first {margin-right: 8px;}
-.pages__last {margin-left: 8px;}
 .pages__link {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 24px;
-	height: 24px;
+	width: 40px;
+	height: 40px;
 	border-radius: var(--border-radius);
 }
-.pages__link.is-active {background-color: white;}
-.pages__link svg {margin-top: -4px;}
 
 /*
 ** Страницы: ЛК

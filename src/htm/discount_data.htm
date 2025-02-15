@@ -42,41 +42,43 @@
 			<input type="hidden" name="{goods_filters.NAME}" value="{goods_filters.VALUE}">
 			{% ENDFOR %}
 
-			<!-- Сортировать по: (Поле сортировки товаров по умолчанию) -->
-			<div class="toolbar__sort">
-				<label class="toolbar__label" for="goods_order_fields_id">Сортировать по:</label>
-				<div class="toolbar__selects selects">
-					<select id="goods_order_fields_id" name="goods_search_field_id">
-						{% FOR goods_order_fields %}
-						{% IF goods_order_fields.ID = 1 || goods_order_fields.ID = 2 || goods_order_fields.ID = 5 || goods_order_fields.ID = 11 || goods_order_fields.ID = 13 %}
-						<option value="{goods_order_fields.ID}" {% IF goods_order_fields.SELECTED %}selected{% ENDIF %}>
-							{% IF goods_order_fields.ID = 1%}
-							Цена ↓
-							{% ELSEIF goods_order_fields.ID = 2 %}
-							Цена ↑
-							{% ELSEIF goods_order_fields.ID = 5 %}
-							Наличие
-							{% ELSEIF goods_order_fields.ID = 11 %}
-							Рейтинг
-							{% ELSEIF goods_order_fields.ID = 13 %}
-							Отзывы
+			<div class="toolbar__sorts">
+				<!-- Сортировать по: (Поле сортировки товаров по умолчанию) -->
+				<div class="toolbar__sort">
+					<label class="toolbar__label" for="goods_order_fields_id">Сортировать по:</label>
+					<div class="toolbar__selects selects">
+						<select id="goods_order_fields_id" name="goods_search_field_id">
+							{% FOR goods_order_fields %}
+							{% IF goods_order_fields.ID = 1 || goods_order_fields.ID = 2 || goods_order_fields.ID = 5 || goods_order_fields.ID = 11 || goods_order_fields.ID = 13 %}
+							<option value="{goods_order_fields.ID}" {% IF goods_order_fields.SELECTED %}selected{% ENDIF %}>
+								{% IF goods_order_fields.ID = 1%}
+								Цена ↓
+								{% ELSEIF goods_order_fields.ID = 2 %}
+								Цена ↑
+								{% ELSEIF goods_order_fields.ID = 5 %}
+								Наличие
+								{% ELSEIF goods_order_fields.ID = 11 %}
+								Рейтинг
+								{% ELSEIF goods_order_fields.ID = 13 %}
+								Отзывы
+								{% ENDIF %}
+							</option>
 							{% ENDIF %}
-						</option>
-						{% ENDIF %}
-						{% ENDFOR %}
-					</select>
+							{% ENDFOR %}
+						</select>
+					</div>
 				</div>
-			</div>
 
-			<!-- Показывать по: (Шаг для выбора пользователем лимита выдачи товаров на страницу от 1 до 100) -->
-			<div class="toolbar__show">
-				<label class="toolbar__label" for="goods_per_page_id">Показать по:</label>
-				<div class="toolbar__selects selects">
-					<select id="goods_per_page_id" name="per_page">
-						{% FOR goods_per_page_list %}
-						<option value="{goods_per_page_list.LIMIT}" {% IF goods_per_page_list.SELECTED %}selected{% ENDIF %}>{goods_per_page_list.LIMIT}</option>
-						{% ENDFOR %}
-					</select>
+				<!-- Показывать по: (Шаг для выбора пользователем лимита выдачи товаров на страницу от 1 до 100) -->
+				<div class="toolbar__show">
+					<label class="toolbar__label" for="goods_per_page_id">Показать по:</label>
+					<div class="toolbar__selects selects">
+						<select id="goods_per_page_id" name="per_page">
+							{% FOR goods_per_page_list %}
+							<option value="{goods_per_page_list.LIMIT}" {% IF goods_per_page_list.SELECTED %}selected{% ENDIF %}>{goods_per_page_list.LIMIT}</option>
+							{% ENDFOR %}
+						</select>
+					</div>
 				</div>
 			</div>
 
