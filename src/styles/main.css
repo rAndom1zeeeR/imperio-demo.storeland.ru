@@ -878,21 +878,21 @@
 .products__list .product__form {display: flex;background-color: rgb(205 198 206 / 20%);}
 .products__list .product__form:active {background-color: white;}
 .products__list .product__form:active .product__image {background-color: rgb(205 198 206 / 20%);}
-.products__list .product__image {width: 85px;height: 85px;transition: background-color var(--duration);}
-.products__list .product__shop {
+.products__list .product__image {width: 80px;height: 80px;transition: background-color var(--duration);}
+.products__list .product__shop {display: flex;flex-grow: 1;flex-wrap: wrap;}
+.products__list .product__shop-inner {
 	display: flex;
 	flex-flow: column wrap;
 	flex-grow: 1;
 	gap: 12px;
-	padding: 12px 24px;
+	padding: 0 12px 12px;
 }
-.products__list .product__actions {flex-shrink: 0;width: 260px;padding: 12px 24px;border-left: 1px solid var(--color-border-secondary);}
-.products__list .product__actions-inner {display: flex;flex-wrap: wrap;gap: 24px;align-items: center;}
+.products__list .product__actions {flex-shrink: 0;width: 100%;padding: 16px 12px;}
+.products__list .product__actions-inner {display: flex;flex-wrap: wrap;gap: 12px 24px;align-items: center;}
+.products__list .product__name {font-weight: bold;}
 .products__list .product__name span {-webkit-line-clamp: 3;}
 .products__list .product__price {gap: 12px;width: 100%;}
-.products__list .product__cart {width: 100%;}
-.products__list .product__add {width: 100%;}
-.products__list .product__add--link {justify-content: center;padding: 0;}
+.products__list .product__add--link {display: none;}
 .products__list .product__links {display: flex;justify-content: space-between;width: 64px;}
 .products__list .product__desc {max-height: 100px;overflow: hidden;line-height: var(--text-height-medium);}
 .products__list .product__attr {display: none;margin: 0;}
@@ -906,16 +906,38 @@
 }
 @media all and (min-width: 640px) {
 	.products__list .product__image {width: 192px;height: 192px;}
+	.products__list .product__shop-inner {padding-inline: 24px;}
+	.products__list .product__actions {padding-inline: 24px;}
 }
 @media all and (min-width: 768px) {
 	.products__list .product__image {width: 228px;height: 228px;}
 }
 @media all and (min-width: 1024px) {
 	.products__list .product__image {width: 324px;height: 248px;}
+	.products__list .qty__input {height: 50px;}
+}
+@media all and (min-width: 1440px) {
+	.products__list .product__shop {flex-wrap: nowrap;}
+	.products__list .product__shop-inner {padding-top: 12px;}
+	.products__list .qty__input {height: 40px;}
+	.products__list .product__actions {width: 260px;border-left: 1px solid var(--color-border-secondary);}
+	.products__list .product__cart {width: 100%;}
+	.products__list .product__add {width: 100%;}
+	.products__list .product__add--link {justify-content: center;padding: 0;}
 }
 @media all and (min-width: 1920px) {
 	.products__list .product__image {width: 380px;height: 270px;}
 }
+@media all and (max-width: 1439px) {
+	.products__list .product__cart {order: 2;}
+	.products__list .product__qty {order: 1;}
+	.products__list .product__links {order: 3;}
+	.products__list .product__actions {padding-top: 6px;}
+}
+@media all and (max-width: 1199px) {
+	.products__list .product__shop {flex-direction: column;}
+}
+
 
 /*
 ** Товары таблицей в Слайдере
