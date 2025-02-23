@@ -556,13 +556,7 @@
 .footer__links {margin: 0;padding: 0;list-style: none;}
 .footer__link {display: block;font-size: var(--text-size-medium);line-height: 32px;}
 .footer-contacts__label {line-height: 32px;}
-.footer-contacts__callback {
-	margin-top: 16px;
-	color: var(--color-primary);
-	font-weight: bold;
-	font-size: var(--text-size-regular);
-	font-family: var(--font-secondary);
-}
+.footer-contacts__callback {margin-top: 16px;color: var(--color-primary);font-weight: bold;font-size: var(--text-size-regular);font-family: var(--font-secondary);}
 .footer-contacts__item:not(:first-child) {margin-top: 20px;}
 .footer-contacts__phones a {display: flex;}
 .footer-about__contacts {margin-bottom: 24px;}
@@ -598,22 +592,10 @@
 .subscribe__bottom {margin-top: 24px;padding-top: 24px;border-top: 1px solid var(--color-border);}
 .subscribe-form {display: flex;flex-wrap: wrap;gap: 14px 24px;align-items: center;}
 .subscribe-form__text {flex-shrink: 0;width: 100%;margin: 0;font-size: var(--text-size-large);}
-.subscribe-form__pp {
-	flex-shrink: 0;
-	width: 100%;
-	font-size: var(--text-size-regular);
-	line-height: var(--text-height-regular);
-	text-align: center;
-}
+.subscribe-form__pp {flex-shrink: 0;width: 100%;font-size: var(--text-size-regular);line-height: var(--text-height-regular);text-align: center;}
 .subscribe-form__input {flex-grow: 1;width: 100%;font-size: var(--text-size-large);}
 .subscribe-form__button {flex-shrink: 0;width: 140px;margin-inline: auto;}
-.social__links {
-	display: flex;
-	gap: 12px;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
+.social__links {display: flex;gap: 12px;margin: 0;padding: 0;list-style: none;}
 .social__link span {display: none;}
 @media all and (min-width: 480px) {
 	.subscribe__title {font-size: var(--heading-04);}
@@ -729,13 +711,7 @@
 ** Товарная карточка
 */
 .product__item {position: relative;}
-.product__form {
-	position: relative;
-	padding: 6px;
-	border: 1px solid transparent;
-	border-radius: var(--border-radius);
-	transition: border-color var(--duration), background-color var(--duration);
-}
+.product__form {position: relative;padding: 6px;border: 1px solid transparent;border-radius: var(--border-radius);transition: border-color var(--duration), background-color var(--duration);}
 .is-loading .product__form {display: inline-block;width: 100%;}
 .product__images {position: relative;margin-bottom: 20px;}
 .product__image {
@@ -880,13 +856,7 @@
 .products__list .product__form:active .product__image {background-color: rgb(205 198 206 / 20%);}
 .products__list .product__image {width: 80px;height: 80px;transition: background-color var(--duration);}
 .products__list .product__shop {display: flex;flex-grow: 1;flex-wrap: wrap;}
-.products__list .product__shop-inner {
-	display: flex;
-	flex-flow: column wrap;
-	flex-grow: 1;
-	gap: 12px;
-	padding: 0 12px 12px;
-}
+.products__list .product__shop-inner {display: flex;flex-flow: column wrap;flex-grow: 1;gap: 12px;padding: 0 12px 12px;}
 .products__list .product__actions {flex-shrink: 0;width: 100%;padding: 16px 12px;}
 .products__list .product__actions-inner {display: flex;flex-wrap: wrap;gap: 12px 24px;align-items: center;}
 .products__list .product__name {font-weight: bold;}
@@ -919,8 +889,8 @@
 @media all and (min-width: 1440px) {
 	.products__list .product__shop {flex-wrap: nowrap;}
 	.products__list .product__shop-inner {padding-top: 12px;}
-	.products__list .qty__input {height: 40px;}
 	.products__list .product__actions {width: 260px;border-left: 1px solid var(--color-border-secondary);}
+	.products__list .qty__input {height: 40px;}
 	.products__list .product__cart {width: 100%;}
 	.products__list .product__add {width: 100%;}
 	.products__list .product__add--link {justify-content: center;padding: 0;}
@@ -933,6 +903,7 @@
 	.products__list .product__qty {order: 1;}
 	.products__list .product__links {order: 3;}
 	.products__list .product__actions {padding-top: 6px;}
+	.products__list .product__form {align-items: flex-start;}
 }
 @media all and (max-width: 1199px) {
 	.products__list .product__shop {flex-direction: column;}
@@ -954,8 +925,6 @@
 */
 #viewed .product__attr {display: none;}
 
-
-/* .section:nth-child(n+10) {display: none !important;} */
 
 /*
 ** Каталог

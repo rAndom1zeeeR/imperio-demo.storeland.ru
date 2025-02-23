@@ -15,7 +15,7 @@
     "selector-class-pattern": null,
     "selector-id-pattern": null,
     "custom-property-pattern": null,
-    "declaration-block-single-line-max-declarations": 4,
+    "declaration-block-single-line-max-declarations": 5,
     "at-rule-empty-line-before": "never",
     "comment-empty-line-before": "always",
     "custom-property-empty-line-before": "never",
