@@ -1171,3 +1171,69 @@
 */
 .pages__link {font-weight: bold;font-size: var(--text-size-large);}
 .pages__link.is-active {color: inherit;border: 1px solid var(--color-border-tertiary);}
+
+
+/*
+** Акции
+*/
+.promotion__grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px 16px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.promotion__item-inner {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 10px 12px;
+	background-color: rgb(241 189 188 / 40%);
+	border-radius: var(--border-radius);
+}
+.promotion__title {width: 100%;font-weight: bold;font-size: var(--text-size-regular);text-align: center;}
+.promotion__title::before {position: absolute;content: '';inset: 0;}
+.promotion__icon {flex-shrink: 0;}
+.promotion__date {
+	position: absolute;
+	top: 0;
+	display: flex;
+	gap: 4px;
+	align-items: center;
+	padding: 4px 8px;
+	color: white;
+	font-weight: bold;
+	font-size: var(--text-size-small);
+	background: var(--color-error);
+	border-radius: var(--border-radius);
+	transform: translateY(-50%);
+	fill: currentcolor;
+}
+.promotion__desc {margin-top: 16px;line-height: 1.2;}
+.promotion__item--empty .promotion__item-inner {background-color: rgb(205 198 206 / 20%);}
+.promotion__item--empty .promotion__icon-bg {fill: rgb(205 198 206 / 50%);}
+.promotion__item--empty .promotion__date {background-color: var(--color-primary);}
+@media all and (min-width: 480px) {
+	.promotion__grid {grid-template-columns: repeat(3, 1fr);}
+}
+@media all and (min-width: 768px) and (max-width: 1439px) {
+	.promotion__title {font-size: var(--text-size-medium);}
+}
+@media all and (min-width: 1024px) {
+	.promotion__item-inner {flex-direction: row;gap: 16px;justify-content: space-between;padding: 12px 16px;}
+	.promotion__icon {width: 70px;height: 70px;}
+	.promotion__title {text-align: left;}
+}
+@media all and (min-width: 1440px) {
+	.promotion__grid {grid-template-columns: repeat(4, 1fr);gap: 32px;}
+	.promotion__item {min-width: 240px;}
+	.promotion__item-inner {padding: 16px;}
+	.promotion__title {order: 0;font-size: var(--heading-06);text-align: left;}
+}
+@media all and (min-width: 1920px) {
+	.promotion__title {font-size: var(--heading-05);}
+}

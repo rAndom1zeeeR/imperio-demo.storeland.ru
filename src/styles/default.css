@@ -64,7 +64,17 @@ body {
 	scrollbar-gutter: stable;
 }
 *, *::before, *::after {box-sizing: border-box;}
+
+/*
+** Контейнеры
+*/
 .container {margin-inline: auto;padding-inline: 16px;}
+@media all and (min-width: 1440px) and (max-width: 1919px) {
+	.container {padding-inline: 24px;}
+}
+@media all and (min-width: 1920px) {
+	.container {padding-inline: 150px;}
+}
 
 /*
 ** Скролбары
@@ -538,13 +548,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 .client {display: grid;gap: 32px;}
 .client__title {margin-bottom: 20px;font-size: clamp(var(--heading-04), 0.75rem + 1.667vw, var(--heading-02));}
 .client__blocks:not(:first-child) {margin-top: 40px;}
-.client__buttons {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 16px 32px;
-	align-items: center;
-	margin-top: 20px;
-}
+.client__buttons {display: flex;flex-wrap: wrap;gap: 16px 32px;align-items: center;margin-top: 20px;}
 .client input, .client textarea {background-color: white;}
 .client ul {line-height: 1.375;}
 @media all and (min-width: 768px) {
@@ -702,7 +706,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 */
 .promotion__container {
 	margin-bottom: 32px;
-	padding: 20px;
+	padding-inline: 20px;
 	background-color: white;
 	border: 2px solid var(--color-border);
 	border-radius: 20px;
@@ -919,33 +923,3 @@ dialog::backdrop {z-index: 3;}
 .is-hide {display: none;}
 .is-hidden {visibility: hidden;opacity: 0;}
 .is-visible {visibility: visible;opacity: 1;}
-
-
-/*
-** Адаптивность
-*/
-
-/* @media all and (min-width: 480px) and (max-width: 639px) {
-	.container {min-width: 448px;}
-}
-@media all and (min-width: 640px) and (max-width: 767px) {
-	.container {min-width: 608px;}
-}
-@media all and (min-width: 768px) and (max-width: 1023px) {
-	.container {min-width: 736px;}
-}
-@media all and (min-width: 1024px) and (max-width: 1199px) {
-	.container {min-width: 992px;}
-}
-@media all and (min-width: 1200px) {
-	.container {width: 1200px;}
-} */
-
-/* @media all and (min-width: 1200px) and (max-width: 1439px) {
-} */
-@media all and (min-width: 1440px) and (max-width: 1919px) {
-	.container {padding-inline: 24px;}
-}
-@media all and (min-width: 1920px) {
-	.container {padding-inline: 150px;}
-}
