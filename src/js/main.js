@@ -920,7 +920,23 @@ function Products() {
   products.forEach((product) => {
     // Запуск функции стикера цены.
     StickerSales(product);
+    attrs(product);
   });
+
+  // Показать/скрыть характеристики товара
+  function attrs(product) {
+    const button = product.querySelector(".product__attr-button");
+    const content = product.querySelector(".product__attr");
+
+    if (button && content) {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        button.classList.toggle("is-active");
+        content.classList.toggle("is-active");
+        SlotText(event.currentTarget);
+      });
+    }
+  }
 }
 
 /**
