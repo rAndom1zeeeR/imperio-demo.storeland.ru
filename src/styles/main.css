@@ -1296,6 +1296,9 @@
 .cartTotal__total .cartTotal__price {font-size: var(--heading-04);}
 .cartTotal__buttons {padding: 24px;border-top: 1px solid var(--color-secondary);}
 .cartTotal__button {justify-content: center;width: 100%;font-size: var(--text-size-large);}
+.cartTable__remove {z-index: 2;}
+.cartTable__remove svg {fill: var(--color-text-primary);}
+.cartTable__remove:hover svg {fill: var(--color-secondary);}
 .coupon__order {position: relative;width: 100%;}
 .coupon__reset {position: absolute;right: 60px;}
 .coupon__button {
