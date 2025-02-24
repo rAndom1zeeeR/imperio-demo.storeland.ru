@@ -385,32 +385,6 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 }
 
 /*
-** Поле формы с иконкой
-*/
-.form__field--icon {position: relative;display: flex;flex-wrap: wrap;align-items: flex-start;}
-.form__field--icon > svg {
-	position: absolute;
-	left: 0;
-	width: 50px;
-	height: 100%;
-	padding: 12px;
-	color: var(--color-gray);
-	border-right: 2px solid var(--color-border);
-	transition: color var(--duration), border-color var(--duration);
-	fill: currentcolor;
-}
-.form__field--icon input, .form__field--icon textarea {padding-left: 66px;}
-.form__field--icon textarea {padding-top: 16px;}
-.form__field--icon input:focus + svg,
-.form__field--icon textarea:focus + svg {color: var(--color-secondary);border-color: var(--color-secondary);}
-@media (hover: hover) and (pointer: fine) {
-	.form__field--icon input:hover + svg, 
-	.form__field--icon textarea:hover + svg {color: var(--color-secondary);border-color: var(--color-secondary);}
-}
-.form__field--icon input.is-error + svg {color: var(--color-error);border-color: var(--color-error);}
-.form__field--icon input.is-success + svg {color: var(--color-primary);border-color: var(--color-primary-hover);}
-
-/*
 ** Поле формы с регистрацией
 */
 .form__registration {display: flex;align-items: center;margin-top: 12px;}
