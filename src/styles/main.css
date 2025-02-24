@@ -1240,7 +1240,7 @@
 /*
 ** Страница: Корзина
 */
-.cartInner {display: flex;flex-wrap: wrap;gap: 32px;}
+.cartInner {display: flex;flex-wrap: wrap;gap: 32px;align-items: flex-start;}
 .cartTable {width: 100%;}
 .cartTable__item {
 	display: flex;
@@ -1299,18 +1299,6 @@
 .cartTable__remove {z-index: 2;}
 .cartTable__remove svg {fill: var(--color-text-primary);}
 .cartTable__remove:hover svg {fill: var(--color-secondary);}
-.coupon__order {position: relative;width: 100%;}
-.coupon__reset {position: absolute;right: 60px;}
-.coupon__button {
-	position: absolute;
-	top: 6px;
-	right: 6px;
-	width: 38px;
-	height: 38px;
-	padding: 0;
-	background-color: var(--color-disabled);
-	border: 0;
-}
 .is-started .cartTotal__button[data-action="startOrder"] {display: none;}
 .cartTotal__button[data-action="completeOrder"] {display: none;}
 .is-started .cartTotal__button[data-action="completeOrder"] {display: inline-flex;}
@@ -1335,3 +1323,53 @@
 	.cartTable__content {width: calc(100% - 80px - 16px);}
 }
 
+/*
+** Быстрый заказ
+*/
+.cartTable__order .orderfast__block.cartTotal {display: none;}
+.is-min .orderfast__block:not(.cartTotal__min) {display: none;}
+.orderfast__block {margin-bottom: 32px;padding: 24px;border: 1px solid var(--color-border);border-radius: var(--border-radius);}
+.orderfast__block .form__fields + .form__fields {margin-top: 20px;}
+.orderfast__title {margin-bottom: 16px;}
+.order-delivery-zone__selects {margin-top: 12px;}
+.order-delivery__total {margin-block: 12px;}
+.order-delivery__rules {margin-top: 12px;}
+.order-delivery__rule {margin-block: 0;}
+.order-delivery__description {margin-top: 12px;}
+.order-delivery__desc {margin-top: 12px;}
+.order-delivery__desc:empty {display: none;}
+.order-delivery__price {color: var(--color-secondary);}
+.order-payments__desc {margin-top: 12px;}
+.order-payments__desc:empty {display: none;}
+.form__fields--date {display: grid;grid-template-columns: repeat(2, 1fr);gap: 16px;align-items: flex-end;}
+.form__fields--date .form__field {margin: 0;}
+.orderfast__block .form__field label {display: none;}
+@media all and (min-width: 640px) {
+	.form__fields--duo {display: grid;grid-template-columns: repeat(2, 1fr);gap: 16px;}
+	.form__fields--duo .form__field {margin: 0;}
+	.form__fields--date {grid-template-columns: 2fr 1fr 1fr;}
+	.form__field--country {grid-column: span 2;}
+}
+@media all and (max-width: 639px) {
+	.form__fields--date .form__field:first-child {grid-column: span 2;}
+}
+
+/*
+** Купон
+*/
+.coupon {position: relative;}
+.coupon__input {padding-right: 80px;}
+.coupon__order {position: relative;width: 100%;}
+.coupon__reset {position: absolute;right: 60px;opacity: 0;pointer-events: none;}
+.coupon__button {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	width: 38px;
+	height: 38px;
+	padding: 0;
+	background-color: var(--color-disabled);
+	border: 0;
+}
+.coupon.is-reset .coupon__reset {opacity: 1;pointer-events: all;}
+.coupon.is-loading {pointer-events: none;}

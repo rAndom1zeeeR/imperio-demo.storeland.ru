@@ -372,9 +372,9 @@ h6 {font-size: var(--heading-06);}
 fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 .form__fields {position: relative;}
 .form__field:not(:first-child) {margin-top: 12px;}
-.form__label {display: block;margin-bottom: 8px;font-weight: bold;font-size: var(--text-size-regular);}
-.form__label small {display: none;}
-.form__label[required] small {display: inline;}
+.form__field label {display: block;margin-bottom: 8px;font-size: var(--text-size-regular);}
+.form__field label small {display: none;}
+.form__field label[required] small {display: inline;}
 .form__text {margin: 0;}
 .form__buttons {
 	display: flex;
