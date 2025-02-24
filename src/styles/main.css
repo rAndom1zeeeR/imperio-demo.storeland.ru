@@ -1285,7 +1285,8 @@
 	-webkit-box-orient: vertical;
 }
 .cartTable__price {display: flex;flex-shrink: 0;flex-wrap: wrap;gap: 6px 12px;width: 112px;}
-.cartTable__price .price__old, .cartTable__price .price__one {color: rgb(99 82 88 / 50%);}
+.cartTable__price .price__old, .cartTable__price .price__one {color: rgb(99 82 88 / 50%);font-weight: bold;}
+.cartTable__price .price__one {order: 3;}
 .cartTotal {width: 100%;}
 .cartTotal__inner {border: 2px solid var(--color-secondary);border-radius: var(--border-radius);}
 .cartTotal__title {margin-bottom: 24px;padding: 16px 24px;border-bottom: 1px solid var(--color-secondary);}
@@ -1330,6 +1331,7 @@
 .is-min .orderfast__block:not(.cartTotal__min) {display: none;}
 .orderfast__block {margin-bottom: 32px;padding: 24px;border: 1px solid var(--color-border);border-radius: var(--border-radius);}
 .orderfast__block .form__fields + .form__fields {margin-top: 20px;}
+.cartTable__order .orderfast__block--coupon {display: none;}
 .orderfast__title {margin-bottom: 16px;}
 .orderfast__content {max-width: 620px;}
 .order-delivery-zone__selects {margin-top: 12px;}

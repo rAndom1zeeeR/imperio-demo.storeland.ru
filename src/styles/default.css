@@ -376,13 +376,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 .form__field label small {display: none;}
 .form__field label[required] small {display: inline;}
 .form__text {margin: 0;}
-.form__buttons {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 16px 32px;
-	align-items: center;
-	margin-top: 20px;
-}
+.form__buttons {display: flex;flex-wrap: wrap;gap: 16px 32px;align-items: center;margin-top: 20px;}
 
 /*
 ** Поле формы с регистрацией
