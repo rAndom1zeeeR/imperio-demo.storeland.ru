@@ -1237,6 +1237,7 @@
 	.promotion__title {font-size: var(--heading-05);}
 }
 
+
 /*
 ** Страница: Корзина
 */
@@ -1292,19 +1293,24 @@
 .cartTotal__title {margin-bottom: 24px;padding: 16px 24px;border-bottom: 1px solid var(--color-secondary);}
 .cartTotal__title data {display: none;}
 .cartTotal__item {display: flex;justify-content: space-between;margin-bottom: 12px;padding-inline: 24px;}
-.cartTotal__price {color: var(--color-text-secondary);font-weight: bold;}
+.cartTotal__price {flex-shrink: 0;color: var(--color-text-secondary);font-weight: bold;}
 .cartTotal__total {margin-top: 20px;color: var(--color-text-secondary);font-weight: bold;font-size: var(--heading-05);}
 .cartTotal__total .cartTotal__price {font-size: var(--heading-04);}
+.cartTotal__min-price {color: var(--color-error);}
+.cartTotal__min.is-hide {display: none;}
 .cartTotal__buttons {padding: 24px;border-top: 1px solid var(--color-secondary);}
 .cartTotal__button {justify-content: center;width: 100%;font-size: var(--text-size-large);}
 .cartTable__remove {z-index: 2;}
 .cartTable__remove svg {fill: var(--color-text-primary);}
 .cartTable__remove:hover svg {fill: var(--color-secondary);}
-.is-started .cartTotal__button[data-action="startOrder"] {display: none;}
+.cartTotal__button[data-action="closeOrder"] {display: none;}
 .cartTotal__button[data-action="completeOrder"] {display: none;}
-.is-started .cartTotal__button[data-action="completeOrder"] {display: inline-flex;}
 .cartTotal__pp {display: none;margin-top: 24px;text-align: center;}
+.is-started .cartTotal__button[data-action="startOrder"] {display: none;}
+.is-started .cartTotal__button[data-action="closeOrder"] {display: inline-flex;}
+.is-started .cartTotal__button[data-action="completeOrder"] {display: inline-flex;}
 .is-started .cartTotal__pp {display: block;}
+.is-started .cartTable__form {pointer-events: none;}
 @media all and (min-width: 640px) {
 	.cartTable__price {flex-direction: column;}
 }
@@ -1327,13 +1333,28 @@
 /*
 ** Быстрый заказ
 */
-.cartTable__order .orderfast__block.cartTotal {display: none;}
 .is-min .orderfast__block:not(.cartTotal__min) {display: none;}
+.cartTable__order .orderfast__block--total {display: none;}
+.cartTable__order .orderfast__block--coupon {display: none;}
 .orderfast__block {margin-bottom: 32px;padding: 24px;border: 1px solid var(--color-border);border-radius: var(--border-radius);}
 .orderfast__block .form__fields + .form__fields {margin-top: 20px;}
-.cartTable__order .orderfast__block--coupon {display: none;}
+.orderfast__block .form__field label {display: none;}
 .orderfast__title {margin-bottom: 16px;}
 .orderfast__content {max-width: 620px;}
+.form__fields--date {display: grid;grid-template-columns: repeat(2, 1fr);gap: 16px;align-items: flex-end;}
+.form__fields--date .form__field {margin: 0;}
+@media all and (min-width: 640px) {
+	.form__fields--duo {display: grid;grid-template-columns: repeat(2, 1fr);gap: 16px;}
+	.form__fields--duo .form__field {margin: 0;}
+	.form__fields--date {grid-template-columns: calc(50% - 8px) 1fr 1fr;}
+	.form__field--country {grid-column: span 2;}
+}
+@media all and (max-width: 639px) {
+	.form__fields--date .form__field:first-child {grid-column: span 2;}
+}
+
+/* Быстрый заказ. Селекты */
+.order-delivery__selects {display: none;}
 .order-delivery-zone__selects {margin-top: 12px;}
 .order-delivery__total {margin-block: 12px;}
 .order-delivery__rules {margin-top: 12px;}
@@ -1344,18 +1365,13 @@
 .order-delivery__price {color: var(--color-secondary);}
 .order-payments__desc {margin-top: 12px;}
 .order-payments__desc:empty {display: none;}
-.form__fields--date {display: grid;grid-template-columns: repeat(2, 1fr);gap: 16px;align-items: flex-end;}
-.form__fields--date .form__field {margin: 0;}
-.orderfast__block .form__field label {display: none;}
-@media all and (min-width: 640px) {
-	.form__fields--duo {display: grid;grid-template-columns: repeat(2, 1fr);gap: 16px;}
-	.form__fields--duo .form__field {margin: 0;}
-	.form__fields--date {grid-template-columns: calc(50% - 8px) 1fr 1fr;}
-	.form__field--country {grid-column: span 2;}
-}
-@media all and (max-width: 639px) {
-	.form__fields--date .form__field:first-child {grid-column: span 2;}
-}
+
+/* Быстрый заказ. Кнопки */
+.order-delivery__radio {display: none;}
+.order-delivery__item {padding: 16px;border: 1px solid var(--color-border);border-radius: var(--border-radius);}
+.order-delivery__item:hover {border-color: var(--color-secondary);cursor: pointer;}
+.order-delivery__item + .order-delivery__item {margin-top: 16px;}
+.order-delivery__name {font-weight: bold;font-size: var(--heading-05);}
 
 /*
 ** Купон

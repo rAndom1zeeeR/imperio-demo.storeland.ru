@@ -1650,15 +1650,15 @@ function Cart() {
       const cartItemModId = cartItem.getAttribute("data-mod-id");
       const cartItemPrice = cartItem.querySelector(".cartTable__price");
       const cartTotal = document.querySelector(".cartTotal__items");
-      const cartHeader = document.querySelector(".cartTable__header");
+      // const cartHeader = document.querySelector(".cartTable__header");
       const dataItemPrice = data.querySelector('.cartTable__item[data-mod-id="' + cartItemModId + '"] .cartTable__price');
       const dataCartTotal = data.querySelector(".cartTotal__items");
-      const dataCartHeader = data.querySelector(".cartTable__header");
+      // const dataCartHeader = data.querySelector(".cartTable__header");
       const cartTotalMin = document.querySelector(".cartTotal__min");
       const dataCartTotalMin = data.querySelector(".cartTotal__min");
       cartTotal.innerHTML = dataCartTotal.innerHTML;
       cartItemPrice.innerHTML = dataItemPrice.innerHTML;
-      cartHeader.innerHTML = dataCartHeader.innerHTML;
+      // cartHeader.innerHTML = dataCartHeader.innerHTML;
       cartTotalMin.innerHTML = dataCartTotalMin.innerHTML;
       CartMinSum();
       handleCartOrder();
@@ -1674,9 +1674,9 @@ function Cart() {
     const cartButtonClose = container.querySelector("[data-action=closeOrder]");
     const cartButtonComplete = container.querySelector("[data-action=completeOrder]");
     const contrainerAjax = container.querySelector(".cartTable__ajax");
-    cartButtonStart.addEventListener("click", handleCartOrderStart);
-    cartButtonClose.addEventListener("click", handleCartOrderClose);
-    cartButtonComplete.addEventListener("click", handleCartOrderComplete);
+    cartButtonStart?.addEventListener("click", handleCartOrderStart);
+    cartButtonClose?.addEventListener("click", handleCartOrderClose);
+    cartButtonComplete?.addEventListener("click", handleCartOrderComplete);
 
     function handleCartOrderStart(event) {
       // console.log("[DEBUG]: event2", event);
@@ -1744,8 +1744,8 @@ function CartMinSum() {
     const price = cartMin.querySelector("data");
     const minPrice = parseInt(price.value);
     const totalSum = parseInt(price.getAttribute("data-total"));
-    // console.log("[DEBUG]: minPrice", minPrice);
-    // console.log("[DEBUG]: totalSum", totalSum);
+    console.log("[DEBUG]: minPrice", minPrice);
+    console.log("[DEBUG]: totalSum", totalSum);
     if (minPrice > totalSum) {
       const diff = minPrice - totalSum;
       price.querySelector(".num").innerHTML = getMoneyFormat(diff);

@@ -382,7 +382,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 ** Поле формы с регистрацией
 */
 .form__registration {display: flex;align-items: center;margin-top: 12px;}
-.form__registration label {order: 2;padding-top: 4px;padding-left: 8px;cursor: pointer;}
+.form__registration label {order: 2;padding-top: 2px;padding-left: 8px;cursor: pointer;}
 
 /*
 ** Политика конфиденциальности
@@ -872,9 +872,12 @@ dialog::backdrop {z-index: 3;}
 .stages__list  {margin: 0;padding: 0;list-style: none;}
 .stages__item + .stages__item {margin-top: 12px;}
 .stages__link {display: flex;gap: 8px;align-items: center;}
-.order-delivery__title {display: flex;gap: 8px;align-items: center;}
+.order-delivery__title {display: flex;gap: 8px;align-items: center;margin-bottom: 12px;}
 .order-delivery-zone__list {margin-top: 16px;}
-.order-delivery-zone__item {margin-top: 12px;}
+.order-delivery-zone__item {display: flex;align-items: center;margin-top: 12px;}
+.order-delivery-zone__name {padding-inline: 8px;}
+.order-delivery-zone__price {font-weight: bold;}
+.order-delivery__price {margin-top: 12px;}
 @media (hover: hover) and (pointer: fine) {
 	.stage__nav:hover {color: var(--color-secondary);}
 	.stage__nav:hover::after {background: var(--color-secondary);}

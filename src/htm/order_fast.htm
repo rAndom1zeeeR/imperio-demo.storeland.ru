@@ -180,7 +180,62 @@
 							<div class="order-delivery__desc">{order_delivery.DESC}</div>
 						</div>
 						{% ENDFOR %}
+					</div>
 
+					<!-- Cпособ доставки. Кнопки -->
+					<div class="order-delivery__items">
+						{% FOR order_delivery %}
+						<div class="order-delivery__item {% IF order_delivery.NAME = Самовывоз %}is-hide{% ENDIF %}" data-id="{order_delivery.ID}">
+							<div class="order-delivery__title">
+								<input class="order-delivery__radio square"
+											 type="radio"
+											 id="deliveryId{order_delivery.ID}"
+											 name="form[delivery][id]"
+											 value="{order_delivery.ID}"
+											 price="{order_delivery.END_PRICE}"
+											 pricewithoutzones="{order_delivery.END_PRICE}"
+											 pricewithzone="{order_delivery.ZONE_END_PRICE}"
+											 data-name="{order_delivery.NAME}"
+											 data-id="{order_delivery.ID}"
+											 {% IFNOT ORDER_FORM_DELIVERY_ID %}
+											 {% IF order_delivery.first %}checked="checked" {% ENDIF %}
+											 {% ELSEIF order_delivery.ID=ORDER_FORM_DELIVERY_ID %}
+											 checked="checked"
+											 {% ENDIF %} />
+								<label class="order-delivery__name" for="deliveryId{order_delivery.ID}">{order_delivery.NAME}</label>
+							</div>
+
+							<div class="order-delivery__desc">{order_delivery.DESC}</div>
+
+							<div class="order-delivery__price {CURRENCY_CHAR_CODE}">
+								<label>Стоимость доставки:</label>
+								<strong>{order_delivery.END_PRICE | money_format}</strong>
+							</div>
+
+							{% IFNOT order_delivery.zone_list_empty %}
+							<div class="order-delivery-zone__list delivery__zones">
+								<div class="order-delivery-zone__title">Зоны доставки:</div>
+								{% FOR zone_list %}
+								<div class="order-delivery-zone__item">
+									<input class="order-delivery-zone__radio square"
+												 type="radio"
+												 id="deliveryZoneId{order_delivery.zone_list.ID}"
+												 name="form[delivery][zone_id]"
+												 value="{order_delivery.zone_list.ID}"
+												 data-id="{order_delivery.ID}"
+												 price="{order_delivery.zone_list.END_PRICE}"
+												 {% IF order_delivery.zone_list.ID=ORDER_FORM_DELIVERY_ZONE_ID %}
+												 checked="checked" rel="true"
+												 {% ENDIF %} />
+									<label class="order-delivery-zone__name" for="deliveryZoneId{order_delivery.zone_list.ID}">{order_delivery.zone_list.NAME}</label>
+									<span class="order-delivery-zone__price">{order_delivery.zone_list.END_PRICE | money_format}</span>
+								</div>
+								{% ENDFOR %}
+							</div>
+							{% ENDIF %}
+
+						</div>
+						{% ENDFOR %}
 					</div>
 				</div>
 			</div>
@@ -418,7 +473,7 @@
 			</div>
 			{% ENDIF %}
 
-			<div class="orderfast__block cartTotal">
+			<div class="orderfast__block orderfast__block--total">
 				<div class="cartTotal__items">
 					<div class="cartTotal__title">
 						<h5 class="cartTotal__title-label">Ваш заказ</h5>
