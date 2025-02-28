@@ -722,7 +722,7 @@ function StickerSales(selector, type = "percent") {
   }
   if (type === "percent") {
     const diffPercent = (((priceOld.getAttribute("data-price") - priceNow.getAttribute("data-price")) / priceOld.getAttribute("data-price")) * 100).toFixed();
-    sticker.innerHTML = `-${diffPercent}%`;
+    sticker.innerHTML = `–${diffPercent}%`;
   } else {
     const diff = (priceOld.getAttribute("data-price") - priceNow.getAttribute("data-price")).toFixed();
     sticker.innerHTML = `<span class="RUB"><span class="num">-${getMoneyFormat(diff)}</span></span>`;
@@ -2641,6 +2641,37 @@ function swiperBanners(selector) {
         slidesPerView: 3,
         spaceBetween: 32,
       },
+    },
+  });
+}
+
+/**
+ * Слайдер Списком.
+ * Используется в функциях: на всех страницах
+ * Использует функции: Swiper
+ */
+function swiperList(selector) {
+  const related = document.querySelector(selector);
+  if (!related) return;
+  const swiper = new Swiper(selector + " .swiper", {
+    loop: false,
+    autoplay: false,
+    watchSlidesProgress: true,
+    simulateTouch: true,
+    grabCursor: true,
+    slidesPerView: 1,
+    spaceBetween: 0,
+    preloadImages: false,
+    navigation: {
+      nextEl: selector + " .swiper-button-next",
+      prevEl: selector + " .swiper-button-prev",
+    },
+    pagination: {
+      enabled: true,
+      el: selector + " .swiper-pagination",
+      clickable: true,
+      type: "bullets",
+      dynamicBullets: true,
     },
   });
 }

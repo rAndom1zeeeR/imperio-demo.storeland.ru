@@ -407,7 +407,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 */
 .sticker {
 	position: relative;
-	padding: 2px 8px;
+	padding: 2px 6px;
 	color: white;
 	font-weight: bold;
 	font-size: var(--text-size-small);
@@ -434,20 +434,20 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 	background-color: white;
 	border: 1px solid var(--color-border-secondary);
 	border-radius: var(--border-radius);
+	--qty-size: 40px;
 }
 .qty__select {
 	flex-shrink: 0;
-	height: 40px;
+	width: var(--qty-size);
+	height: var(--qty-size);
+	padding: 0;
 	color: var(--color-gray);
 	background-color: transparent;
 	border: 0;
 	border-radius: 0;
-	padding-inline: 12px;
 }
 .qty__input {
-	flex-shrink: 0;
-	width: 48px;
-	height: 40px;
+	height: var(--qty-size);
 	padding: 0;
 	font-weight: bold;
 	text-align: center;
