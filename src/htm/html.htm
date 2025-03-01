@@ -388,7 +388,7 @@
 		{% IFNOT catalog_empty %}
 		<section id="categories" class="section">
 			<div class="container">
-				<header class="headline headline--navigation">
+				<div class="headline headline--navigation">
 					<a href="{CATALOG_URL}" title="Перейти в Каталог">
 						<h2 class="headline__title">Мы производим и продаем</h2>
 					</a>
@@ -396,7 +396,7 @@
 						<div class="swiper-button-prev"></div>
 						<div class="swiper-button-next"></div>
 					</div>
-				</header>
+				</div>
 				<div class="swiper">
 					<div class="categories__grid swiper-wrapper">
 						{% FOR catalog_full %}
@@ -482,7 +482,7 @@
 		{% IFNOT index_page_sale_goods_empty %}
 		<section id="pdtSales" class="section">
 			<div class="container">
-				<header class="headline headline--navigation">
+				<div class="headline headline--navigation">
 					<a href="{DISCOUNT_URL}" title="Перейти в Распродажа">
 						<h2 class="headline__title">Ликвидация</h2>
 					</a>
@@ -490,7 +490,7 @@
 						<div class="swiper-button-prev"></div>
 						<div class="swiper-button-next"></div>
 					</div>
-				</header>
+				</div>
 				<div class="swiper swiper--products">
 					<div class="products__grid swiper-wrapper">
 						{% FOR index_page_sale_goods %}
@@ -691,7 +691,7 @@
 		{% IFNOT index_page_favorites_goods_empty %}
 		<section id="pdtBest" class="section">
 			<div class="container">
-				<header class="headline headline--navigation">
+				<div class="headline headline--navigation">
 					<a href="{CATALOG_TOP_SALES_URL}" title="Перейти в Хиты продаж">
 						<h2 class="headline__title">Хиты продаж</h2>
 					</a>
@@ -699,7 +699,7 @@
 						<div class="swiper-button-prev"></div>
 						<div class="swiper-button-next"></div>
 					</div>
-				</header>
+				</div>
 				<div class="swiper swiper--products">
 					<div class="products__grid swiper-wrapper">
 						{% FOR index_page_favorites_goods %}
@@ -935,7 +935,7 @@
 		{% IFNOT index_page_new_goods_empty %}
 		<section id="pdtNew" class="section">
 			<div class="container">
-				<header class="headline headline--navigation">
+				<div class="headline headline--navigation">
 					<a href="{CATALOG_NEW_URL}" title="Перейти в Новинки">
 						<h2 class="headline__title">Новинки</h2>
 					</a>
@@ -943,7 +943,7 @@
 						<div class="swiper-button-prev"></div>
 						<div class="swiper-button-next"></div>
 					</div>
-				</header>
+				</div>
 				<div class="swiper swiper--products">
 					<div class="products__grid swiper-wrapper">
 						{% FOR index_page_new_goods %}
@@ -1132,11 +1132,11 @@
 		{% IFNOT index_page_goods_empty %}
 		<section id="pdtSale" class="section pdt__visible">
 			<div class="container">
-				<header class="headline headline--navigation">
+				<div class="headline headline--navigation">
 					<a href="{CATALOG_INDEX_PAGE_URL}" title="Перейти в Товары на главной">
 						<h2 class="headline__title">Товары на главной</h2>
 					</a>
-				</header>
+				</div>
 				<div class="products__grid">
 					{% FOR index_page_goods %}
 					<div class="product__item" data-id="{index_page_goods.ID}" itemscope itemtype="https://schema.org/Product">
@@ -1333,9 +1333,9 @@
 			<div class="container">
 				<div class="main__inner">
 					<div class="main__desc">
-						<header class="headline">
+						<div class="headline">
 							<h1 class="headline__title">{PAGE_TITLE}</h1>
-						</header>
+						</div>
 						<div>{BODY}</div>
 					</div>
 					<div class="main__advantage advantage__items">
@@ -1396,7 +1396,7 @@
 		{% IF news_list_shop_empty=0 || news_list_all_empty=0 || news_list_shop_empty=0 || news_list_articles_empty=0 || news_list_mass_media_empty=0 %}
 		<section id="news" class="section">
 			<div class="container">
-				<header class="headline headline--tabs headline--navigation">
+				<div class="headline headline--tabs headline--navigation">
 					<div class="tabs">
 						{% IFNOT news_list_all_empty %}
 						<a class="tabs__link is-active" href="{NEWS_URL}" title="Перейти в Новости" data-tab="news_list_all">
@@ -1423,7 +1423,7 @@
 						<div class="swiper-button-prev"></div>
 						<div class="swiper-button-next"></div>
 					</div>
-				</header>
+				</div>
 
 				<!-- Список Всех Новостей -->
 				{% IFNOT news_list_all_empty %}
@@ -1583,7 +1583,7 @@
 		<main id="main" class="section">
 			<div class="container">
 				<!-- Основные блоки заголовков -->
-				<header class="headline">
+				<div class="headline">
 					<!-- Хлебные крошки -->
 					{% IFNOT index_page %}
 					<nav aria-label="Breadcrumb">
@@ -1857,7 +1857,7 @@
 					<!-- {% ELSEIF MOD_LNAME=goods %}
 					<h1 class="headline__title">{GOODS_NAME}</h1> -->
 					{% ENDIF %}
-				</header>
+				</div>
 
 				<!-- Основное описание страницы -->
 				<div class="body">{BODY}</div>
@@ -1869,13 +1869,13 @@
 		{% IFNOT recently_viewed_goods_empty && MOD_LNAME != cart %}
 		<section id="viewed" class="section">
 			<div class="container">
-				<header class="headline headline--navigation">
+				<div class="headline headline--navigation">
 					<h2 class="headline__title">Ранее Вы смотрели</h2>
 					<div class="swiper-navigation">
 						<div class="swiper-button-prev"></div>
 						<div class="swiper-button-next"></div>
 					</div>
-				</header>
+				</div>
 				<div class="swiper swiper--products">
 					<div class="products__grid products__grid--small swiper-wrapper">
 						{% FOR recently_viewed_goods %}
@@ -2744,6 +2744,7 @@
 				Opinions();
 				swiperSmall("#related-views");
 				swiperList("#related-goods");
+				swiperOpinions("#opinions");
 			});
 		</script>
 		{% ENDIF %}

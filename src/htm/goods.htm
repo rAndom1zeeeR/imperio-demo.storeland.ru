@@ -334,13 +334,13 @@
 		<!-- Сопутствующие товары -->
 		{% IFNOT related_goods_empty %}
 		<div id="related-goods">
-			<header class="headline headline--navigation">
-				<h2 class="headline__title">Вам может пригодится1</h2>
+			<div class="headline headline--navigation">
+				<h2 class="headline__title">Вам может пригодится</h2>
 				<div class="swiper-navigation">
 					<div class="swiper-button-prev"></div>
 					<div class="swiper-button-next"></div>
 				</div>
-			</header>
+			</div>
 
 			<!-- Слайдер -->
 			<div class="swiper">
@@ -397,7 +397,7 @@
 											 title="Добавить в корзину &laquo;{related_goods.NAME}&raquo;"
 											 rel="nofollow">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
-												<path 
+												<path
 															d="M725.333 256H298.666c-141.227 0-256 114.773-256 256s114.773 256 256 256h426.667c141.227 0 256-114.773 256-256s-114.773-256-256-256zm0 426.667H298.666c-94.293 0-170.667-76.373-170.667-170.667s76.373-170.667 170.667-170.667h426.667C819.626 341.333 896 417.706 896 512s-76.373 170.667-170.667 170.667zM298.667 384c-70.827 0-128 57.173-128 128s57.173 128 128 128 128-57.173 128-128-57.173-128-128-128z" />
 											</svg>
 											<span slot="В корзине">В корзин{% IF related_goods.NB_GOODS_IN_CART %}е{% ELSE %}у{% ENDIF %}</span>
@@ -462,13 +462,13 @@
 <!-- С этим товаром смотрят -->
 {% IFNOT related_views_goods_empty %}
 <div id="related-views" class="related">
-	<header class="headline headline--navigation">
+	<div class="headline headline--navigation">
 		<h2 class="headline__title">Похожие товары</h2>
 		<div class="swiper-navigation">
 			<div class="swiper-button-prev"></div>
 			<div class="swiper-button-next"></div>
 		</div>
-	</header>
+	</div>
 
 	<!-- Слайдер -->
 	<div class="swiper">
@@ -671,313 +671,50 @@
 <!-- Отзывы -->
 {% IFNOT SETTINGS_OPINION_DISABLE %}
 <div class="tabs__content" id="opinions">
-	<h2 class="tabs__title">Отзывы</h2>
+	<div class="headline headline--navigation">
+		<h2 class="headline__title">Отзывы</h2>
+		<div class="swiper-navigation">
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+		</div>
+	</div>
 	<div class="opinion__container">
+		{% IF opinion_list_empty %}
+		<div class="opinion__buttons">
+			<p>Отзывов пока нет. Ваш может стать первым!</p>
+			<button class="opinion__score-button button-tertiary" type="button" data-dialog="#dialogOpinionAdd">Оставить отзыв</button>
+		</div>
+		{% ELSE %}
+
 		<div class="opinion__score">
-			{% IFNOT opinion_list_empty %}
-			<div class="opinion__score-inner">
-				<div class="opinion__score-content">
-					<div class="opinion__score-rate">{GOODS_OPINION_RATING_VALUE_ROUND | divide('2')}</div>
-
-					<div class="opinion__score-ratings ratings">
-						<div class="ratings__value" style="width:{GOODS_OPINION_RATING_VALUE_ROUND}0%;"></div>
-					</div>
-
-					<div class="opinion__score-count">{GOODS_OPINION_RATING_CNT_ALL} отзыв{GOODS_OPINION_RATING_CNT_ALL | gen_word_end("а","ов","ов")}</div>
-				</div>
-
-				<div class="opinion__score-grade">
-					<div class="opinion__grade" data-number="5">
-						<label class="opinion__grade-label">5</label>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="16" height="16" aria-hidden="true">
-							<path
-										d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-						</svg>
-						<progress max="100" value="0"></progress>
-						<b class="opinion__grade-number"></b>
-					</div>
-					<div class="opinion__grade" data-number="4">
-						<label class="opinion__grade-label">4</label>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="16" height="16" aria-hidden="true">
-							<path
-										d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-						</svg>
-						<progress max="100" value="0"></progress>
-						<b class="opinion__grade-number"></b>
-					</div>
-					<div class="opinion__grade" data-number="3">
-						<label class="opinion__grade-label">3</label>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="16" height="16" aria-hidden="true">
-							<path
-										d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-						</svg>
-						<progress max="100" value="0"></progress>
-						<b class="opinion__grade-number"></b>
-					</div>
-					<div class="opinion__grade" data-number="2">
-						<label class="opinion__grade-label">2</label>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="16" height="16" aria-hidden="true">
-							<path
-										d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-						</svg>
-						<progress max="100" value="0"></progress>
-						<b class="opinion__grade-number"></b>
-					</div>
-					<div class="opinion__grade" data-number="1">
-						<label class="opinion__grade-label">1</label>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="16" height="16" aria-hidden="true">
-							<path
-										d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-						</svg>
-						<progress max="100" value="0"></progress>
-						<b class="opinion__grade-number"></b>
-					</div>
-				</div>
-
-				<div class="opinion__score-total">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="10" height="10" aria-hidden="true">
-						<path d="M994.009 149.967c39.985 39.989 39.985 104.823 0 144.812L414.762 874.026c-39.989 39.989-104.823 39.989-144.812 0l-72.406-72.406 651.655-651.653c39.989-39.989 104.824-39.989 144.81 0z" />
-						<path d="M29.992 489.242c39.989-39.989 104.824-39.989 144.812 0L487.163 801.6l-72.407 72.406c-39.988 39.989-104.823 39.989-144.812 0L29.99 634.053c-39.987-39.987-39.987-104.822.002-144.811z" />
-					</svg>
-					<b>%%</b>
-					<span>покупателей рекоммендуют этот товар</span>
-				</div>
+			<div class="opinion__score-ratings ratings">
+				<div class="ratings__value" style="width:{GOODS_OPINION_RATING_VALUE_ROUND}0%;"></div>
 			</div>
-			{% ENDIF not opinion_list_empty %}
-
-			<div class="opinion__score-buttons">
-				<button class="opinion__score-button" type="button" data-dialog="#dialogOpinionAdd">Добавить отзыв</button>
-				<p>Поделитесь своим мнением об&nbsp;этом товаре, оставьте свой отзыв!</p>
-			</div>
-
-			<!-- Форма добавления отзыва -->
-			<dialog id="dialogOpinionAdd" aria-label="Добавить отзыв о товаре">
-				<div class="dialog__container">
-					<h3 class="dialog__title">Добавить отзыв</h3>
-					<form class="form__opinion" method="post" action="{CURRENT_URL}" enctype="multipart/form-data">
-						<input type="hidden" name="hash" value="{HASH}">
-						<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_FROM}]" value="{GOODS_FROM}">
-						<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_ID}]" value="{GOODS_ID}">
-						<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
-						{ANTISPAM_CODE}
-						<div class="form__field form__field--goods">
-							<div class="form__image">
-								<img src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{GOODS_IMAGE_SMALL}{% ENDIF %}"
-										 alt="{GOODS_NAME}"
-										 loading="lazy">
-							</div>
-							<div class="form__name">{GOODS_NAME}</div>
-						</div>
-
-						<div class="form__field form__field--generally">
-							<span class="form__label">Что скажите о товаре:</span>
-							<input id="goods_opinion_generally_is_good"
-										 name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_GENERALLY_IS_GOOD}]"
-										 type="radio"
-										 {% IF FORM_GOODS_OPINION_GENERALLY_IS_GOOD=1 %}checked="checked" {% ENDIF %}
-										 value="1">
-							<label for="goods_opinion_generally_is_good">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="10" height="10" aria-hidden="true">
-									<path d="M994.009 149.967c39.985 39.989 39.985 104.823 0 144.812L414.762 874.026c-39.989 39.989-104.823 39.989-144.812 0l-72.406-72.406 651.655-651.653c39.989-39.989 104.824-39.989 144.81 0z" />
-									<path d="M29.992 489.242c39.989-39.989 104.824-39.989 144.812 0L487.163 801.6l-72.407 72.406c-39.988 39.989-104.823 39.989-144.812 0L29.99 634.053c-39.987-39.987-39.987-104.822.002-144.811z" />
-								</svg>
-								<span>Рекомендую</span>
-							</label>
-							<input id="goods_opinion_generally_is_bad"
-										 name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_GENERALLY_IS_GOOD}]"
-										 type="radio"
-										 {% IF FORM_GOODS_OPINION_GENERALLY_IS_GOOD=0 %}checked="checked" {% ENDIF %}
-										 value="0">
-							<label for="goods_opinion_generally_is_bad">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="10" height="10" aria-hidden="true">
-									<path
-												d="M340.44 474.989a52.36 52.36 0 0 1 0 74.022L27.905 861.433a95.21 95.21 0 0 0-.013 134.669 95.267 95.267 0 0 0 134.706.013l312.548-312.461a52.365 52.365 0 0 1 37.015-15.331 52.365 52.365 0 0 1 37.015 15.331L861.71 996.115a95.292 95.292 0 0 0 67.471 27.878 95.303 95.303 0 0 0 67.402-28.045c37.13-37.376 36.119-98.202-1.166-135.475L683.869 549.011A52.316 52.316 0 0 1 668.533 512a52.314 52.314 0 0 1 3.986-20.031 52.3 52.3 0 0 1 11.35-16.98l311.702-311.616c37.132-37.12 38.207-97.587 1.358-134.976-8.822-8.951-19.328-16.068-30.913-20.941a95.309 95.309 0 0 0-73.234-.278 95.28 95.28 0 0 0-31.072 20.707L549.138 340.346a52.372 52.372 0 0 1-74.03 0L163.443 28.73C126.313-8.39 65.829-9.478 28.43 27.373a95.182 95.182 0 0 0-.526 135.181l312.535 312.435z" />
-								</svg>
-								<span>Не рекомендую</span>
-							</label>
-						</div>
-
-						<div class="form__field">
-							<label for="goods_opinion_name">
-								<span>Представьтесь, пожалуйста:</span>
-								<small>(обязательно)</small>
-							</label>
-							<input id="goods_opinion_name"
-										 class="opinion__input"
-										 type="text"
-										 name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_NAME}]"
-										 value="{% IF CLIENT_IS_LOGIN %}{CLIENT_NAME}{% ELSE %}{FORM_GOODS_OPINION_NAME}{% ENDIF %}"
-										 maxlength="50"
-										 placeholder="Ваше имя:"
-										 required>
-						</div>
-
-						<div class="form__field">
-							<label for="goods_opinion_comment">
-								<span>Ваш отзыв:</span>
-								<small>(обязательно)</small>
-							</label>
-							<textarea id="goods_opinion_comment"
-												name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_COMMENT}]"
-												rows="5"
-												placeholder="Ваш отзыв"
-												required>{FORM_GOODS_OPINION_COMMENT}</textarea>
-						</div>
-
-						<div class="form__field is-hide">
-							<label for="goods_opinion_title">Заголовок:</label>
-							<input type="text"
-										 id="goods_opinion_title"
-										 name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_TITLE}]"
-										 value="{FORM_GOODS_OPINION_TITLE}"
-										 maxlength="255"
-										 placeholder="Заголовок">
-						</div>
-
-						<div class="form__field is-hide">
-							<label for="goods_opinion_accomplishments">Достоинства:</label>
-							<textarea id="goods_opinion_accomplishments"
-												name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_ACCOMPLISHMENTS}]"
-												rows="3"
-												placeholder="Достоинства">{FORM_GOODS_OPINION_ACCOMPLISHMENTS}</textarea>
-						</div>
-
-						<div class="form__field is-hide">
-							<label for="goods_opinion_limitations">Недостатки:</label>
-							<textarea id="goods_opinion_limitations"
-												name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_LIMITATIONS}]"
-												rows="3"
-												placeholder="Недостатки">{FORM_GOODS_OPINION_LIMITATIONS}</textarea>
-						</div>
-
-						<!-- Форма добавления отзыва о товаре -->
-						{% IF USE_CAPTCHA %}
-						<div class="form__field">
-							<label for="opinion_captcha_input">Введите код:</label>
-							<div class="form__captcha captcha">
-								<input class="captcha__input"
-											 id="opinion_captcha_input"
-											 type="text"
-											 name="form[{ANTISPAM_FORM_FIELD_NAME_CAPTCHA_STRING}]"
-											 autocomplete="off"
-											 value="{FORM_}"
-											 placeholder="Введите капчу"
-											 required>
-								<img class="captcha__image"
-										 src="{CAPTCHA_URL}"
-										 alt="Проверочный код, который нужно ввести в соседнее поле">
-								<button class="captcha__refresh button-unstyled" type="button" aria-label="Обновить проверочный код">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
-										<path d="M12 10H6.78A11 11 0 0 1 27 16h2A13 13 0 0 0 6 7.68V4H4v8h8ZM20 22h5.22A11 11 0 0 1 5 16H3a13 13 0 0 0 23 8.32V28h2v-8h-8Z" />
-										<path fill="none" d="M0 0h32v32H0z" data-name="&lt;Transparent Rectangle&gt;" />
-									</svg>
-								</button>
-							</div>
-						</div>
-						{% ENDIF %}
-
-						<div class="form__field form__field--rating">
-							<span class="form__label">Ваша оценка:</span>
-							<div class="form__rating">
-								<input id="opinion_rating_1"
-											 name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
-											 type="radio"
-											 value="2"
-											 title="Ужасно">
-								<label for="opinion_rating_1">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
-										<path
-													d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-									</svg>
-								</label>
-
-								<input id="opinion_rating_2"
-											 name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
-											 type="radio"
-											 value="4"
-											 title="Плохо">
-								<label for="opinion_rating_2">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
-										<path
-													d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-									</svg>
-								</label>
-
-								<input id="opinion_rating_3"
-											 name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
-											 type="radio"
-											 value="6"
-											 title="Средне">
-								<label for="opinion_rating_3">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
-										<path
-													d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-									</svg>
-								</label>
-
-								<input id="opinion_rating_4"
-											 name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
-											 type="radio"
-											 value="8"
-											 title="Хорошо">
-								<label for="opinion_rating_4">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
-										<path
-													d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-									</svg>
-								</label>
-
-								<input id="opinion_rating_5"
-											 name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
-											 type="radio"
-											 value="10"
-											 title="Превосходно">
-								<label for="opinion_rating_5">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
-										<path
-													d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
-									</svg>
-								</label>
-							</div>
-							<!-- Кнопка отправки формы -->
-							<button type="submit" title="Добавить отзыв о &laquo;{GOODS_NAME}&raquo;">Отправить</button>
-						</div>
-
-						<small class="form__field form__pp">
-							Нажимая на кнопку &laquo;Отправить&raquo;, Вы соглашаетесь с
-							<a href="#dialogPolicy" data-dialog="#dialogPolicy">политикой конфиденциальности</a>
-						</small>
-
-					</form>
-				</div>
-			</dialog>
+			<div class="opinion__score-count">{GOODS_OPINION_RATING_VALUE_ROUND | divide('2')}/{GOODS_OPINION_RATING_CNT_ALL}</div>
 		</div>
 
-		{% IFNOT opinion_list_empty %}
 		<!-- Контент отзывов -->
-		<div class="opinion__content">
+		<div class="opinion__content swiper">
 			<!-- Список отзывов о товарах -->
-			<ul class="opinion__items" itemprop="review" itemscope itemtype="https://schema.org/Review">
+			<div class="opinion__items swiper-wrapper" itemprop="review" itemscope itemtype="https://schema.org/Review">
 				{% FOR opinion_list %}
-				<li class="opinion__item" data-rating="{opinion_list.RATING | divide('2')}" data-generally="{% IF opinion_list.GENERALLY_IS_GOOD %}good{% ELSE %}bad{% ENDIF %}">
-					{% IF opinion_list.NAME %}
-					<div class="opinion__name" itemprop="author" itemscope itemtype="https://schema.org/Person">
-						<span itemprop="name">{opinion_list.NAME}</span>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="10" height="10" aria-hidden="true">
-							{% IF opinion_list.GENERALLY_IS_GOOD %}
-							<path d="M994.009 149.967c39.985 39.989 39.985 104.823 0 144.812L414.762 874.026c-39.989 39.989-104.823 39.989-144.812 0l-72.406-72.406 651.655-651.653c39.989-39.989 104.824-39.989 144.81 0z" />
-							<path d="M29.992 489.242c39.989-39.989 104.824-39.989 144.812 0L487.163 801.6l-72.407 72.406c-39.988 39.989-104.823 39.989-144.812 0L29.99 634.053c-39.987-39.987-39.987-104.822.002-144.811z" />
-							{% ELSE %}
-							<path
-										d="M340.44 474.989a52.36 52.36 0 0 1 0 74.022L27.905 861.433a95.21 95.21 0 0 0-.013 134.669 95.267 95.267 0 0 0 134.706.013l312.548-312.461a52.365 52.365 0 0 1 37.015-15.331 52.365 52.365 0 0 1 37.015 15.331L861.71 996.115a95.292 95.292 0 0 0 67.471 27.878 95.303 95.303 0 0 0 67.402-28.045c37.13-37.376 36.119-98.202-1.166-135.475L683.869 549.011A52.316 52.316 0 0 1 668.533 512a52.314 52.314 0 0 1 3.986-20.031 52.3 52.3 0 0 1 11.35-16.98l311.702-311.616c37.132-37.12 38.207-97.587 1.358-134.976-8.822-8.951-19.328-16.068-30.913-20.941a95.309 95.309 0 0 0-73.234-.278 95.28 95.28 0 0 0-31.072 20.707L549.138 340.346a52.372 52.372 0 0 1-74.03 0L163.443 28.73C126.313-8.39 65.829-9.478 28.43 27.373a95.182 95.182 0 0 0-.526 135.181l312.535 312.435z" />
-							{% ENDIF %}
-						</svg>
-					</div>
-					{% ENDIF %}
+				<div class="opinion__item swiper-slide" data-rating="{opinion_list.RATING | divide('2')}" data-generally="{% IF opinion_list.GENERALLY_IS_GOOD %}good{% ELSE %}bad{% ENDIF %}">
+					<div class="opinion__block">
+						<div class="opinion__block-avatar"></div>
+						<div class="opinion__block-content">
+							<div class="opinion__name" itemprop="author" itemscope itemtype="https://schema.org/Person">
+								{% IF opinion_list.NAME %}
+								<span itemprop="name">{opinion_list.NAME}</span>
+								{% ELSEIF opinion_list.TITLE %}
+								<span itemprop="name">{opinion_list.TITLE}</span>
+								{% ENDIF %}
+							</div>
 
-					{% IF opinion_list.TITLE %}
-					<h4 class="opinion__title" itemprop="name" {% IF opinion_list.NAME %}hidden{% ENDIF %}>{opinion_list.TITLE}</h4>
-					{% ENDIF %}
+							{% IF opinion_list.DATE %}
+							<time class="opinion__date" datetime="{opinion_list.DATE | date('Y-m-d')}" itemprop="datePublished">{opinion_list.DATE | date('d.m.Y')}</time>
+							{% ENDIF %}
+						</div>
+					</div>
 
 					{% IF opinion_list.RATING %}
 					<div class="opinion__ratings">
@@ -1012,10 +749,6 @@
 					</blockquote>
 					{% ENDIF %}
 
-					{% IF opinion_list.DATE %}
-					<time class="opinion__date" datetime="{opinion_list.DATE | date('Y-m-d')}" itemprop="datePublished">{opinion_list.DATE | date('d.m.Y')}</time>
-					{% ENDIF %}
-
 					{% IF opinion_list.ANSWER %}
 					<details class="opinion__answer">
 						<summary>Показать ответ магазина</summary>
@@ -1024,39 +757,239 @@
 					{% ENDIF %}
 
 					{% IF opinion_list.DELETE_URL %}
-					<a class="opinion__delete button button-unstyled" href="{opinion_list.DELETE_URL}">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="12" height="12" aria-hidden="true">
-							<path
-										d="M340.44 474.989a52.36 52.36 0 0 1 0 74.022L27.905 861.433a95.21 95.21 0 0 0-.013 134.669 95.267 95.267 0 0 0 134.706.013l312.548-312.461a52.365 52.365 0 0 1 37.015-15.331 52.365 52.365 0 0 1 37.015 15.331L861.71 996.115a95.292 95.292 0 0 0 67.471 27.878 95.303 95.303 0 0 0 67.402-28.045c37.13-37.376 36.119-98.202-1.166-135.475L683.869 549.011A52.316 52.316 0 0 1 668.533 512a52.314 52.314 0 0 1 3.986-20.031 52.3 52.3 0 0 1 11.35-16.98l311.702-311.616c37.132-37.12 38.207-97.587 1.358-134.976-8.822-8.951-19.328-16.068-30.913-20.941a95.309 95.309 0 0 0-73.234-.278 95.28 95.28 0 0 0-31.072 20.707L549.138 340.346a52.372 52.372 0 0 1-74.03 0L163.443 28.73C126.313-8.39 65.829-9.478 28.43 27.373a95.182 95.182 0 0 0-.526 135.181l312.535 312.435z">
-							</path>
+					<a class="opinion__delete button button-link" href="{opinion_list.DELETE_URL}">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="20" height="20" aria-hidden="true">
+							<path d="M256 810.667c0 46.933 38.4 85.333 85.333 85.333h341.333c46.933 0 85.333-38.4 85.333-85.333v-512h-512v512zM341.333 384h341.333v426.667h-341.333v-426.667zM661.333 170.667l-42.667-42.667h-213.333l-42.667 42.667h-149.333v85.333h597.333v-85.333h-149.333z"></path>
 						</svg>
 						<span>Удалить</span>
 					</a>
 					{% ENDIF %}
-				</li>
+				</div>
 				{% ENDFOR %}
-			</ul>
+			</div>
 
-			<button class="opinion__button" type="button">Показать все отзывы</button>
+			<!-- <button class="opinion__button" type="button">Показать все отзывы</button> -->
 
 			<!-- Нижняя навигация (страницы) -->
-			{% IF opinion_show_pages %}
-			<ol class="pages">
-				{% FOR opinion_pages_list %}
-				{% IF opinion_pages_list.CURRENT %}
-				<li class="pages__current">
-					<a class="pages__link is-active">{opinion_pages_list.PAGE}</a>
-				</li>
-				{% ELSE %}
-				<li>
-					<a class="pages__link" href="{GOODS_OPINION_PAGINATE_URL}&page={opinion_pages_list.PAGE}#tab_4">{opinion_pages_list.PAGE}</a>
-				</li>
-				{% ENDIF %}
-				{% ENDFOR %}
-			</ol>
-			{% ENDIF opinion_show_pages %}
+			<!-- {% IF opinion_show_pages %}
+		<ol class="pages">
+			{% FOR opinion_pages_list %}
+			{% IF opinion_pages_list.CURRENT %}
+			<li class="pages__current">
+				<a class="pages__link is-active">{opinion_pages_list.PAGE}</a>
+			</li>
+			{% ELSE %}
+			<li>
+				<a class="pages__link" href="{GOODS_OPINION_PAGINATE_URL}&page={opinion_pages_list.PAGE}#tab_4">{opinion_pages_list.PAGE}</a>
+			</li>
+			{% ENDIF %}
+			{% ENDFOR %}
+		</ol>
+		{% ENDIF opinion_show_pages %} -->
 		</div>
 		{% ENDIF not opinion_list_empty %}
+
+		<!-- Форма добавления отзыва -->
+		<dialog id="dialogOpinionAdd" aria-label="Добавить отзыв о товаре">
+			<div class="dialog__container">
+				<h3 class="dialog__title">Добавить отзыв</h3>
+				<form class="form__opinion" method="post" action="{CURRENT_URL}" enctype="multipart/form-data">
+					<input type="hidden" name="hash" value="{HASH}">
+					<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_FROM}]" value="{GOODS_FROM}">
+					<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_ID}]" value="{GOODS_ID}">
+					<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
+					{ANTISPAM_CODE}
+					<div class="form__field form__field--goods">
+						<div class="form__image">
+							<img src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{GOODS_IMAGE_SMALL}{% ENDIF %}"
+										alt="{GOODS_NAME}"
+										loading="lazy">
+						</div>
+						<div class="form__name">{GOODS_NAME}</div>
+					</div>
+
+					<div class="form__field form__field--generally">
+						<span class="form__label">Что скажите о товаре:</span>
+						<input id="goods_opinion_generally_is_good"
+										name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_GENERALLY_IS_GOOD}]"
+										type="radio"
+										{% IF FORM_GOODS_OPINION_GENERALLY_IS_GOOD=1 %}checked="checked" {% ENDIF %}
+										value="1">
+						<label for="goods_opinion_generally_is_good">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="10" height="10" aria-hidden="true">
+								<path d="M994.009 149.967c39.985 39.989 39.985 104.823 0 144.812L414.762 874.026c-39.989 39.989-104.823 39.989-144.812 0l-72.406-72.406 651.655-651.653c39.989-39.989 104.824-39.989 144.81 0z" />
+								<path d="M29.992 489.242c39.989-39.989 104.824-39.989 144.812 0L487.163 801.6l-72.407 72.406c-39.988 39.989-104.823 39.989-144.812 0L29.99 634.053c-39.987-39.987-39.987-104.822.002-144.811z" />
+							</svg>
+							<span>Рекомендую</span>
+						</label>
+						<input id="goods_opinion_generally_is_bad"
+										name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_GENERALLY_IS_GOOD}]"
+										type="radio"
+										{% IF FORM_GOODS_OPINION_GENERALLY_IS_GOOD=0 %}checked="checked" {% ENDIF %}
+										value="0">
+						<label for="goods_opinion_generally_is_bad">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="10" height="10" aria-hidden="true">
+								<path
+											d="M340.44 474.989a52.36 52.36 0 0 1 0 74.022L27.905 861.433a95.21 95.21 0 0 0-.013 134.669 95.267 95.267 0 0 0 134.706.013l312.548-312.461a52.365 52.365 0 0 1 37.015-15.331 52.365 52.365 0 0 1 37.015 15.331L861.71 996.115a95.292 95.292 0 0 0 67.471 27.878 95.303 95.303 0 0 0 67.402-28.045c37.13-37.376 36.119-98.202-1.166-135.475L683.869 549.011A52.316 52.316 0 0 1 668.533 512a52.314 52.314 0 0 1 3.986-20.031 52.3 52.3 0 0 1 11.35-16.98l311.702-311.616c37.132-37.12 38.207-97.587 1.358-134.976-8.822-8.951-19.328-16.068-30.913-20.941a95.309 95.309 0 0 0-73.234-.278 95.28 95.28 0 0 0-31.072 20.707L549.138 340.346a52.372 52.372 0 0 1-74.03 0L163.443 28.73C126.313-8.39 65.829-9.478 28.43 27.373a95.182 95.182 0 0 0-.526 135.181l312.535 312.435z" />
+							</svg>
+							<span>Не рекомендую</span>
+						</label>
+					</div>
+
+					<div class="form__field">
+						<label for="goods_opinion_name">
+							<span>Представьтесь, пожалуйста:</span>
+							<small>(обязательно)</small>
+						</label>
+						<input id="goods_opinion_name"
+										class="opinion__input"
+										type="text"
+										name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_NAME}]"
+										value="{% IF CLIENT_IS_LOGIN %}{CLIENT_NAME}{% ELSE %}{FORM_GOODS_OPINION_NAME}{% ENDIF %}"
+										maxlength="50"
+										placeholder="Ваше имя:"
+										required>
+					</div>
+
+					<div class="form__field">
+						<label for="goods_opinion_comment">
+							<span>Ваш отзыв:</span>
+							<small>(обязательно)</small>
+						</label>
+						<textarea id="goods_opinion_comment"
+											name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_COMMENT}]"
+											rows="5"
+											placeholder="Ваш отзыв"
+											required>{FORM_GOODS_OPINION_COMMENT}</textarea>
+					</div>
+
+					<div class="form__field is-hide">
+						<label for="goods_opinion_title">Заголовок:</label>
+						<input type="text"
+										id="goods_opinion_title"
+										name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_TITLE}]"
+										value="{FORM_GOODS_OPINION_TITLE}"
+										maxlength="255"
+										placeholder="Заголовок">
+					</div>
+
+					<div class="form__field is-hide">
+						<label for="goods_opinion_accomplishments">Достоинства:</label>
+						<textarea id="goods_opinion_accomplishments"
+											name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_ACCOMPLISHMENTS}]"
+											rows="3"
+											placeholder="Достоинства">{FORM_GOODS_OPINION_ACCOMPLISHMENTS}</textarea>
+					</div>
+
+					<div class="form__field is-hide">
+						<label for="goods_opinion_limitations">Недостатки:</label>
+						<textarea id="goods_opinion_limitations"
+											name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_LIMITATIONS}]"
+											rows="3"
+											placeholder="Недостатки">{FORM_GOODS_OPINION_LIMITATIONS}</textarea>
+					</div>
+
+					<!-- Форма добавления отзыва о товаре -->
+					{% IF USE_CAPTCHA %}
+					<div class="form__field">
+						<label for="opinion_captcha_input">Введите код:</label>
+						<div class="form__captcha captcha">
+							<input class="captcha__input"
+											id="opinion_captcha_input"
+											type="text"
+											name="form[{ANTISPAM_FORM_FIELD_NAME_CAPTCHA_STRING}]"
+											autocomplete="off"
+											value="{FORM_}"
+											placeholder="Введите капчу"
+											required>
+							<img class="captcha__image"
+										src="{CAPTCHA_URL}"
+										alt="Проверочный код, который нужно ввести в соседнее поле">
+							<button class="captcha__refresh button-unstyled" type="button" aria-label="Обновить проверочный код">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+									<path d="M12 10H6.78A11 11 0 0 1 27 16h2A13 13 0 0 0 6 7.68V4H4v8h8ZM20 22h5.22A11 11 0 0 1 5 16H3a13 13 0 0 0 23 8.32V28h2v-8h-8Z" />
+									<path fill="none" d="M0 0h32v32H0z" data-name="&lt;Transparent Rectangle&gt;" />
+								</svg>
+							</button>
+						</div>
+					</div>
+					{% ENDIF %}
+
+					<div class="form__field form__field--rating">
+						<span class="form__label">Ваша оценка:</span>
+						<div class="form__rating">
+							<input id="opinion_rating_1"
+											name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
+											type="radio"
+											value="2"
+											title="Ужасно">
+							<label for="opinion_rating_1">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+									<path
+												d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
+								</svg>
+							</label>
+
+							<input id="opinion_rating_2"
+											name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
+											type="radio"
+											value="4"
+											title="Плохо">
+							<label for="opinion_rating_2">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+									<path
+												d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
+								</svg>
+							</label>
+
+							<input id="opinion_rating_3"
+											name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
+											type="radio"
+											value="6"
+											title="Средне">
+							<label for="opinion_rating_3">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+									<path
+												d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
+								</svg>
+							</label>
+
+							<input id="opinion_rating_4"
+											name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
+											type="radio"
+											value="8"
+											title="Хорошо">
+							<label for="opinion_rating_4">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+									<path
+												d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
+								</svg>
+							</label>
+
+							<input id="opinion_rating_5"
+											name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_RATING}]"
+											type="radio"
+											value="10"
+											title="Превосходно">
+							<label for="opinion_rating_5">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+									<path
+												d="M795.859 997.83 512 820.204 228.142 997.83c-10.312 6.534-23.614 6.035-33.544-1.178a29.903 29.903 0 0 1-11.456-31.52l81.21-324.877L10.728 425.221a29.992 29.992 0 0 1-9.258-32.256 30.013 30.013 0 0 1 26.456-20.683l331.028-23.116L484.168 38.59c9.2-22.676 46.464-22.676 55.664 0l125.217 310.576 331.027 23.116a30.035 30.035 0 0 1 16.39 6.296 30.017 30.017 0 0 1 10.061 14.387c1.85 5.687 1.958 11.796.307 17.544s-4.979 10.871-9.562 14.712L759.646 640.262l81.21 324.87a29.918 29.918 0 0 1-11.456 31.526 29.96 29.96 0 0 1-16.595 5.722 29.94 29.94 0 0 1-16.947-4.55z" />
+								</svg>
+							</label>
+						</div>
+						<!-- Кнопка отправки формы -->
+						<button type="submit" title="Добавить отзыв о &laquo;{GOODS_NAME}&raquo;">Отправить</button>
+					</div>
+
+					<small class="form__field form__pp">
+						Нажимая на кнопку &laquo;Отправить&raquo;, Вы соглашаетесь с
+						<a href="#dialogPolicy" data-dialog="#dialogPolicy">политикой конфиденциальности</a>
+					</small>
+
+				</form>
+			</div>
+		</dialog>
 
 	</div>
 </div>

@@ -829,6 +829,7 @@
 .products__grid .product__links {position: absolute;top: 0;right: 0;}
 .products__grid .product__link {display: block;padding: 8px;}
 .products__grid .product__ratings {margin-top: 16px;}
+.products__grid .product__ratings .ratings__count {display: none;}
 .products__grid .product__price {flex-direction: column;gap: 8px 16px;margin-top: 8px;}
 .products__grid .product__cart {margin-top: 16px;}
 @media all and (min-width: 480px) {
@@ -883,7 +884,7 @@
 .products__list.products__list--small .product__qty {display: none;}
 .products__list.products__list--small .product__links {display: none;}
 .products__list.products__list--small .product__item {margin-bottom: 16px;padding: 16px;border-bottom: 1px solid var(--color-border);}
-.products__list.products__list--small .product__item:nth-child(3) {margin-bottom: 0;border-bottom: 0;}
+.products__list.products__list--small .product__item:last-child {margin-bottom: 0;border-bottom: 0;}
 .products__list.products__list--small .product__shop {gap: 12px;padding-left: 16px;}
 .products__list.products__list--small .product__form {padding: 0;background: none;border: none;}
 .products__list.products__list--small .product__cart svg {opacity: 0.5;}
@@ -1497,7 +1498,10 @@
 #related-goods .headline--navigation {margin-bottom: 0;padding: 24px 24px 0;}
 #related-goods .swiper-navigation {width: 88px;height: var(--swiper-navigation-size);}
 #related-goods :is(.swiper-button-next, .swiper-button-prev) {--swiper-navigation-size: 38px;}
-.is-loading #related-goods {height: 449px;overflow: hidden;}
+.is-loading #related-goods {max-height: 449px;overflow: hidden;}
+
+#related-views .product__attr {display: none;}
+#related-views .product__ratings {display: none;}
 
 /* Карточка товара. Описание */
 .productView__tabs {
@@ -1523,4 +1527,44 @@
 	vertical-align: top;
 	opacity: 0.5;
 	padding-block: 16px;
+}
+
+/* Карточка товара. Отзывы */
+#opinions {position: relative;margin-top: 48px;}
+
+
+/* Карточка товара. Список отзывов */
+.opinion__item {padding: 24px;background-color: var(--color-background);border-radius: var(--border-radius);}
+.opinion__text {margin: 16px 0 0;}
+.opinion__text label {display: none;}
+.opinion__text label + p {margin: 0;}
+.opinion__date {opacity: 0.5;}
+.opinion__name {margin-bottom: 8px;font-weight: bold;font-size: var(--heading-06);}
+.opinion__ratings {margin-top: 16px;}
+.opinion__block {display: flex;gap: 16px;}
+.opinion__block-avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	color: var(--color-primary);
+	font-weight: bold;
+	font-size: 20px;
+	text-transform: uppercase;
+	background-color: white;
+	border: 2px solid var(--color-primary);
+	border-radius: 100%;
+}
+.opinion__score {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+	margin-bottom: 24px;
+}
+.opinion__score-ratings {width: 120px;height: 24px;}
+.opinion__score-count {color: var(--color-text-secondary);font-weight: bold;font-size: 24px;}
+.opinion__delete {margin-top: 16px;}
+@media all and (min-width: 640px) {
+	.opinion__score {position: absolute;top: 12px;left: 120px;}
 }

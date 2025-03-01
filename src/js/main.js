@@ -1295,11 +1295,20 @@ function Opinions() {
   if (!container) return;
 
   const opinions = container.querySelectorAll(".opinion__item");
-  const opinionsLength = opinions.length;
-  // console.log("[DEBUG]: opinionsLength", opinionsLength);
+  // const opinionsLength = opinions.length;
+  // console.log("[DEBUG]: opinions", opinions);
+
+  // Добавить отзыв
+  const opinionAdd = container.querySelector(".opinion__score-button");
+  opinionAdd?.addEventListener("click", () => {
+    setTimeout(() => {
+      document.getElementById("goods_opinion_name").focus();
+    }, 100);
+  });
+
+  // Хороший/Плохой отзыв
   let countGood = 0;
   let countBad = 0;
-
   opinions.forEach((opinion) => {
     const generally = opinion.getAttribute("data-generally");
     if (generally === "good") {
@@ -1307,105 +1316,114 @@ function Opinions() {
     } else if (generally === "bad") {
       countBad += 1;
     }
+    handleOpinionAvatarName(opinion);
   });
 
-  // Добавить отзыв
-  const opinionAdd = container.querySelector(".opinion__score-button");
-  opinionAdd.addEventListener("click", () => {
-    setTimeout(() => {
-      document.getElementById("goods_opinion_name").focus();
-    }, 100);
-  });
-
-  // Рекомендуемый %
-  const scoreTotal = container.querySelector(".opinion__score-total");
-  if (scoreTotal) {
-    const scoreTotalNumber = scoreTotal.querySelector("b");
-    const scoreTotalPercent = parseInt((countGood / opinionsLength) * 100) + "%";
-    scoreTotalNumber.innerHTML = scoreTotalPercent;
-  }
-
-  // Общий  Счётчик рейтинга для отзывов jQuery. Переписать на JS и проверить работу
-  for (let i = 1; i < 6; i++) {
-    const opinionsRating = $(".opinion__item[data-rating=" + i + "]").length;
-    const percent = parseInt(100 / (opinionsLength / opinionsRating));
-    $(".opinion__grade[data-number=" + i + "] .opinion__grade-number").text(opinionsRating);
-    $(".opinion__grade[data-number=" + i + "] progress").val(percent);
-  }
-
-  // Показать/скрыть все отзывы
-  const opinionButton = container.querySelector(".opinion__button");
-  if (opinionButton) {
-    opinionButton.style.display = opinionsLength > 3 ? "" : "none";
-    opinionButton.addEventListener("click", (event) => {
-      const items = container.querySelector(".opinion__items");
-      items.classList.toggle("opinion__items--show");
-      const target = event.currentTarget;
-      target.classList.toggle("is-active");
-      if (target.classList.contains("is-active")) {
-        target.innerHTML = "Скрыть отзывы";
-      } else {
-        target.innerHTML = "Показать все отзывы";
-        container.scrollIntoView();
-      }
-    });
+  // Добавления первой буквы Имени или Заголовка в Аватар
+  function handleOpinionAvatarName(opinion) {
+    const avatar = opinion.querySelector(".opinion__block-avatar");
+    const name = opinion.querySelector(".opinion__name");
+    if (avatar) {
+      avatar.innerText = name.innerText.charAt(0);
+    }
+    // console.log("[DEBUG]: name", name);
+    // console.log("[DEBUG]: avatar", avatar);
+    // console.log("[DEBUG]: name.charAt(0)", name.innerText.charAt(0));
   }
 
   // Рейтинг при добавлении отзыва
-  const stars = container.querySelectorAll(".form__rating label");
-  let starsActive;
+  function initRating(container) {
+    const stars = container.querySelectorAll(".form__rating label");
+    let starsActive;
 
-  stars.forEach((element, index) => {
-    element.addEventListener("mouseover", () => {
-      starsActive = Array.prototype.slice.call(stars, 0, index + 1);
-      starsActive.forEach((star) => {
-        star.classList.add("is-active");
+    stars.forEach((element, index) => {
+      element.addEventListener("mouseover", () => {
+        starsActive = Array.prototype.slice.call(stars, 0, index + 1);
+        starsActive.forEach((star) => {
+          star.classList.add("is-active");
+        });
+      });
+
+      element.addEventListener("mouseout", () => {
+        stars.forEach((star) => {
+          star.classList.remove("is-active");
+        });
+      });
+
+      element.addEventListener("click", () => {
+        stars.forEach((star) => {
+          star.classList.remove("is-select");
+        });
+        starsActive.forEach((star) => {
+          star.classList.add("is-select");
+        });
+        starsSelect = starsActive;
       });
     });
-
-    element.addEventListener("mouseout", () => {
-      stars.forEach((star) => {
-        star.classList.remove("is-active");
-      });
-    });
-
-    element.addEventListener("click", () => {
-      stars.forEach((star) => {
-        star.classList.remove("is-select");
-      });
-      starsActive.forEach((star) => {
-        star.classList.add("is-select");
-      });
-      starsSelect = starsActive;
-    });
-  });
+  }
+  initRating(container);
 
   // Капча
-  const captcha = document.querySelector(".captcha");
-  console.log("captcha", captcha);
-  if (!captcha) return false;
-  const captchaButton = captcha.querySelector(".captcha__refresh");
-  const captchaImage = captcha.querySelector(".captcha__image");
+  function initCaptcha() {
+    const captcha = document.querySelector(".captcha");
+    // console.log("[DEBUG]: captcha", captcha);
+    if (!captcha) return false;
+    const captchaButton = captcha.querySelector(".captcha__refresh");
+    const captchaImage = captcha.querySelector(".captcha__image");
 
-  // Действие при клике
-  captchaButton.addEventListener("click", handleCaptchaClick);
+    // Действие при клике
+    captchaButton.addEventListener("click", handleCaptchaClick);
 
-  // Функции при клике
-  function handleCaptchaClick(event) {
-    event.preventDefault();
-    console.log(event);
-    handleCaptchaRefresh(event.target, 1, 1);
-    captchaImage.setAttribute("src", captchaImage.getAttribute("src") + "&rand" + Math.random(0, 10000));
-  }
-
-  // Крутит изображение при обновлении картинки защиты от роботов
-  function handleCaptchaRefresh(img, num, cnt) {
-    if (cnt > 13) {
-      return false;
+    // Функции при клике
+    function handleCaptchaClick(event) {
+      event.preventDefault();
+      // console.log("[DEBUG]: handleCaptchaClick", event);
+      handleCaptchaRefresh(event.target, 1, 1);
+      captchaImage.setAttribute("src", captchaImage.getAttribute("src") + "&rand" + Math.random(0, 10000));
     }
-    img.setAttribute("src", img.getAttribute("rel") + "icon/refresh/" + num + ".gif");
-    num = num == 6 ? 0 : num;
+
+    // Крутит изображение при обновлении картинки защиты от роботов
+    function handleCaptchaRefresh(img, num, cnt) {
+      if (cnt > 13) return false;
+      img.setAttribute("src", img.getAttribute("rel") + "icon/refresh/" + num + ".gif");
+      num = num == 6 ? 0 : num;
+    }
   }
+  initCaptcha();
+
+  // // Рекомендуемый %
+  // const scoreTotal = container.querySelector(".opinion__score-total");
+  // if (scoreTotal) {
+  //   const scoreTotalNumber = scoreTotal.querySelector("b");
+  //   const scoreTotalPercent = parseInt((countGood / opinionsLength) * 100) + "%";
+  //   scoreTotalNumber.innerHTML = scoreTotalPercent;
+  // }
+
+  // // Общий  Счётчик рейтинга для отзывов jQuery. Переписать на JS и проверить работу
+  // for (let i = 1; i < 6; i++) {
+  //   const opinionsRating = $(".opinion__item[data-rating=" + i + "]").length;
+  //   const percent = parseInt(100 / (opinionsLength / opinionsRating));
+  //   $(".opinion__grade[data-number=" + i + "] .opinion__grade-number").text(opinionsRating);
+  //   $(".opinion__grade[data-number=" + i + "] progress").val(percent);
+  // }
+
+  // // Показать/скрыть все отзывы
+  // const opinionButton = container.querySelector(".opinion__button");
+  // if (opinionButton) {
+  //   opinionButton.style.display = opinionsLength > 3 ? "" : "none";
+  //   opinionButton.addEventListener("click", (event) => {
+  //     const items = container.querySelector(".opinion__items");
+  //     items.classList.toggle("opinion__items--show");
+  //     const target = event.currentTarget;
+  //     target.classList.toggle("is-active");
+  //     if (target.classList.contains("is-active")) {
+  //       target.innerHTML = "Скрыть отзывы";
+  //     } else {
+  //       target.innerHTML = "Показать все отзывы";
+  //       container.scrollIntoView();
+  //     }
+  //   });
+  // }
 }
 
 /**
@@ -2647,7 +2665,7 @@ function swiperBanners(selector) {
 
 /**
  * Слайдер Списком.
- * Используется в функциях: на всех страницах
+ * Используется в функциях: на странице Товаров, Акции, Поиск
  * Использует функции: Swiper
  */
 function swiperList(selector) {
@@ -2672,6 +2690,73 @@ function swiperList(selector) {
       clickable: true,
       type: "bullets",
       dynamicBullets: true,
+    },
+  });
+}
+
+/**
+ * Слайдер Отзывов.
+ * Используется в функциях: на странице Товар
+ * Использует функции: Swiper
+ */
+function swiperOpinions(selector) {
+  const related = document.querySelector(selector);
+  if (!related) return;
+  const swiper = new Swiper(selector + " .swiper", {
+    loop: false,
+    autoplay: false,
+    autoHeight: true,
+    watchSlidesProgress: true,
+    simulateTouch: true,
+    grabCursor: true,
+    slidesPerView: 3,
+    spaceBetween: 16,
+    preloadImages: false,
+    navigation: {
+      nextEl: selector + " .swiper-button-next",
+      prevEl: selector + " .swiper-button-prev",
+    },
+    pagination: {
+      enabled: true,
+      el: selector + " .swiper-pagination",
+      clickable: true,
+      type: "bullets",
+      dynamicBullets: true,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      320: {
+        slidesPerView: 1,
+      },
+      375: {
+        slidesPerView: 1,
+      },
+      480: {
+        slidesPerView: 2,
+      },
+      640: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 2,
+      },
+      1200: {
+        slidesPerView: 3,
+        spaceBetween: 32,
+      },
+      1440: {
+        slidesPerView: 3,
+        spaceBetween: 32,
+      },
+      1920: {
+        slidesPerView: 3,
+        spaceBetween: 32,
+      },
     },
   });
 }
