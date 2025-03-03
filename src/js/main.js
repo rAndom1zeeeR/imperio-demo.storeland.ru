@@ -252,7 +252,7 @@ function DialogsCloser(dialog) {
   if (dialog.querySelector(".dialog__close")) return;
   const button = document.createElement("button");
   button.setAttribute("type", "button");
-  button.classList.add("dialog__close", "button-unstyled");
+  button.classList.add("dialog__close", "button-icon");
   button.setAttribute("aria-label", "Закрыть модальное окно");
   button.setAttribute("data-dialog-close", "");
   button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="10" height="10" aria-hidden="true"><path d="M340.44 474.989a52.36 52.36 0 0 1 0 74.022L27.905 861.433a95.21 95.21 0 0 0-.013 134.669 95.267 95.267 0 0 0 134.706.013l312.548-312.461a52.365 52.365 0 0 1 37.015-15.331 52.365 52.365 0 0 1 37.015 15.331L861.71 996.115a95.292 95.292 0 0 0 67.471 27.878 95.303 95.303 0 0 0 67.402-28.045c37.13-37.376 36.119-98.202-1.166-135.475L683.869 549.011A52.316 52.316 0 0 1 668.533 512a52.314 52.314 0 0 1 3.986-20.031 52.3 52.3 0 0 1 11.35-16.98l311.702-311.616c37.132-37.12 38.207-97.587 1.358-134.976-8.822-8.951-19.328-16.068-30.913-20.941a95.309 95.309 0 0 0-73.234-.278 95.28 95.28 0 0 0-31.072 20.707L549.138 340.346a52.372 52.372 0 0 1-74.03 0L163.443 28.73C126.313-8.39 65.829-9.478 28.43 27.373a95.182 95.182 0 0 0-.526 135.181l312.535 312.435z" /></svg>`;
@@ -772,7 +772,7 @@ function Filters() {
   // Открытие фильтров
   function filterOpener(filters) {
     const filtersOpen = document.querySelector(".filters__open");
-    const filtersTitle = filters.querySelector(".filters__header");
+    const filtersTitle = filters.querySelector(".sidebar__header");
 
     if (!filtersOpen) return;
     if (!filtersTitle) return;
@@ -1284,6 +1284,52 @@ function Goods(doc) {
   thumbs();
   // Запуск Функции Галереи изображений.
   Fancybox.bind('[data-fancybox="gallery"]');
+
+  // Открытие доставки
+  function deliverySidebarOpener() {
+    const content = document.querySelector("#deliverys");
+    if (!content) return;
+    const button = document.querySelector(".delivery__open");
+    const header = content.querySelector(".sidebar__header");
+
+    button?.addEventListener("click", handleOpen);
+    header?.addEventListener("click", handleClose);
+    content.addEventListener("click", handleCloseOutside);
+
+    function handleCloseOutside(event) {
+      const target = event.currentTarget;
+      const isClickedOutside = event.target === target;
+      // console.log("[DEBUG]: event", event);
+      // console.log("[DEBUG]: target", target);
+      // console.log("[DEBUG]: isClickedOutside", isClickedOutside);
+      if (isClickedOutside) {
+        handleClose();
+      }
+    }
+
+    function handleOpen(event) {
+      event.preventDefault();
+      console.log("[DEBUG]: event", event);
+      if (button.classList.contains("is-active")) {
+        handleClose();
+      } else {
+        handleOpen();
+      }
+    }
+
+    function handleOpen() {
+      button.classList.add("is-active");
+      content.removeAttribute("hidden");
+      document.body.classList.add("is-bodylock");
+    }
+
+    function handleClose() {
+      button.classList.remove("is-active");
+      content.setAttribute("hidden", "");
+      document.body.classList.remove("is-bodylock");
+    }
+  }
+  deliverySidebarOpener();
 }
 
 /**

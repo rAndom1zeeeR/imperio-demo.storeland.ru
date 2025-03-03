@@ -149,9 +149,9 @@
       </table>
     </div>
 
-    <footer class="client__buttons">
+    <div class="client__buttons">
       <a class="button" href="{CLIENT_ORDER_INFO_URL}">Cтраница заказа</a>
-    </footer>
+    </div>
   </div>
 
   {% IFNOT order_lines_empty %}
@@ -220,14 +220,14 @@
       </table>
     </div>
 
-    <footer class="client__buttons">
+    <div class="client__buttons">
       <a class="button button-secondary" href="{USER_HISTORY_LIST_URL}" title="Назад к списку моих заказов">Назад</a>
       {% IF CLIENT_ORDER_NUM %}
       <form class="order__repeat-form" action="{USER_ORDER_REPEAT_URL}/{CLIENT_ORDER_NUM}" method="GET">
         <button type="submit" title="Повторить заказ">Повторить заказ</button>
       </form>
       {% ENDIF %}
-    </footer>
+    </div>
   </div>
   {% ENDIF %}
 

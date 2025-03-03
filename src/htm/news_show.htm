@@ -33,7 +33,7 @@
     {% ENDIF %}
 
     <!-- Ссылка на страницу новостей, откуда пришел пользователь -->
-    <footer class="form__buttons">
+    <div class="form__buttons">
       <a class="button" href="{NEWS_SECTION_URL}">
         {% IF NEWS_SECTION_ID=1 %}К другим новостям
         {% ELSEIF NEWS_SECTION_ID=2 %}К другим статьям
@@ -41,7 +41,7 @@
         {% ELSE %}К другим новостям
         {% ENDIF %}
       </a>
-    </footer>
+    </div>
 
   </article>
 </div>
