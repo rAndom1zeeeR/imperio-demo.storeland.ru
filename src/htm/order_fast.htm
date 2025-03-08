@@ -571,10 +571,9 @@
 		<input type="hidden" name="hash" value="{HASH}">
 		{% FOR cart_items %}
 		<div class="addto__item" data-id="{cart_items.GOODS_ID}" data-mod-id="{cart_items.GOODS_MOD_ID}">
-			<picture class="addto__image">
-				<source srcset="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}">
+			<div class="addto__image">
 				<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}">
-			</picture>
+			</div>
 
 			<div class="addto__content">
 				<a class="addto__name" href="{cart_items.GOODS_URL}" title="Перейти на страницу товара">{cart_items.GOODS_NAME}</a>
