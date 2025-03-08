@@ -177,6 +177,8 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 .button-underline:active, .button-underline.is-active {color: var(--color-secondary);background: none;}
 .button-disabled, .add-notify {color: white;background-color: var(--color-disabled);border-color: var(--color-disabled);}
 .button-disabled:active, .add-notify:active {background-color: var(--color-disabled);border-color: var(--color-disabled);}
+.button-outline {color: var(--color-text-primary);background-color: transparent;border: 1px solid var(--color-border-secondary);}
+.button-outline.is-active {color: white;background-color: var(--color-secondary);}
 @media (hover: hover) and (pointer: fine) {
 	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
 	.button-secondary:hover {color: white;background-color: var(--color-text-primary);border-color: var(--color-border-tertiary);}
@@ -589,15 +591,15 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 /*
 ** Страница: Новости
 */
-.news-list__item {margin-bottom: 24px;padding-bottom: 24px;border-bottom: 2px solid var(--color-border);}
+.news-list__item {margin-bottom: 24px;padding-bottom: 24px;border-bottom: 1px solid var(--color-border);}
 .news-list__item p {margin-bottom: 0;}
 .news-list__date, .news-show__date {
 	display: block;
 	margin-top: 12px;
-	color: var(--color-gray);
 	font-weight: bold;
 	font-size: var(--text-size-regular);
 	font-style: italic;
+	opacity: 0.5;
 }
 
 /*
@@ -656,7 +658,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 .contacts__label {display: block;margin-bottom: 8px;font-size: var(--text-size-medium);}
 .contacts__block:not(:first-child) {margin-top: 24px;}
 .contacts__link {
-	display: inline-flex;
+	display: flex;
 	gap: 8px;
 	align-items: center;
 	font-weight: bold;

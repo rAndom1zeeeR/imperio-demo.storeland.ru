@@ -316,7 +316,7 @@
 							<!-- Добавление товара в корзину -->
 							<div class="product__cart">
 								<!-- Добавление в корзину -->
-								{% IF goods.MAX_REST_VALUE=0 %}
+								{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && goods.MAX_REST_VALUE=0 %}
 								<button class="product__add add-notify" type="button" title="Уведомить о поступлении" data-dialog="#dialogNotify">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
 										<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="93.091" d="M823.999 872.001H200c-88.366 0-160-71.633-160-160V312c0-88.366 71.634-160 160-160h623.999c88.367 0 160 71.634 160 160v400.001c0 88.367-71.633 160-160 160z" />
@@ -505,7 +505,7 @@
 						<!-- Добавление товара в корзину -->
 						<div class="product__cart">
 							<!-- Добавление в корзину -->
-							{% IF goods.MAX_REST_VALUE=0 %}
+							{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && goods.MAX_REST_VALUE=0 %}
 							<button class="product__add add-notify" type="button" title="Уведомить о поступлении" data-dialog="#dialogNotify">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
 									<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="93.091" d="M823.999 872.001H200c-88.366 0-160-71.633-160-160V312c0-88.366 71.634-160 160-160h623.999c88.367 0 160 71.634 160 160v400.001c0 88.367-71.633 160-160 160z" />

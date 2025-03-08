@@ -887,6 +887,47 @@ function Filters() {
     });
   }
   filterCollapse();
+
+  // Фильтр в наличии
+  function filterRest() {
+    const button = document.querySelector(".filters-rest__open");
+    if (!button) return;
+    const form = document.querySelector(".filters__form");
+    if (!form) return;
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      const url = form.getAttribute("action");
+      const formData = new FormData(form);
+      console.log("active", button.classList.contains("is-active"));
+      if (button.classList.contains("is-active")) {
+        button.classList.remove("is-active");
+        formData.set("form[filter_only_with_rest]", "0");
+        console.log("formData1", formData.get("form[filter_only_with_rest]"));
+      } else {
+        button.classList.add("is-active");
+        formData.set("form[filter_only_with_rest]", "1");
+        console.log("formData2", formData.get("form[filter_only_with_rest]"));
+      }
+      updateProductsContainer(url, formData);
+    });
+
+    function updateProductsContainer(url, formData) {
+      getHtmlFromPost(url, formData)
+        .then((data) => {
+          // Обработать ответ (например, обновить интерфейс)
+          const container = document.querySelector(".products__container");
+          const containerData = data.querySelector(".products__container");
+          container.innerHTML = containerData.innerHTML;
+          console.log("formData30", formData);
+          Filters();
+        })
+        .catch((error) => {
+          console.error("Ошибка:", error);
+        });
+    }
+  }
+  filterRest();
 }
 
 /**
