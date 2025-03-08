@@ -770,50 +770,7 @@ function Filters() {
   }
 
   // Открытие фильтров
-  function filterOpener(filters) {
-    const filtersOpen = document.querySelector(".filters__open");
-    const filtersTitle = filters.querySelector(".sidebar__header");
-
-    if (!filtersOpen) return;
-    if (!filtersTitle) return;
-
-    filtersOpen.addEventListener("click", handleFiltersOpen);
-    filtersTitle.addEventListener("click", handleFiltersClose);
-    filters.addEventListener("click", handleFiltersOutside);
-
-    function handleFiltersOutside(event) {
-      const target = event.currentTarget;
-      const isClickedOutside = event.target === target;
-      // console.log("[DEBUG]: event", event);
-      // console.log("[DEBUG]: target", target);
-      // console.log("[DEBUG]: isClickedOutside", isClickedOutside);
-      if (isClickedOutside) {
-        handleFiltersClose();
-      }
-    }
-
-    function handleFiltersOpen(event) {
-      event.preventDefault();
-      if (filtersOpen.classList.contains("is-active")) {
-        handleFiltersClose();
-      } else {
-        handleFiltersOpen();
-      }
-    }
-
-    function handleFiltersOpen() {
-      filtersOpen.classList.add("is-active");
-      filters.removeAttribute("hidden");
-      document.body.classList.add("is-bodylock");
-    }
-
-    function handleFiltersClose() {
-      filtersOpen.classList.remove("is-active");
-      filters.setAttribute("hidden", "");
-      document.body.classList.remove("is-bodylock");
-    }
-  }
-  filterOpener(filters);
+  SidebarOpener(".filters", ".filters__open");
 
   // Фильтр цены
   function filterPrice() {
@@ -1327,50 +1284,7 @@ function Goods(doc) {
   Fancybox.bind('[data-fancybox="gallery"]');
 
   // Открытие доставки
-  function deliverySidebarOpener() {
-    const content = document.querySelector("#deliverys");
-    if (!content) return;
-    const button = document.querySelector(".delivery__open");
-    const header = content.querySelector(".sidebar__header");
-
-    button?.addEventListener("click", handleOpen);
-    header?.addEventListener("click", handleClose);
-    content.addEventListener("click", handleCloseOutside);
-
-    function handleCloseOutside(event) {
-      const target = event.currentTarget;
-      const isClickedOutside = event.target === target;
-      // console.log("[DEBUG]: event", event);
-      // console.log("[DEBUG]: target", target);
-      // console.log("[DEBUG]: isClickedOutside", isClickedOutside);
-      if (isClickedOutside) {
-        handleClose();
-      }
-    }
-
-    function handleOpen(event) {
-      event.preventDefault();
-      console.log("[DEBUG]: event", event);
-      if (button.classList.contains("is-active")) {
-        handleClose();
-      } else {
-        handleOpen();
-      }
-    }
-
-    function handleOpen() {
-      button.classList.add("is-active");
-      content.removeAttribute("hidden");
-      document.body.classList.add("is-bodylock");
-    }
-
-    function handleClose() {
-      button.classList.remove("is-active");
-      content.setAttribute("hidden", "");
-      document.body.classList.remove("is-bodylock");
-    }
-  }
-  deliverySidebarOpener();
+  SidebarOpener("#deliverys", ".delivery__open");
 }
 
 /**
@@ -2334,6 +2248,55 @@ function Opener() {
     const parent = event.currentTarget.parentElement;
     parent.classList.toggle("is-opened");
   });
+
+  SidebarOpener("#addtoCart", ".cart__open");
+}
+
+/**
+ * Функция открытия сайдбара
+ */
+function SidebarOpener(selector, opener) {
+  const content = document.querySelector(selector);
+  if (!content) return;
+  const button = document.querySelector(opener);
+  const header = content.querySelector(".sidebar__header");
+
+  button?.addEventListener("click", handleOpen);
+  header?.addEventListener("click", handleClosed);
+  content.addEventListener("click", handleCloseOutside);
+
+  function handleCloseOutside(event) {
+    const target = event.currentTarget;
+    const isClickedOutside = event.target === target;
+    // console.log("[DEBUG]: event", event);
+    // console.log("[DEBUG]: target", target);
+    // console.log("[DEBUG]: isClickedOutside", isClickedOutside);
+    if (isClickedOutside) {
+      handleClosed();
+    }
+  }
+
+  function handleOpen(event) {
+    event.preventDefault();
+    console.log("[DEBUG]: event", event);
+    if (button.classList.contains("is-active")) {
+      handleClosed();
+    } else {
+      handleOpened();
+    }
+  }
+
+  function handleOpened() {
+    button.classList.add("is-active");
+    content.removeAttribute("hidden");
+    document.body.classList.add("is-bodylock");
+  }
+
+  function handleClosed() {
+    button.classList.remove("is-active");
+    content.setAttribute("hidden", "");
+    document.body.classList.remove("is-bodylock");
+  }
 }
 
 /**

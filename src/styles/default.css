@@ -2,18 +2,22 @@
 ** Основные переменные шаблона
 */
 :root {
-	--color-primary: #657984;
-	--color-secondary: #B78D70;
-	--color-tertiary: #F1BDBC;
-	--color-disabled: #CDC6CE;
+	--color-primary: #657984; /* синий */
+	--color-secondary: #B78D70; /* коричневый */
+	--color-tertiary: #F1BDBC; /* розовый */
+	--color-gray: #cdc6ce; /* пыльная роза */
+	--color-lightgray: #cdc6ce80;  /* пыльная роза 50% */
+	--color-background: #cdc6ce33; /* пыльная роза 20% */
+	--color-text-primary: #635258; /* темно-коричневый */
+	--color-text-secondary: #423B3D; /* очень темно коричневый заголовки */
+	--color-text-tertiary: #63525880; /* темно-коричневый 50% */
+	--color-border: var(--color-gray); /* пыльная роза */
+	--color-border-secondary: var(--color-lightgray); /* пыльная роза 50% */
+	--color-border-tertiary: var(--color-text-primary); /* темно-коричневый */
+	--color-disabled: var(--color-gray); /* пыльная роза */
+	--color-error: #F9504D; /* красный */
 	--color-shadow: #49525720;
-	--color-border: #CDC6CE;
-	--color-border-secondary: rgb(205 198 206 / 50%);
-	--color-border-tertiary: #635258;
-	--color-gray: #B6C2CE;
-	--color-error: #F9504D;
-	--color-text-primary: #635258;
-	--color-text-secondary: #423B3D;
+	--border-radius: 4px;
 	--scrollbar-width: 16px;
 	--scrollbar-width-thin: 8px;
 	--transition: all 300ms ease;
@@ -167,9 +171,9 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 	height: auto;
 	padding: 0;
 	color: var(--color-text-secondary);
-	font-size: var(--text-size-large);
+	font-size: var(--text-size-medium);
 	font-family: var(--font-secondary);
-	line-height: var(--text-height-large);
+	line-height: var(--text-height-medium);
 	background: none;
 	border: none;
 }
@@ -188,26 +192,6 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 	.button-disabled:hover {background-color: var(--color-disabled);border-color: var(--color-disabled);}
 }
 
-/* .button-close {
-	width: 32px;
-	height: 32px;
-	padding: 0;
-	color: var(--color-gray);
-	background-color: var(--color-background);
-	border: none;
-	border-radius: 8px;
-}
-.button-close:active {color: var(--color-text-primary);background-color: white;}
-.button-small {gap: 8px;height: 40px;font-size: var(--text-size-regular);padding-inline: 20px;}
-.button-large {gap: 12px;height: 60px;font-size: var(--text-size-large);padding-inline: 40px;}
-button:disabled {opacity: 0.5;pointer-events: none;}
-@media (hover: hover) and (pointer: fine) {
-	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: var(--color-text-primary);background-color: var(--color-primary)}
-	.button-link:hover {color: var(--color-secondary);background: none;}
-	.button-secondary:hover {color: white;background-color: var(--color-text-primary);}
-	.button-close:hover {color: var(--color-text-primary);background-color: white;}
-	.add-notify:hover {background-color: var(--color-gray);}
-} */
 
 /*
 ** Инпут поля
