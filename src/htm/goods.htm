@@ -9,7 +9,7 @@
 				<div class="swiper">
 					<div class="thumblist__items swiper-wrapper">
 						{% FOR goods_images %}
-						<a class="thumblist__item swiper-slide" href="{goods_images.LARGE}" data-fancybox="gallery2" data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
+						<a class="thumblist__item swiper-slide" href="{goods_images.LARGE}" data-fancybox="gallery2" data-src="{goods_images.LARGE}">
 							<img class="thumblist__img" src="{goods_images.MEDIUM}" alt="{goods_images.NAME}" loading="lazy">
 						</a>
 						{% ENDFOR %}
@@ -81,6 +81,18 @@
 				<div class="productView__articles" {% IFNOT GOODS_MOD_ART_NUMBER %}hidden{% ENDIF %}>
 					<span>Артикул:</span>
 					<b itemprop="sku">{GOODS_MOD_ART_NUMBER}</b>
+				</div>
+
+				<!-- Доступность товара -->
+				<div class="productView__available {% IF GOODS_MOD_REST_VALUE = 0 %}rest--zero{% ELSEIF GOODS_MOD_REST_VALUE > 9 %}rest--alot{% ELSE %}rest--few{% ENDIF %}">
+					<b>
+						{% IF GOODS_MOD_REST_VALUE = 0 %}
+						Нет
+						{% ELSE %}
+						{GOODS_MOD_REST_VALUE} {GOODS_MOD_MEASURE_NAME}
+						{% ENDIF %}
+					</b>
+					<span>в наличии</span>
 				</div>
 
 				<!-- Среднее значение по результатам всех отзывов об этом товаре -->
@@ -217,18 +229,6 @@
 						{% ENDIF %}
 					</div>
 				</div>
-
-				<!-- Доступность товара -->
-				<!-- <div class="productView__available {% IF GOODS_MOD_REST_VALUE = 0 %}rest--zero{% ELSEIF GOODS_MOD_REST_VALUE > 9 %}rest--alot{% ELSE %}rest--few{% ENDIF %}">
-				<b>
-					{% IF GOODS_MOD_REST_VALUE = 0 %}
-					Нет
-					{% ELSE %}
-					{GOODS_MOD_REST_VALUE} {GOODS_MOD_MEASURE_NAME}
-					{% ENDIF %}
-				</b>
-				<span>в наличии</span>
-			</div> -->
 
 				<!-- Модификации -->
 				<div class="productView__modifications" {% IF GOODS_NO_CHOISE_IN_PROPERTIES_FOR_MODIFICATIONS %}hidden{% ENDIF %}>

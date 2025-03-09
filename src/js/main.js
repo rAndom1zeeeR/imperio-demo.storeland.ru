@@ -1160,9 +1160,10 @@ function Goods(doc) {
 
   // Меняет главное изображение товара на изображение с идентификатором
   function handleModImage(goodsModImageId, block) {
-    // console.log("[DEBUG]: goodsModImageId", goodsModImageId);
+    // console.log("[DEBUG]: block", block);
     // Если не указан идентификатор модификации товара, значит ничего менять не нужно.
     if (!goodsModImageId) return;
+    if (block.classList.contains("fancybox__content")) return;
     // Блок с изображением выбранной модификации товара
     const goodsModImageBlock = block.querySelector('.thumblist [data-id="' + goodsModImageId + '"');
     // Изображение модификации товара, на которое нужно будет изменить главное изображение товара.
@@ -1246,8 +1247,9 @@ function Goods(doc) {
       },
       {threshold: 0}, // Срабатывает, когда `.productView` полностью уходит из области видимости
     );
-
-    observer.observe(productView);
+    if (!productView.classList.contains("fancybox__content")) {
+      observer.observe(productView);
+    }
   }
   StickyView();
 

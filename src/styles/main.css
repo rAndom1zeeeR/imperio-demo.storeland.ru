@@ -1512,6 +1512,13 @@
 	.productViewFixed__cart button {width: 100%;}
 }
 
+/* Выбор модификации */
+.productViewMod .productView {max-width: 480px;border: 0;border-radius: var(--border-radius);}
+.productViewMod .productView__images {display: none;}
+.productViewMod .productView__content {width: 100%;}
+.productViewMod .productView__anchors {display: none;}
+.productViewMod #related-goods {display: none;}
+
 /* Дополнительные изображения */
 .thumblist__item {
 	display: flex;
