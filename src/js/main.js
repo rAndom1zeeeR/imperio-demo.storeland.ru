@@ -1187,102 +1187,57 @@ function Goods(doc) {
   }
 
   /* Функции Дополнительных изображений. */
-  function thumbs() {
+  function Thumbs() {
     const thumblist = document.querySelector(".thumblist");
     if (!thumblist) return;
 
-    const thumbsImages = thumblist.querySelectorAll(".thumblist__image");
-    thumbsImages.forEach((image) => {
-      image.addEventListener("click", handleThumbsImage);
+    // Слайдер дополнительных изображений
+    const swiper = new Swiper(".thumblist .swiper", {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 16,
+      watchSlidesProgress: true,
+      scrollbar: {
+        enabled: true,
+        el: ".thumblist .swiper-scrollbar",
+        snapOnRelease: true,
+        draggable: true,
+      },
     });
 
+    // const thumbsImages = thumblist.querySelectorAll(".thumblist__image");
+    // thumbsImages.forEach((image) => {
+    //   image.addEventListener("click", handleThumbsImage);
+    // });
+
     /* Функция Отображения дополнительного изображения на месте основного. */
-    function handleThumbsImage(event) {
-      event.preventDefault();
-      const target = event.currentTarget;
-      const href = target.getAttribute("href");
-      const mainImage = document.querySelector(".productView__image");
-      const mainImageImg = mainImage.querySelector("img");
-      const mainImageSource = mainImage.querySelector("source");
-      mainImage.setAttribute("data-src", href);
-      mainImageImg.setAttribute("src", href);
-      mainImageSource.setAttribute("srcset", href);
-      thumbsImages.forEach((image) => image.parentElement.classList.remove("is-active"));
-      target.parentElement.classList.add("is-active");
-      // console.log("[DEBUG]: handleMainImages event", event);
-      // console.log("[DEBUG]: handleMainImages target", target);
-      // console.log("[DEBUG]: handleMainImages href", href);
-      // console.log("[DEBUG]: handleMainImages mainImage", mainImage);
-    }
+    // function handleThumbsImage(event) {
+    //   event.preventDefault();
+    //   const target = event.currentTarget;
+    //   const href = target.getAttribute("href");
+    //   const mainImage = document.querySelector(".productView__image");
+    //   const mainImageImg = mainImage.querySelector("img");
+    //   // const mainImageSource = mainImage.querySelector("source");
+    //   mainImage.setAttribute("data-src", href);
+    //   mainImageImg.setAttribute("src", href);
+    //   // mainImageSource.setAttribute("srcset", href);
+    //   thumbsImages.forEach((image) => image.parentElement.classList.remove("is-active"));
+    //   target.parentElement.classList.add("is-active");
+    //   // console.log("[DEBUG]: handleMainImages event", event);
+    //   // console.log("[DEBUG]: handleMainImages target", target);
+    //   // console.log("[DEBUG]: handleMainImages href", href);
+    //   // console.log("[DEBUG]: handleMainImages mainImage", mainImage);
+    // }
   }
-
-  // Скрыть стикеры если нет артикула
-  if (productViewBlock.querySelector(".productView__articles").hasAttribute("hidden")) {
-    const sku = document.querySelector(".productViewMod .productView__articles");
-    if (sku) sku.parentElement.classList.add("is-hide");
-  }
-
-  // Слайдер дополнительных изображений
-  const swiper = new Swiper(".thumblist .swiper", {
-    loop: true,
-    slidesPerView: 4,
-    spaceBetween: 8,
-    watchSlidesProgress: true,
-    navigation: {
-      enabled: true,
-      nextEl: ".thumblist .swiper-button-next",
-      prevEl: ".thumblist .swiper-button-prev",
-    },
-    on: {
-      init: function () {
-        // Скрыть слайдер если 1 изображение
-        if (this.slides.length === 1) {
-          this.el.parentElement.style.display = "none";
-        }
-        // Скрыть навигацию
-        if (this.isLocked) {
-          this.navigation.nextEl.style.display = "none";
-          this.navigation.prevEl.style.display = "none";
-        }
-      },
-    },
-    breakpoints: {
-      0: {
-        slidesPerView: 2,
-      },
-      320: {
-        slidesPerView: 3,
-      },
-      480: {
-        slidesPerView: 4,
-      },
-      640: {
-        slidesPerView: 5,
-      },
-      768: {
-        slidesPerView: 3,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 8,
-      },
-      1200: {
-        slidesPerView: 4,
-        spaceBetween: 10,
-      },
-    },
-  });
-  // console.log("[DEBUG]: thumbSwiper swiper", swiper);
 
   // Запуск функции стикера цены.
   StickerSales(productViewBlock);
   // Запуск функции Количества.
   Quantity(productViewBlock);
   // Запуск функции Дополнительных изображений.
-  thumbs();
+  Thumbs();
   // Запуск Функции Галереи изображений.
   Fancybox.bind('[data-fancybox="gallery"]');
-
   // Открытие доставки
   SidebarOpener("#deliverys", ".delivery__open");
 }

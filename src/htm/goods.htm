@@ -6,9 +6,19 @@
 			<!-- Дополнительные изображения -->
 			{% IFNOT goods_images_empty %}
 			<div class="thumblist">
+				<div class="swiper">
+					<div class="thumblist__items swiper-wrapper">
+						{% FOR goods_images %}
+						<a class="thumblist__item swiper-slide" href="{goods_images.LARGE}" data-fancybox="gallery2" data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
+							<img class="thumblist__img" src="{goods_images.MEDIUM}" alt="{goods_images.NAME}" loading="lazy">
+						</a>
+						{% ENDFOR %}
+					</div>
+					<div class="swiper-scrollbar"></div>
+				</div>
 				<div class="thumblist__items">
 					{% FOR goods_images %}
-					<a class="thumblist__item {% IF goods_images.index = 1 %}productView__image{% ENDIF %}" href="{goods_images.LARGE}" data-fancybox="gallery" data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
+					<a class="thumblist__item {% IF goods_images.index = 1 %}productView__image{% ENDIF %}" href="{goods_images.LARGE}" {% IF goods_images.index > 1 %}data-fancybox="gallery"{% ENDIF %} data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
 						<img class="thumblist__img" src="{goods_images.MEDIUM}" alt="{goods_images.NAME}" loading="lazy">
 					</a>
 					{% ENDFOR %}
@@ -425,6 +435,7 @@
 <!-- /END Форма карточки товара -->
 
 <!-- Табы Описание, Хар-ки, Доставка, Отзывы -->
+{% IF GOODS_DESCRIPTION_LARGE || GOODS_SEO_DESCRIPTION_SHORT || GOODS_SEO_DESCRIPTION_LARGE || goods_features_empty=0 %}
 <div class="section productView__tabs">
 	<!-- Описание -->
 	{% IF GOODS_DESCRIPTION_LARGE || GOODS_SEO_DESCRIPTION_SHORT || GOODS_SEO_DESCRIPTION_LARGE %}
@@ -464,6 +475,7 @@
 	</div>
 	{% ENDIF %}
 </div>
+{% ENDIF %}
 
 <!-- С этим товаром смотрят -->
 {% IFNOT related_views_goods_empty %}
