@@ -183,6 +183,7 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 .button-disabled:active, .add-notify:active {background-color: var(--color-disabled);border-color: var(--color-disabled);}
 .button-outline {color: var(--color-text-primary);background-color: transparent;border: 1px solid var(--color-border-secondary);}
 .button-outline.is-active {color: white;background-color: var(--color-secondary);}
+.is-loading button {pointer-events: none;}
 @media (hover: hover) and (pointer: fine) {
 	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
 	.button-secondary:hover {color: white;background-color: var(--color-text-primary);border-color: var(--color-border-tertiary);}
@@ -763,6 +764,8 @@ dialog::backdrop {z-index: 3;}
 	border-radius: var(--border-radius);
 }
 .dialog__close:active {color: var(--color-secondary);border-color: currentcolor;}
+dialog .form__buttons {flex-direction: column;}
+dialog .form__button {width: 100%;}
 @media (hover: hover) and (pointer: fine) {
 	.dialog__close:hover {color: var(--color-secondary);border-color: currentcolor;}
 }
