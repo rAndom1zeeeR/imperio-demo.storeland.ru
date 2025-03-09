@@ -18,13 +18,13 @@
 				</div>
 				<div class="thumblist__items">
 					{% FOR goods_images %}
-					<a class="thumblist__item {% IF goods_images.index = 1 %}productView__image{% ENDIF %}" href="{goods_images.LARGE}" {% IF goods_images.index > 1 %}data-fancybox="gallery"{% ENDIF %} data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
+					<a class="thumblist__item {% IF goods_images.index = 1 %}productView__image{% ENDIF %}" href="{goods_images.LARGE}" data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
 						<img class="thumblist__img" src="{goods_images.MEDIUM}" alt="{goods_images.NAME}" loading="lazy">
 					</a>
 					{% ENDFOR %}
 				</div>
 				<div class="thumblist__buttons">
-					<button class="button button-tertiary" data-fancybox="gallery" data-src="{GOODS_IMAGE_LARGE}" type="button"><span>Открыть фотогалерею</span></button>
+					<button class="button button-tertiary" data-fancybox="gallery" data-src="{GOODS_IMAGE_LARGE}" type="button">Открыть фотогалерею</button>
 				</div>
 			</div>
 			{% ELSE %}
@@ -104,7 +104,7 @@
 				{% ENDIF %}
 
 				<!-- Цена товара -->
-				<div class="productView__price {% IF GOODS_MOD_ART_NUMBER %}has-articles{% ENDIF %} {CURRENCY_CHAR_CODE}" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+				<div class="productView__price {CURRENCY_CHAR_CODE}" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
 					<meta itemprop="price" content="{GOODS_MOD_PRICE_NOW}">
 					<meta itemprop="priceCurrency" content="{CURRENCY_CHAR_CODE}">
 					<meta itemprop="availability" content="{% IF GOODS_MOD_REST_VALUE>0 %}http://schema.org/InStock{% ELSE %}http://schema.org/OutOfStock{% ENDIF %}">

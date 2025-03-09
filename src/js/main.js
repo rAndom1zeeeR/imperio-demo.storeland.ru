@@ -521,7 +521,7 @@ function AddtoCart(doc = document) {
 
   // Обновление корзины
   function handleAddtoCartUpdate(data) {
-    // console.log("[DEBUG]: handleAddtoCartUpdate data", data);
+    console.log("[DEBUG]: handleAddtoCartUpdate data", data);
     const cartAddto = document.querySelector(".addto__cart");
     const cartAddtoData = data.querySelector("#newCartData");
     const cartSumDiscounts = document.querySelectorAll(".cart-discount");
@@ -534,7 +534,8 @@ function AddtoCart(doc = document) {
     CartDiscountUppdate(cartSumDiscounts, cartSumDiscountData);
     // Сообщение с уведомлением действия
     const notice = data.querySelector(".cartItems__modal > p");
-    const type = notice.getAttribute("class").slice(15);
+    console.log("[DEBUG]: handleAddtoCartUpdate notice", notice);
+    const type = notice?.getAttribute("class").slice(15);
     СreateNoty(type, notice.innerHTML);
   }
 }
@@ -1125,20 +1126,16 @@ function Goods(doc) {
       goodsArtNumberBlock.parentElement.removeAttribute("hidden");
       goodsArtNumberBlock.parentElement.classList.remove("is-hide");
       goodsArtNumberBlock.querySelector("b").innerHTML = modificationArtNumber;
-      goodsPriceBlock.classList.add("has-articles");
     } else {
       if (goodsArtNumberBlock) {
         goodsArtNumberBlock.setAttribute("hidden", "");
         goodsArtNumberBlock.parentElement.setAttribute("hidden", "");
         goodsArtNumberBlock.parentElement.classList.add("is-hide");
         goodsArtNumberBlock.querySelector("b").innerHTML = "";
-        goodsPriceBlock.classList.remove("has-articles");
         if (document.querySelector(".productView__sticker")) {
           goodsArtNumberBlock.parentElement.classList.remove("is-hide");
-          goodsPriceBlock.classList.add("has-articles");
           if (document.querySelector(".productView.fancybox__content")) {
             goodsArtNumberBlock.parentElement.classList.add("is-hide");
-            goodsPriceBlock.classList.remove("has-articles");
           }
         }
       }
@@ -1186,7 +1183,7 @@ function Goods(doc) {
     swiper.slideTo(goodsModImageBlock.getAttribute("data-swiper-slide-index"));
   }
 
-  /* Функции Дополнительных изображений. */
+  // Функции Дополнительных изображений.
   function Thumbs() {
     const thumblist = document.querySelector(".thumblist");
     if (!thumblist) return;
@@ -1229,6 +1226,30 @@ function Goods(doc) {
     //   // console.log("[DEBUG]: handleMainImages mainImage", mainImage);
     // }
   }
+
+  // Функция отображения нижней плашки при скроле
+  function StickyView() {
+    const productView = document.querySelector(".productView");
+    const productViewFixed = document.querySelector(".productViewFixed");
+    console.log("[DEBUG]: productView", productView);
+    console.log("[DEBUG]: productViewFixed", productViewFixed);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        console.log("[DEBUG]: entry", entry);
+        console.log("[DEBUG]: entry.isIntersecting", entry.isIntersecting);
+        if (!entry.isIntersecting) {
+          productViewFixed.hidden = false; // Показываем плашку
+        } else {
+          productViewFixed.hidden = true; // Скрываем плашку
+        }
+      },
+      {threshold: 0}, // Срабатывает, когда `.productView` полностью уходит из области видимости
+    );
+
+    observer.observe(productView);
+  }
+  StickyView();
 
   // Запуск функции стикера цены.
   StickerSales(productViewBlock);

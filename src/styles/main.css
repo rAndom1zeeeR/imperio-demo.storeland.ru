@@ -1482,6 +1482,36 @@
 .productView__description {margin-top: 10px;}
 .productView__description p {margin: 0;}
 
+/* Фиксированная карточка при скроле */
+.productViewFixed {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 6;
+	width: 100%;
+	height: 80px;
+	background-color: #f5f4f5;
+}
+.productViewFixed__inner {display: flex;gap: 24px;align-items: center;padding-block: 16px;}
+.productViewFixed .add-notify {display: none;}
+.productViewFixed[data-rest-value="0"] .add-notify {display: flex;}
+.productViewFixed[data-rest-value="0"] :is(.add-cart, .add-order, .productView__qty) {display: none;}
+.productViewFixed__name {flex-grow: 1;}
+.productViewFixed__price {display: flex;gap: 8px 16px;align-items: center;}
+.productViewFixed__links {display: flex;gap: 24px;align-items: center;}
+@media all and (max-width: 1023px) {
+	.productViewFixed__name {display: none;}
+	.productViewFixed__inner {justify-content: center;}
+}
+@media all and (max-width: 479px) {
+	.productViewFixed__links {display: none;}
+	.productViewFixed__price {flex-direction: column;align-items: flex-start;}
+	.productViewFixed__price .productView__price-old {font-size: var(--text-size-medium);}
+	.productViewFixed__price .productView__price-new {font-size: var(--text-size-large);}
+	.productViewFixed__cart {flex-grow: 1;}
+	.productViewFixed__cart button {width: 100%;}
+}
+
 /* Дополнительные изображения */
 .thumblist__item {
 	display: flex;
