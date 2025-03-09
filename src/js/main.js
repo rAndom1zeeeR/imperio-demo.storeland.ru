@@ -2228,6 +2228,8 @@ function Opener() {
   });
 
   SidebarOpener("#addtoCart", ".cart__open");
+  SidebarOpener("#addtoCompare", ".addto__link.compare");
+  SidebarOpener("#addtoFavorites", ".addto__link.favorites");
 }
 
 /**
