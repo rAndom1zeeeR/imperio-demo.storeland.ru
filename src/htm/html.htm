@@ -2476,7 +2476,7 @@
 						</svg>
 					</button>
 				</div>
-				<div class="sidebar__content addto__cart">
+				<div class="sidebar__content addto__cart {% IF CART_COUNT_TOTAL = 0 %}is-empty{% ENDIF %}">
 					{% IFNOT cart_items_empty %}
 					<form class="addto__form" action="{CART_URL}" method="post">
 						<input type="hidden" name="fast_order" value="1">
@@ -2543,7 +2543,7 @@
 						</svg>
 					</button>
 				</div>
-				<div class="sidebar__content addto__compare">
+				<div class="sidebar__content addto__compare {% IF COMPARE_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
 					{% IFNOT compare_goods_empty %}
 					<div class="addto__items">
 						{% FOR compare_goods %}
@@ -2575,7 +2575,7 @@
 						<a class="addto__button button" href="{COMPARE_URL}" title="Перейти к Сравнению" rel="nofollow">
 							<span>В Сравнение</span>
 						</a>
-						<a class="addto__clear button-underline" href="{COMPARE_RESET_URL}" title="Очистить список сравнения" rel="nofollow">
+						<a class="addto__clear button button-underline" href="{COMPARE_RESET_URL}" title="Очистить список сравнения" rel="nofollow">
 							<span>Очистить</span>
 						</a>
 					</div>
@@ -2598,7 +2598,7 @@
 						</svg>
 					</button>
 				</div>
-				<div class="sidebar__content addto__favorites">
+				<div class="sidebar__content addto__favorites {% IF FAVORITES_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
 					{% IFNOT favorites_goods_empty %}
 					<div class="addto__items">
 						{% FOR favorites_goods %}
@@ -2630,7 +2630,7 @@
 						<a class="addto__button button" href="{FAVORITES_URL}" title="Перейти к Избранное" rel="nofollow">
 							<span>В Избранное</span>
 						</a>
-						<a class="addto__clear button-underline" href="{FAVORITES_RESET_URL}" title="Очистить список избранного" rel="nofollow">
+						<a class="addto__clear button button-underline" href="{FAVORITES_RESET_URL}" title="Очистить список избранного" rel="nofollow">
 							<span>Очистить</span>
 						</a>
 					</div>

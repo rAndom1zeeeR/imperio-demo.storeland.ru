@@ -54,7 +54,6 @@
 ** Скеции
 */
 .section {margin-block: 32px;position: relative;}
-.section:hover {z-index: 2;}
 @media all and (min-width: 480px) {
 	.section {margin-block: 24px;}
 }
@@ -106,7 +105,8 @@
 /*
 ** Swiper слайдер
 */
-.swiper {clip-path: inset(0 0 0 0);}
+.swiper.swiper--products {overflow: visible;clip-path: inset(0 0 -260px 0);}
+.swiper.swiper--products:hover {z-index: 5;}
 :is(.swiper-button-next, .swiper-button-prev) {
 	--swiper-navigation-size: 38px;
 	--swiper-navigation-sides-offset: 0;
@@ -553,7 +553,7 @@
 ** Подвал
 */
 .page-index #footer {border-top: 0;}
-#footer {position: relative;z-index: 2;padding-top: 40px;border-top: 1px solid var(--color-border);}
+#footer {position: relative;padding-top: 40px;border-top: 1px solid var(--color-border);}
 .footer__inner {display: grid;grid-template-columns: 100%;gap: 20px;}
 .footer__title {margin-bottom: 10px;font-size: var(--heading-06);}
 .footer__links {margin: 0;padding: 0;list-style: none;}
@@ -799,7 +799,7 @@
 		position: absolute;
 		bottom: 0;
 		left: -9px;
-		z-index: 2;
+		z-index: 8;
 		width: calc(100% + 18px);
 		padding: 0 12px 12px;
 		background-color: white;
@@ -825,7 +825,7 @@
 ** Товары таблицей
 */
 .products__grid {display: grid;grid-template-columns: repeat(2, calc(50% - 6px));gap: 12px;}
-.products__grid.swiper-wrapper {gap: 0;padding-bottom: 1px;}
+.products__grid.swiper-wrapper {gap: 0;}
 .products__grid .sticker:nth-child(n+3) {display: none;}
 .products__grid .product__image {background-color: var(--color-background);}
 .products__grid .product__sticker {position: absolute;bottom: -8px;left: 0;}
@@ -1342,6 +1342,7 @@
 .cartTotal__button[data-action="closeOrder"] {display: none;}
 .cartTotal__button[data-action="completeOrder"] {display: none;}
 .cartTotal__pp {display: none;margin-top: 24px;text-align: center;}
+.cartTotal__discount data {color: var(--color-error);}
 .is-started .cartTotal__button[data-action="startOrder"] {display: none;}
 .is-started .cartTotal__button[data-action="closeOrder"] {display: inline-flex;}
 .is-started .cartTotal__button[data-action="completeOrder"] {display: inline-flex;}
@@ -1771,7 +1772,7 @@
 .addto__total > span {font-size: var(--text-size-large);}
 .addto__total data {font-weight: bold;}
 .addto__empty {display: none;}
-.is-empty .addto__empty {display: block;}
+.is-empty .addto__empty {display: block;padding: 24px;}
 .is-empty .addto__header {display: none;}
 .is-empty .addto__form {display: none;}
 .is-empty .addto__buttons {display: none;}
@@ -1790,14 +1791,3 @@
 #dialogLogin li:not(:first-child) {margin-top: 12px;}
 :is(#dialogCallback, #dialogNotify) .form__button {width: 100%;margin-top: 12px;}
 :is(#dialogCallback, #dialogNotify) .form__pp {margin-top: 12px;}
-@media all and (min-width: 640px) {
-	:is(#dialogCallback, #dialogNotify) .form__button {
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: auto;
-		margin-top: 0;
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-	}
-}
