@@ -160,7 +160,7 @@
                    id="deliveryId{order_delivery.ID}"
                    name="form[delivery][id]"
                    value="{order_delivery.ID}"
-                   price="{order_delivery.END_PRICE}"
+                   data-price="{order_delivery.END_PRICE}"
                    pricewithoutzones="{order_delivery.END_PRICE}"
                    pricewithzone="{order_delivery.ZONE_END_PRICE}"
                    data-name="{order_delivery.NAME}"
@@ -196,7 +196,7 @@
                      name="form[delivery][zone_id]"
                      value="{order_delivery.zone_list.ID}"
                      data-id="{order_delivery.ID}"
-                     price="{order_delivery.zone_list.END_PRICE}"
+                     data-price="{order_delivery.zone_list.END_PRICE}"
                      {% IF order_delivery.zone_list.ID=ORDER_FORM_DELIVERY_ZONE_ID %}
                      checked="checked" rel="true"
                      {% ENDIF %}>

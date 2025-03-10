@@ -10,7 +10,7 @@
 		<form id="orderform" class="orderfast__form" action="{ORDER_STAGE_CONFIRM_WITHOUT_DOMAIN_URL}" method="post">
 			<input type="hidden" name="hash" value="{HASH}">
 			<input type="hidden" name="form[payment][id]" value="{ORDER_FORM_PAYMENT_ID}">
-			<input type="hidden" name="form[delivery][zone_id]" value="{ORDER_FORM_DELIVERY_ZONE_ID}">
+			<!-- <input type="hidden" name="form[delivery][zone_id]" value="{ORDER_FORM_DELIVERY_ZONE_ID}"> -->
 			<!-- Корзина: Минимальная сумма заказа -->
 			{% IF SETTINGS_STORE_ORDER_MIN_ORDER_PRICE %}
 			<div class="orderfast__block cartTotal__min is-hide">
@@ -192,7 +192,7 @@
 											 id="deliveryId{order_delivery.ID}"
 											 name="form[delivery][id]"
 											 value="{order_delivery.ID}"
-											 price="{order_delivery.END_PRICE}"
+											 data-price="{order_delivery.END_PRICE}"
 											 pricewithoutzones="{order_delivery.END_PRICE}"
 											 pricewithzone="{order_delivery.ZONE_END_PRICE}"
 											 data-name="{order_delivery.NAME}"
@@ -216,16 +216,16 @@
 							<div class="order-delivery-zone__list delivery__zones">
 								<div class="order-delivery-zone__title">Зоны доставки:</div>
 								{% FOR zone_list %}
-								<div class="order-delivery-zone__item">
+								<div class="order-delivery-zone__item" data-id="{order_delivery.ID}">
 									<input class="order-delivery-zone__radio square"
 												 type="radio"
 												 id="deliveryZoneId{order_delivery.zone_list.ID}"
 												 name="form[delivery][zone_id]"
 												 value="{order_delivery.zone_list.ID}"
 												 data-id="{order_delivery.ID}"
-												 price="{order_delivery.zone_list.END_PRICE}"
+												 data-price="{order_delivery.zone_list.END_PRICE}"
 												 {% IF order_delivery.zone_list.ID=ORDER_FORM_DELIVERY_ZONE_ID %}
-												 checked="checked" rel="true"
+												 checked="checked"
 												 {% ENDIF %} />
 									<label class="order-delivery-zone__name" for="deliveryZoneId{order_delivery.zone_list.ID}">{order_delivery.zone_list.NAME}</label>
 									<span class="order-delivery-zone__price">{order_delivery.zone_list.END_PRICE | money_format}</span>
