@@ -2476,7 +2476,7 @@
 						</svg>
 					</button>
 				</div>
-				<div class="sidebar__content addto__cart {% IF CART_COUNT_TOTAL = 0 %}is-empty{% ENDIF %}">
+				<div class="sidebar__content cart addto__cart {% IF CART_COUNT_TOTAL = 0 %}is-empty{% ENDIF %}">
 					{% IFNOT cart_items_empty %}
 					<form class="addto__form" action="{CART_URL}" method="post">
 						<input type="hidden" name="fast_order" value="1">
@@ -2543,7 +2543,7 @@
 						</svg>
 					</button>
 				</div>
-				<div class="sidebar__content addto__compare {% IF COMPARE_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
+				<div class="sidebar__content compare addto__compare {% IF COMPARE_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
 					{% IFNOT compare_goods_empty %}
 					<div class="addto__items">
 						{% FOR compare_goods %}
@@ -2598,7 +2598,7 @@
 						</svg>
 					</button>
 				</div>
-				<div class="sidebar__content addto__favorites {% IF FAVORITES_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
+				<div class="sidebar__content favorites addto__favorites {% IF FAVORITES_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
 					{% IFNOT favorites_goods_empty %}
 					<div class="addto__items">
 						{% FOR favorites_goods %}

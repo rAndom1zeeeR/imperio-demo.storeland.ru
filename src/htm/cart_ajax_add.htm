@@ -39,17 +39,6 @@
 <div style="display:none;" id="newCartSumTotal">{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT}</div>
 <div style="display:none;" id="newCartSumTotalFormated">{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT | money_format}</div>
 <div style="display:none;" id="newCartData">
-	<div class="addto__header">
-		<data class="cart-count" value="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</data>
-		<data class="cart-countend" value="{CART_COUNT_TOTAL}">товар{CART_COUNT_TOTAL | gen_word_end("","а","ов")}</data>
-		<a class="addto__clear button button-link" href="{CART_TRUNCATE_URL}" title="Очистить корзину" rel="nofollow">
-			<span>Очистить</span>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" aria-hidden="true">
-				<path
-							d="m568.571 512.003 443.715-443.715c15.622-15.622 15.622-40.95 0-56.57s-40.954-15.622-56.57 0L511.999 455.433 68.286 11.718c-15.622-15.622-40.95-15.622-56.57 0s-15.622 40.95 0 56.57l443.713 443.713L11.716 955.716c-15.622 15.622-15.622 40.949 0 56.57a39.925 39.925 0 0 0 12.974 8.681 39.939 39.939 0 0 0 15.312 3.032 39.939 39.939 0 0 0 15.312-3.032 39.94 39.94 0 0 0 12.974-8.681l443.711-443.713 443.711 443.713c7.811 7.811 18.051 11.713 28.285 11.713 10.24 0 20.474-3.903 28.291-11.713 15.622-15.622 15.622-40.949 0-56.57L568.571 512.003z" />
-			</svg>
-		</a>
-	</div>
 	<form class="addto__form" action="{CART_URL}" method="post">
 		<input type="hidden" name="fast_order" value="1">
 		<input type="hidden" name="hash" value="{HASH}">
@@ -61,6 +50,12 @@
 
 			<div class="addto__content">
 				<a class="addto__name" href="{cart_items.GOODS_URL}" title="Перейти на страницу товара">{cart_items.GOODS_NAME}</a>
+				<div class="addto__price {CURRENCY_CHAR_CODE}">
+					{% IF cart_items.GOODS_MOD_PRICE_OLD > cart_items.GOODS_MOD_PRICE_NOW %}
+					<s class="price__old" data-price="{cart_items.ORDER_LINE_PRICE_OLD}">{cart_items.ORDER_LINE_PRICE_OLD | money_format}</s>
+					{% ENDIF %}
+					<b class="price__now" data-price="{cart_items.ORDER_LINE_PRICE_NOW}">{cart_items.ORDER_LINE_PRICE_NOW | money_format}</b>
+				</div>
 				<small class="addto__mods">
 					{% FOR distinctive_properties %}
 					<span>{cart_items.distinctive_properties.NAME}:</span>
@@ -69,19 +64,11 @@
 					<span>Кол-во:</span>
 					<b>{cart_items.ORDER_LINE_QUANTITY} {cart_items.GOODS_MOD_MEASURE_NAME}.</b>
 				</small>
-
-				<div class="addto__price {CURRENCY_CHAR_CODE}">
-					{% IF cart_items.GOODS_MOD_PRICE_OLD > cart_items.GOODS_MOD_PRICE_NOW %}
-					<s class="price__old" data-price="{cart_items.ORDER_LINE_PRICE_OLD}">{cart_items.ORDER_LINE_PRICE_OLD | money_format}</s>
-					{% ENDIF %}
-					<b class="price__now" data-price="{cart_items.ORDER_LINE_PRICE_NOW}">{cart_items.ORDER_LINE_PRICE_NOW | money_format}</b>
-				</div>
 			</div>
 
-			<a class="addto__remove button-icon" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию {cart_items.GOODS_NAME}" aria-label="Удалить позицию {cart_items.GOODS_NAME}">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" aria-hidden="true">
-					<path
-								d="m568.571 512.003 443.715-443.715c15.622-15.622 15.622-40.95 0-56.57s-40.954-15.622-56.57 0L511.999 455.433 68.286 11.718c-15.622-15.622-40.95-15.622-56.57 0s-15.622 40.95 0 56.57l443.713 443.713L11.716 955.716c-15.622 15.622-15.622 40.949 0 56.57a39.925 39.925 0 0 0 12.974 8.681 39.939 39.939 0 0 0 15.312 3.032 39.939 39.939 0 0 0 15.312-3.032 39.94 39.94 0 0 0 12.974-8.681l443.711-443.713 443.711 443.713c7.811 7.811 18.051 11.713 28.285 11.713 10.24 0 20.474-3.903 28.291-11.713 15.622-15.622 15.622-40.949 0-56.57L568.571 512.003z" />
+			<a class="addto__remove button-icon" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию {cart_items.GOODS_NAME}">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+					<path d="M256 810.667c0 46.933 38.4 85.333 85.333 85.333h341.333c46.933 0 85.333-38.4 85.333-85.333v-512h-512v512zM341.333 384h341.333v426.667h-341.333v-426.667zM661.333 170.667l-42.667-42.667h-213.333l-42.667 42.667h-149.333v85.333h597.333v-85.333h-149.333z"></path>
 				</svg>
 			</a>
 		</div>
@@ -93,7 +80,10 @@
 			<span>Итого:</span>
 			<data class="price__now cart-discount" value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</data>
 		</div>
-		<a class="button button-secondary" href="{CART_URL}" rel="nofollow">Оформить заказ</a>
+		<a class="addto__button button" href="{CART_URL}" rel="nofollow">Оформить заказ</a>
+		<a class="addto__clear button button-underline" href="{CART_TRUNCATE_URL}" title="Очистить корзину" rel="nofollow">
+			<span>Очистить корзину</span>
+		</a>
 	</div>
 
 	<!-- Пустая корзина -->

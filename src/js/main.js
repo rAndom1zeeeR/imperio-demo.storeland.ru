@@ -521,20 +521,20 @@ function AddtoCart(doc = document) {
 
   // Обновление корзины
   function handleAddtoCartUpdate(data) {
-    console.log("[DEBUG]: handleAddtoCartUpdate data", data);
+    // console.log("[DEBUG]: handleAddtoCartUpdate data", data);
     const cartAddto = document.querySelector(".addto__cart");
     const cartAddtoData = data.querySelector("#newCartData");
     const cartSumDiscounts = document.querySelectorAll(".cart-discount");
-    const cartSumDiscountData = data.querySelector(".cart-discount");
+    const cartSumDiscountData = data.querySelector("#newcart-discount");
     const cartCounts = document.querySelectorAll(".cart-count");
-    const cartCountDataValue = data.querySelector(".cart-count").value;
+    const cartCountDataValue = data.querySelector("#newCartCount").textContent;
     // Обновление данных
     cartAddto.innerHTML = cartAddtoData.innerHTML;
     CartCountUppdate(cartCounts, cartCountDataValue);
     CartDiscountUppdate(cartSumDiscounts, cartSumDiscountData);
     // Сообщение с уведомлением действия
     const notice = data.querySelector(".cartItems__modal > p");
-    console.log("[DEBUG]: handleAddtoCartUpdate notice", notice);
+    // console.log("[DEBUG]: handleAddtoCartUpdate notice", notice);
     const type = notice?.getAttribute("class").slice(15);
     СreateNoty(type, notice.innerHTML);
   }
@@ -674,9 +674,9 @@ function AddtoOrder(doc = document) {
     const cartAddto = document.querySelector(".addto__cart");
     const cartAddtoData = data.querySelector("#newCartData");
     const cartSumDiscounts = document.querySelectorAll(".cart-discount");
-    const cartSumDiscountData = data.querySelector(".cart-discount");
+    const cartSumDiscountData = data.querySelector("#newcart-discount");
     const cartCounts = document.querySelectorAll(".cart-count");
-    const cartCountDataValue = data.querySelector(".cart-count").value;
+    const cartCountDataValue = data.querySelector("#newCartCount").textContent;
     // Обновление данных
     cartAddto.innerHTML = cartAddtoData.innerHTML;
     CartCountUppdate(cartCounts, cartCountDataValue);
@@ -1923,22 +1923,20 @@ function Orderfast(doc = document) {
   deliveryInputs.forEach((item) => {
     item.addEventListener("click", (event) => {
       deliveryZoneItems.forEach((item) => (item.checked = false));
-      handleDeliveryItemsClick(event.currentTarget, ".order-delivery-zone__radio");
+      handleDeliveryInputsClick(event.currentTarget, ".order-delivery-zone__radio");
     });
   });
 
   deliveryZoneItems.forEach((item) => {
     item.addEventListener("click", (event) => {
-      handleDeliveryItemsClick(event.currentTarget, ".order-delivery__radio");
+      handleDeliveryInputsClick(event.currentTarget, ".order-delivery__radio");
     });
   });
 
   // Обработчик клика на доставку
-  function handleDeliveryItemsClick(target, selector) {
-    console.log("target click", target);
+  function handleDeliveryInputsClick(target, selector) {
     const item = target.closest(".order-delivery__item");
-    console.log("item click", item);
-
+    // console.log("[DEBUG]: handleDeliveryInputsClick item", item);
     const input = item.querySelector(selector);
     if (input) input.checked = true;
     handleDeliveryPrice(deliveryPrices, target.getAttribute("data-price"));
@@ -1946,12 +1944,12 @@ function Orderfast(doc = document) {
 
   // Первый запуск функций
   if (deliveryItemZone) {
-    handleDeliveryItemsClick(deliveryItem, ".order-delivery-zone__radio");
+    handleDeliveryInputsClick(deliveryItem, ".order-delivery-zone__radio");
     setTimeout(() => {
       deliveryItemZone.click();
     }, 100);
   } else {
-    handleDeliveryItemsClick(deliveryItem, ".order-delivery__radio");
+    handleDeliveryInputsClick(deliveryItem, ".order-delivery__radio");
   }
 
   // Способы доставки
