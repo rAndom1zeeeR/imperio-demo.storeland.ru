@@ -235,6 +235,7 @@
 	list-style: none;
 }
 .mainnav__link {padding-inline: 20px;white-space: nowrap;}
+.mainnav__item--sale {color: var(--color-error);}
 .is-opened .mainnav__item--more button {color: var(--color-secondary);}
 .is-opened .mainnav__item--more svg {transform: rotate(180deg);}
 .mainnav__dropdown {
@@ -313,6 +314,7 @@
 #catalog {padding-block: 16px;border-bottom: 1px solid var(--color-border-secondary);}
 #catalog .mainnav__list {margin-inline: -16px;width: 100%;}
 .catalog__mainnav .mainnav__link {font-size: var(--text-size-large);line-height: var(--text-height-large);}
+#catalog .mainnav__dropdown {left: auto;right: 0;width: auto;}
 @media all and (max-width: 1023px) {
 	#catalog {display: none;}
 }

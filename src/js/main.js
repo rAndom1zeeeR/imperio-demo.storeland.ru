@@ -380,48 +380,94 @@ function Mainnav(selector = document) {
   }
 }
 
+/**
+ * Функция переноса пунктов меню.
+ * Используется в функциях: на всех страницах.
+ * Использует функции: getClientWidth
+ */
 function MainnavCatalog(selector = document) {
   const mainnav = selector.querySelector(".mainnav");
   const mainnavList = mainnav.querySelector(".mainnav__list");
   const mainnavDropdown = mainnav.querySelector(".mainnav__dropdown");
   const mainnavItems = mainnav.querySelectorAll(".mainnav__item");
 
+  // Функция для создания SVG иконки
+  function createSvgIcon(pathData, width = 12, height = 12) {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    svg.setAttribute("viewBox", "0 0 240 240");
+    svg.setAttribute("width", width);
+    svg.setAttribute("height", height);
+    svg.setAttribute("aria-hidden", "true");
+    
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", pathData);
+    svg.appendChild(path);
+    
+    return svg;
+  }
+
   // Добавляем кнопку "Еще"
   const mainnavMoreLi = document.createElement("li");
-  mainnavMoreLi.classList.add("mainnav__item", "mainnav__item--more");
-  mainnavMoreLi.setAttribute("aria-hidden", "true");
+  mainnavMoreLi.classList.add("mainnav__item");
   const mainnavMoreButton = document.createElement("button");
-  mainnavMoreButton.classList.add("mainnav__link", "button-link");
+  mainnavMoreButton.classList.add("mainnav__link", "mainnav__link--more", "button-link");
   mainnavMoreButton.setAttribute("type", "button");
   mainnavMoreButton.setAttribute("aria-label", "Еще");
   const mainnavMoreButtonSpan = document.createElement("span");
   mainnavMoreButtonSpan.innerHTML = "Еще";
-  const mainnavMoreButtonSvg = document.createElement("svg");
-  mainnavMoreButtonSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-  mainnavMoreButtonSvg.setAttribute("viewBox", "0 0 240 240");
-  mainnavMoreButtonSvg.setAttribute("width", "12");
-  mainnavMoreButtonSvg.setAttribute("height", "12");
-  mainnavMoreButtonSvg.setAttribute("aria-hidden", "true");
-  mainnavMoreButtonSvg.innerHTML = `<path d="M129.1 183.3 237.3 75c4.7-4.8 4.7-12.5 0-17.2-4.8-4.8-12.5-4.8-17.2 0l-99.7 99.7-99.7-99.7C16 53 8.3 53 3.5 57.8c-4.7 4.8-4.7 12.5 0 17.2l108.4 108.3c4.7 4.7 12.5 4.7 17.2 0z" />`;
+  
+  // Создаем SVG для кнопки "Еще"
+  const mainnavMoreButtonSvgPath = "M129.1 183.3 237.3 75c4.7-4.8 4.7-12.5 0-17.2-4.8-4.8-12.5-4.8-17.2 0l-99.7 99.7-99.7-99.7C16 53 8.3 53 3.5 57.8c-4.7 4.8-4.7 12.5 0 17.2l108.4 108.3c4.7 4.7 12.5 4.7 17.2 0z";
+  const mainnavMoreButtonSvg = createSvgIcon(mainnavMoreButtonSvgPath);
+  
+  // Добавляем кнопку "Sale"
+  const mainnavSaleLi = document.createElement("li");
+  mainnavSaleLi.classList.add("mainnav__item");
+  const mainnavSaleButton = document.createElement("a");
+  mainnavSaleButton.classList.add("mainnav__link", "mainnav__item--sale");
+  mainnavSaleButton.setAttribute("href", "/discount/");
+  mainnavSaleButton.setAttribute("aria-label", "Sale");
+  const mainnavSaleButtonSpan = document.createElement("span");
+  mainnavSaleButtonSpan.innerHTML = "Sale";
 
   function mainnavItemsHandle() {
     if (getClientWidth() < 1024) return;
-    let mainnavItemsWidth = 90;
-    // console.log("[DEBUG]: mainnavItemsWidth11", mainnavItemsWidth);
-    mainnavItems.forEach((item) => {
-      mainnavItemsWidth += item.clientWidth;
-      // console.log("[DEBUG]: mainnavItemsWidth1", mainnavItemsWidth);
-      // console.log("[DEBUG]: mainnavList.clientWidth1", mainnavList.clientWidth);
-      // console.log("[DEBUG]: item1", item.classList.contains("mainnav__item--more"));
-      if (mainnavItemsWidth > mainnavList.clientWidth) {
-        mainnavDropdown.append(item);
-      } else {
-        mainnavList.append(item);
-      }
-    });
+
+    // Сначала добавляем кнопки Sale и "Еще" для измерения их ширины
+    mainnavList.append(mainnavSaleLi);
+    mainnavSaleLi.append(mainnavSaleButton);
+    mainnavSaleButton.append(mainnavSaleButtonSpan);
+    
     mainnavList.append(mainnavMoreLi);
     mainnavMoreLi.append(mainnavMoreButton);
     mainnavMoreButton.append(mainnavMoreButtonSpan, mainnavMoreButtonSvg);
+
+    // Измеряем ширину кнопок
+    const saleButtonWidth = mainnavSaleLi.clientWidth;
+    const moreButtonWidth = mainnavMoreLi.clientWidth;
+    
+    // Удаляем кнопки для корректного расчета
+    mainnavSaleLi.remove();
+    mainnavMoreLi.remove();
+
+    // Вычисляем доступную ширину с учетом кнопок
+    const availableWidth = mainnavList.clientWidth - saleButtonWidth - moreButtonWidth;
+    let currentWidth = 0;
+
+    // Распределяем пункты меню
+    mainnavItems.forEach((item) => {
+      if (currentWidth + item.clientWidth > availableWidth) {
+        mainnavDropdown.append(item);
+      } else {
+        mainnavList.append(item);
+        currentWidth += item.clientWidth;
+      }
+    });
+
+    // Добавляем кнопки в конце
+    mainnavList.append(mainnavSaleLi);
+    mainnavList.append(mainnavMoreLi);
   }
 
   mainnavItemsHandle();
