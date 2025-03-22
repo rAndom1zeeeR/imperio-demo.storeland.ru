@@ -874,6 +874,18 @@
 								<img src="{ASSETS_IMAGES_PATH}banner3.png?design=THEMENAME" alt="" loading="lazy" />
 							</div>
 						</div>
+						<div class="banners__item swiper-slide">
+							<div class="banners__content">
+								<h3 class="banners__title">Бесплатный дизайн-проект</h3>
+								<h4 class="banners__subtitle">Быстрый подбор мебели для&nbsp;вашего интерьера</h4>
+								<button class="banners__button button button-underline" type="button">
+									<span>Подробнее</span>
+								</button>
+							</div>
+							<div class="banners__image">
+								<img src="{ASSETS_IMAGES_PATH}banner2.png?design=THEMENAME" alt="" loading="lazy" />
+							</div>
+						</div>
 					</div>
 					<div class="swiper-scrollbar"></div>
 				</div>
@@ -1812,6 +1824,7 @@
 
 			</div>
 		</main>
+		{% ENDIF index_page %}
 
 		<!-- Вы смотрели -->
 		{% IFNOT recently_viewed_goods_empty && MOD_LNAME != cart %}
@@ -2009,7 +2022,6 @@
 			</div>
 		</section>
 		{% ENDIF recently_viewed_goods_empty %}
-		{% ENDIF index_page %}
 
 		<!-- Подписка -->
 		{% IF index_page %}
@@ -2513,6 +2525,7 @@
 							<div class="addto__content">
 								<a class="addto__name" href="{cart_items.GOODS_URL}" title="Перейти на страницу товара">{cart_items.GOODS_NAME}</a>
 								<div class="addto__price {CURRENCY_CHAR_CODE}">
+									<span class="addto__price-count">{cart_items.ORDER_LINE_QUANTITY} x</span>
 									{% IF cart_items.GOODS_MOD_PRICE_OLD > cart_items.GOODS_MOD_PRICE_NOW %}
 									<s class="price__old" data-price="{cart_items.ORDER_LINE_PRICE_OLD}">{cart_items.ORDER_LINE_PRICE_OLD | money_format}</s>
 									{% ENDIF %}
@@ -2523,8 +2536,6 @@
 									<span>{cart_items.distinctive_properties.NAME}:</span>
 									<b>{cart_items.distinctive_properties.VALUE};</b>
 									{% ENDFOR %}
-									<span>Кол-во:</span>
-									<b>{cart_items.ORDER_LINE_QUANTITY} {cart_items.GOODS_MOD_MEASURE_NAME}.</b>
 								</small>
 							</div>
 
@@ -2764,6 +2775,13 @@
 			</div>
 		</div>
 		{% ENDIF %}
+
+		<!-- Наверх -->
+		<div class="toTop">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+				<path d="M512 284l-400 400 56.8 56.8 136.8-137.6 206.4-206.4 343.2 343.2 56.8-56.8-400-399.2z" />
+			</svg>
+		</div>
 
 		<div id="overlay"></div>
 	</div>
@@ -3019,13 +3037,6 @@
 				swiperLarge('[data-tab-content="news_list_articles"]');
 				swiperLarge('[data-tab-content="news_list_mass_media"]');
 				VisibleItems('#pdtSale');
-			});
-		</script>
-		{% ELSE %}
-		<!-- Запуск основных скриптов для страницы "Не главная" -->
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				swiperSmall('#viewed');
 			});
 		</script>
 		{% ENDIF %}

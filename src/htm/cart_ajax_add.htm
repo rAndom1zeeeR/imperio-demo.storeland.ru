@@ -51,6 +51,7 @@
 			<div class="addto__content">
 				<a class="addto__name" href="{cart_items.GOODS_URL}" title="Перейти на страницу товара">{cart_items.GOODS_NAME}</a>
 				<div class="addto__price {CURRENCY_CHAR_CODE}">
+					<span class="addto__price-count">{cart_items.ORDER_LINE_QUANTITY} x</span>
 					{% IF cart_items.GOODS_MOD_PRICE_OLD > cart_items.GOODS_MOD_PRICE_NOW %}
 					<s class="price__old" data-price="{cart_items.ORDER_LINE_PRICE_OLD}">{cart_items.ORDER_LINE_PRICE_OLD | money_format}</s>
 					{% ENDIF %}
@@ -61,8 +62,6 @@
 					<span>{cart_items.distinctive_properties.NAME}:</span>
 					<b>{cart_items.distinctive_properties.VALUE};</b>
 					{% ENDFOR %}
-					<span>Кол-во:</span>
-					<b>{cart_items.ORDER_LINE_QUANTITY} {cart_items.GOODS_MOD_MEASURE_NAME}.</b>
 				</small>
 			</div>
 

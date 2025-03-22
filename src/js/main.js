@@ -2551,7 +2551,7 @@ function swiperMedium(selector) {
     simulateTouch: true,
     grabCursor: true,
     slidesPerView: 4,
-    spaceBetween: 0,
+    spaceBetween: 16,
     preloadImages: false,
     navigation: {
       nextEl: selector + " .swiper-button-next",
@@ -2682,7 +2682,7 @@ function swiperMediumIndex(selector) {
     simulateTouch: true,
     grabCursor: true,
     slidesPerView: 4,
-    spaceBetween: 12,
+    spaceBetween: 16,
     preloadImages: false,
     initialSlide: 2,
     navigation: {
@@ -2953,6 +2953,67 @@ function swiperOpinions(selector) {
 }
 
 /**
+ * Слайдер Вы смотрели.
+ * Используется в функциях: на всех страницах
+ * Использует функции: Swiper
+ */
+function swiperViewed(selector) {
+  const related = document.querySelector(selector);
+  // console.log("[DEBUG]: related", related);
+
+  if (!related) return;
+  const swiper = new Swiper(selector + " .swiper", {
+    loop: false,
+    autoplay: false,
+    watchSlidesProgress: true,
+    simulateTouch: true,
+    grabCursor: true,
+    slidesPerView: 6,
+    spaceBetween: 16,
+    preloadImages: false,
+    navigation: {
+      nextEl: selector + " .swiper-button-next",
+      prevEl: selector + " .swiper-button-prev",
+    },
+    pagination: {
+      enabled: true,
+      el: selector + " .swiper-pagination",
+      clickable: true,
+      type: "bullets",
+      dynamicBullets: true,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      320: {
+        slidesPerView: 2,
+      },
+      480: {
+        slidesPerView: 3,
+      },
+      640: {
+        slidesPerView: 3,
+      },
+      768: {
+        slidesPerView: 4,
+      },
+      1024: {
+        slidesPerView: 4,
+      },
+      1440: {
+        slidesPerView: 5,
+      },
+      1920: {
+        slidesPerView: 6,
+      },
+    },
+  });
+  // console.log("[DEBUG]: swiper", swiper);
+}
+
+
+/**
  * Авторизация без обновления страницы.
  * Используется в функциях: на главной странице
  * Использует функции: getHtmlFromPost
@@ -3028,6 +3089,20 @@ function Form(id, successMessage, errorMessage) {
 }
 
 /**
+ * Функция Наверх. /JS/
+ */
+function toTop() {
+  const goto = document.querySelector('.toTop')
+  // Показать при скроле
+  window.addEventListener('scroll', function () {
+    window.pageYOffset > 99 ? goto.classList.remove('is-hidden') : goto.classList.add('is-hidden')
+  })
+
+  // Действие наверх
+  goto.addEventListener('click', () => scrollTop(0))
+}
+
+/**
  * Загрузка основных функций шаблона на всех страницах.
  */
 document.addEventListener("DOMContentLoaded", function () {
@@ -3045,6 +3120,8 @@ document.addEventListener("DOMContentLoaded", function () {
   Products();
   Opener();
   Autorization();
+  swiperViewed('#viewed');
+  toTop();
   Form("dialogCallback", "Запрос обратного звонка успешно отправлен администрации магазина", "Вы уже отправляли запрос. Пожалуйста ожидайте звонка.");
   Form("dialogNotify", "Вы будете уведомлены о поступлении товара", "Вы уже отправляли запрос. Пожалуйста ожидайте.");
   Form("subscribe", "Спасибо за обращение! Вы подписались на нашу рассылку", "Вы уже отправляли запрос. Пожалуйста ожидайте.");

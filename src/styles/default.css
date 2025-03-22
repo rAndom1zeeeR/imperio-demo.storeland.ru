@@ -192,6 +192,9 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 	.button-underline:hover {color: var(--color-secondary);background: none;}
 	.button-disabled:hover {background-color: var(--color-disabled);border-color: var(--color-disabled);}
 }
+@media all and (min-width: 1440px) {
+	button, .button, .paymentFormSubmitLink, .paymentFormTbodySubmitButton {font-size: var(--text-size-large);}
+}
 
 
 /*
@@ -816,6 +819,8 @@ dialog .form__button {width: 100%;}
 .notice--error {color: #a94442;background: #f2dede;border-color: #ebccd1;}
 .notice--attention {color: #8a6d3b;background: #fcf8e3;border-color: #faebcc;}
 .notice--information {color: #31708f;background: #d9edf7;border-color: #bce8f1;}
+.swal2-icon-error .swal2-timer-progress-bar {background: #a94442 !important;}
+.swal2-icon-success .swal2-timer-progress-bar {background: var(--color-primary) !important;}
 
 /*
 ** Оплата Киви

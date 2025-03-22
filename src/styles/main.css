@@ -336,7 +336,7 @@
 	padding-block: 20px 8px;
 }
 .slideshow__content {position: relative;z-index: 1;}
-.slideshow__subtitle {margin-top: 6px;font-size: var(--heading-06);line-height: 22px;}
+.slideshow__subtitle {margin-top: 6px;font-size: var(--heading-06);line-height: 22px;font-weight: normal;}
 .slideshow__button {margin-top: 6px;}
 @media all and (min-width: 480px) {
 	.slideshow__inner {align-items: center;height: 186px;padding: 0 40px;}
@@ -394,7 +394,6 @@
 /*
 ** Преимущества
 */
-#advantages {margin-block: -16px 0;}
 .advantages__items {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -415,7 +414,6 @@
 .advantages__title {order: 2;max-width: 230px;font-size: 14px;}
 .advantages__icon {flex-shrink: 0;}
 @media all and (min-width: 480px) and (max-width: 1439px) {
-	#advantages {margin-block: 32px;}
 	.advantages__item {justify-content: flex-start;min-width: auto;padding: 8px;}
 }
 @media all and (min-width: 640px) and (max-width: 1439px) {
@@ -433,7 +431,6 @@
 	.advantages__icon {width: 70px;height: 70px;}
 }
 @media all and (min-width: 1440px) {
-	#advantages {margin-block: -48px -8px;}
 	.advantages__item {flex-direction: row;justify-content: space-between;padding: 16px;}
 	.advantages__items {gap: 32px;}
 	.advantages__title {order: 0;font-size: var(--heading-06);text-align: left;}
@@ -445,10 +442,12 @@
 /*
 ** Баннеры
 */
+#banners {--swiper-scrollbar-sides-offset: 0px;}
 .banners__items {padding-bottom: 16px;}
 .banners__item:nth-child(1) {background-color: #D8DFFF;}
-.banners__item:nth-child(2) {background-color: rgb(241 189 188 / 40%);;}
+.banners__item:nth-child(2) {background-color: rgb(241 189 188 / 40%);}
 .banners__item:nth-child(3) {background-color: #E6EAFB;}
+.banners__item:nth-child(4) {background-color: rgb(241 189 188 / 40%);}
 .banners__item {
 	position: relative;
 	display: flex;
@@ -599,7 +598,7 @@
 .subscribe__title {margin-bottom: 24px;font-size: var(--heading-05);}
 .subscribe__subtitle {margin-top: 12px;font-size: var(--heading-06);line-height: 1.2;}
 .subscribe__text {margin-block: 12px 6px;font-size: var(--text-size-large);line-height: 1.2;}
-.subscribe__bottom {margin-top: 24px;padding-top: 24px;border-top: 1px solid var(--color-border);}
+.subscribe__bottom {margin-top: 24px;padding-top: 24px;border-top: 1px solid var(--color-border-secondary);}
 .subscribe-form {display: flex;flex-wrap: wrap;gap: 14px 24px;align-items: center;}
 .subscribe-form__text {flex-shrink: 0;width: 100%;margin: 0;font-size: var(--text-size-large);}
 .subscribe-form__pp {flex-shrink: 0;width: 100%;font-size: var(--text-size-regular);line-height: var(--text-height-regular);text-align: center;}
@@ -623,13 +622,14 @@
 }
 @media all and (min-width: 1024px) {
 	#subscribe {padding-block: 40px;}
-	.subscribe__bottom {margin-top: 24px;padding-top: 24px;}
+	.subscribe__bottom {margin-top: 40px;padding-top: 40px;}
 	.subscribe__items {gap: 32px;}
 	.subscribe-form {gap: 16px;}
 	.subscribe-form__text {width: 240px;}
 }
 @media all and (min-width: 1440px) {
 	#subscribe {padding-block: 48px;}
+	.subscribe__bottom {margin-top: 48px;padding-top: 48px;}
 	.subscribe__title {font-size: var(--heading-01);}
 	.subscribe-form {flex-wrap: nowrap;gap: 32px;}
 	.subscribe-form__pp {width: 320px;text-align: left;}
@@ -745,7 +745,7 @@
 	-webkit-box-orient: vertical;
 }
 .product__price {display: flex;}
-.price__now {color: var(--color-error);font-size: var(--text-size-large);font-family: var(--font-secondary);white-space: nowrap;}
+.price__now {font-size: var(--text-size-large);font-family: var(--font-secondary);white-space: nowrap;}
 .price__old {
 	order: 2;
 	overflow: hidden;
@@ -755,6 +755,7 @@
 	text-overflow: ellipsis;
 	opacity: 0.5;
 }
+.price__old + .price__now {color: var(--color-error);}
 .product__link:active {color: var(--color-text-primary);}
 .product__link span {display: none;}
 .product__add {font-size: var(--text-size-large);padding-inline: 16px;}
@@ -762,7 +763,7 @@
 .product__more {display: none;}
 .product__attr {margin-block: 16px;display: none;}
 .product__attr.is-active {display: block;}
-.product__attr-item {display: flex;gap: 10px;}
+.product__attr-item {display: flex;gap: 10px;font-size: var(--text-size-regular);}
 .product__attr-item:not(:first-child) {margin-top: 12px;}
 .product__attr-item dt {opacity: 0.5;}
 .product__attr-item dd {margin: 0;}
@@ -836,7 +837,7 @@
 .products__grid .sticker:nth-child(n+3) {display: none;}
 .products__grid .product__image {background-color: var(--color-background);}
 .products__grid .product__sticker {position: absolute;bottom: -8px;left: 0;}
-.products__grid .product__links {position: absolute;top: 0;right: 0;}
+.products__grid .product__links {position: absolute;top: 8px;right: 8px;}
 .products__grid .product__link {display: block;padding: 8px;}
 .products__grid .product__ratings {margin-top: 16px;}
 .products__grid .ratings__count {display: none;}
@@ -947,6 +948,7 @@
 ** Товары маленькой таблицей
 */
 .products__grid--small .product__ratings {display: none;}
+.products__grid--small .product__attr {display: none;}
 .products__grid--small .product__more {display: none;}
 .products__grid--small .product__date {display: none;}
 .products__grid--small .product__add {height: var(--button-medium);}
@@ -1722,7 +1724,7 @@
 ** Добавленные товары в корзину/избранное/сравнение
 */
 .addto__item {position: relative;display: flex;padding: 24px;}
-.addto__item:not(:last-child) {border-bottom: 1px solid var(--color-border);}
+.addto__item:not(:last-child) {border-bottom: 1px solid var(--color-border-secondary);}
 .addto__items {height: calc(100vh - 57px - 135px);overflow: hidden auto;}
 .addto__image {
 	display: flex;
@@ -1760,12 +1762,12 @@
 .addto__form {height: calc(100vh - 56px - 170px);overflow: hidden auto;}
 .addto__form::-webkit-scrollbar {width: var(--color-border);}
 .addto__form::-webkit-scrollbar-track {background: var(--color-border-secondary);}
-.addto__name {font-size: var(--text-size-regular);word-wrap: break-word;}
-.addto__mods {display: block;margin-top: 8px;line-height: 1.25;opacity: 0.5;}
-.addto__price {display: flex;gap: 8px;margin-top: 8px;}
+.addto__name {word-wrap: break-word;}
+.addto__mods {display: block;margin-top: 8px;line-height: 1.25;opacity: 0.5;font-size: var(--text-size-regular);}
+.addto__price {display: flex;align-items: flex-end;gap: 8px;margin-top: 8px;white-space: nowrap;}
 .addto__price small {font-weight: bold;opacity: 0.5;}
 .addto__price .price__old {margin-right: 8px;font-size: var(--text-size-medium);}
-.addto__price .price__now {font-size: var(--text-size-large);white-space: nowrap;}
+.addto__price .price__now {white-space: nowrap;}
 .addto__header {
 	display: flex;
 	gap: 4px;
@@ -1777,10 +1779,10 @@
 }
 .addto__header data {padding-top: 4px;font-weight: bold;}
 .addto__clear {justify-content: center;fill: currentcolor;}
-.addto__buttons {display: flex;flex-flow: column wrap;gap: 16px;padding: 24px;border-top: 1px solid var(--color-border);}
+.addto__buttons {display: flex;flex-flow: column wrap;gap: 16px;padding: 24px;border-top: 1px solid var(--color-border-secondary);}
 .addto__total {display: flex;flex-shrink: 0;justify-content: space-between;}
 .addto__total > span {font-size: var(--text-size-large);}
-.addto__total data {font-weight: bold;}
+.addto__total data {font-weight: bold;font-size: var(--heading-05);}
 .addto__empty {display: none;}
 .is-empty .addto__empty {display: block;padding: 24px;}
 .is-empty .addto__header {display: none;}
@@ -1792,6 +1794,7 @@
 /*
 ** Модальные окна
 */
+.fancybox__container .fancybox__backdrop {--fancybox-bg: rgba(73 82 87 / 80%);--fancybox-opacity: 1;}
 #dialogLogin .form__buttons {justify-content: space-between;}
 #dialogLogin .form__buttons a {font-size: var(--text-size-regular);text-decoration: underline;}
 #dialogLogin .form__buttons button {width: 100%;padding-top: 4px;}
@@ -1801,3 +1804,27 @@
 #dialogLogin li:not(:first-child) {margin-top: 12px;}
 :is(#dialogCallback, #dialogNotify) .form__button {width: 100%;margin-top: 12px;}
 :is(#dialogCallback, #dialogNotify) .form__pp {margin-top: 12px;}
+
+
+/*
+** Наверх
+*/
+.toTop {
+	position: fixed;
+	bottom: 16px;
+	right: 16px;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	transition: all 0.3s ease;
+	z-index: 6;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--color-border-secondary);
+	border-radius: var(--border-radius);
+}
+@media (hover: hover) {
+	.toTop:hover {color: var(--color-primary);}
+}
