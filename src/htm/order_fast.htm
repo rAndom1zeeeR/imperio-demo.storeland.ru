@@ -17,7 +17,7 @@
 				<div class="cartTotal__min-icon">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32" aria-hidden="true">
 						<path
-									d="M1012.081 831.996 589.505 102.667C573.377 74.437 544.347 58 512.087 58c-32.256 0-61.29 16.795-77.418 44.667L12.096 831.996c-16.129 27.875-16.129 61.107 0 89.337s45.161 44.668 77.418 44.668h844.79c32.256 0 61.29-16.797 77.418-44.668 16.128-27.875 16.486-61.462.358-89.337zM89.873 876.665l422.215-728.972 422.576 728.614-844.79.358zM557.25 374.96c11.469 13.221 16.486 30.376 14.336 47.528l-41.933 268.003a17.694 17.694 0 0 1-5.943 10.858 17.778 17.778 0 0 1-11.622 4.323 17.79 17.79 0 0 1-11.622-4.323 17.688 17.688 0 0 1-5.939-10.858l-41.574-267.648c-2.512-17.507 2.867-34.662 13.978-47.883 22.938-26.085 67.741-26.085 90.32 0zm7.885 423.091c0 26.8-23.654 48.955-53.047 48.955-29.389 0-53.043-21.797-53.043-48.955s23.654-48.955 53.043-48.955c29.392 0 53.047 21.797 53.047 48.955z" />
+							  d="M1012.081 831.996 589.505 102.667C573.377 74.437 544.347 58 512.087 58c-32.256 0-61.29 16.795-77.418 44.667L12.096 831.996c-16.129 27.875-16.129 61.107 0 89.337s45.161 44.668 77.418 44.668h844.79c32.256 0 61.29-16.797 77.418-44.668 16.128-27.875 16.486-61.462.358-89.337zM89.873 876.665l422.215-728.972 422.576 728.614-844.79.358zM557.25 374.96c11.469 13.221 16.486 30.376 14.336 47.528l-41.933 268.003a17.694 17.694 0 0 1-5.943 10.858 17.778 17.778 0 0 1-11.622 4.323 17.79 17.79 0 0 1-11.622-4.323 17.688 17.688 0 0 1-5.939-10.858l-41.574-267.648c-2.512-17.507 2.867-34.662 13.978-47.883 22.938-26.085 67.741-26.085 90.32 0zm7.885 423.091c0 26.8-23.654 48.955-53.047 48.955-29.389 0-53.043-21.797-53.043-48.955s23.654-48.955 53.043-48.955c29.392 0 53.047 21.797 53.047 48.955z" />
 					</svg>
 				</div>
 				<div class="cartTotal__min-title">
@@ -38,14 +38,14 @@
 								<small>(обязательно)</small>
 							</label>
 							<input id="order_contact_person"
-										 type="text"
-										 name="form[contact][person]"
-										 value="{ORDER_FORM_CONTACT_PERSON}"
-										 inputmode="text"
-										 maxlength="50"
-										 placeholder="ФИО"
-										 autocomplete="name"
-										 required>
+								   type="text"
+								   name="form[contact][person]"
+								   value="{ORDER_FORM_CONTACT_PERSON}"
+								   inputmode="text"
+								   maxlength="50"
+								   placeholder="ФИО"
+								   autocomplete="name"
+								   required>
 						</div>
 
 						<div class="form__field">
@@ -54,15 +54,15 @@
 								<small>(обязательно)</small>
 							</label>
 							<input id="order_contact_phone"
-										 class="form__phone"
-										 type="tel"
-										 name="form[contact][phone]"
-										 value="{ORDER_FORM_CONTACT_PHONE}"
-										 inputmode="tel"
-										 maxlength="20"
-										 placeholder="Телефон"
-										 autocomplete="tel"
-										 required>
+								   class="form__phone"
+								   type="tel"
+								   name="form[contact][phone]"
+								   value="{ORDER_FORM_CONTACT_PHONE}"
+								   inputmode="tel"
+								   maxlength="20"
+								   placeholder="Телефон"
+								   autocomplete="tel"
+								   required>
 						</div>
 					</fieldset>
 
@@ -73,15 +73,15 @@
 								<small>(обязательно)</small>
 							</label>
 							<input id="order_contact_email"
-										 class="form__email"
-										 type="email"
-										 name="form[contact][email]"
-										 value="{ORDER_FORM_CONTACT_EMAIL}"
-										 inputmode="email"
-										 maxlength="50"
-										 placeholder="Почта"
-										 autocomplete="email"
-										 {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}required{% ENDIF %}>
+								   class="form__email"
+								   type="email"
+								   name="form[contact][email]"
+								   value="{ORDER_FORM_CONTACT_EMAIL}"
+								   inputmode="email"
+								   maxlength="50"
+								   placeholder="Почта"
+								   autocomplete="email"
+								   {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}required{% ENDIF %}>
 						</div>
 
 						<!-- Если в тарифном плане подключен раздел личного кабинета -->
@@ -97,21 +97,21 @@
 								<small>(обязательно)</small>
 							</label>
 							<input id="order_contact_pass"
-										 class="password__input"
-										 type="password"
-										 name="form[contact][pass]"
-										 value="{ORDER_FORM_CONTACT_PASS}"
-										 minlength="6"
-										 maxlength="50"
-										 autocomplete="new-password"
-										 placeholder="Придумайте пароль">
+								   class="password__input"
+								   type="password"
+								   name="form[contact][pass]"
+								   value="{ORDER_FORM_CONTACT_PASS}"
+								   minlength="6"
+								   maxlength="50"
+								   autocomplete="new-password"
+								   placeholder="Придумайте пароль">
 							<button class="password__button button-icon" type="button" aria-pressed="false" aria-label="Показать пароль">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
 									<path class="svg-lock"
-												d="M800 376h-72.076V211.54C727.924 94.896 631.026 0 511.925 0S295.926 94.896 295.926 211.54V376H224c-66.168 0-120 53.832-120 119.998v408.003C104 970.17 157.832 1024 224 1024h576c66.169 0 119.999-53.83 119.999-119.999V495.998C919.999 429.832 866.169 376 800 376zM375.926 211.54c0-72.532 61.01-131.54 135.999-131.54s136.001 59.008 136.001 131.54V376h-272V211.54zm464.075 692.461c0 22.053-17.943 39.997-40.001 39.997H224c-22.056 0-40-17.943-40-39.997V495.998c0-22.053 17.944-39.997 40-39.997h576c22.058 0 40.001 17.944 40.001 39.997v408.003z" />
+										  d="M800 376h-72.076V211.54C727.924 94.896 631.026 0 511.925 0S295.926 94.896 295.926 211.54V376H224c-66.168 0-120 53.832-120 119.998v408.003C104 970.17 157.832 1024 224 1024h576c66.169 0 119.999-53.83 119.999-119.999V495.998C919.999 429.832 866.169 376 800 376zM375.926 211.54c0-72.532 61.01-131.54 135.999-131.54s136.001 59.008 136.001 131.54V376h-272V211.54zm464.075 692.461c0 22.053-17.943 39.997-40.001 39.997H224c-22.056 0-40-17.943-40-39.997V495.998c0-22.053 17.944-39.997 40-39.997h576c22.058 0 40.001 17.944 40.001 39.997v408.003z" />
 									<path class="svg-lock" d="M512 572.002c-40.872 0-74 33.126-74 73.998 0 26.098 13.52 49.022 33.924 62.194v87.808c0 22.09 17.911 39.997 40.001 39.997s40.001-17.906 40.001-39.997v-87.71c20.489-13.163 34.071-36.133 34.071-62.292 0-40.872-33.126-73.998-73.998-73.998z" />
 									<path class="svg-unlock"
-												d="M800 376H375.926V211.54c0-72.532 61.01-131.54 135.999-131.54s136.001 59.008 136.001 131.54V288h79.998v-76.46C727.924 94.896 631.026 0 511.925 0S295.926 94.896 295.926 211.54V376H224c-66.168 0-120 53.832-120 119.998v408.003C104 970.17 157.832 1024 224 1024h576c66.169 0 119.999-53.83 119.999-119.999V495.998C919.999 429.832 866.169 376 800 376zm40.001 528.001c0 22.053-17.943 39.997-40.001 39.997H224c-22.056 0-40-17.943-40-39.997V495.998c0-22.053 17.944-39.997 40-39.997h576c22.058 0 40.001 17.944 40.001 39.997v408.003z" />
+										  d="M800 376H375.926V211.54c0-72.532 61.01-131.54 135.999-131.54s136.001 59.008 136.001 131.54V288h79.998v-76.46C727.924 94.896 631.026 0 511.925 0S295.926 94.896 295.926 211.54V376H224c-66.168 0-120 53.832-120 119.998v408.003C104 970.17 157.832 1024 224 1024h576c66.169 0 119.999-53.83 119.999-119.999V495.998C919.999 429.832 866.169 376 800 376zm40.001 528.001c0 22.053-17.943 39.997-40.001 39.997H224c-22.056 0-40-17.943-40-39.997V495.998c0-22.053 17.944-39.997 40-39.997h576c22.058 0 40.001 17.944 40.001 39.997v408.003z" />
 									<path class="svg-unlock" d="M512 572.002c-40.872 0-74 33.126-74 73.998 0 26.098 13.52 49.022 33.924 62.194v87.808c0 22.09 17.911 39.997 40.001 39.997s40.001-17.906 40.001-39.997v-87.71c20.489-13.163 34.071-36.133 34.071-62.292 0-40.872-33.126-73.998-73.998-73.998z" />
 								</svg>
 							</button>
@@ -122,7 +122,7 @@
 							<div class="capslock__icon">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
 									<path
-												d="M1012.081 831.996 589.505 102.667C573.377 74.437 544.347 58 512.087 58c-32.256 0-61.29 16.795-77.418 44.667L12.096 831.996c-16.129 27.875-16.129 61.107 0 89.337s45.161 44.668 77.418 44.668h844.79c32.256 0 61.29-16.797 77.418-44.668 16.128-27.875 16.486-61.462.358-89.337zM89.873 876.665l422.215-728.972 422.576 728.614-844.79.358zM557.25 374.96c11.469 13.221 16.486 30.376 14.336 47.528l-41.933 268.003a17.694 17.694 0 0 1-5.943 10.858 17.778 17.778 0 0 1-11.622 4.323 17.79 17.79 0 0 1-11.622-4.323 17.688 17.688 0 0 1-5.939-10.858l-41.574-267.648c-2.512-17.507 2.867-34.662 13.978-47.883 22.938-26.085 67.741-26.085 90.32 0zm7.885 423.091c0 26.8-23.654 48.955-53.047 48.955-29.389 0-53.043-21.797-53.043-48.955s23.654-48.955 53.043-48.955c29.392 0 53.047 21.797 53.047 48.955z" />
+										  d="M1012.081 831.996 589.505 102.667C573.377 74.437 544.347 58 512.087 58c-32.256 0-61.29 16.795-77.418 44.667L12.096 831.996c-16.129 27.875-16.129 61.107 0 89.337s45.161 44.668 77.418 44.668h844.79c32.256 0 61.29-16.797 77.418-44.668 16.128-27.875 16.486-61.462.358-89.337zM89.873 876.665l422.215-728.972 422.576 728.614-844.79.358zM557.25 374.96c11.469 13.221 16.486 30.376 14.336 47.528l-41.933 268.003a17.694 17.694 0 0 1-5.943 10.858 17.778 17.778 0 0 1-11.622 4.323 17.79 17.79 0 0 1-11.622-4.323 17.688 17.688 0 0 1-5.939-10.858l-41.574-267.648c-2.512-17.507 2.867-34.662 13.978-47.883 22.938-26.085 67.741-26.085 90.32 0zm7.885 423.091c0 26.8-23.654 48.955-53.047 48.955-29.389 0-53.043-21.797-53.043-48.955s23.654-48.955 53.043-48.955c29.392 0 53.047 21.797 53.047 48.955z" />
 								</svg>
 								<b>Caps Lock включен.</b>
 							</div>
@@ -139,7 +139,7 @@
 				<h5 class="orderfast__title">Cпособ доставки</h5>
 				<div class="orderfast__content">
 					<!-- Cпособ доставки. Селекты -->
-					<div class="order-delivery__selects">
+					<!-- <div class="order-delivery__selects">
 						<div class="selects">
 							<select class="order-delivery__select" name="form[delivery][id]">
 								{% FOR order_delivery %}
@@ -180,7 +180,7 @@
 							<div class="order-delivery__desc">{order_delivery.DESC}</div>
 						</div>
 						{% ENDFOR %}
-					</div>
+					</div> -->
 
 					<!-- Cпособ доставки. Кнопки -->
 					<div class="order-delivery__items">
@@ -188,20 +188,20 @@
 						<div class="order-delivery__item {% IF order_delivery.NAME = Самовывоз %}is-hide{% ENDIF %}" data-id="{order_delivery.ID}">
 							<div class="order-delivery__title">
 								<input class="order-delivery__radio square"
-											 type="radio"
-											 id="deliveryId{order_delivery.ID}"
-											 name="form[delivery][id]"
-											 value="{order_delivery.ID}"
-											 data-price="{order_delivery.END_PRICE}"
-											 pricewithoutzones="{order_delivery.END_PRICE}"
-											 pricewithzone="{order_delivery.ZONE_END_PRICE}"
-											 data-name="{order_delivery.NAME}"
-											 data-id="{order_delivery.ID}"
-											 {% IFNOT ORDER_FORM_DELIVERY_ID %}
-											 {% IF order_delivery.first %}checked="checked" {% ENDIF %}
-											 {% ELSEIF order_delivery.ID=ORDER_FORM_DELIVERY_ID %}
-											 checked="checked"
-											 {% ENDIF %} />
+									   type="radio"
+									   id="deliveryId{order_delivery.ID}"
+									   name="form[delivery][id]"
+									   value="{order_delivery.ID}"
+									   data-price="{order_delivery.END_PRICE}"
+									   pricewithoutzones="{order_delivery.END_PRICE}"
+									   pricewithzone="{order_delivery.ZONE_END_PRICE}"
+									   data-name="{order_delivery.NAME}"
+									   data-id="{order_delivery.ID}"
+									   {% IFNOT ORDER_FORM_DELIVERY_ID %}
+									   {% IF order_delivery.first %}checked="checked" {% ENDIF %}
+									   {% ELSEIF order_delivery.ID=ORDER_FORM_DELIVERY_ID %}
+									   checked="checked"
+									   {% ENDIF %} />
 								<label class="order-delivery__name" for="deliveryId{order_delivery.ID}">{order_delivery.NAME}</label>
 							</div>
 
@@ -218,15 +218,15 @@
 								{% FOR zone_list %}
 								<div class="order-delivery-zone__item" data-id="{order_delivery.ID}">
 									<input class="order-delivery-zone__radio square"
-												 type="radio"
-												 id="deliveryZoneId{order_delivery.zone_list.ID}"
-												 name="form[delivery][zone_id]"
-												 value="{order_delivery.zone_list.ID}"
-												 data-id="{order_delivery.ID}"
-												 data-price="{order_delivery.zone_list.END_PRICE}"
-												 {% IF order_delivery.zone_list.ID=ORDER_FORM_DELIVERY_ZONE_ID %}
-												 checked="checked"
-												 {% ENDIF %} />
+										   type="radio"
+										   id="deliveryZoneId{order_delivery.zone_list.ID}"
+										   name="form[delivery][zone_id]"
+										   value="{order_delivery.zone_list.ID}"
+										   data-id="{order_delivery.ID}"
+										   data-price="{order_delivery.zone_list.END_PRICE}"
+										   {% IF order_delivery.zone_list.ID=ORDER_FORM_DELIVERY_ZONE_ID %}
+										   checked="checked"
+										   {% ENDIF %} />
 									<label class="order-delivery-zone__name" for="deliveryZoneId{order_delivery.zone_list.ID}">{order_delivery.zone_list.NAME}</label>
 									<span class="order-delivery-zone__price">{order_delivery.zone_list.END_PRICE | money_format}</span>
 								</div>
@@ -245,7 +245,7 @@
 				<h5 class="orderfast__title">Cпособ оплаты</h5>
 				<div class="orderfast__content">
 					<!-- Селекты способ оплаты -->
-					{% FOR order_delivery %}
+					<!-- {% FOR order_delivery %}
 					{% IFNOT order_delivery.available_payment_list_empty %}
 					<div class="order-payments__selects" data-id="{order_delivery.ID}">
 						<div class="selects">
@@ -256,11 +256,39 @@
 							</select>
 						</div>
 						{% FOR available_payment_list %}
-						<div class="order-payments__desc is-hide" data-id="{order_delivery.available_payment_list.ID}">{order_delivery.available_payment_list.MESSAGE}</div>
+						<div class="order-payment__desc is-hide" data-id="{order_delivery.available_payment_list.ID}">{order_delivery.available_payment_list.MESSAGE}</div>
 						{% ENDFOR %}
 					</div>
 					{% ENDIF %}
-					{% ENDFOR %}
+					{% ENDFOR %} -->
+
+					<!-- Селекты способ оплаты -->
+					<div class="order-payment__items">
+						{% FOR order_delivery %}
+						{% IFNOT order_delivery.available_payment_list_empty %}
+						<div class="order-payment__item is-hide" data-id="{order_delivery.ID}">
+							{% FOR available_payment_list %}
+							<div class="order-payment__option">
+								<div class="order-payment__title">
+									<input class="order-payment__radio square"
+										   type="radio"
+										   id="paymentId{order_delivery.available_payment_list.ID}"
+										   name="form[payment][id]"
+										   value="{order_delivery.available_payment_list.ID}"
+										   {% IFNOT ORDER_FORM_PAYMENT_ID %}{% IF order_delivery.available_payment_list.first %}checked="checked" {% ENDIF %}
+										   {% ELSEIF order_delivery.available_payment_list.ID=ORDER_FORM_PAYMENT_ID %}checked="checked" {% ENDIF %}>
+									<label class="order-payment__name" for="paymentId{order_delivery.available_payment_list.ID}">{order_delivery.available_payment_list.NAME}</label>
+								</div>
+								<!-- Сообщение для пользователя -->
+								{% IF order_delivery.available_payment_list.MESSAGE %}
+								<div class="order-payment__desc">{order_delivery.available_payment_list.MESSAGE}</div>
+								{% ENDIF %}
+							</div>
+							{% ENDFOR %}
+						</div>
+						{% ENDIF %}
+						{% ENDFOR %}
+					</div>
 				</div>
 			</div>
 
@@ -297,13 +325,13 @@
 								<small>(обязательно)</small>
 							</label>
 							<input id="order_delivery_region"
-										 type="text"
-										 name="form[delivery][region]"
-										 value="{ORDER_FORM_DELIVERY_REGION}"
-										 placeholder="Область"
-										 autocomplete="address-level1"
-										 inputmode="text"
-										 {% IF SETTINGS_ORDER_FIELDS_REGION=1 %}required{% ENDIF %}>
+								   type="text"
+								   name="form[delivery][region]"
+								   value="{ORDER_FORM_DELIVERY_REGION}"
+								   placeholder="Область"
+								   autocomplete="address-level1"
+								   inputmode="text"
+								   {% IF SETTINGS_ORDER_FIELDS_REGION=1 %}required{% ENDIF %}>
 						</div>
 						{% ENDIF %}
 
@@ -315,13 +343,13 @@
 								<small>(обязательно)</small>
 							</label>
 							<input id="order_delivery_city"
-										 type="text"
-										 name="form[delivery][city]"
-										 value="{ORDER_FORM_DELIVERY_CITY}"
-										 placeholder="Город"
-										 autocomplete="address-level2"
-										 inputmode="text"
-										 {% IF SETTINGS_ORDER_FIELDS_CITY=1 %}required{% ENDIF %}>
+								   type="text"
+								   name="form[delivery][city]"
+								   value="{ORDER_FORM_DELIVERY_CITY}"
+								   placeholder="Город"
+								   autocomplete="address-level2"
+								   inputmode="text"
+								   {% IF SETTINGS_ORDER_FIELDS_CITY=1 %}required{% ENDIF %}>
 						</div>
 						{% ENDIF %}
 
@@ -333,13 +361,13 @@
 								<small>(обязательно)</small>
 							</label>
 							<input id="order_delivery_address"
-										 type="text"
-										 name="form[delivery][address]"
-										 value="{ORDER_FORM_DELIVERY_ADDRESS}"
-										 placeholder="Улица"
-										 autocomplete="street-address"
-										 inputmode="text"
-										 {% IF SETTINGS_ORDER_FIELDS_ADDRESS=1 %}required{% ENDIF %}>
+								   type="text"
+								   name="form[delivery][address]"
+								   value="{ORDER_FORM_DELIVERY_ADDRESS}"
+								   placeholder="Улица"
+								   autocomplete="street-address"
+								   inputmode="text"
+								   {% IF SETTINGS_ORDER_FIELDS_ADDRESS=1 %}required{% ENDIF %}>
 						</div>
 						{% ENDIF %}
 
@@ -351,15 +379,15 @@
 								<small>(обязательно)</small>
 							</label>
 							<input id="order_delivery_zip_code"
-										 type="number"
-										 name="form[delivery][zip_code]"
-										 value="{ORDER_FORM_DELIVERY_ZIP_CODE}"
-										 minlength="5"
-										 maxlength="6"
-										 placeholder="Индекс"
-										 autocomplete="postal-code"
-										 inputmode="numeric"
-										 {% IF SETTINGS_ORDER_FIELDS_ZIP_CODE=1 %}required{% ENDIF %}>
+								   type="number"
+								   name="form[delivery][zip_code]"
+								   value="{ORDER_FORM_DELIVERY_ZIP_CODE}"
+								   minlength="5"
+								   maxlength="6"
+								   placeholder="Индекс"
+								   autocomplete="postal-code"
+								   inputmode="numeric"
+								   {% IF SETTINGS_ORDER_FIELDS_ZIP_CODE=1 %}required{% ENDIF %}>
 						</div>
 						{% ENDIF %}
 					</fieldset>
@@ -373,15 +401,15 @@
 								<small>(обязательно)</small>
 							</label>
 							<input id="order_delivery_convenient_date"
-										 type="text"
-										 name="form[delivery][convenient_date]"
-										 value="{ORDER_FORM_DELIVERY_CONVENIENT_DATE}"
-										 maxlength="10"
-										 minlength="10"
-										 autocomplete="bday"
-										 placeholder="{CURRENT_TIME| date('d.m.Y')}"
-										 inputmode="decimal"
-										 {% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}required{% ENDIF %}>
+								   type="text"
+								   name="form[delivery][convenient_date]"
+								   value="{ORDER_FORM_DELIVERY_CONVENIENT_DATE}"
+								   maxlength="10"
+								   minlength="10"
+								   autocomplete="bday"
+								   placeholder="{CURRENT_TIME| date('d.m.Y')}"
+								   inputmode="decimal"
+								   {% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}required{% ENDIF %}>
 						</div>
 
 						<div class="form__field">
@@ -434,13 +462,13 @@
 							<small>(обязательно)</small>
 						</label>
 						<textarea id="order_delivery_comment"
-											class="form__textarea"
-											cols="100"
-											rows="3"
-											name="form[delivery][comment]"
-											placeholder="Комментарий"
-											inputmode="text"
-											{% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}>{ORDER_FORM_DELIVERY_COMMENT}</textarea>
+								  class="form__textarea"
+								  cols="100"
+								  rows="3"
+								  name="form[delivery][comment]"
+								  placeholder="Комментарий"
+								  inputmode="text"
+								  {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}>{ORDER_FORM_DELIVERY_COMMENT}</textarea>
 					</div>
 				</div>
 			</div>
@@ -464,7 +492,7 @@
 						<button class="coupon__reset button-icon" type="button" title="Сбросить" aria-label="Сбросить купон">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="14" height="14" aria-hidden="true">
 								<path
-											d="m568.571 512.003 443.715-443.715c15.622-15.622 15.622-40.95 0-56.57s-40.954-15.622-56.57 0L511.999 455.433 68.286 11.718c-15.622-15.622-40.95-15.622-56.57 0s-15.622 40.95 0 56.57l443.713 443.713L11.716 955.716c-15.622 15.622-15.622 40.949 0 56.57a39.925 39.925 0 0 0 12.974 8.681 39.939 39.939 0 0 0 15.312 3.032 39.939 39.939 0 0 0 15.312-3.032 39.94 39.94 0 0 0 12.974-8.681l443.711-443.713 443.711 443.713c7.811 7.811 18.051 11.713 28.285 11.713 10.24 0 20.474-3.903 28.291-11.713 15.622-15.622 15.622-40.949 0-56.57L568.571 512.003z" />
+									  d="m568.571 512.003 443.715-443.715c15.622-15.622 15.622-40.95 0-56.57s-40.954-15.622-56.57 0L511.999 455.433 68.286 11.718c-15.622-15.622-40.95-15.622-56.57 0s-15.622 40.95 0 56.57l443.713 443.713L11.716 955.716c-15.622 15.622-15.622 40.949 0 56.57a39.925 39.925 0 0 0 12.974 8.681 39.939 39.939 0 0 0 15.312 3.032 39.939 39.939 0 0 0 15.312-3.032 39.94 39.94 0 0 0 12.974-8.681l443.711-443.713 443.711 443.713c7.811 7.811 18.051 11.713 28.285 11.713 10.24 0 20.474-3.903 28.291-11.713 15.622-15.622 15.622-40.949 0-56.57L568.571 512.003z" />
 							</svg>
 						</button>
 					</div>

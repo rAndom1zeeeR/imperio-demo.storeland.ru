@@ -380,6 +380,64 @@ function Mainnav(selector = document) {
   }
 }
 
+function MainnavCatalog(selector = document) {
+  const mainnav = selector.querySelector(".mainnav");
+  const mainnavList = mainnav.querySelector(".mainnav__list");
+  const mainnavDropdown = mainnav.querySelector(".mainnav__dropdown");
+  const mainnavItems = mainnav.querySelectorAll(".mainnav__item");
+
+  // Добавляем кнопку "Еще"
+  const mainnavMoreLi = document.createElement("li");
+  mainnavMoreLi.classList.add("mainnav__item", "mainnav__item--more");
+  mainnavMoreLi.setAttribute("aria-hidden", "true");
+  const mainnavMoreButton = document.createElement("button");
+  mainnavMoreButton.classList.add("mainnav__link", "button-link");
+  mainnavMoreButton.setAttribute("type", "button");
+  mainnavMoreButton.setAttribute("aria-label", "Еще");
+  const mainnavMoreButtonSpan = document.createElement("span");
+  mainnavMoreButtonSpan.innerHTML = "Еще";
+  const mainnavMoreButtonSvg = document.createElement("svg");
+  mainnavMoreButtonSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  mainnavMoreButtonSvg.setAttribute("viewBox", "0 0 240 240");
+  mainnavMoreButtonSvg.setAttribute("width", "12");
+  mainnavMoreButtonSvg.setAttribute("height", "12");
+  mainnavMoreButtonSvg.setAttribute("aria-hidden", "true");
+  mainnavMoreButtonSvg.innerHTML = `<path d="M129.1 183.3 237.3 75c4.7-4.8 4.7-12.5 0-17.2-4.8-4.8-12.5-4.8-17.2 0l-99.7 99.7-99.7-99.7C16 53 8.3 53 3.5 57.8c-4.7 4.8-4.7 12.5 0 17.2l108.4 108.3c4.7 4.7 12.5 4.7 17.2 0z" />`;
+
+  function mainnavItemsHandle() {
+    if (getClientWidth() < 1024) return;
+    let mainnavItemsWidth = 90;
+    // console.log("[DEBUG]: mainnavItemsWidth11", mainnavItemsWidth);
+    mainnavItems.forEach((item) => {
+      mainnavItemsWidth += item.clientWidth;
+      // console.log("[DEBUG]: mainnavItemsWidth1", mainnavItemsWidth);
+      // console.log("[DEBUG]: mainnavList.clientWidth1", mainnavList.clientWidth);
+      // console.log("[DEBUG]: item1", item.classList.contains("mainnav__item--more"));
+      if (mainnavItemsWidth > mainnavList.clientWidth) {
+        mainnavDropdown.append(item);
+      } else {
+        mainnavList.append(item);
+      }
+    });
+    mainnavList.append(mainnavMoreLi);
+    mainnavMoreLi.append(mainnavMoreButton);
+    mainnavMoreButton.append(mainnavMoreButtonSpan, mainnavMoreButtonSvg);
+  }
+
+  mainnavItemsHandle();
+  window.addEventListener("resize", mainnavItemsHandle);
+
+  mainnavMoreButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.currentTarget.classList.toggle("is-active");
+    OverlayOpener(mainnav, handleOpened);
+  });
+
+  function handleOpened(event) {
+    OverlayCloser(event, ".mainnav", handleOpened);
+  }
+}
+
 /**
  * Функция добавления в Избранное/Сравнение.
  * Используется в функциях: handleAddtoModOpen, на всех страницах.
@@ -1155,12 +1213,13 @@ function Goods(doc) {
     goodsQtyInput.setAttribute("name", "form[goods_mod_id][" + modificationId + "]");
 
     // Обновляем изображние модификации товара, если оно указано
-    handleModImage(modificationModImageId, goodsModView);
+    // handleModImage(modificationModImageId, goodsModView);
   }
 
   // Меняет главное изображение товара на изображение с идентификатором
   function handleModImage(goodsModImageId, block) {
     // console.log("[DEBUG]: block", block);
+    if (true) return;
     // Если не указан идентификатор модификации товара, значит ничего менять не нужно.
     if (!goodsModImageId) return;
     if (block.classList.contains("fancybox__content")) return;
@@ -1905,20 +1964,28 @@ function Orderfast(doc = document) {
   const deliveryZoneRules = container.querySelectorAll(".order-delivery__rules");
   const paymentSelects = container.querySelectorAll(".order-payments__selects");
   const paymentSelected = container.querySelector(".order-payments__selects:not(.is-hide) select");
-  const paymentDescs = container.querySelectorAll(".order-payments__desc");
+  const paymentItems = container.querySelectorAll(".order-payment__item");
+  const paymentDescs = container.querySelectorAll(".order-payment__desc");
   const deliveryInputs = container.querySelectorAll(".order-delivery__radio");
   const deliveryZoneItems = container.querySelectorAll(".order-delivery-zone__radio");
-  const deliveryItems = container.querySelectorAll(".order-delivery__item");
   const deliveryItem = container.querySelector(".order-delivery__item");
   const deliveryItemZone = deliveryItem.querySelector(".order-delivery-zone__radio");
 
   // Запуск функций при загрузке страницы
-  handleVisibility(deliveryZones, deliverySelect.value);
-  handleVisibility(deliveryDescs, deliverySelect.value);
+  // handleVisibility(deliveryZones, deliverySelect.value);
+  // handleVisibility(deliveryDescs, deliverySelect.value);
   handleFormDeliveryZoneId(deliveryZoneSelected);
-  handleVisibility(paymentSelects, deliverySelect.value);
-  handleVisibility(paymentDescs, paymentSelected.value);
-  handleFormPaymentId(paymentSelected);
+  handleVisibility(paymentItems, paymentItems[0].getAttribute("data-id"));
+  // handleVisibility(paymentSelects, deliverySelect.value);
+  // handleVisibility(paymentSelects, deliverySelect.value);
+  // handleVisibility(paymentDescs, paymentSelectedItem.getAttribute("data-id"));
+  // handleFormPaymentId(paymentSelected);
+
+  paymentItems.forEach((item) => {
+    if (!item.classList.contains("is-hide")) {
+      item.querySelector("input").checked = true;
+    }
+  });
 
   deliveryInputs.forEach((item) => {
     item.addEventListener("click", (event) => {
@@ -1940,6 +2007,7 @@ function Orderfast(doc = document) {
     const input = item.querySelector(selector);
     if (input) input.checked = true;
     handleDeliveryPrice(deliveryPrices, target.getAttribute("data-price"));
+    handleVisibility(paymentItems, item.getAttribute("data-id"));
   }
 
   // Первый запуск функций
@@ -1953,37 +2021,43 @@ function Orderfast(doc = document) {
   }
 
   // Способы доставки
-  deliverySelect.addEventListener("change", (event) => {
-    const select = event.target;
-    handleVisibility(deliveryZones, select.value);
-    handleVisibility(deliveryDescs, select.value);
-    handleDeliveryPrice(deliveryPrices, select[select.selectedIndex].getAttribute("data-price"));
-    deliveryZoneSelects.forEach((selects) => handleDeliveryZone(selects));
-    handleVisibility(paymentSelects, deliverySelect.value);
-    const deliveryZoneSelected = document.querySelector(".order-delivery-zone__selects:not(.is-hide) .order-delivery-zone__select");
-    // console.log("[DEBUG]: deliveryZoneSelected", deliveryZoneSelected);
-    handleFormDeliveryZoneId(deliveryZoneSelected);
-  });
+  if (deliverySelect) {
+    deliverySelect.addEventListener("change", (event) => {
+      const select = event.target;
+      handleVisibility(deliveryZones, select.value);
+      handleVisibility(deliveryDescs, select.value);
+      handleDeliveryPrice(deliveryPrices, select[select.selectedIndex].getAttribute("data-price"));
+      deliveryZoneSelects.forEach((selects) => handleDeliveryZone(selects));
+      handleVisibility(paymentSelects, deliverySelect.value);
+      const deliveryZoneSelected = document.querySelector(".order-delivery-zone__selects:not(.is-hide) .order-delivery-zone__select");
+      // console.log("[DEBUG]: deliveryZoneSelected", deliveryZoneSelected);
+      handleFormDeliveryZoneId(deliveryZoneSelected);
+    });
+  }
 
   // Зоны доставки
-  deliveryZoneSelects.forEach((selects) => {
-    handleDeliveryZone(selects);
-    selects.addEventListener("change", (event) => {
-      const select = event.target;
-      console.log("[DEBUG]: select", select);
-      handleDeliveryPrice(deliveryPrices, select[select.selectedIndex].getAttribute("data-price"));
-      handleVisibility(deliveryZoneRules, select.value);
-      handleFormDeliveryZoneId(select);
+  if (deliveryZoneSelects) {
+    deliveryZoneSelects.forEach((selects) => {
+      handleDeliveryZone(selects);
+      selects.addEventListener("change", (event) => {
+        const select = event.target;
+        console.log("[DEBUG]: select", select);
+        handleDeliveryPrice(deliveryPrices, select[select.selectedIndex].getAttribute("data-price"));
+        handleVisibility(deliveryZoneRules, select.value);
+        handleFormDeliveryZoneId(select);
+      });
     });
-  });
+  }
 
   // Способы оплаты
-  paymentSelects.forEach((selects) => {
-    selects.addEventListener("change", (event) => {
-      handleFormPaymentId(event.target);
-      handleVisibility(paymentDescs, event.target.value);
+  if (paymentSelects) {
+    paymentSelects.forEach((selects) => {
+      selects.addEventListener("change", (event) => {
+        handleFormPaymentId(event.target);
+        handleVisibility(paymentDescs, event.target.value);
+      });
     });
-  });
+  }
 
   function handleDeliveryZone(selects) {
     // console.log("[DEBUG]: selects2", selects);
@@ -2909,7 +2983,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Dialogs();
   Passwords();
   Mainnav(document.querySelector("#header"));
-  Mainnav(document.querySelector("#catalog"));
+  MainnavCatalog(document.querySelector("#catalog"));
   CartClear();
   CartRemove();
   Addto();

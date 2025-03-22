@@ -130,7 +130,7 @@
 /*
 ** Шапка
 */
-#header {padding-block: 12px;border-bottom: 1px solid var(--color-border);}
+#header {padding-block: 12px;border-bottom: 1px solid var(--color-border-secondary);}
 .header__inner {display: flex;flex-wrap: wrap;gap: 16px;align-items: center;}
 .header__inner--bottom {padding-top: 16px;}
 .header__slogan {margin-right: auto;}
@@ -172,6 +172,8 @@
 .addto__link .icon-hover__inert {opacity: 0;}
 .addto__link.is-empty .icon-hover__active {opacity: 0;}
 .addto__link.is-empty .icon-hover__inert {opacity: 1;}
+.cart.is-empty .addto__link .icon-hover__active {opacity: 0;}
+.cart.is-empty .addto__link .icon-hover__inert {opacity: 1;}
 .addto__count {
 	position: absolute;
 	top: -6px;
@@ -308,7 +310,7 @@
 ** Каталог
 */
 .page-index #catalog {border-bottom: 0;}
-#catalog {padding-block: 16px;border-bottom: 1px solid var(--color-border);}
+#catalog {padding-block: 16px;border-bottom: 1px solid var(--color-border-secondary);}
 #catalog .mainnav__list {margin-inline: -16px;width: 100%;}
 .catalog__mainnav .mainnav__link {font-size: var(--text-size-large);line-height: var(--text-height-large);}
 @media all and (max-width: 1023px) {
@@ -1399,14 +1401,21 @@
 .order-delivery__desc {margin-top: 12px;}
 .order-delivery__desc:empty {display: none;}
 .order-delivery__price b {color: var(--color-secondary);}
-.order-payments__desc {margin-top: 12px;}
-.order-payments__desc:empty {display: none;}
 
-/* Быстрый заказ. Кнопки */
+/* Быстрый заказ. Доставка */
 .order-delivery__item {padding: 16px;border: 1px solid var(--color-border);border-radius: var(--border-radius);}
 .order-delivery__item:hover {border-color: var(--color-secondary);cursor: pointer;}
 .order-delivery__item + .order-delivery__item {margin-top: 16px;}
 .order-delivery__name {font-weight: bold;font-size: var(--heading-05);}
+
+/* Быстрый заказ. Оплата */
+.order-payment__option {padding: 16px;border: 1px solid var(--color-border);border-radius: var(--border-radius);}
+.order-payment__option:hover {border-color: var(--color-secondary);cursor: pointer;}
+.order-payment__option + .order-payment__option {margin-top: 16px;}
+.order-payment__name {font-weight: bold;font-size: var(--heading-05);}
+.order-payment__desc {margin-top: 12px;}
+.order-payment__desc:empty {display: none;}
+.order-payment__title {display: flex;gap: 8px;align-items: center;margin-bottom: 12px;}
 
 /*
 ** Купон
