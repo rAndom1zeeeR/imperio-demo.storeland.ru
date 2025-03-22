@@ -324,7 +324,10 @@
 */
 #slideshow {height: 336px;overflow: hidden;}
 .swiper.slideshow__slider {width: 100%;}
-.slideshow__item {color: var(--color-text-secondary);background-color: #D1ECD9;}
+.slideshow__item {color: var(--color-text-secondary);}
+.slideshow__item:nth-child(1) {background-color: #D1ECD9;}
+.slideshow__item:nth-child(2) {background-color: #E6EAFB;}
+.slideshow__item:nth-child(3) {background-color: #FFEEF5;}
 .slideshow__inner {
 	position: relative;
 	display: flex;
