@@ -337,6 +337,27 @@ function Passwords() {
   });
 }
 
+
+/**
+ * Функция для создания SVG иконки
+ * Используется в функциях: на всех страницах.
+ * Использует функции: 
+ */
+function createSvgIcon(pathData, width = 12, height = 12) {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  svg.setAttribute("viewBox", "0 0 240 240");
+  svg.setAttribute("width", width);
+  svg.setAttribute("height", height);
+  svg.setAttribute("aria-hidden", "true");
+  
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", pathData);
+  svg.appendChild(path);
+  
+  return svg;
+}
+
 /**
  * Функция переноса пунктов меню.
  * Используется в функциях: на всех страницах.
@@ -390,22 +411,6 @@ function MainnavCatalog(selector = document) {
   const mainnavList = mainnav.querySelector(".mainnav__list");
   const mainnavDropdown = mainnav.querySelector(".mainnav__dropdown");
   const mainnavItems = mainnav.querySelectorAll(".mainnav__item");
-
-  // Функция для создания SVG иконки
-  function createSvgIcon(pathData, width = 12, height = 12) {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    svg.setAttribute("viewBox", "0 0 240 240");
-    svg.setAttribute("width", width);
-    svg.setAttribute("height", height);
-    svg.setAttribute("aria-hidden", "true");
-    
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", pathData);
-    svg.appendChild(path);
-    
-    return svg;
-  }
 
   // Добавляем кнопку "Еще"
   const mainnavMoreLi = document.createElement("li");
