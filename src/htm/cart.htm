@@ -16,6 +16,7 @@
 					<div class="cartTable__item" data-id="{cart_items.GOODS_ID}" data-mod-id="{cart_items.GOODS_MOD_ID}">
 						<div class="cartTable__image">
 							<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_MEDIUM}{% ENDIF %}" alt="{cart_items.GOODS_NAME}">
+							<span class="cartTable__image-qty">{cart_items.ORDER_LINE_QUANTITY}</span>
 						</div>
 
 						<div class="cartTable__content">
@@ -113,6 +114,15 @@
 					<!-- Скидки, действующие на заказ -->
 					{% FOR cart_discount %}
 					{% IF cart_discount.DISCOUNT_IS_ENABLED %}
+					<div class="cartTotal__item cartTotal__discount-info">
+						Доп. скидка
+						{% IF cart_discount.IS_PERCENT %}
+						{cart_discount.DISCOUNT_VALUE}<span class="percent">%</span>
+						{% ELSE %}
+						{cart_discount.DISCOUNT_VALUE | money_format}
+						{% ENDIF %}
+						при заказе от {cart_discount.END_PRICE | money_format}
+					</div>
 					<div class="cartTotal__item cartTotal__discount">
 						<span class="cartTotal__label">{cart_discount.DISCOUNT_NAME}:</span>
 						<data class="cartTotal__price {CURRENCY_CHAR_CODE} discountValue" value="{cart_discount.DISCOUNT_VALUE}">
@@ -165,16 +175,6 @@
 											d="m568.571 512.003 443.715-443.715c15.622-15.622 15.622-40.95 0-56.57s-40.954-15.622-56.57 0L511.999 455.433 68.286 11.718c-15.622-15.622-40.95-15.622-56.57 0s-15.622 40.95 0 56.57l443.713 443.713L11.716 955.716c-15.622 15.622-15.622 40.949 0 56.57a39.925 39.925 0 0 0 12.974 8.681 39.939 39.939 0 0 0 15.312 3.032 39.939 39.939 0 0 0 15.312-3.032 39.94 39.94 0 0 0 12.974-8.681l443.711-443.713 443.711 443.713c7.811 7.811 18.051 11.713 28.285 11.713 10.24 0 20.474-3.903 28.291-11.713 15.622-15.622 15.622-40.949 0-56.57L568.571 512.003z" />
 							</svg>
 						</button>
-					</div>
-
-					<!-- Поле комментария к доставке -->
-					<div class="form__group">
-						<textarea class="form__input"
-											name="form[delivery][comment]"
-											placeholder="Комментарий к доставке"
-											{% IF required %}required{% ENDIF %}
-											{% IF disabled %}disabled{% ENDIF %}
-											tabindex="0"></textarea>
 					</div>
 
 					<button class="cartTotal__button button-underline" data-action="closeOrder" type="submit" title="Перейти к быстрому оформлению заказа" form="orderform">

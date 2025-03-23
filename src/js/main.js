@@ -3266,38 +3266,3 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 console.timeEnd("start time");
-
-function handleDeliveryComment() {
-  const commentField = document.querySelector('textarea[name="form[delivery][comment]"]');
-  if (!commentField) return;
-
-  // Убираем required если поле скрыто
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-        const isHidden = window.getComputedStyle(commentField).display === 'none';
-        if (isHidden) {
-          commentField.removeAttribute('required');
-        } else if (commentField.hasAttribute('data-was-required')) {
-          commentField.setAttribute('required', '');
-        }
-      }
-    });
-  });
-
-  // Сохраняем начальное состояние required
-  if (commentField.hasAttribute('required')) {
-    commentField.setAttribute('data-was-required', '');
-  }
-
-  observer.observe(commentField, {
-    attributes: true
-  });
-
-  // Обработка видимости поля
-  commentField.addEventListener('focus', () => {
-    if (commentField.hasAttribute('required') && window.getComputedStyle(commentField).display === 'none') {
-      commentField.style.display = 'block';
-    }
-  });
-}
