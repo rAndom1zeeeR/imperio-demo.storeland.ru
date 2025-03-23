@@ -368,12 +368,54 @@
 ** Каталог
 */
 .page-index #catalog {border-bottom: 0;}
-#catalog {padding-block: 16px;border-bottom: 1px solid var(--color-border-secondary);}
+#catalog {border-bottom: 1px solid var(--color-border-secondary);}
 #catalog .mainnav__list {margin-inline: -16px;width: 100%;}
-.catalog__mainnav .mainnav__link {font-size: var(--text-size-large);line-height: var(--text-height-large);}
-#catalog .mainnav__dropdown {right: 0;left: auto;width: auto;}
+.catalog__mainnav .mainnav__link {display: flex;padding: 16px;font-size: var(--text-size-large);line-height: var(--text-height-large);}
+#catalog .mainnav__dropdown {right: 0;left: auto;display: none;width: auto;}
 @media all and (max-width: 1023px) {
 	#catalog {display: none;}
+}
+.catalog__content {display: none;}
+.catalog__content.is-active {display: block;}
+@media all and (min-width: 1024px) {
+	.catalog__content {display: none;}
+	.catalog__content .container {position: relative;padding-inline: 0;}
+	.catalog__content ul {flex-direction: column;margin: 0;padding: 0;list-style: none;}
+	.mainnav__catalog.is-opened .catalog__content {
+		position: absolute;
+		left: 0;
+		z-index: 5;
+		display: block;
+		width: 100%;
+		background-color: var(--color-background);
+		border-bottom: 1px solid var(--color-border);
+	}
+	.catalog__link {display: block;padding: 6px;}
+	.catalog__link[data-level="0"] {width: 360px;padding: 16px 24px;transition: background-color var(--duration);}
+	.catalog__link[data-level="0"]:hover {background-color: white;}
+	.catalog__link[data-level="1"] {padding-block: 10px;font-weight: bold;}
+	.catalog__link:not([data-level="0"]) svg {display: none;}
+	.catalog__sub {display: none;}
+	.catalog__sub[data-level="0"] {display: block;height: 500px;overflow: hidden auto;background-color: var(--color-background);border: 1px solid var(--color-border-secondary);}
+	.catalog__sub[data-level="0"]::-webkit-scrollbar {width: 4px;}
+	.catalog__sub[data-level="1"] {
+		position: absolute;
+		top: 0;
+		left: 360px;
+		grid-auto-rows: max-content;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 8px;
+		align-items: flex-start;
+		width: calc(100% - 360px);
+		height: 500px;
+		padding: 16px 24px;
+		overflow: hidden auto;
+		background-color: white;
+		border: 1px solid var(--color-border-secondary);
+	}
+	.catalog__item.is-parent:hover > .catalog__sub[data-level="1"] {display: grid;}
+	.catalog__item.is-parent:hover > .catalog__link[data-level="0"] {color: var(--color-secondary);background-color: white;}
+	.catalog__sub[data-level="2"] {display: block;}
 }
 
 /*

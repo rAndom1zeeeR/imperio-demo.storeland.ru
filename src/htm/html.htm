@@ -260,12 +260,12 @@
 		<!-- Каталог -->
 		<section id="catalog">
 			<div class="container">
-				<nav class="catalog__mainnav mainnav" itemscope itemtype="https://schema.org/SiteNavigationElement">
+				<nav class="catalog__mainnav mainnav">
 					<ul class="mainnav__list">
 						{% FOR catalog_full %}
 						{% IF catalog_full.LEVEL > 0 || catalog_full.HIDE %}{continue}{% ENDIF %}
 						<li class="mainnav__item{% IF catalog_full.CURRENT_PARENT %} is-active{% ENDIF %}">
-							<a class="mainnav__link" href="{catalog_full.URL}" itemprop="url">
+							<a class="mainnav__link" href="{catalog_full.URL}">
 								<span itemprop="name">{catalog_full.NAME}</span>
 							</a>
 						</li>
@@ -273,6 +273,26 @@
 					</ul>
 					<ul class="mainnav__dropdown"></ul>
 				</nav>
+				<div class="catalog__content">
+					<div class="container">
+						{% FOR catalog_full %}
+						{% IF catalog_full.FIRST %}<ul class="catalog__sub" data-level="{catalog_full.LEVEL}">{% ENDIF %}
+							<li class="catalog__item {% IF catalog_full.ISSET_VISIBLE_SUB %}is-parent{% ENDIF %} {% IF catalog_full.CURRENT_PARENT %}is-opened{% ENDIF %}" data-level="{catalog_full.LEVEL}" data-id="{catalog_full.ID}" {% IF catalog_full.HIDE %}style="display:none;" {% ENDIF %}>
+								<a class="catalog__link {% IF catalog_full.CURRENT %}is-opened{% ENDIF %}" href="{catalog_full.URL}" data-level="{catalog_full.LEVEL}">
+									<span>{catalog_full.NAME}</span>
+									{% IF catalog_full.ISSET_VISIBLE_SUB %}
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="10" height="10" aria-hidden="true">
+										<path d="M183.2 111.8 74.9 3.6c-4.8-4.7-12.5-4.7-17.2 0-4.8 4.8-4.8 12.5 0 17.2l99.7 99.7-99.7 99.7c-4.8 4.7-4.8 12.4 0 17.2 4.8 4.7 12.5 4.7 17.2 0L183.2 129c4.7-4.7 4.7-12.5 0-17.2z" />
+									</svg>
+									{% ENDIF %}
+								</a>
+								{% IF catalog_full.ISSET_SUB=0 %}
+							</li>{% ENDIF %}
+							{% IF catalog_full.LAST %}{% FOR out %}</li>{% IFNOT catalog_full.out.LAST %}
+						</ul>{% ENDIF %}{% ENDFOR %}{% ENDIF %}
+						{% ENDFOR %}
+					</div>
+				</div>
 			</div>
 		</section>
 

@@ -480,8 +480,10 @@ function MainnavCatalog(selector = document) {
 
   mainnavMoreButton.addEventListener("click", (event) => {
     event.preventDefault();
-    event.currentTarget.classList.toggle("is-active");
+    // event.currentTarget.classList.toggle("is-active");
     OverlayOpener(mainnav, handleOpened);
+    const catalog = document.querySelector('#catalog');
+    catalog.querySelector('.catalog__content').classList.toggle('is-active');
   });
 
   function handleOpened(event) {
