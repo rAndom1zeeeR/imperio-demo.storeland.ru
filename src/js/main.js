@@ -1039,11 +1039,12 @@ function Products() {
   products.forEach((product) => {
     // Запуск функции стикера цены.
     StickerSales(product);
-    attrs(product);
+    Attrs(product);
+    swiperProductImages('.swiper-' + product.getAttribute('data-id'))
   });
 
   // Показать/скрыть характеристики товара
-  function attrs(product) {
+  function Attrs(product) {
     const button = product.querySelector(".product__attr-button");
     const content = product.querySelector(".product__attr");
 
@@ -2039,6 +2040,7 @@ function Orderfast(doc = document) {
   // handleVisibility(deliveryZones, deliverySelect.value);
   // handleVisibility(deliveryDescs, deliverySelect.value);
   handleFormDeliveryZoneId(deliveryZoneSelected);
+  // handleVisibility(paymentItems, paymentItems[0].getAttribute("data-id"));
   handleVisibility(paymentItems, paymentItems[0].getAttribute("data-id"));
   // handleVisibility(paymentSelects, deliverySelect.value);
   // handleVisibility(paymentSelects, deliverySelect.value);
@@ -2072,6 +2074,13 @@ function Orderfast(doc = document) {
     if (input) input.checked = true;
     handleDeliveryPrice(deliveryPrices, target.getAttribute("data-price"));
     handleVisibility(paymentItems, item.getAttribute("data-id"));
+    paymentItems.forEach((item) => {
+      if (item.classList.contains("is-hide")) {
+        item.querySelector("input").checked = false;
+      } else {
+        item.querySelector("input").checked = true;
+      }
+    });
   }
 
   // Первый запуск функций
@@ -3032,6 +3041,7 @@ function swiperViewed(selector) {
  */
 function NewsTabs(selector) {
   const block = document.querySelector(selector);
+  if (!block) return;
   const tabsContainer = block.querySelector('.tabs');
   const tabsContent = block.querySelectorAll('.tabs__content');
   const tabsLinks = block.querySelectorAll('.tabs__link');
@@ -3091,6 +3101,53 @@ function NewsTabs(selector) {
   tabsContainer.addEventListener('click', handleTabClick);
 }
 
+
+
+/**
+ * Слайдер изображений товара.
+ * Используется в функциях: на странице "Товары"
+ * Использует функции: Swiper
+ */
+function swiperProductImages(id) {
+  // Основной слайдер
+  var swiper = new Swiper(id, {
+    loop: false,
+    autoplay: false,
+    watchSlidesVisibility: true,
+    simulateTouch: true,
+    grabCursor: true,
+    slideToClickedSlide: true,
+    slidesPerView: '1',
+    spaceBetween: 0,
+    preventClicks: true,
+    watchOverflow: true,
+    preloadImages: false,
+    nested: true,
+    lazy: {
+      enabled: true,
+      loadPrevNext: true,
+      loadOnTransitionStart: true,
+    },
+    pagination: {
+      enabled: false,
+      el: id + ' .swiper-pagination',
+      type: 'bullets',
+      dynamicBullets: true,
+      clickable: true,
+    },
+    scrollbar: {
+      enabled: true,
+      el: id + ' .swiper-scrollbar',
+      snapOnRelease: true,
+      draggable: true,
+    },
+    navigation: {
+      enabled: false,
+      nextEl: id + ' .swiper-button-next',
+      prevEl: id + ' .swiper-button-prev',
+    },
+  });
+}
 
 /**
  * Авторизация без обновления страницы.
@@ -3201,7 +3258,6 @@ document.addEventListener("DOMContentLoaded", function () {
   Autorization();
   swiperViewed('#viewed');
   toTop();
-  NewsTabs('#news');
   Form("dialogCallback", "Запрос обратного звонка успешно отправлен администрации магазина", "Вы уже отправляли запрос. Пожалуйста ожидайте звонка.");
   Form("dialogNotify", "Вы будете уведомлены о поступлении товара", "Вы уже отправляли запрос. Пожалуйста ожидайте.");
   Form("subscribe", "Спасибо за обращение! Вы подписались на нашу рассылку", "Вы уже отправляли запрос. Пожалуйста ожидайте.");

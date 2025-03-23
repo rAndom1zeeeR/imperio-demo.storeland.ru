@@ -450,9 +450,22 @@
 
 								<!-- Изображение -->
 								<div class="product__images">
+									{% IF index_page_sale_goods.IMAGE_EMPTY %}
 									<a class="product__image" href="{index_page_sale_goods.URL_MIN_PRICE_NOW | url_amp}">
-										<img src="{% IF index_page_sale_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{index_page_sale_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_sale_goods.NAME}" loading="lazy" itemprop="image">
+										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_sale_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
+									{% ELSE %}
+									<div class="product__image swiper swiper-{index_page_sale_goods.ID}">
+										<div class="swiper-wrapper">
+											{% FOR images %}
+											<a class="swiper-slide product__img" href="{index_page_sale_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_sale_goods.images.NAME}" itemprop="url" data-id="{index_page_sale_goods.images.ID}">
+												<img src="{index_page_sale_goods.images.MEDIUM}" alt="{index_page_sale_goods.images.NAME}" loading="lazy" itemprop="image">
+											</a>
+											{% ENDFOR %}
+										</div>
+										<div class="swiper-scrollbar"></div>
+									</div>
+									{% ENDIF %}
 									<!-- Стикеры -->
 									{% IF index_page_sale_goods.IS_NEW || index_page_sale_goods.IS_TOP || index_page_sale_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > index_page_sale_goods.MIN_PRICE_NOW || index_page_sale_goods.MIN_PRICE_OLD > index_page_sale_goods.MIN_PRICE_NOW %}
 									<div class="product__sticker">
@@ -661,9 +674,22 @@
 
 								<!-- Изображение -->
 								<div class="product__images">
+									{% IF index_page_favorites_goods.IMAGE_EMPTY %}
 									<a class="product__image" href="{index_page_favorites_goods.URL_MIN_PRICE_NOW | url_amp}">
-										<img src="{% IF index_page_favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{index_page_favorites_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_favorites_goods.NAME}" loading="lazy" itemprop="image">
+										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_favorites_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
+									{% ELSE %}
+									<div class="product__image swiper swiper-{index_page_favorites_goods.ID}">
+										<div class="swiper-wrapper">
+											{% FOR images %}
+											<a class="swiper-slide product__img" href="{index_page_favorites_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_favorites_goods.images.NAME}" itemprop="url" data-id="{index_page_favorites_goods.images.ID}">
+												<img src="{index_page_favorites_goods.images.MEDIUM}" alt="{index_page_favorites_goods.images.NAME}" loading="lazy" itemprop="image">
+											</a>
+											{% ENDFOR %}
+										</div>
+										<div class="swiper-scrollbar"></div>
+									</div>
+									{% ENDIF %}
 									<!-- Стикеры -->
 									{% IF index_page_favorites_goods.IS_NEW || index_page_favorites_goods.IS_TOP || index_page_favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > index_page_favorites_goods.MIN_PRICE_NOW || index_page_favorites_goods.MIN_PRICE_OLD > index_page_favorites_goods.MIN_PRICE_NOW %}
 									<div class="product__sticker">
@@ -919,9 +945,22 @@
 
 								<!-- Изображение -->
 								<div class="product__images">
+									{% IF index_page_new_goods.IMAGE_EMPTY %}
 									<a class="product__image" href="{index_page_new_goods.URL_MIN_PRICE_NOW | url_amp}">
-										<img src="{% IF index_page_new_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{index_page_new_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_new_goods.NAME}" loading="lazy" itemprop="image">
+										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_new_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
+									{% ELSE %}
+									<div class="product__image swiper swiper-{index_page_new_goods.ID}">
+										<div class="swiper-wrapper">
+											{% FOR images %}
+											<a class="swiper-slide product__img" href="{index_page_new_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_new_goods.images.NAME}" itemprop="url" data-id="{index_page_new_goods.images.ID}">
+												<img src="{index_page_new_goods.images.MEDIUM}" alt="{index_page_new_goods.images.NAME}" loading="lazy" itemprop="image">
+											</a>
+											{% ENDFOR %}
+										</div>
+										<div class="swiper-scrollbar"></div>
+									</div>
+									{% ENDIF %}
 									<!-- Стикеры -->
 									{% IF index_page_new_goods.IS_NEW || index_page_new_goods.IS_TOP || index_page_new_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > index_page_new_goods.MIN_PRICE_NOW || index_page_new_goods.MIN_PRICE_OLD > index_page_new_goods.MIN_PRICE_NOW %}
 									<div class="product__sticker">
@@ -1113,9 +1152,22 @@
 
 							<!-- Изображение -->
 							<div class="product__images">
+								{% IF index_page_goods.IMAGE_EMPTY %}
 								<a class="product__image" href="{index_page_goods.URL_MIN_PRICE_NOW | url_amp}">
-									<img src="{% IF index_page_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{index_page_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_goods.NAME}" loading="lazy" itemprop="image">
+									<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_goods.NAME}" loading="lazy" itemprop="image">
 								</a>
+								{% ELSE %}
+								<div class="product__image swiper swiper-{index_page_goods.ID}">
+									<div class="swiper-wrapper">
+										{% FOR images %}
+										<a class="swiper-slide product__img" href="{index_page_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_goods.images.NAME}" itemprop="url" data-id="{index_page_goods.images.ID}">
+											<img src="{index_page_goods.images.MEDIUM}" alt="{index_page_goods.images.NAME}" loading="lazy" itemprop="image">
+										</a>
+										{% ENDFOR %}
+									</div>
+									<div class="swiper-scrollbar"></div>
+								</div>
+								{% ENDIF %}
 								<!-- Стикеры -->
 								{% IF index_page_goods.IS_NEW || index_page_goods.IS_TOP || index_page_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > index_page_goods.MIN_PRICE_NOW || index_page_goods.MIN_PRICE_OLD > index_page_goods.MIN_PRICE_NOW %}
 								<div class="product__sticker">
@@ -1851,9 +1903,22 @@
 
 								<!-- Изображение -->
 								<div class="product__images">
+									{% IF recently_viewed_goods.IMAGE_EMPTY %}
 									<a class="product__image" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}">
-										<img src="{% IF recently_viewed_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{recently_viewed_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{recently_viewed_goods.NAME}" loading="lazy" itemprop="image">
+										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{recently_viewed_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
+									{% ELSE %}
+									<div class="product__image swiper swiper-{recently_viewed_goods.ID}">
+										<div class="swiper-wrapper">
+											{% FOR images %}
+											<a class="swiper-slide product__img" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}" title="{recently_viewed_goods.images.NAME}" itemprop="url" data-id="{recently_viewed_goods.images.ID}">
+												<img src="{recently_viewed_goods.images.MEDIUM}" alt="{recently_viewed_goods.images.NAME}" loading="lazy" itemprop="image">
+											</a>
+											{% ENDFOR %}
+										</div>
+										<div class="swiper-scrollbar"></div>
+									</div>
+									{% ENDIF %}
 									<!-- Стикеры -->
 									{% IF recently_viewed_goods.IS_NEW || recently_viewed_goods.IS_TOP || recently_viewed_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > recently_viewed_goods.MIN_PRICE_NOW || recently_viewed_goods.MIN_PRICE_OLD > recently_viewed_goods.MIN_PRICE_NOW %}
 									<div class="product__sticker">
@@ -3055,6 +3120,7 @@
 				swiperNews('[data-tab-content="news_list_articles"]');
 				swiperNews('[data-tab-content="news_list_mass_media"]');
 				VisibleItems('#pdtSale');
+				NewsTabs('#news');
 			});
 		</script>
 		{% ENDIF %}
