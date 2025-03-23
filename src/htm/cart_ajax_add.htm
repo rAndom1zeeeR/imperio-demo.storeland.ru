@@ -34,8 +34,8 @@
 <div style="display:none;" id="newCartWord">товар{CART_COUNT_TOTAL | gen_word_end("","а","ов")}</div>
 <div style="display:none;" id="newCartSum">{CART_SUM_NOW}</div>
 <div style="display:none;" id="newCartSumFormated">{CART_SUM_NOW | money_format}</div>
-<div style="display:none;" id="newcart-discount">{CART_SUM_NOW_WITH_DISCOUNT}</div>
-<div style="display:none;" id="newcart-discountFormated">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</div>
+<div style="display:none;" id="newCartSumDiscount">{CART_SUM_NOW_WITH_DISCOUNT}</div>
+<div style="display:none;" id="newCartSumDiscountFormated">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</div>
 <div style="display:none;" id="newCartSumTotal">{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT}</div>
 <div style="display:none;" id="newCartSumTotalFormated">{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT | money_format}</div>
 <div style="display:none;" id="newCartData">
@@ -75,9 +75,27 @@
 	</form>
 
 	<div class="addto__buttons">
+		<!-- Скидки, действующие на заказ -->
+		{% FOR cart_discount %}
+		{% IF cart_discount.DISCOUNT_IS_ENABLED %}
+		<div class="addto__discount {CURRENCY_CHAR_CODE}">
+			<span>{cart_discount.DISCOUNT_NAME}:</span>
+			<data class="cartTotal__price {CURRENCY_CHAR_CODE} discountValue" value="{cart_discount.DISCOUNT_VALUE}">
+				{% IF cart_discount.IS_PERCENT %}
+				{cart_discount.DISCOUNT_VALUE}
+				<span class="percent">%</span>
+				{% ELSE %}
+				{cart_discount.DISCOUNT_VALUE | money_format}
+				{% ENDIF %}
+			</data>
+		</div>
+		{% ELSE %}
+		<div class="addto__discount {CURRENCY_CHAR_CODE} is-hide"></div>
+		{% ENDIF %}
+		{% ENDFOR %}
 		<div class="addto__total {CURRENCY_CHAR_CODE}">
 			<span>Итого:</span>
-			<data class="price__now cart-discount" value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</data>
+			<data class="price__now cart-sum-discount" value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</data>
 		</div>
 		<a class="addto__button button" href="{CART_URL}" rel="nofollow">Оформить заказ</a>
 		<a class="addto__clear button button-underline" href="{CART_TRUNCATE_URL}" title="Очистить корзину" rel="nofollow">

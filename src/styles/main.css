@@ -314,7 +314,7 @@
 #catalog {padding-block: 16px;border-bottom: 1px solid var(--color-border-secondary);}
 #catalog .mainnav__list {margin-inline: -16px;width: 100%;}
 .catalog__mainnav .mainnav__link {font-size: var(--text-size-large);line-height: var(--text-height-large);}
-#catalog .mainnav__dropdown {left: auto;right: 0;width: auto;}
+#catalog .mainnav__dropdown {right: 0;left: auto;width: auto;}
 @media all and (max-width: 1023px) {
 	#catalog {display: none;}
 }
@@ -336,7 +336,7 @@
 	padding-block: 20px 8px;
 }
 .slideshow__content {position: relative;z-index: 1;}
-.slideshow__subtitle {margin-top: 6px;font-size: var(--heading-06);line-height: 22px;font-weight: normal;}
+.slideshow__subtitle {margin-top: 6px;font-weight: normal;font-size: var(--heading-06);line-height: 22px;}
 .slideshow__button {margin-top: 6px;}
 @media all and (min-width: 480px) {
 	.slideshow__inner {align-items: center;height: 186px;padding: 0 40px;}
@@ -1121,7 +1121,7 @@
 	font-family: var(--font-secondary);
 }
 .sidebar__header-close {height: auto;margin-left: auto;}
-.sidebar__content {height: calc(100vh - 57px);overflow: hidden auto;-webkit-overflow-scrolling: auto;}
+.sidebar__content {display: flex;flex-direction: column;height: calc(100vh - 57px);overflow: hidden auto;-webkit-overflow-scrolling: auto;}
 .sidebar__content::-webkit-scrollbar {width: var(--scrollbar-width-thin);}
 .sidebar__content::-webkit-scrollbar-thumb {background: var(--color-border);}
 .sidebar__content::-webkit-scrollbar-track {background: var(--color-border-secondary);}
@@ -1532,9 +1532,10 @@
 
 /* Выбор модификации */
 .productViewMod .productView {max-width: 480px;border: 0;border-radius: var(--border-radius);}
-.productViewMod .productView__images {display: none;}
 .productViewMod .productView__content {width: 100%;}
+.productViewMod .productView__images {display: none;}
 .productViewMod .productView__anchors {display: none;}
+.productViewMod .productView__description {display: none;}
 .productViewMod #related-goods {display: none;}
 
 /* Дополнительные изображения */
@@ -1759,12 +1760,12 @@
 	.addto__item:hover .addto__remove {opacity: 1;}
 	.addto__remove:hover svg {fill: var(--color-secondary);}
 }
-.addto__form {height: calc(100vh - 56px - 170px);overflow: hidden auto;}
+.addto__form {flex-grow: 1;height: calc(100vh - 56px - 224px);overflow: hidden auto;}
 .addto__form::-webkit-scrollbar {width: var(--color-border);}
 .addto__form::-webkit-scrollbar-track {background: var(--color-border-secondary);}
 .addto__name {word-wrap: break-word;}
-.addto__mods {display: block;margin-top: 8px;line-height: 1.25;opacity: 0.5;font-size: var(--text-size-regular);}
-.addto__price {display: flex;align-items: flex-end;gap: 8px;margin-top: 8px;white-space: nowrap;}
+.addto__mods {display: block;margin-top: 8px;font-size: var(--text-size-regular);line-height: 1.25;opacity: 0.5;}
+.addto__price {display: flex;gap: 8px;align-items: flex-end;margin-top: 8px;white-space: nowrap;}
 .addto__price small {font-weight: bold;opacity: 0.5;}
 .addto__price .price__old {margin-right: 8px;font-size: var(--text-size-medium);}
 .addto__price .price__now {white-space: nowrap;}
@@ -1783,6 +1784,10 @@
 .addto__total {display: flex;flex-shrink: 0;justify-content: space-between;}
 .addto__total > span {font-size: var(--text-size-large);}
 .addto__total data {font-weight: bold;font-size: var(--heading-05);}
+.addto__discount {display: flex;flex-shrink: 0;justify-content: space-between;}
+.addto__discount > span {font-size: var(--text-size-large);}
+.addto__discount data {color: var(--color-error);font-weight: bold;font-size: var(--text-size-large);}
+.addto__discount:empty {display: none;}
 .addto__empty {display: none;}
 .is-empty .addto__empty {display: block;padding: 24px;}
 .is-empty .addto__header {display: none;}
@@ -1811,20 +1816,28 @@
 */
 .toTop {
 	position: fixed;
-	bottom: 16px;
 	right: 16px;
-	width: 50px;
-	height: 50px;
-	text-align: center;
-	transition: all 0.3s ease;
+	bottom: 16px;
 	z-index: 6;
-	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 50px;
+	height: 50px;
+	text-align: center;
 	border: 1px solid var(--color-border-secondary);
 	border-radius: var(--border-radius);
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
 @media (hover: hover) {
 	.toTop:hover {color: var(--color-primary);}
 }
+
+
+/*
+** Видимость элементов
+*/
+.is-hide {display: none;}
+.is-hidden {visibility: hidden;opacity: 0;}
+.is-visible {visibility: visible;opacity: 1;}

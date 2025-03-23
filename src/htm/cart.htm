@@ -46,12 +46,12 @@
 									</svg>
 								</button>
 								<input class="qty__input"
-											 type="number"
-											 name="form[quantity][{cart_items.GOODS_MOD_ID}]"
-											 {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE %}max="{cart_items.GOODS_MOD_REST_VALUE}" {% ENDIF %}
-											 min="1"
-											 value="{cart_items.ORDER_LINE_QUANTITY}"
-											 title="Количество, {cart_items.GOODS_MOD_MEASURE_NAME}">
+									   type="number"
+									   name="form[quantity][{cart_items.GOODS_MOD_ID}]"
+									   {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE %}max="{cart_items.GOODS_MOD_REST_VALUE}" {% ENDIF %}
+									   min="1"
+									   value="{cart_items.ORDER_LINE_QUANTITY}"
+									   title="Количество, {cart_items.GOODS_MOD_MEASURE_NAME}">
 								<button class="qty__select qty__select--plus" type="button" title="Увеличить">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="12" height="12" aria-hidden="true">
 										<path d="M960 448H576V64c0-35.346-28.654-64-64-64s-64 28.654-64 64v384H64c-35.346 0-64 28.654-64 64s28.654 64 64 64h384v384c0 35.345 28.654 64 64 64s64-28.655 64-64V576h384c35.345 0 64-28.654 64-64s-28.655-64-64-64z" />
@@ -142,7 +142,7 @@
 						<span class="cartTotal__label">Итого:</span>
 						<data class="cartTotal__price cart-total {CURRENCY_CHAR_CODE}" value="{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT}">{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT | money_format}</data>
 						<data hidden class="cartTotal__price cart-sum" value="{CART_SUM_NOW}">{CART_SUM_NOW | money_format}</data>
-						<data hidden class="cartTotal__price cart-discount" value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</data>
+						<data hidden class="cartTotal__price cart-sum-discount" value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</data>
 					</div>
 				</div>
 
@@ -161,7 +161,7 @@
 						<button class="coupon__reset button-icon" type="button" title="Сбросить" aria-label="Сбросить купон">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" aria-hidden="true">
 								<path
-											d="m568.571 512.003 443.715-443.715c15.622-15.622 15.622-40.95 0-56.57s-40.954-15.622-56.57 0L511.999 455.433 68.286 11.718c-15.622-15.622-40.95-15.622-56.57 0s-15.622 40.95 0 56.57l443.713 443.713L11.716 955.716c-15.622 15.622-15.622 40.949 0 56.57a39.925 39.925 0 0 0 12.974 8.681 39.939 39.939 0 0 0 15.312 3.032 39.939 39.939 0 0 0 15.312-3.032 39.94 39.94 0 0 0 12.974-8.681l443.711-443.713 443.711 443.713c7.811 7.811 18.051 11.713 28.285 11.713 10.24 0 20.474-3.903 28.291-11.713 15.622-15.622 15.622-40.949 0-56.57L568.571 512.003z" />
+									  d="m568.571 512.003 443.715-443.715c15.622-15.622 15.622-40.95 0-56.57s-40.954-15.622-56.57 0L511.999 455.433 68.286 11.718c-15.622-15.622-40.95-15.622-56.57 0s-15.622 40.95 0 56.57l443.713 443.713L11.716 955.716c-15.622 15.622-15.622 40.949 0 56.57a39.925 39.925 0 0 0 12.974 8.681 39.939 39.939 0 0 0 15.312 3.032 39.939 39.939 0 0 0 15.312-3.032 39.94 39.94 0 0 0 12.974-8.681l443.711-443.713 443.711 443.713c7.811 7.811 18.051 11.713 28.285 11.713 10.24 0 20.474-3.903 28.291-11.713 15.622-15.622 15.622-40.949 0-56.57L568.571 512.003z" />
 							</svg>
 						</button>
 					</div>

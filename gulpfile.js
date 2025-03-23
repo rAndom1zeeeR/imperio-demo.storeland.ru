@@ -32,7 +32,7 @@ let paths = {
 
 // LOGIC
 
-const {src, dest, parallel, series, watch} = require("gulp");
+const { src, dest, parallel, series, watch } = require("gulp");
 const browserSync = require("browser-sync").create();
 const imagemin = require("gulp-imagemin");
 const newer = require("gulp-newer");
@@ -43,8 +43,8 @@ const plumber = require("gulp-plumber");
 // Dev depend
 const fetch = require("node-fetch");
 const fs = require("fs");
-const {base64encode} = require("nodejs-base64");
-const {URLSearchParams} = require("url");
+const { base64encode } = require("nodejs-base64");
+const { URLSearchParams } = require("url");
 const path = require("path");
 const chalk = require("chalk");
 const moment = require("moment"); // require
@@ -54,7 +54,7 @@ const concat = require("gulp-concat");
 const sourcemap = require("gulp-sourcemaps");
 const csso = require("gulp-csso");
 
-const {SECRET_KEY, SITE} = require("./storeland-uploader-config.json");
+const { SECRET_KEY, SITE } = require("./storeland-uploader-config.json");
 const href = `${SITE}/api/v1/site_files/save`;
 
 function checkConfig(cb) {
@@ -136,7 +136,7 @@ function images() {
 
 function startwatch() {
   if (preprocessorOn) {
-    watch(baseDir + "/**/*.scss", {delay: 100}, styles);
+    watch(baseDir + "/**/*.scss", { delay: 100 }, styles);
   }
   // Загрузка css файлов
   watch(baseDir + "/**/*.css").on("change", function (event) {
@@ -177,7 +177,7 @@ function uploadFile(event) {
   let fileExt = path.extname(file);
 
   new Promise((resolve) => {
-    fs.readFile(`${file}`, {encoding: "utf8"}, (err, data) => {
+    fs.readFile(`${file}`, { encoding: "utf8" }, (err, data) => {
       if (err) throw err;
       resolve(base64encode(data));
     });
@@ -191,30 +191,44 @@ function uploadFile(event) {
       params.append("secret_key", SECRET_KEY);
       params.append("form[file_name]", `${fileName}`);
       params.append("form[file_content]", `${encoded}`);
-      // if(fileName.includes('css')){
       params.append("form[do_not_receive_file]", `1`);
-      // }
 
-      fetch(href, {
-        method: "post",
-        body: params,
-        timeout: 5000,
-      })
-        .then((res) => res.json())
-        .then((json) => {
+      const fetchWithRetry = async (retries = 3) => {
+        try {
+          const response = await fetch(href, {
+            method: "post",
+            body: params,
+            timeout: 10000, // Увеличиваем таймаут до 10 секунд
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const json = await response.json();
+
           if (json.status === `ok`) {
             console.log(`[${moment().format("HH:mm:ss")}] Файл ${chalk.red(fileName)} успешно отправлен ✔️`);
 
-            // Если это htm файлы
             fileExt = fileExt.replace(".", "");
             if (fileswatch.includes(fileExt)) {
               browserSync.reload();
             }
-          } else if (json.status == `error`) {
+          } else if (json.status === `error`) {
             console.log(`Ошибка отправки ⛔ ${fileName}`);
             console.log(`${json.message}`);
           }
-        });
+        } catch (error) {
+          if (retries > 0) {
+            console.log(`Повторная попытка отправки файла ${fileName}...`);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            return fetchWithRetry(retries - 1);
+          }
+          console.error(`Ошибка при отправке файла ${fileName}:`, error);
+        }
+      };
+
+      return fetchWithRetry();
     })
     .catch((err) => console.error(err));
 }
@@ -258,7 +272,7 @@ function downloadFiles(done) {
           done();
           return;
         }
-        const {file_id, file_name} = arr.shift();
+        const { file_id, file_name } = arr.shift();
 
         let params = new URLSearchParams();
         params.append("secret_key", SECRET_KEY);

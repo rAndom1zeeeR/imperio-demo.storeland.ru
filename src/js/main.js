@@ -350,11 +350,11 @@ function createSvgIcon(pathData, width = 12, height = 12) {
   svg.setAttribute("width", width);
   svg.setAttribute("height", height);
   svg.setAttribute("aria-hidden", "true");
-  
+
   const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
   path.setAttribute("d", pathData);
   svg.appendChild(path);
-  
+
   return svg;
 }
 
@@ -421,11 +421,11 @@ function MainnavCatalog(selector = document) {
   mainnavMoreButton.setAttribute("aria-label", "Еще");
   const mainnavMoreButtonSpan = document.createElement("span");
   mainnavMoreButtonSpan.innerHTML = "Еще";
-  
+
   // Создаем SVG для кнопки "Еще"
   const mainnavMoreButtonSvgPath = "M129.1 183.3 237.3 75c4.7-4.8 4.7-12.5 0-17.2-4.8-4.8-12.5-4.8-17.2 0l-99.7 99.7-99.7-99.7C16 53 8.3 53 3.5 57.8c-4.7 4.8-4.7 12.5 0 17.2l108.4 108.3c4.7 4.7 12.5 4.7 17.2 0z";
   const mainnavMoreButtonSvg = createSvgIcon(mainnavMoreButtonSvgPath);
-  
+
   // Добавляем кнопку "Sale"
   const mainnavSaleLi = document.createElement("li");
   mainnavSaleLi.classList.add("mainnav__item");
@@ -443,7 +443,7 @@ function MainnavCatalog(selector = document) {
     mainnavList.append(mainnavSaleLi);
     mainnavSaleLi.append(mainnavSaleButton);
     mainnavSaleButton.append(mainnavSaleButtonSpan);
-    
+
     mainnavList.append(mainnavMoreLi);
     mainnavMoreLi.append(mainnavMoreButton);
     mainnavMoreButton.append(mainnavMoreButtonSpan, mainnavMoreButtonSvg);
@@ -451,7 +451,7 @@ function MainnavCatalog(selector = document) {
     // Измеряем ширину кнопок
     const saleButtonWidth = mainnavSaleLi.clientWidth;
     const moreButtonWidth = mainnavMoreLi.clientWidth;
-    
+
     // Удаляем кнопки для корректного расчета
     mainnavSaleLi.remove();
     mainnavMoreLi.remove();
@@ -633,14 +633,22 @@ function AddtoCart(doc = document) {
     // console.log("[DEBUG]: handleAddtoCartUpdate data", data);
     const cartAddto = document.querySelector(".addto__cart");
     const cartAddtoData = data.querySelector("#newCartData");
-    const cartSumDiscounts = document.querySelectorAll(".cart-discount");
-    const cartSumDiscountData = data.querySelector("#newcart-discount");
+    const cartSumDiscounts = document.querySelectorAll(".cart-sum-discount");
+    const cartSumDiscountData = data.querySelector("#newCartSumDiscount");
     const cartCounts = document.querySelectorAll(".cart-count");
     const cartCountDataValue = data.querySelector("#newCartCount").textContent;
+    const addtoDiscounts = document.querySelectorAll(".addto__discount");
+    const cartDiscountData = data.querySelector(".cartTotal__discount");
     // Обновление данных
     cartAddto.innerHTML = cartAddtoData.innerHTML;
     CartCountUppdate(cartCounts, cartCountDataValue);
     CartDiscountUppdate(cartSumDiscounts, cartSumDiscountData);
+    if (cartDiscountData && addtoDiscounts.length > 0) {
+      CartDiscountUppdate(addtoDiscounts, cartDiscountData);
+      addtoDiscounts.forEach(item => {
+        cartDiscountData ? item.classList.remove('is-hide') : item.classList.add('is-hide');
+      });
+    }
     // Сообщение с уведомлением действия
     const notice = data.querySelector(".cartItems__modal > p");
     // console.log("[DEBUG]: handleAddtoCartUpdate notice", notice);
@@ -768,7 +776,7 @@ function AddtoOrder(doc = document) {
             ValidateRequired(form);
             new AirDatepicker("#order_delivery_convenient_date", {
               autoClose: true,
-              onSelect: function ({datepicker}) {
+              onSelect: function ({ datepicker }) {
                 ValidateInput(datepicker.$el);
               },
             });
@@ -782,14 +790,17 @@ function AddtoOrder(doc = document) {
     // console.log("[DEBUG]: handleAddtoOrderUpdate data", data);
     const cartAddto = document.querySelector(".addto__cart");
     const cartAddtoData = data.querySelector("#newCartData");
-    const cartSumDiscounts = document.querySelectorAll(".cart-discount");
-    const cartSumDiscountData = data.querySelector("#newcart-discount");
+    const cartSumDiscounts = document.querySelectorAll(".cart-sum-discount");
+    const cartSumDiscountData = data.querySelector("#newCartSumDiscount");
     const cartCounts = document.querySelectorAll(".cart-count");
     const cartCountDataValue = data.querySelector("#newCartCount").textContent;
+    const addtoDiscounts = document.querySelectorAll(".addto__discount");
+    const cartDiscountData = data.querySelector(".cartTotal__discount");
     // Обновление данных
     cartAddto.innerHTML = cartAddtoData.innerHTML;
     CartCountUppdate(cartCounts, cartCountDataValue);
     CartDiscountUppdate(cartSumDiscounts, cartSumDiscountData);
+    CartDiscountUppdate(addtoDiscounts, cartDiscountData);
   }
 }
 
@@ -1355,7 +1366,7 @@ function Goods(doc) {
           productViewFixed.hidden = true; // Скрываем плашку
         }
       },
-      {threshold: 0}, // Срабатывает, когда `.productView` полностью уходит из области видимости
+      { threshold: 0 }, // Срабатывает, когда `.productView` полностью уходит из области видимости
     );
     if (!productView.classList.contains("fancybox__content")) {
       observer.observe(productView);
@@ -1806,7 +1817,7 @@ function Cart() {
         contrainerAjax.removeAttribute("hidden");
         new AirDatepicker("#order_delivery_convenient_date", {
           autoClose: true,
-          onSelect: function ({datepicker}) {
+          onSelect: function ({ datepicker }) {
             ValidateInput(datepicker.$el);
           },
         });
@@ -1911,7 +1922,8 @@ function CartRemove() {
       if (confirm("Вы точно хотите удалить товар из корзины?")) {
         const cartCounts = document.querySelectorAll(".cart-count");
         const cartCountends = document.querySelectorAll(".cart-countend");
-        const cartDiscounts = document.querySelectorAll(".cart-discount");
+        const cartSumDiscounts = document.querySelectorAll(".cart-sum-discount");
+        const addtoDiscounts = document.querySelectorAll(".addto__discount");
         const url = getUrlBody(button.getAttribute("href"));
         const modId = button.closest("[data-mod-id]").getAttribute("data-mod-id");
         const qty = button.getAttribute("data-qty");
@@ -1935,12 +1947,13 @@ function CartRemove() {
           }
           const productView = document.querySelector(".productView");
           // console.log("[DEBUG]: productView2", productView);
-          if (productView.getAttribute("data-mod-id") === modId) {
+          if (productView && productView.getAttribute("data-mod-id") === modId) {
             productView.querySelector(".productView__cart").classList.remove("has-in-cart");
           }
           CartCountUppdate(cartCounts, newCount);
           CartCountendUppdate(cartCountends, data.querySelector(".cart-countend"));
-          CartDiscountUppdate(cartDiscounts, data.querySelector(".cart-discount"));
+          CartDiscountUppdate(cartSumDiscounts, data.querySelector(".cart-sum-discount"));
+          CartDiscountUppdate(addtoDiscounts, data.querySelector(".cartTotal__discount"));
         });
       }
     });
@@ -2239,8 +2252,8 @@ function OrderCoupons() {
     cartTotals.forEach((total) => {
       total.querySelector(".cart-total").innerHTML = discountPrice.innerHTML;
       total.querySelector(".cart-total").value = cartTotalPriceSum;
-      total.querySelector(".cart-discount").innerHTML = discountPrice.innerHTML;
-      total.querySelector(".cart-discount").value = cartTotalPriceSum;
+      total.querySelector(".cart-sum-discount").innerHTML = discountPrice.innerHTML;
+      total.querySelector(".cart-sum-discount").value = cartTotalPriceSum;
     });
 
     const discount = data.querySelector(".order-discount");
@@ -3095,7 +3108,7 @@ function toTop() {
   const goto = document.querySelector('.toTop')
   // Показать при скроле
   window.addEventListener('scroll', function () {
-    window.pageYOffset > 99 ? goto.classList.remove('is-hidden') : goto.classList.add('is-hidden')
+    window.scrollY > 99 ? goto.classList.remove('is-hidden') : goto.classList.add('is-hidden')
   })
 
   // Действие наверх

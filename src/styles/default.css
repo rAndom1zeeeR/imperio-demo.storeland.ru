@@ -883,10 +883,3 @@ dialog .form__button {width: 100%;}
 	.stages__buttons {grid-column: 1 / 3;}
 }
 
-
-/*
-** Видимость элементов
-*/
-.is-hide {display: none;}
-.is-hidden {visibility: hidden;opacity: 0;}
-.is-visible {visibility: visible;opacity: 1;}
