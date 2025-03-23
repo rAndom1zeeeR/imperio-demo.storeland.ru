@@ -1391,7 +1391,7 @@
 
 				<!-- Список Всех Новостей -->
 				{% IFNOT news_list_all_empty %}
-				<div class="tabs__content" data-tab-content="news_list_all">
+				<div id="news_list_all" class="tabs__content" data-tab-content="news_list_all">
 					<div class="swiper">
 						<div class="swiper-wrapper">
 							{% FOR news_list_all %}
@@ -1426,7 +1426,7 @@
 
 				<!-- Список Новостей -->
 				{% IFNOT news_list_shop_empty %}
-				<div class="tabs__content" data-tab-content="news_list_shop">
+				<div id="news_list_shop" class="tabs__content" data-tab-content="news_list_shop">
 					<div class="swiper">
 						<div class="swiper-wrapper">
 							{% FOR news_list_shop %}
@@ -1463,7 +1463,7 @@
 
 				<!-- Список Матариалы СМИ -->
 				{% IFNOT news_list_mass_media_empty %}
-				<div class="tabs__content" data-tab-content="news_list_mass_media" hidden>
+				<div id="news_list_mass_media" class="tabs__content" data-tab-content="news_list_mass_media" hidden>
 					<div class="swiper">
 						<div class="swiper-wrapper">
 							{% FOR news_list_mass_media %}
@@ -1500,7 +1500,7 @@
 
 				<!-- Список Статьи -->
 				{% IFNOT news_list_articles_empty %}
-				<div class="tabs__content" data-tab-content="news_list_articles" hidden>
+				<div id="news_list_articles" class="tabs__content" data-tab-content="news_list_articles" hidden>
 					<div class="swiper">
 						<div class="swiper-wrapper">
 							{% FOR news_list_articles %}
@@ -3050,10 +3050,10 @@
 				swiperMedium('#advantages');
 				swiperBrands("#brands");
 				swiperBanners("#banners");
-				swiperLarge('[data-tab-content="news_list_all"]');
-				swiperLarge('[data-tab-content="news_list_shop"]');
-				swiperLarge('[data-tab-content="news_list_articles"]');
-				swiperLarge('[data-tab-content="news_list_mass_media"]');
+				swiperNews('[data-tab-content="news_list_all"]');
+				swiperNews('[data-tab-content="news_list_shop"]');
+				swiperNews('[data-tab-content="news_list_articles"]');
+				swiperNews('[data-tab-content="news_list_mass_media"]');
 				VisibleItems('#pdtSale');
 			});
 		</script>

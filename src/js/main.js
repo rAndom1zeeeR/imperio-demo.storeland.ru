@@ -2617,7 +2617,7 @@ function swiperMedium(selector) {
  * Используется в функциях: на всех страницах
  * Использует функции: Swiper
  */
-function swiperLarge(selector) {
+function swiperNews(selector) {
   const related = document.querySelector(selector);
   if (!related) return;
   const swiper = new Swiper(selector + " .swiper", {
@@ -2631,8 +2631,8 @@ function swiperLarge(selector) {
     spaceBetween: 16,
     preloadImages: false,
     navigation: {
-      nextEl: selector + " .swiper-button-next",
-      prevEl: selector + " .swiper-button-prev",
+      nextEl: "#news .swiper-button-next",
+      prevEl: "#news .swiper-button-prev",
     },
     pagination: {
       enabled: true,
@@ -3025,6 +3025,72 @@ function swiperViewed(selector) {
   // console.log("[DEBUG]: swiper", swiper);
 }
 
+/**
+ * Табы новостей.
+ * Используется в функциях: на странице Новости
+ * Использует функции: getHtmlFromPost
+ */
+function NewsTabs(selector) {
+  const block = document.querySelector(selector);
+  const tabsContainer = block.querySelector('.tabs');
+  const tabsContent = block.querySelectorAll('.tabs__content');
+  const tabsLinks = block.querySelectorAll('.tabs__link');
+
+  if (!tabsContainer || !tabsContent.length || !tabsLinks.length) return;
+
+  function handleTabClick(event) {
+    const target = event.target.closest('.tabs__link');
+    if (!target) return;
+
+    event.preventDefault();
+
+    // Убираем активный класс у всех табов
+    tabsLinks.forEach(link => link.classList.remove('is-active'));
+    // Добавляем активный класс текущему табу
+    target.classList.add('is-active');
+
+    const tabId = target.dataset.tab;
+    navigateVisibility('#' + tabId, block)
+
+    // Скрываем все контенты
+    tabsContent.forEach(content => {
+      content.hidden = true;
+      if (content.dataset.tabContent === tabId) {
+        content.hidden = false;
+      }
+    });
+
+    // Перезапускаем Swiper для активного таба
+    const activeContent = block.querySelector(`[data-tab-content="${tabId}"]`);
+    if (activeContent) {
+      const swiper = activeContent.querySelector('.swiper');
+      if (swiper && swiper.swiper) {
+        swiper.swiper.update();
+      }
+    }
+  }
+
+  // Управление видимостью навигации
+  function navigateVisibility(tabId, block) {
+    const itemsLength = document.querySelectorAll(tabId + ' .swiper-slide').length;
+    const nextButton = block.querySelector('.swiper-button-next');
+    const prevButton = block.querySelector('.swiper-button-prev');
+    console.log("[DEBUG]: tabId", tabId);
+    console.log("[DEBUG]: selector", block);
+    console.log("[DEBUG]: itemsLength", itemsLength);
+
+    if (!nextButton || !prevButton) return;
+
+    const display = itemsLength > 3 ? '' : 'none';
+    console.log("[DEBUG]: nextButton", nextButton);
+    console.log("[DEBUG]: prevButton", prevButton);
+    nextButton.style.display = display;
+    prevButton.style.display = display;
+  }
+
+  tabsContainer.addEventListener('click', handleTabClick);
+}
+
 
 /**
  * Авторизация без обновления страницы.
@@ -3135,6 +3201,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Autorization();
   swiperViewed('#viewed');
   toTop();
+  NewsTabs('#news');
   Form("dialogCallback", "Запрос обратного звонка успешно отправлен администрации магазина", "Вы уже отправляли запрос. Пожалуйста ожидайте звонка.");
   Form("dialogNotify", "Вы будете уведомлены о поступлении товара", "Вы уже отправляли запрос. Пожалуйста ожидайте.");
   Form("subscribe", "Спасибо за обращение! Вы подписались на нашу рассылку", "Вы уже отправляли запрос. Пожалуйста ожидайте.");
