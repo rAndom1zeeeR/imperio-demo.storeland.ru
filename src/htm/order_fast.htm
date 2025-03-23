@@ -209,7 +209,7 @@
 
 							<div class="order-delivery__price {CURRENCY_CHAR_CODE}">
 								<label>Стоимость доставки:</label>
-								<b>{order_delivery.END_PRICE | money_format}</b>
+								<b>{% IF order_delivery.END_PRICE = 0 %}Бесплатно{% ELSE %}{order_delivery.END_PRICE | money_format}{% ENDIF %}</b>
 							</div>
 
 							{% IFNOT order_delivery.zone_list_empty %}
