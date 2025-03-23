@@ -17,11 +17,11 @@ function SearchFieldInit(object) {
   object.s_reset = object.find(".search__reset");
   // Проверка на существование функции проверки поля и действий с ним
   if (typeof object.SearchFieldCheck !== "function") {
-    console.error("function SearchFieldCheck is not found in object for SearchFieldInit", {status: "error"});
+    console.error("function SearchFieldCheck is not found in object for SearchFieldInit", { status: "error" });
     return;
     // Проверка, сколько полей поиска нам подсунули за раз на инициализацию
   } else if (1 < object.search_form.length) {
-    console.error("function SearchFieldInit must have only one search object", {status: "error"});
+    console.error("function SearchFieldInit must have only one search object", { status: "error" });
     return;
   }
   // Создаём функцию которая будет отвечать за основные действия с полем поиска
@@ -460,10 +460,10 @@ $(function () {
       searchBlock.addClass("search--loading");
       // Собираем параметры для Ajax запроса
       var params = {
-          ajax_q: 1,
-          goods_search_field_id: 0,
-          q: options["last_search_query"],
-        },
+        ajax_q: 1,
+        goods_search_field_id: 0,
+        q: options["last_search_query"],
+      },
         // Объект со значением которого будем в последствии проверять полученные от сервера данные
         search_field_object = searchBlock.search_input;
       // Аяксом отправляем запрос на поиск нужных товаров и категорий
@@ -548,7 +548,7 @@ $(function () {
           }
           // Отображаем результат поиска
           if (i <= 3) {
-            $(".search__results-button").addClass("is-hide");
+            $(".search__results-buttons").addClass("is-hide");
             $(".search__results-items--goods").append(`
 							<a class="search__results-item" href="${data.goods[i].url}">
 								<div class="search__results-image">
@@ -563,7 +563,7 @@ $(function () {
           }
           // Если последняя итерация цикла вставим кнопку "показать все"
           if (i > 3) {
-            $(".search__results-button").removeClass("is-hide");
+            $(".search__results-buttons").removeClass("is-hide");
           }
         }
       } else {
@@ -574,7 +574,9 @@ $(function () {
       // Скрываем результаты поиска если ничего не найдено
       data.category.length + data.goods.length > 0 ? $(".search__results").show() : $(".search__results").hide();
       data.category.length > 0 ? $(".search__results-items--category").show() : $(".search__results-items--category").hide();
+      data.category.length > 0 ? $(".search__results-items--category").prev().show() : $(".search__results-items--category").prev().hide();
       data.goods.length > 0 ? $(".search__results-items--goods").show() : $(".search__results-items--goods").hide();
+      data.goods.length > 0 ? $(".search__results-items--goods").prev().show() : $(".search__results-items--goods").prev().hide();
 
       // Убираем информацию о том что запрос грузится.
       searchBlock.removeClass("search--loading");
