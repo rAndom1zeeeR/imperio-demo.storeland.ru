@@ -196,7 +196,18 @@
 }
 
 /* Шапка. Доставка */
-.header__delivery-svg--mobile {display: none;}
+@media all and (max-width: 1919px) {
+	.header__callback button {padding-inline: 24px;}
+}
+@media all and (max-width: 1439px) {
+	.header__callback button {padding-inline: 12px;}
+	.header__callback button span {display: none;}
+}
+@media all and (max-width: 1023px) {
+	.header__callback {display: none;}
+}
+
+/* .header__delivery-svg--mobile {display: none;}
 @media all and (max-width: 1919px) {
 	.header__delivery-button {padding-inline: 24px;}
 	.header__delivery-svg--desktop {display: none;}
@@ -205,10 +216,7 @@
 	.header__delivery-svg--mobile {display: block;}
 	.header__delivery-button {padding-inline: 12px;}
 	.header__delivery-button span {display: none;}
-}
-@media all and (max-width: 1023px) {
-	.header__delivery {display: none;}
-}
+} */
 
 
 /* Шапка. Логотип */
