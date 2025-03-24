@@ -105,8 +105,6 @@
 /*
 ** Swiper слайдер
 */
-.swiper.swiper--products {overflow: visible;clip-path: inset(0 0 -260px 0);}
-.swiper.swiper--products:hover {z-index: 5;}
 :is(.swiper-button-next, .swiper-button-prev) {
 	--swiper-navigation-size: 38px;
 	--swiper-navigation-sides-offset: 0;
@@ -126,6 +124,10 @@
 	--swiper-scrollbar-drag-bg-color: var(--color-text-secondary);
 	--swiper-scrollbar-bg-color: var(--color-border-secondary);
 }
+@media (hover: hover) and (pointer: fine) {
+	.swiper.swiper--products {overflow: visible;clip-path: inset(0 0 -260px 0);}
+	.swiper.swiper--products:hover {z-index: 5;}
+}
 
 /*
 ** Шапка
@@ -136,7 +138,9 @@
 .header__slogan {margin-right: auto;}
 .header__contacts {display: flex;gap: 16px;}
 .header__contacts .contacts__link {font-weight: bold;font-size: var(--text-size-large);font-family: var(--font-secondary);line-height: var(--text-height-large);}
-#header .button-icon:hover {color: var(--color-text-primary);}
+@media (hover: hover) and (pointer: fine) {
+	#header .button-icon:hover {color: var(--color-text-primary);}
+}
 @media all and (min-width: 480px) {
 	#header {padding-block: 16px;}
 }
@@ -392,7 +396,6 @@
 	}
 	.catalog__link {display: block;padding: 6px;}
 	.catalog__link[data-level="0"] {width: 360px;padding: 16px 24px;transition: background-color var(--duration);}
-	.catalog__link[data-level="0"]:hover {background-color: white;}
 	.catalog__link[data-level="1"] {padding-block: 10px;font-weight: bold;}
 	.catalog__link:not([data-level="0"]) svg {display: none;}
 	.catalog__sub {display: none;}
@@ -413,9 +416,12 @@
 		background-color: white;
 		border: 1px solid var(--color-border-secondary);
 	}
-	.catalog__item.is-parent:hover > .catalog__sub[data-level="1"] {display: grid;}
-	.catalog__item.is-parent:hover > .catalog__link[data-level="0"] {color: var(--color-secondary);background-color: white;}
 	.catalog__sub[data-level="2"] {display: block;}
+	@media (hover: hover) and (pointer: fine) {
+		.catalog__link[data-level="0"]:hover {background-color: white;}
+		.catalog__item.is-parent:hover > .catalog__sub[data-level="1"] {display: grid;}
+		.catalog__item.is-parent:hover > .catalog__link[data-level="0"] {color: var(--color-secondary);background-color: white;}
+	}
 }
 
 /*
@@ -943,6 +949,10 @@
 .products__grid .ratings__count {display: none;}
 .products__grid .product__price {flex-direction: column;gap: 8px 16px;margin-top: 8px;}
 .products__grid .product__cart {margin-top: 16px;}
+@media (hover: hover) and (pointer: fine) {
+	.products__grid .product__image .swiper-scrollbar {opacity: 0;}
+	.products__grid .product__image:hover .swiper-scrollbar {opacity: 1;}
+}
 @media all and (min-width: 480px) {
 	.products__grid .product__sticker {right: 12px;left: auto;}
 	.products__grid .product__name {height: 48px;}
@@ -954,8 +964,6 @@
 @media all and (min-width: 1440px) {
 	.products__grid {grid-template-columns: repeat(4, calc(25% - 9px));}
 	.products__grid .product__attr {display: block;}
-	.products__grid .product__image .swiper-scrollbar {opacity: 0;}
-	.products__grid .product__image:hover .swiper-scrollbar {opacity: 1;}
 }
 @media all and (max-width: 479px) {
 	.products__grid .product__name {height: 40px;}
@@ -1090,7 +1098,6 @@
 	border-radius: var(--border-radius);
 	transition: border-color var(--duration);
 }
-.categories__item:hover {border-color: var(--color-border);}
 .categories__images {
 	display: flex;
 	align-items: center;
@@ -1122,6 +1129,7 @@
 .is-loading .categories__grid:not(.swiper-wrapper) .categories__item {width: 100%;}
 .is-loading .categories__grid:not(.swiper-wrapper) .categories__images {height: 112px;}
 @media (hover: hover) and (pointer: fine) {
+	.categories__item:hover {border-color: var(--color-border);}
 	.categories__item:hover .categories__name {color: var(--color-secondary);}
 }
 @media all and (min-width: 480px) {
@@ -1172,14 +1180,14 @@
 .views__icon {width: 48px;height: 48px;opacity: 0.5;}
 .views__icon + .views__icon {border-left: 1px solid var(--color-border-secondary);}
 .views__icon.is-active {color: var(--color-primary);opacity: 1;}
-@media (hover: hover) and (pointer: fine) {
-	.views__icon:hover {color: var(--color-primary);opacity: 1;}
-}
 .toolbar__sorts {display: flex;gap: 16px;align-items: center;margin-left: auto;}
 .filters__open b {display: none;}
 .filters-rest__open svg {opacity: 0.5;}
-.filters-rest__open:hover svg {opacity: 1;}
 .filters-rest__open.is-active svg {transform: rotate(180deg);opacity: 1;}
+@media (hover: hover) and (pointer: fine) {
+	.views__icon:hover {color: var(--color-primary);opacity: 1;}
+	.filters-rest__open:hover svg {opacity: 1;}
+}
 @media all and (max-width: 767px) {
 	.products__container .toolbar__sorts {width: 100%;}
 	.products__container .toolbar__views {margin-left: auto;}
@@ -1263,9 +1271,11 @@
 .filters-active.has-filters {display: block;}
 .filters-active__items {display: flex;gap: 32px;margin-block: 16px;}
 .filters-active__item {display: flex;gap: 8px;align-items: center;cursor: pointer;}
-.filters-active__item:hover {color: var(--color-secondary);}
 .filters-active__item svg {fill: currentcolor;}
 .filters-active__name {display: none;}
+@media (hover: hover) and (pointer: fine) {
+	.filters-active__item:hover {color: var(--color-secondary);}
+}
 
 /** Слайдер цены **/
 .filters-price .filter__content {display: block;}
@@ -1444,7 +1454,6 @@
 .cartTotal__button {justify-content: center;width: 100%;font-size: var(--text-size-large);}
 .cartTable__remove {z-index: 2;}
 .cartTable__remove svg {fill: var(--color-text-primary);}
-.cartTable__remove:hover svg {fill: var(--color-secondary);}
 .cartTotal__button[data-action="closeOrder"] {display: none;}
 .cartTotal__button[data-action="completeOrder"] {display: none;}
 .cartTotal__pp {display: none;margin-top: 24px;text-align: center;}
@@ -1496,6 +1505,9 @@
 	font-size: 12px;
 	background-color: var(--color-text-primary);
 	border-radius: 100%;
+}
+@media (hover: hover) and (pointer: fine) {
+	.cartTable__remove:hover svg {fill: var(--color-secondary);}
 }
 @media all and (min-width: 640px) {
 	.cartTable__price {flex-direction: column;}
@@ -1558,18 +1570,22 @@
 
 /* Быстрый заказ. Доставка */
 .order-delivery__item {position: relative;padding: 16px;border: 1px solid var(--color-border);border-radius: var(--border-radius);}
-.order-delivery__item:hover {border-color: var(--color-secondary);cursor: pointer;}
 .order-delivery__item + .order-delivery__item {margin-top: 16px;}
 .order-delivery__name {font-weight: bold;font-size: var(--heading-05);}
+@media (hover: hover) and (pointer: fine) {
+	.order-delivery__item:hover {border-color: var(--color-secondary);cursor: pointer;}
+}
 
 /* Быстрый заказ. Оплата */
 .order-payment__option {padding: 16px;border: 1px solid var(--color-border);border-radius: var(--border-radius);}
-.order-payment__option:hover {border-color: var(--color-secondary);cursor: pointer;}
 .order-payment__option + .order-payment__option {margin-top: 16px;}
 .order-payment__name {font-weight: bold;font-size: var(--heading-05);}
 .order-payment__desc {margin-top: 12px;}
 .order-payment__desc:empty {display: none;}
 .order-payment__title {display: flex;gap: 8px;align-items: center;margin-bottom: 12px;}
+@media (hover: hover) and (pointer: fine) {
+	.order-payment__option:hover {border-color: var(--color-secondary);cursor: pointer;}
+}
 
 /*
 ** Купон
@@ -1634,7 +1650,6 @@
 	border-radius: var(--border-radius);
 	fill: currentcolor;
 }
-.productView__campaign-link:hover {color: white;}
 .productView__modifications {width: 100%;}
 .modifications-props__name {display: none;}
 .modifications-props__selects + .modifications-props__selects {margin-top: 16px;}
@@ -1643,9 +1658,12 @@
 .productView__anchors-link {display: flex;gap: 16px;align-items: center;}
 .productView__anchors-link + .productView__anchors-link {margin-top: 16px;padding-top: 16px;border-top: 1px solid var(--color-border);}
 .productView__anchors-link span + svg {margin-left: auto;fill: var(--color-border);}
-.productView__anchors-link:hover span + svg {margin-left: auto;fill: var(--color-secondary);}
 .productView__description {margin-top: 10px;}
 .productView__description p {margin: 0;}
+@media (hover: hover) and (pointer: fine) {
+	.productView__campaign-link:hover {color: white;}
+	.productView__anchors-link:hover span + svg {margin-left: auto;fill: var(--color-secondary);}
+}
 
 /* Фиксированная карточка при скроле */
 .productViewFixed {
@@ -1977,7 +1995,7 @@
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
 	.toTop:hover {color: var(--color-primary);}
 }
 
