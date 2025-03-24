@@ -1387,6 +1387,10 @@ function Goods(doc) {
   Fancybox.bind('[data-fancybox="gallery"]');
   // Открытие доставки
   SidebarOpener("#deliverys", ".delivery__open");
+  // Запуск функции форматирования даты.
+  const campaignDate = productViewBlock.querySelector(".productView__campaign time");
+  campaignDate.innerHTML = formatDate(campaignDate.getAttribute("datetime"));
+  console.log("[DEBUG]: campaignDate", campaignDate);
 }
 
 /**
@@ -3238,6 +3242,24 @@ function toTop() {
 
   // Действие наверх
   goto.addEventListener('click', () => scrollTop(0))
+}
+
+/**
+ * Форматирует дату из формата YYYY-MM-DD в формат "DD месяц"
+ * @param {string} dateString - Дата в формате YYYY-MM-DD
+ * @returns {string} Отформатированная дата в формате "DD месяц"
+ */
+function formatDate(dateString) {
+  const months = [
+    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+  ];
+
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+
+  return `${day} ${month}`;
 }
 
 /**
