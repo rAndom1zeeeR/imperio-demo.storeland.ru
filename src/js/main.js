@@ -3091,15 +3091,15 @@ function NewsTabs(selector) {
     const itemsLength = document.querySelectorAll(tabId + ' .swiper-slide').length;
     const nextButton = block.querySelector('.swiper-button-next');
     const prevButton = block.querySelector('.swiper-button-prev');
-    console.log("[DEBUG]: tabId", tabId);
-    console.log("[DEBUG]: selector", block);
-    console.log("[DEBUG]: itemsLength", itemsLength);
+    // console.log("[DEBUG]: tabId", tabId);
+    // console.log("[DEBUG]: selector", block);
+    // console.log("[DEBUG]: itemsLength", itemsLength);
 
     if (!nextButton || !prevButton) return;
 
     const display = itemsLength > 3 ? '' : 'none';
-    console.log("[DEBUG]: nextButton", nextButton);
-    console.log("[DEBUG]: prevButton", prevButton);
+    // console.log("[DEBUG]: nextButton", nextButton);
+    // console.log("[DEBUG]: prevButton", prevButton);
     nextButton.style.display = display;
     prevButton.style.display = display;
   }
@@ -3162,72 +3162,87 @@ function swiperProductImages(id) {
  */
 function Autorization() {
   const block = document.getElementById("dialogLogin");
-  if (!block) return;
-  const form = block.querySelector("form");
-  if (!form) return;
+  const form = block?.querySelector("form");
+
+  if (!block || !form) return;
+
+  const handleAuthForm = async (event) => {
+    event.preventDefault();
+
+    try {
+      block.classList.add("is-loading");
+
+      const formData = new FormData(form);
+      formData.append("ajax_q", "1");
+
+      const data = await getHtmlFromPost(form.action, formData);
+
+      // Обновляем содержимое диалога авторизации
+      const dialogContent = data.getElementById("dialogLogin")?.innerHTML;
+      if (dialogContent) {
+        block.innerHTML = dialogContent;
+      }
+
+      // Обновляем ссылку авторизации в шапке
+      const loginLink = document.querySelector(".addto__link.login");
+      const newLoginLink = data.querySelector(".addto__link.login");
+      if (loginLink && newLoginLink) {
+        loginLink.innerHTML = newLoginLink.innerHTML;
+      }
+    } catch (error) {
+      console.error("[ERROR]: Authorization failed", error);
+      СreateNoty("error", "Ошибка авторизации. Попробуйте позже.");
+    } finally {
+      block.classList.remove("is-loading");
+    }
+  };
 
   form.addEventListener("submit", handleAuthForm);
-
-  function handleAuthForm(event) {
-    event.preventDefault();
-    // block.classList.add("is-loading");
-    const url = form.action;
-    const formData = new FormData(form);
-    formData.append("ajax_q", "1");
-    // formData.append("only_body", "1");
-    // console.log("[DEBUG]: url", url);
-    // console.log("[DEBUG]: formData", formData);
-    getHtmlFromPost(url, formData).then((data) => {
-      // console.log("[DEBUG]: data", data);
-      block.innerHTML = data.getElementById("dialogLogin").innerHTML;
-      document.querySelector(".addto__link.login").innerHTML = data.querySelector(".addto__link.login").innerHTML;
-    });
-  }
 }
 
 /**
  * Отправка формы без обновления страницы
+ * @param {string} id - ID блока с формой
+ * @param {string} successMessage - Сообщение об успешной отправке
+ * @param {string} errorMessage - Сообщение об ошибке
  */
 function Form(id, successMessage, errorMessage) {
   const block = document.getElementById(id);
-  if (!block) return;
-  const form = block.querySelector("form");
-  if (!form) return;
+  const form = block?.querySelector("form");
+
+  if (!block || !form) return;
+
+  const handleForm = async (event) => {
+    event.preventDefault();
+
+    try {
+      block.classList.add("is-loading");
+
+      const formData = new FormData(form);
+      formData.append("ajax_q", "1");
+      formData.append("only_body", "1");
+
+      const data = await getJsonFromPost(form.action, formData);
+
+      if (data.status === "ok") {
+        СreateNoty("success", successMessage);
+      } else {
+        СreateNoty("error", data.message || errorMessage);
+      }
+    } catch (error) {
+      console.error("[ERROR]: Form submission failed", error);
+      СreateNoty("error", errorMessage);
+    } finally {
+      block.classList.remove("is-loading");
+
+      // Закрываем модальное окно после успешной отправки
+      if (block.hasAttribute("open")) {
+        setTimeout(() => block.close(), 3000);
+      }
+    }
+  };
 
   form.addEventListener("submit", handleForm);
-
-  function handleForm(event) {
-    event.preventDefault();
-    block.classList.add("is-loading");
-    const url = form.action;
-    const formData = new FormData(form);
-    formData.append("ajax_q", "1");
-    formData.append("only_body", "1");
-    // console.log("[DEBUG]: url", url);
-    // console.log("[DEBUG]: formData", formData);
-    getJsonFromPost(url, formData)
-      .then((data) => {
-        const status = data.status;
-        const message = data.message;
-        // console.log("[DEBUG]: status", status);
-        if (status === "ok") {
-          СreateNoty("success", successMessage);
-        } else {
-          СreateNoty("error", message);
-        }
-        block.classList.remove("is-loading");
-      })
-      .catch((error) => {
-        console.log("[ERROR]: getJsonFromPost", error);
-        СreateNoty("error", errorMessage);
-        block.classList.remove("is-loading");
-      });
-    setTimeout(() => {
-      if (block.hasAttribute("open")) {
-        block.close();
-      }
-    }, 3000);
-  }
 }
 
 /**
