@@ -2986,7 +2986,7 @@ function swiperViewed(selector) {
   // console.log("[DEBUG]: related", related);
 
   if (!related) return;
-  const swiper = new Swiper(selector + " .swiper", {
+  const swiper = new Swiper(selector + " .swiper--products", {
     loop: false,
     autoplay: false,
     watchSlidesProgress: true,

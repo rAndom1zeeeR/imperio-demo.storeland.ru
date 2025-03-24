@@ -7,19 +7,19 @@
 			<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
 			{ANTISPAM_CODE}
 
-			<div class="form__field">
-				<label for="feedback_name">Ваше имя <small>(обязательно)</small></label>
+			<div class="form__field form__field--custom">
 				<input id="feedback_name" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_FEEDBACK_NAME}]" value="{FORM_FEEDBACK_NAME}" maxlength="50" placeholder="Ваше имя:" required>
+				<label for="feedback_name">Ваше имя <small>(обязательно)</small></label>
 			</div>
 
-			<div class="form__field">
-				<label for="feedback_email">Электронная почта <small>(обязательно)</small></label>
+			<div class="form__field form__field--custom">
 				<input id="feedback_email" type="email" name="form[{ANTISPAM_FORM_FIELD_NAME_FEEDBACK_EMAIL}]" value="{FORM_FEEDBACK_EMAIL}" maxlength="100" placeholder="Электронная почта:" required>
+				<label for="feedback_email">Электронная почта <small>(обязательно)</small></label>
 			</div>
 
-			<div class="form__field">
-				<label for="feedback_phone">Телефон</label>
+			<div class="form__field form__field--custom">
 				<input id="feedback_phone" class="form__phone" type="text" name="form[Телефон]" value="{FORM_FEEDBACK_PHONE}" maxlength="50" placeholder="Телефон:">
+				<label for="feedback_phone">Телефон</label>
 			</div>
 
 			<div class="form__field">

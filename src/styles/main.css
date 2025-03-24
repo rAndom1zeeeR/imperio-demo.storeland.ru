@@ -1540,7 +1540,6 @@
 .orderfast__block {padding: 24px;border: 1px solid var(--color-border-secondary);border-radius: var(--border-radius);}
 .orderfast__block:last-of-type {margin-bottom: 0;}
 .orderfast__block .form__fields + .form__fields {margin-top: 20px;}
-.orderfast__block .form__field label {display: none;}
 .orderfast__title {margin-bottom: 16px;}
 .orderfast__content {max-width: 620px;}
 .form__fields--date {display: grid;grid-template-columns: repeat(2, 1fr);gap: 16px;align-items: flex-end;}
@@ -1885,6 +1884,23 @@
 	.form__field--generally .form__label {width: 100%;}
 }
 
+/* Кастомные инпуты */
+.form__field--custom {position: relative;}
+.form__field--custom label {
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	margin-bottom: 0;
+	color: var(--color-gray);
+	transform: translateY(-50%);
+	transition: all 0.2s ease;
+	pointer-events: none;
+}
+.form__field--custom input:focus, 
+.form__field--custom input:not(:placeholder-shown) {padding-top: 16px;}
+.form__field--custom input:focus ~ label,
+.form__field--custom input:not(:placeholder-shown) ~ label {top: 12px;}
+.form__field--custom input::placeholder {color: transparent;}
 
 /*
 ** Добавленные товары в корзину/избранное/сравнение

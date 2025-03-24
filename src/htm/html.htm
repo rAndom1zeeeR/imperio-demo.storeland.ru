@@ -1937,9 +1937,9 @@
 									{% ELSE %}
 									<div class="product__image swiper swiper-{recently_viewed_goods.ID}">
 										<div class="swiper-wrapper">
-											{% FOR images %}
-											<a class="swiper-slide product__img" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}" title="{recently_viewed_goods.images.NAME}" itemprop="url" data-id="{recently_viewed_goods.images.ID}">
-												<img src="{recently_viewed_goods.images.MEDIUM}" alt="{recently_viewed_goods.images.NAME}" loading="lazy" itemprop="image">
+											{% FOR goods_images_list %}
+											<a class="swiper-slide product__img" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}" title="{recently_viewed_goods.goods_images_list.NAME}" itemprop="url" data-id="{recently_viewed_goods.goods_images_list.ID}">
+												<img src="{recently_viewed_goods.goods_images_list.MEDIUM}" alt="{recently_viewed_goods.goods_images_list.NAME}" loading="lazy" itemprop="image">
 											</a>
 											{% ENDFOR %}
 										</div>
@@ -2905,11 +2905,13 @@
 				<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_COMMENT}]" value="Обратный звонок - {FORM_FEEDBACK_MESSAGE}">
 				<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
 				{ANTISPAM_CODE}
-				<div class="form__field">
+				<div class="form__field form__field--custom">
 					<input class="form__name" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Ваше имя" autocomplete="name" required>
+					<label for="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]">Ваше имя</label>
 				</div>
-				<div class="form__field">
+				<div class="form__field form__field--custom">
 					<input class="form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="tel" inputmode="tel" required>
+					<label for="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]">Ваш телефон</label>
 				</div>
 
 				<div class="form__buttons">
@@ -2938,8 +2940,9 @@
 				<p>Нужный товар сейчас не в наличии?</p>
 				<p>Как только товар появится в продаже, вам будет выслано сообщение</p>
 
-				<div class="form__field">
+				<div class="form__field form__field--custom">
 					<input class="form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="tel" required>
+					<label for="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]">Ваш телефон</label>
 				</div>
 
 				<div class="form__buttons">
@@ -3027,14 +3030,14 @@
 				<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
 				{ANTISPAM_CODE}
 
-				<div class="form__field">
-					<label for="sites_client_mail_dialog">Электронная почта <small>(обязательно)</small></label>
+				<div class="form__field form__field--custom">
 					<input id="sites_client_mail_dialog" type="email" name="form[sites_client_mail]" value="{FORM_SITES_CLIENT_MAIL}" maxlength="120" placeholder="Email" required>
+					<label for="sites_client_mail_dialog">Электронная почта <small>(обязательно)</small></label>
 				</div>
 
-				<div class="form__field password">
-					<label for="sites_client_pass_dialog">Пароль <small>(обязательно)</small></label>
+				<div class="form__field form__field--custom password">
 					<input id="sites_client_pass_dialog" class="password__input" type="password" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" placeholder="Пароль" required>
+					<label for="sites_client_pass_dialog">Пароль <small>(обязательно)</small></label>
 					<button class="password__button button-icon" type="button" aria-pressed="false" aria-label="Показать пароль">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
 							<path class="svg-lock"

@@ -9,14 +9,14 @@
 			<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
 			{ANTISPAM_CODE}
 
-			<div class="form__field">
-				<label for="sites_client_mail">Электронная почта <small>(обязательно)</small></label>
+			<div class="form__field form__field--custom">
 				<input id="sites_client_mail" type="email" name="form[sites_client_mail]" value="{FORM_SITES_CLIENT_MAIL}" maxlength="120" placeholder="Email" required>
+				<label for="sites_client_mail">Электронная почта <small>(обязательно)</small></label>
 			</div>
 
-			<div class="form__field password">
-				<label for="sites_client_pass">Пароль <small>(обязательно)</small></label>
+			<div class="form__field form__field--custom password">
 				<input id="sites_client_pass" class="password__input" type="password" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" placeholder="Пароль" required>
+				<label for="sites_client_pass">Пароль <small>(обязательно)</small></label>
 
 				<button class="password__button button-icon" type="button" aria-pressed="false" aria-label="Показать пароль">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
