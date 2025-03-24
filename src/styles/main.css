@@ -53,6 +53,7 @@
 /*
 ** Скеции
 */
+.wrapper {overflow: hidden;}
 .section {margin-block: 32px;position: relative;}
 @media all and (min-width: 480px) {
 	.section {margin-block: 24px;}

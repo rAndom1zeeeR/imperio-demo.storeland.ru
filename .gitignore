@@ -65,3 +65,4 @@ storeland-uploader-config.json
 .idea/
 .vscode/
 build/
+tests/backstop/backstop_data/

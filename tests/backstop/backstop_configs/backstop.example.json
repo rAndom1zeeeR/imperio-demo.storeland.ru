@@ -1,0 +1,72 @@
+{
+  "id": "storeland_test",
+  "viewports": [
+    {
+      "label": "desktop",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "label": "laptop",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "label": "laptop-small",
+      "width": 1024,
+      "height": 900
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "tablet-small",
+      "width": 640,
+      "height": 1024
+    },
+    {
+      "label": "mobile",
+      "width": 480,
+      "height": 1024
+    },
+    {
+      "label": "mobile-small",
+      "width": 320,
+      "height": 667
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Homepage",
+      "url": "http://tastystore.ru",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Catalog",
+      "url": "http://tastystore.ru/catalog",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

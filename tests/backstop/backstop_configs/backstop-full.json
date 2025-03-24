@@ -1,0 +1,233 @@
+{
+  "id": "storeland_test",
+  "viewports": [
+    {
+      "label": "desktop",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "label": "laptop",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "label": "laptop-small",
+      "width": 1024,
+      "height": 900
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "tablet-small",
+      "width": 640,
+      "height": 1024
+    },
+    {
+      "label": "mobile",
+      "width": 480,
+      "height": 1024
+    },
+    {
+      "label": "mobile-small",
+      "width": 320,
+      "height": 667
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Homepage",
+      "url": "https://tastystore.ru/",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Quick Order",
+      "url": "https://tastystore.ru/cart",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Cart",
+      "url": "https://tastystore.ru/cart",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Login",
+      "url": "https://tastystore.ru/user/login",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Password Recovery",
+      "url": "https://tastystore.ru/user/recovery",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Favorites",
+      "url": "https://tastystore.ru/user/favorites",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Order Info",
+      "url": "https://tastystore.ru/user/history_info/1570",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Order History",
+      "url": "https://tastystore.ru/user/history_list",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "User Settings",
+      "url": "https://tastystore.ru/user/settings",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Registration",
+      "url": "https://tastystore.ru/user/register",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Callback",
+      "url": "https://tastystore.ru/callback",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Checkout",
+      "url": "https://tastystore.ru/order",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Search",
+      "url": "https://tastystore.ru/search?q=apple",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Promotion View",
+      "url": "https://tastystore.ru/discount/Novaya-akciya-20",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Order View",
+      "url": "https://tastystore.ru/order/info/aa818c9a0f4fc973f215a8ea3cea0b62",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "News View",
+      "url": "https://tastystore.ru/news/Vash-shedevr-gotov",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Feedback",
+      "url": "https://tastystore.ru/feedback",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Promotions List",
+      "url": "https://tastystore.ru/discount",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "News List",
+      "url": "https://tastystore.ru/news",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Compare",
+      "url": "https://tastystore.ru/compare",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Delivery Page",
+      "url": "https://tastystore.ru/page/%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Error Page",
+      "url": "https://tastystore.ru/paqweqweqwe",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Product",
+      "url": "https://tastystore.ru/goods/Kalyan-s-komplektuyushhimi-fioletovyj-s-trubkoj-16?from=Nzg4&mod_id=305255833",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Category",
+      "url": "https://tastystore.ru/catalog/Testovaya-kategoriya-s-ochen-bolshim-nazvaniem-kotoroe-budet-otobrazhatsya-dlya-polzovatelya",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Catalog",
+      "url": "https://tastystore.ru/catalog",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}
