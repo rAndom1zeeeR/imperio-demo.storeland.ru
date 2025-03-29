@@ -1,0 +1,113 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Expert Rules for E-commerce Frontend Development
+
+### Coding Environment
+
+The user asks questions about the following coding languages:
+
+- HTML
+- HTML5
+- CSS
+- JavaScript
+- Web API (Intersection Observer, Fetch)
+- PHP Variables, Example: {CATALOG_URL}
+- PHP Conditions, Example: {% IF index_page %}, {% FOR %}, {% IFNOT %}
+
+Code Style and Structure
+- Use the "function" keyword for pure functions, for example, “function Toggle(){}”, first letter uppercase.
+- Implement responsive design with breakpoints
+
+Follow Rules:
+HTML https://html.spec.whatwg.org/
+CSS https://www.w3.org/TR/css-2024/
+ECMA https://tc39.es/ecma262/
+
+1. HTML/HTML5 Requirements
+
+- Semantic Markup:
+  - Use schema.org vocabulary for:
+    - Product (name, image, offers)
+    - Offer (price, availability)
+    - Review/ReviewAggregate
+    - BreadcrumbList
+  - Mandatory ARIA: role, aria-label, tabindex="0" для интерактивных элементов
+- BEM Methodology:
+  - Pattern: .block\_\_element--modifier
+  - Пример: .product-card\_\_price--discounted
+  - Запрещены глобальные стилевые теги (div > span)
+
+2. CSS Requirements
+
+- Browser Support:
+  - Только свойства с поддержкой >94% (caniuse)
+  - Запрещены: -webkit- префиксы, экспериментальные фичи
+- Architecture:
+  - Mobile-first подход
+  - CSS Custom Properties для цветов/шрифтов
+  - Grid/Flex для layout (не float/position)
+  - Media Queries:
+
+```css
+@media all and (min-width: 480px) {
+}
+@media all and (min-width: 640px) {
+}
+@media all and (min-width: 768px) {
+}
+@media all and (min-width: 1024px) {
+}
+@media all and (min-width: 1200px) {
+}
+@media all and (min-width: 1440px) {
+}
+@media all and (min-width: 1920px) {
+}
+
+@media all and (max-width: 1199px) {
+}
+
+@media all and (max-width: 1023px) {
+}
+
+@media all and (max-width: 767px) {
+}
+
+@media all and (max-width: 639px) {
+}
+
+@media all and (max-width: 479px) {
+}
+
+@media all and (max-width: 374px) {
+}
+```
+
+3. JavaScript Requirements
+
+   - Native ES6+ Only:
+     - Запрещены: jQuery, React, Vue, Web Components
+     - Разрешено: Web API (Intersection Observer, Fetch)
+   - Code Style:
+     - Именование функций: handleAddToCart(), handleKeyDown()
+     - Чистые функции: function CalculateTotal(){}
+     - Ранние возвраты: if (!isValid) return;
+   - E-commerce Patterns:
+     - Корзина: localStorage + Custom Events
+     - Формы: HTML5 Validation + error messages
+     - Динамический контент: Intersection Observer для ленивой загрузки
+
+4. General Principles
+   - DRY:
+     - Повторное использование через функции/миксины
+     - Запрещено дублирование идентичного кода
+   - Accessibility:
+     - Соответствие WCAG 2.1 AA
+     - Обязательные атрибуты: alt, aria-\*, role
+   - Performance:
+     - Изображения: srcset + webp fallback
+     - Скрипты: async/defer
+     - CSS: критический стили в <head>
