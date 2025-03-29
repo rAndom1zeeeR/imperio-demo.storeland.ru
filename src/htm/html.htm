@@ -26,8 +26,8 @@
 	{% ENDIF %}
 
 	<!-- Основные Стили для всех страниц -->
-	<link rel="stylesheet" type="text/css" href="/design/fonts.css?design=THEMENAME">
-	<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}default.css?design=THEMENAME">
+	<link rel="preload" href="/design/fonts.css?design=THEMENAME" as="style">
+	<link rel="preload" href="{ASSETS_STYLES_PATH}default.css?design=THEMENAME" as="style">
 	<link rel="stylesheet" type="text/css" href="{ASSETS_JS_PATH}main.css?design=THEMENAME">
 	<!-- <link rel="stylesheet" type="text/css" href="{ASSETS_JS_PATH}main.min.css?design=THEMENAME"> -->
 	<!-- Подключаемые скрипты -->
@@ -61,7 +61,7 @@
 					<nav class="header__mainnav mainnav" itemscope itemtype="https://schema.org/SiteNavigationElement">
 						<ul class="mainnav__list">
 							<li class="mainnav__item mainnav__item--more">
-								<button class="mainnav__link button-link" type="button">
+								<button class="mainnav__link button-link" type="button" aria-expanded="false" aria-controls="dropdown-menu">
 									<span>Покупателям</span>
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="12" height="12" aria-hidden="true">
 										<path d="M129.1 183.3 237.3 75c4.7-4.8 4.7-12.5 0-17.2-4.8-4.8-12.5-4.8-17.2 0l-99.7 99.7-99.7-99.7C16 53 8.3 53 3.5 57.8c-4.7 4.8-4.7 12.5 0 17.2l108.4 108.3c4.7 4.7 12.5 4.7 17.2 0z" />
@@ -106,7 +106,7 @@
 					</div>
 					<div class="header__logo" itemscope itemtype="http://schema.org/Organization">
 						<a href="{INDEX_PAGE_URL}" itemprop="url">
-							<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="image" width="215" height="62">
+							<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="image" width="215" height="62" loading="lazy">
 							<meta itemprop="name" content="{SETTINGS_STORE_NAME}">
 							<meta itemprop="telephone" content="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
 							<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
@@ -2532,7 +2532,7 @@
 			<div class="mobile-menu__inner">
 				<div class="mobile-menu__header" data-mobile-menu="close">
 					<span class="mobile-menu__logo">
-						<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" width="115" height="33">
+						<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" width="115" height="33" loading="lazy">
 					</span>
 					<span class="mobile-menu__close button button-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="14" height="14" aria-hidden="true">
@@ -2617,7 +2617,7 @@
 						{% FOR cart_items %}
 						<div class="addto__item" data-id="{cart_items.GOODS_ID}" data-mod-id="{cart_items.GOODS_MOD_ID}">
 							<div class="addto__image">
-								<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}">
+								<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" loading="lazy">
 							</div>
 
 							<div class="addto__content">
@@ -2699,7 +2699,7 @@
 						{% FOR compare_goods %}
 						<div class="addto__item" data-id="{compare_goods.ID}">
 							<div class="addto__image">
-								<img src="{% IF compare_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{compare_goods.IMAGE_ICON}{% ENDIF %}" alt="{compare_goods.NAME}" />
+								<img src="{% IF compare_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{compare_goods.IMAGE_ICON}{% ENDIF %}" alt="{compare_goods.NAME}" loading="lazy" />
 							</div>
 
 							<div class="addto__content">
@@ -2754,7 +2754,7 @@
 						{% FOR favorites_goods %}
 						<div class="addto__item" data-id="{favorites_goods.ID}">
 							<div class="addto__image">
-								<img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{favorites_goods.IMAGE_ICON}{% ENDIF %}" alt="{favorites_goods.NAME}" />
+								<img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{favorites_goods.IMAGE_ICON}{% ENDIF %}" alt="{favorites_goods.NAME}" loading="lazy" />
 							</div>
 
 							<div class="addto__content">

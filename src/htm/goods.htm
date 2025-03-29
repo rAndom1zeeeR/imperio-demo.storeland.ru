@@ -30,10 +30,7 @@
 			{% ELSE %}
 			<!-- Главное изображение -->
 			<div class="productView__image" data-fancybox="gallery" data-src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}">
-				<img src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}"
-						 alt="{GOODS_NAME}"
-						 itemprop="image"
-						 loading="lazy">
+				<img src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}" alt="{GOODS_NAME}" loading="lazy">
 			</div>
 			{% ENDIF %}
 		</div>

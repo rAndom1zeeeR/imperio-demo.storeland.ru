@@ -15,7 +15,7 @@
 					{% FOR cart_items %}
 					<div class="cartTable__item" data-id="{cart_items.GOODS_ID}" data-mod-id="{cart_items.GOODS_MOD_ID}">
 						<div class="cartTable__image">
-							<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_MEDIUM}{% ENDIF %}" alt="{cart_items.GOODS_NAME}">
+							<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_MEDIUM}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" loading="lazy">
 							<span class="cartTable__image-qty">{cart_items.ORDER_LINE_QUANTITY}</span>
 						</div>
 

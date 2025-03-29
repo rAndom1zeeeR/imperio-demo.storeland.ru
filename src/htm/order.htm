@@ -492,7 +492,7 @@
             <tr class="order-items">
               <td>
                 <a class="order-items__image" href="{cart_items.GOODS_URL}" title="{cart_items.GOODS_NAME}">
-                  <img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}">
+                  <img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" loading="lazy">
                 </a>
               </td>
               <td>

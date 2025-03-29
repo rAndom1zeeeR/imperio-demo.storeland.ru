@@ -12,5 +12,16 @@
   "jsxBracketSameLine": true,
   "arrowParens": "always",
   "endOfLine": "auto",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "overrides": [
+    {
+      "files": ["*.htm"],
+      "options": {
+        "parser": "html",
+        "htmlWhitespaceSensitivity": "ignore",
+        "ignoreComments": true,
+        "ignoreStrings": ["{% IFNOT related_goods.last %}{related_goods.index | is_divided(\"3\",\"</div><div class=swiper-slide>\",\"\")}{% ENDIF %}"]
+      }
+    }
+  ]
 }

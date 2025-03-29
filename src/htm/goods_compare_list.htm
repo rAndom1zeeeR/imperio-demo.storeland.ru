@@ -26,7 +26,7 @@
           {% FOR goods_mod_info %}
           <div class="compare__item swiper-slide">
             <div class="compare__image">
-              <img src="{% IF goods_mod_info.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{goods_mod_info.GOODS_IMAGE_MEDIUM}{% ENDIF %}" alt="{goods_mod_info.GOODS_NAME}">
+              <img src="{% IF goods_mod_info.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{goods_mod_info.GOODS_IMAGE_MEDIUM}{% ENDIF %}" alt="{goods_mod_info.GOODS_NAME}" loading="lazy">
             </div>
             <a class="compare__remove button button-icon" href="{COMPARE_DELETE_URL}?id={goods_mod_info.GOODS_MOD_ID}" title="Убрать из таблицы сравнения" aria-label="Убрать из таблицы сравнения">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" aria-hidden="true">
