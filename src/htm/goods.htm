@@ -421,9 +421,7 @@
 									</div>
 								</form>
 							</div>
-							{% IFNOT related_goods.last %}{related_goods.index | is_divided("3","
-						</div>
-						<div class=swiper-slide>","")}{% ENDIF %}
+							{% IFNOT related_goods.last %}{related_goods.index | is_divided("3","</div><div class=swiper-slide>","")}{% ENDIF %}
 							{% IF related_goods.last %}</div>{% ENDIF %}
 						{% ENDFOR %}
 					</div>
