@@ -237,7 +237,7 @@
 
 
 /* Шапка. Меню */
-.mainnav {position: relative;}
+.mainnav {position: relative;max-width: calc(100% - 440px - 126px - 160px);}
 .mainnav__list {
 	display: flex;
 	align-items: center;
@@ -271,7 +271,7 @@
 }
 .mainnav.is-opened .mainnav__dropdown, .mainnav__dropdown.is-opened {transform: scale(1);}
 @media all and (min-width: 1440px) {
-	.mainnav__list {width: 480px;}
+	.mainnav__list {width: 100%;}
 }
 @media all and (min-width: 1024px) {
 	.header__menu {display: none;}
@@ -1301,12 +1301,15 @@
 	font-family: var(--font-secondary);
 }
 .sidebar__header-close {height: auto;margin-left: auto;}
-.sidebar__content {display: flex;flex-direction: column;height: calc(100vh - 57px);overflow: hidden auto;-webkit-overflow-scrolling: auto;}
+.sidebar__content {display: flex;flex-direction: column;height: calc(100vh - 56px - 42px);overflow: hidden auto;-webkit-overflow-scrolling: auto;}
 .sidebar__content::-webkit-scrollbar {width: var(--scrollbar-width-thin);}
 .sidebar__content::-webkit-scrollbar-thumb {background: var(--color-border);}
 .sidebar__content::-webkit-scrollbar-track {background: var(--color-border-secondary);}
-@media all and (max-width: 1023px) {
+@media all and (min-width: 480px) {
 	.sidebar__content {height: calc(100vh - 56px - 64px);}
+}
+@media all and (min-width: 1024px) {
+	.sidebar__content {height: calc(100vh - 57px);}
 }
 
 /*
