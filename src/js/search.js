@@ -16,14 +16,14 @@ function SearchFieldInit(object) {
   // Обнуление данных в форме поиска
   object.s_reset = object.find(".search__reset");
   // Проверка на существование функции проверки поля и действий с ним
-  if (typeof object.SearchFieldCheck !== "function") {
-    console.error("function SearchFieldCheck is not found in object for SearchFieldInit", { status: "error" });
-    return;
-    // Проверка, сколько полей поиска нам подсунули за раз на инициализацию
-  } else if (1 < object.search_form.length) {
-    console.error("function SearchFieldInit must have only one search object", { status: "error" });
-    return;
-  }
+  // if (typeof object.SearchFieldCheck !== "function") {
+  //   console.error("function SearchFieldCheck is not found in object for SearchFieldInit", { status: "error" });
+  //   return;
+  //   // Проверка, сколько полей поиска нам подсунули за раз на инициализацию
+  // } else if (1 < object.search_form.length) {
+  //   console.error("function SearchFieldInit must have only one search object", { status: "error" });
+  //   return;
+  // }
   // Создаём функцию которая будет отвечать за основные действия с полем поиска
   object.__SearchFieldCheck = function (isAfter) {
     // Если в поле текста есть вбитые данные

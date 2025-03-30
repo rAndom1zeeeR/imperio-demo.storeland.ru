@@ -2438,10 +2438,6 @@ function Opener() {
     parent.classList.toggle("is-opened");
   });
 
-  SidebarOpener("#addtoCart", ".cart__open");
-  SidebarOpener("#addtoCompare", ".addto__link.compare");
-  SidebarOpener("#addtoFavorites", ".addto__link.favorites");
-
   const mobileNavLinks = document.querySelectorAll("[data-mobile-open]");
   mobileNavLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -2454,10 +2450,23 @@ function Opener() {
       } else if (element === "cart") {
         document.querySelector("#addtoCart").removeAttribute("hidden");
       } else if (element === "menu") {
-        document.querySelector(".mobile-menu").removeAttribute("hidden");
+        document.querySelector("#addtoMenu").removeAttribute("hidden");
       }
     });
   });
+
+  const headerButton = document.querySelector(".header__menu-button");
+  if (headerButton) {
+    headerButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      document.querySelector(".mobile-nav__link.menu").click();
+    });
+  }
+
+  SidebarOpener("#addtoCart", ".cart__open");
+  SidebarOpener("#addtoCompare", ".addto__link.compare");
+  SidebarOpener("#addtoFavorites", ".addto__link.favorites");
+  SidebarOpener("#addtoMenu", ".mobile-nav__link.menu");
 }
 
 /**
