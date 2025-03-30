@@ -1375,6 +1375,25 @@ function Goods(doc) {
   }
   StickyView();
 
+
+  /**
+   * Форматирует дату из формата YYYY-MM-DD в формат "DD месяц"
+   * @param {string} dateString - Дата в формате YYYY-MM-DD
+   * @returns {string} Отформатированная дата в формате "DD месяц"
+   */
+  function getDateMonthsName(dateString) {
+    const months = [
+      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+    ];
+
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+
+    return `${day} ${month}`;
+  }
+
   // Запуск функции стикера цены.
   StickerSales(productViewBlock);
   // Запуск функции Количества.
@@ -1387,9 +1406,10 @@ function Goods(doc) {
   SidebarOpener("#deliverys", ".delivery__open");
   // Запуск функции форматирования даты.
   const campaignDate = productViewBlock.querySelector(".productView__campaign time");
-  campaignDate.innerHTML = formatDate(campaignDate.getAttribute("datetime"));
-  console.log("[DEBUG]: campaignDate", campaignDate);
+  campaignDate.innerHTML = getDateMonthsName(campaignDate.getAttribute("datetime"));
+  // console.log("[DEBUG]: campaignDate", campaignDate);
 }
+
 
 /**
  * Товар. Отзывы.
@@ -2368,24 +2388,26 @@ function Opener() {
   const mobileMenu = document.querySelector("[data-mobile-menu=open]");
   const mobileContent = document.querySelector("[data-mobile-menu=content]");
   const mobileСlose = document.querySelector("[data-mobile-menu=close]");
-  mobileMenu.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.currentTarget.classList.toggle("is-opened");
-    if (mobileContent.classList.contains("is-opened")) {
+  if (mobileMenu) {
+    mobileMenu.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.currentTarget.classList.toggle("is-opened");
+      if (mobileContent.classList.contains("is-opened")) {
+        mobileContent.setAttribute("hidden", "");
+        document.body.classList.remove("is-bodylock");
+      } else {
+        mobileContent.removeAttribute("hidden");
+        document.body.classList.add("is-bodylock");
+      }
+      mobileContent.classList.toggle("is-opened");
+    });
+    mobileСlose.addEventListener("click", () => {
+      mobileMenu.classList.remove("is-opened");
+      mobileContent.classList.remove("is-opened");
       mobileContent.setAttribute("hidden", "");
       document.body.classList.remove("is-bodylock");
-    } else {
-      mobileContent.removeAttribute("hidden");
-      document.body.classList.add("is-bodylock");
-    }
-    mobileContent.classList.toggle("is-opened");
-  });
-  mobileСlose.addEventListener("click", () => {
-    mobileMenu.classList.remove("is-opened");
-    mobileContent.classList.remove("is-opened");
-    mobileContent.setAttribute("hidden", "");
-    document.body.classList.remove("is-bodylock");
-  });
+    });
+  }
 
   // Открытие каталога с сохранением вложенности
   const catalogOpens = document.querySelectorAll(".catalog__link-icon");
@@ -2419,6 +2441,23 @@ function Opener() {
   SidebarOpener("#addtoCart", ".cart__open");
   SidebarOpener("#addtoCompare", ".addto__link.compare");
   SidebarOpener("#addtoFavorites", ".addto__link.favorites");
+
+  const mobileNavLinks = document.querySelectorAll("[data-mobile-open]");
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const element = event.currentTarget.getAttribute("data-mobile-open");
+      if (element === "compare") {
+        document.querySelector("#addtoCompare").removeAttribute("hidden");
+      } else if (element === "favorites") {
+        document.querySelector("#addtoFavorites").removeAttribute("hidden");
+      } else if (element === "cart") {
+        document.querySelector("#addtoCart").removeAttribute("hidden");
+      } else if (element === "menu") {
+        document.querySelector(".mobile-menu").removeAttribute("hidden");
+      }
+    });
+  });
 }
 
 /**
@@ -2437,9 +2476,9 @@ function SidebarOpener(selector, opener) {
   function handleCloseOutside(event) {
     const target = event.currentTarget;
     const isClickedOutside = event.target === target;
-    // console.log("[DEBUG]: event", event);
-    // console.log("[DEBUG]: target", target);
-    // console.log("[DEBUG]: isClickedOutside", isClickedOutside);
+    console.log("[DEBUG]: event", event);
+    console.log("[DEBUG]: target", target);
+    console.log("[DEBUG]: isClickedOutside", isClickedOutside);
     if (isClickedOutside) {
       handleClosed();
     }
@@ -2493,14 +2532,42 @@ function VisibleItems(selector) {
 }
 
 /**
- * Переход к контенту
+ * Плавно прокручивает страницу к указанной позиции
+ * @param {number|boolean} offsetTop - Расстояние от верха страницы в пикселях
+ * @returns {boolean} - Возвращает false если offsetTop === true, иначе undefined
+ * @throws {Error} - Если offsetTop не является числом или boolean
+ * 
+ * @example
+ * // Прокрутка к началу страницы
+ * scrollTop(0);
+ * 
+ * // Прокрутка к элементу с отступом 100px от верха
+ * scrollTop(100);
+ * 
+ * // Отмена прокрутки
+ * scrollTop(true);
  */
 function scrollTop(offsetTop) {
-  if (offsetTop === true) return false;
+  // Проверяем тип входного параметра
+  if (typeof offsetTop !== 'number' && typeof offsetTop !== 'boolean') {
+    throw new Error('offsetTop должен быть числом или boolean');
+  }
+
+  // Если offsetTop === true, отменяем прокрутку
+  if (offsetTop === true) {
+    return false;
+  }
+
+  // Проверяем, что offsetTop не отрицательное число
+  if (offsetTop < 0) {
+    offsetTop = 0;
+  }
+
+  // Плавно прокручиваем страницу
   window.scrollTo({
     top: offsetTop,
     left: 0,
-    behavior: "smooth",
+    behavior: "smooth"
   });
 }
 
@@ -3107,8 +3174,6 @@ function NewsTabs(selector) {
   tabsContainer.addEventListener('click', handleTabClick);
 }
 
-
-
 /**
  * Слайдер изображений товара.
  * Используется в функциях: на странице "Товары"
@@ -3156,126 +3221,291 @@ function swiperProductImages(id) {
 }
 
 /**
- * Авторизация без обновления страницы.
- * Используется в функциях: на главной странице
- * Использует функции: getHtmlFromPost
+ * Обрабатывает авторизацию пользователя без перезагрузки страницы
+ * 
+ * Функция инициализирует обработку формы авторизации и обновляет UI после успешной авторизации:
+ * - Отправляет данные формы асинхронно
+ * - Обновляет содержимое диалога авторизации
+ * - Обновляет ссылку авторизации в шапке сайта
+ * - Обрабатывает ошибки и показывает уведомления
+ * 
+ * @requires getHtmlFromPost - Функция для отправки POST-запроса
+ * @requires СreateNoty - Функция для создания уведомлений
+ * 
+ * @example
+ * // HTML
+ * <div id="dialogLogin">
+ *   <form action="/auth" method="post">
+ *     <input type="text" name="login" required>
+ *     <input type="password" name="password" required>
+ *     <button type="submit">Войти</button>
+ *   </form>
+ * </div>
+ * 
+ * // JavaScript
+ * Autorization();
  */
 function Autorization() {
-  const block = document.getElementById("dialogLogin");
-  const form = block?.querySelector("form");
+  // Получаем элементы формы авторизации
+  const dialogBlock = document.getElementById("dialogLogin");
+  const authForm = dialogBlock?.querySelector("form");
 
-  if (!block || !form) return;
+  // Проверяем наличие необходимых элементов
+  if (!dialogBlock || !authForm) {
+    console.warn("[WARNING]: Authorization elements not found");
+    return;
+  }
 
+  // Константы для селекторов
+  const SELECTORS = {
+    loginLink: ".addto__link.login",
+    dialogContent: "#dialogLogin .dialog__container"
+  };
+
+  // Сообщения об ошибках
+  const MESSAGES = {
+    error: "Ошибка авторизации. Попробуйте позже.",
+    success: "Авторизация успешно выполнена"
+  };
+
+  /**
+   * Обновляет содержимое диалога авторизации
+   * @param {Document} responseData - HTML-документ с ответом сервера
+   */
+  const updateDialogContent = (responseData) => {
+    const newDialogContent = responseData.querySelector(SELECTORS.dialogContent)?.innerHTML;
+    if (newDialogContent) {
+      dialogBlock.querySelector(".dialog__container").innerHTML = newDialogContent;
+    }
+  };
+
+  /**
+   * Обновляет ссылку авторизации в шапке сайта
+   * @param {Document} responseData - HTML-документ с ответом сервера
+   */
+  const updateLoginLink = (responseData) => {
+    const loginLink = document.querySelector(SELECTORS.loginLink);
+    const newLoginLink = responseData.querySelector(SELECTORS.loginLink);
+
+    if (loginLink && newLoginLink) {
+      loginLink.innerHTML = newLoginLink.innerHTML;
+    }
+  };
+
+  /**
+   * Обрабатывает отправку формы авторизации
+   * @param {Event} event - Событие отправки формы
+   */
   const handleAuthForm = async (event) => {
     event.preventDefault();
 
     try {
-      block.classList.add("is-loading");
+      // Добавляем индикатор загрузки
+      dialogBlock.classList.add("is-loading");
 
-      const formData = new FormData(form);
+      // Подготавливаем данные формы
+      const formData = new FormData(authForm);
       formData.append("ajax_q", "1");
 
-      const data = await getHtmlFromPost(form.action, formData);
+      // Отправляем запрос на сервер
+      const responseData = await getHtmlFromPost(authForm.action, formData);
 
-      // Обновляем содержимое диалога авторизации
-      const dialogContent = data.getElementById("dialogLogin")?.innerHTML;
-      if (dialogContent) {
-        block.innerHTML = dialogContent;
-      }
+      // Обновляем UI
+      updateDialogContent(responseData);
+      updateLoginLink(responseData);
 
-      // Обновляем ссылку авторизации в шапке
-      const loginLink = document.querySelector(".addto__link.login");
-      const newLoginLink = data.querySelector(".addto__link.login");
-      if (loginLink && newLoginLink) {
-        loginLink.innerHTML = newLoginLink.innerHTML;
-      }
+      // Показываем уведомление об успехе
+      СreateNoty("success", MESSAGES.success);
+
     } catch (error) {
       console.error("[ERROR]: Authorization failed", error);
-      СreateNoty("error", "Ошибка авторизации. Попробуйте позже.");
+      СreateNoty("error", MESSAGES.error);
     } finally {
-      block.classList.remove("is-loading");
+      // Убираем индикатор загрузки
+      dialogBlock.classList.remove("is-loading");
     }
   };
 
-  form.addEventListener("submit", handleAuthForm);
+  // Добавляем обработчик отправки формы
+  authForm.addEventListener("submit", handleAuthForm);
 }
 
 /**
- * Отправка формы без обновления страницы
+ * Обрабатывает отправку формы без перезагрузки страницы
+ * 
+ * Функция инициализирует обработку формы и отправляет данные асинхронно:
+ * - Отправляет данные формы через POST-запрос
+ * - Обрабатывает ответ сервера
+ * - Показывает уведомления об успехе/ошибке
+ * - Автоматически закрывает модальное окно после успешной отправки
+ * 
  * @param {string} id - ID блока с формой
  * @param {string} successMessage - Сообщение об успешной отправке
  * @param {string} errorMessage - Сообщение об ошибке
+ * 
+ * @requires getJsonFromPost - Функция для отправки POST-запроса
+ * @requires СreateNoty - Функция для создания уведомлений
+ * 
+ * @example
+ * // HTML
+ * <div id="contactForm">
+ *   <form action="/contact" method="post">
+ *     <input type="text" name="name" required>
+ *     <input type="email" name="email" required>
+ *     <textarea name="message" required></textarea>
+ *     <button type="submit">Отправить</button>
+ *   </form>
+ * </div>
+ * 
+ * // JavaScript
+ * Form(
+ *   "contactForm",
+ *   "Сообщение успешно отправлено",
+ *   "Произошла ошибка при отправке"
+ * );
  */
 function Form(id, successMessage, errorMessage) {
-  const block = document.getElementById(id);
-  const form = block?.querySelector("form");
+  // Получаем элементы формы
+  const formBlock = document.getElementById(id);
+  const formElement = formBlock?.querySelector("form");
 
-  if (!block || !form) return;
+  // Проверяем наличие необходимых элементов
+  if (!formBlock || !formElement) {
+    console.warn(`[WARNING]: Form elements not found for id: ${id}`);
+    return;
+  }
 
+  // Константы для настройки
+  const CONFIG = {
+    closeDelay: 3000, // Задержка закрытия модального окна в мс
+    ajaxFlag: "ajax_q",
+    bodyOnlyFlag: "only_body"
+  };
+
+  /**
+   * Показывает уведомление в зависимости от статуса ответа
+   * @param {Object} response - Ответ сервера
+   * @param {string} response.status - Статус ответа
+   * @param {string} [response.message] - Сообщение от сервера
+   */
+  const showNotification = (response) => {
+    if (response.status === "ok") {
+      СreateNoty("success", successMessage);
+    } else {
+      СreateNoty("error", response.message || errorMessage);
+    }
+  };
+
+  /**
+   * Закрывает модальное окно с задержкой
+   */
+  const closeModal = () => {
+    if (formBlock.hasAttribute("open")) {
+      setTimeout(() => formBlock.close(), CONFIG.closeDelay);
+    }
+  };
+
+  /**
+   * Обрабатывает отправку формы
+   * @param {Event} event - Событие отправки формы
+   */
   const handleForm = async (event) => {
     event.preventDefault();
 
     try {
-      block.classList.add("is-loading");
+      // Добавляем индикатор загрузки
+      formBlock.classList.add("is-loading");
 
-      const formData = new FormData(form);
-      formData.append("ajax_q", "1");
-      formData.append("only_body", "1");
+      // Подготавливаем данные формы
+      const formData = new FormData(formElement);
+      formData.append(CONFIG.ajaxFlag, "1");
+      formData.append(CONFIG.bodyOnlyFlag, "1");
 
-      const data = await getJsonFromPost(form.action, formData);
+      // Отправляем запрос на сервер
+      const response = await getJsonFromPost(formElement.action, formData);
 
-      if (data.status === "ok") {
-        СreateNoty("success", successMessage);
-      } else {
-        СreateNoty("error", data.message || errorMessage);
+      // Показываем уведомление
+      showNotification(response);
+
+      // Закрываем модальное окно при успешной отправке
+      if (response.status === "ok") {
+        closeModal();
       }
+
     } catch (error) {
       console.error("[ERROR]: Form submission failed", error);
       СreateNoty("error", errorMessage);
     } finally {
-      block.classList.remove("is-loading");
-
-      // Закрываем модальное окно после успешной отправки
-      if (block.hasAttribute("open")) {
-        setTimeout(() => block.close(), 3000);
-      }
+      // Убираем индикатор загрузки
+      formBlock.classList.remove("is-loading");
     }
   };
 
-  form.addEventListener("submit", handleForm);
+  // Добавляем обработчик отправки формы
+  formElement.addEventListener("submit", handleForm);
 }
 
 /**
- * Функция Наверх. /JS/
+ * Инициализирует кнопку прокрутки страницы вверх
+ * 
+ * Функция добавляет обработчики событий для кнопок с классом 'toTop':
+ * - Отслеживает скролл страницы и показывает/скрывает кнопку
+ * - При клике плавно прокручивает страницу вверх
+ * 
+ * @example
+ * // HTML
+ * <button class="toTop is-hidden">Наверх</button>
+ * 
+ * // JavaScript
+ * toTop();
+ * 
+ * @requires scrollTop - Функция для плавной прокрутки страницы
  */
 function toTop() {
-  const goto = document.querySelector('.toTop')
-  // Показать при скроле
-  window.addEventListener('scroll', function () {
-    window.scrollY > 99 ? goto.classList.remove('is-hidden') : goto.classList.add('is-hidden')
-  })
+  // Получаем все кнопки "наверх"
+  const topButtons = document.querySelectorAll('.toTop');
 
-  // Действие наверх
-  goto.addEventListener('click', () => scrollTop(0))
+  // Если кнопок нет, завершаем выполнение
+  if (!topButtons.length) return;
+
+  // Константы для настройки
+  const SCROLL_THRESHOLD = 99; // Порог скролла в пикселях
+
+  // Функция для обработки скролла
+  const handleScroll = () => {
+    const isScrolled = window.scrollY > SCROLL_THRESHOLD;
+
+    topButtons.forEach(button => {
+      button.classList.toggle('is-hidden', !isScrolled);
+    });
+  };
+
+  // Функция для обработки клика
+  const handleClick = () => {
+    scrollTop(0);
+  };
+
+  // Добавляем обработчики для каждой кнопки
+  topButtons.forEach(button => {
+    // Добавляем обработчик скролла
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Добавляем обработчик клика
+    button.addEventListener('click', handleClick);
+
+    // Добавляем поддержку клавиатуры
+    button.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        handleClick();
+      }
+    });
+  });
+
+  // Вызываем handleScroll сразу для установки начального состояния
+  handleScroll();
 }
 
-/**
- * Форматирует дату из формата YYYY-MM-DD в формат "DD месяц"
- * @param {string} dateString - Дата в формате YYYY-MM-DD
- * @returns {string} Отформатированная дата в формате "DD месяц"
- */
-function formatDate(dateString) {
-  const months = [
-    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
-  ];
-
-  const date = new Date(dateString);
-  const day = date.getDate();
-  const month = months[date.getMonth()];
-
-  return `${day} ${month}`;
-}
 
 /**
  * Загрузка основных функций шаблона на всех страницах.

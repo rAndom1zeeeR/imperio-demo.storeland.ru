@@ -23,9 +23,9 @@
 					{% ELSE %}
 					<div class="product__image swiper swiper-{favorites_goods.ID}">
 						<div class="swiper-wrapper">
-							{% FOR images %}
-							<a class="swiper-slide product__img" href="{favorites_goods.URL_MIN_PRICE_NOW | url_amp}" title="{favorites_goods.images.NAME}" itemprop="url" data-id="{favorites_goods.images.ID}">
-								<img src="{favorites_goods.images.MEDIUM}" alt="{favorites_goods.images.NAME}" loading="lazy" itemprop="image">
+							{% FOR goods_images_list %}
+							<a class="swiper-slide product__img" href="{favorites_goods.URL_MIN_PRICE_NOW | url_amp}" title="{favorites_goods.goods_images_list.NAME}" itemprop="url" data-id="{favorites_goods.goods_images_list.ID}">
+								<img src="{favorites_goods.goods_images_list.MEDIUM}" alt="{favorites_goods.goods_images_list.NAME}" loading="lazy" itemprop="image">
 							</a>
 							{% ENDFOR %}
 						</div>
