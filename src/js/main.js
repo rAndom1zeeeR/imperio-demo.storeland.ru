@@ -2431,13 +2431,6 @@ function Opener() {
     });
   }
 
-  const mobileCatalog = document.querySelector(".mobile-menu__link.is-catalog");
-  mobileCatalog.addEventListener("click", (event) => {
-    event.preventDefault();
-    const parent = event.currentTarget.parentElement;
-    parent.classList.toggle("is-opened");
-  });
-
   const mobileNavLinks = document.querySelectorAll("[data-mobile-open]");
   mobileNavLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
