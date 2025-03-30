@@ -265,6 +265,17 @@
 			<div class="container">
 				<nav class="catalog__mainnav mainnav">
 					<ul class="mainnav__list">
+						<li class="mainnav__item">
+							<a class="mainnav__link mainnav__link--catalog button" href="{catalog_full.URL}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024" aria-hidden="true">
+									<path d="M461.227 53.76c0-11.787-9.547-21.333-21.333-21.333h-386.133c-11.787 0-21.333 9.547-21.333 21.333v386.133c0 11.787 9.547 21.333 21.333 21.333h386.133c11.787 0 21.333-9.547 21.333-21.333zM418.56 418.56h-343.467v-343.467h343.467z"></path>
+									<path d="M992.427 53.76c0-11.787-9.547-21.333-21.333-21.333h-386.133c-11.787 0-21.333 9.547-21.333 21.333v386.133c0 11.787 9.547 21.333 21.333 21.333h386.133c11.787 0 21.333-9.547 21.333-21.333zM949.76 418.56h-343.467v-343.467h343.467z"></path>
+									<path d="M461.227 584.96c0-11.787-9.547-21.333-21.333-21.333h-386.133c-11.787 0-21.333 9.547-21.333 21.333v386.133c0 11.787 9.547 21.333 21.333 21.333h386.133c11.787 0 21.333-9.547 21.333-21.333zM418.56 947.627h-343.467v-341.333h343.467z"></path>
+									<path d="M992.427 584.96c0-11.787-9.547-21.333-21.333-21.333h-386.133c-11.787 0-21.333 9.547-21.333 21.333v386.133c0 11.787 9.547 21.333 21.333 21.333h386.133c11.787 0 21.333-9.547 21.333-21.333zM949.76 947.627h-343.467v-341.333h343.467z"></path>
+								</svg>
+								<span itemprop="name">Каталог</span>
+							</a>
+						</li>
 						{% FOR catalog_full %}
 						{% IF catalog_full.LEVEL > 0 || catalog_full.HIDE %}{continue}{% ENDIF %}
 						<li class="mainnav__item{% IF catalog_full.CURRENT_PARENT %} is-active{% ENDIF %}">
@@ -277,24 +288,22 @@
 					<ul class="mainnav__dropdown"></ul>
 				</nav>
 				<div class="catalog__content">
-					<div class="container">
-						{% FOR catalog_full %}
-						{% IF catalog_full.FIRST %}<ul class="catalog__sub" data-level="{catalog_full.LEVEL}">{% ENDIF %}
-							<li class="catalog__item {% IF catalog_full.ISSET_VISIBLE_SUB %}is-parent{% ENDIF %} {% IF catalog_full.CURRENT_PARENT %}is-opened{% ENDIF %}" data-level="{catalog_full.LEVEL}" data-id="{catalog_full.ID}" {% IF catalog_full.HIDE %}style="display:none;" {% ENDIF %}>
-								<a class="catalog__link {% IF catalog_full.CURRENT %}is-opened{% ENDIF %}" href="{catalog_full.URL}" data-level="{catalog_full.LEVEL}">
-									<span>{catalog_full.NAME}</span>
-									{% IF catalog_full.ISSET_VISIBLE_SUB %}
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="10" height="10" aria-hidden="true">
-										<path d="M183.2 111.8 74.9 3.6c-4.8-4.7-12.5-4.7-17.2 0-4.8 4.8-4.8 12.5 0 17.2l99.7 99.7-99.7 99.7c-4.8 4.7-4.8 12.4 0 17.2 4.8 4.7 12.5 4.7 17.2 0L183.2 129c4.7-4.7 4.7-12.5 0-17.2z" />
-									</svg>
-									{% ENDIF %}
-								</a>
-								{% IF catalog_full.ISSET_SUB=0 %}
-							</li>{% ENDIF %}
-							{% IF catalog_full.LAST %}{% FOR out %}</li>{% IFNOT catalog_full.out.LAST %}
-						</ul>{% ENDIF %}{% ENDFOR %}{% ENDIF %}
-						{% ENDFOR %}
-					</div>
+					{% FOR catalog_full %}
+					{% IF catalog_full.FIRST %}<ul class="catalog__sub" data-level="{catalog_full.LEVEL}">{% ENDIF %}
+						<li class="catalog__item {% IF catalog_full.ISSET_VISIBLE_SUB %}is-parent{% ENDIF %} {% IF catalog_full.CURRENT_PARENT %}is-opened{% ENDIF %}" data-level="{catalog_full.LEVEL}" data-id="{catalog_full.ID}" {% IF catalog_full.HIDE %}style="display:none;" {% ENDIF %}>
+							<a class="catalog__link {% IF catalog_full.CURRENT %}is-opened{% ENDIF %}" href="{catalog_full.URL}" data-level="{catalog_full.LEVEL}">
+								<span>{catalog_full.NAME}</span>
+								{% IF catalog_full.ISSET_VISIBLE_SUB %}
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="10" height="10" aria-hidden="true">
+									<path d="M183.2 111.8 74.9 3.6c-4.8-4.7-12.5-4.7-17.2 0-4.8 4.8-4.8 12.5 0 17.2l99.7 99.7-99.7 99.7c-4.8 4.7-4.8 12.4 0 17.2 4.8 4.7 12.5 4.7 17.2 0L183.2 129c4.7-4.7 4.7-12.5 0-17.2z" />
+								</svg>
+								{% ENDIF %}
+							</a>
+							{% IF catalog_full.ISSET_SUB=0 %}
+						</li>{% ENDIF %}
+						{% IF catalog_full.LAST %}{% FOR out %}</li>{% IFNOT catalog_full.out.LAST %}
+					</ul>{% ENDIF %}{% ENDFOR %}{% ENDIF %}
+					{% ENDFOR %}
 				</div>
 			</div>
 		</section>

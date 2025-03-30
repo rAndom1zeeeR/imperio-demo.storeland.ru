@@ -370,7 +370,7 @@ function Mainnav(selector = document) {
   const mainnavItems = mainnav.querySelectorAll(".mainnav__item");
   const mainnavMore = mainnav.querySelector(".mainnav__item--more");
 
-  function mainnavItemsHandle() {
+  function handleMainnavItems() {
     if (getClientWidth() < 1024) return;
     let mainnavItemsWidth = 0;
     // console.log("[DEBUG]: mainnavItemsWidth11", mainnavItemsWidth);
@@ -387,8 +387,8 @@ function Mainnav(selector = document) {
     });
   }
 
-  mainnavItemsHandle();
-  window.addEventListener("resize", mainnavItemsHandle);
+  handleMainnavItems();
+  window.addEventListener("resize", handleMainnavItems);
 
   mainnavMore.addEventListener("click", (event) => {
     event.preventDefault();
@@ -436,7 +436,7 @@ function MainnavCatalog(selector = document) {
   const mainnavSaleButtonSpan = document.createElement("span");
   mainnavSaleButtonSpan.innerHTML = "Sale";
 
-  function mainnavItemsHandle() {
+  function handleMainnavItems() {
     if (getClientWidth() < 1024) return;
 
     // Сначала добавляем кнопки Sale и "Еще" для измерения их ширины
@@ -475,19 +475,17 @@ function MainnavCatalog(selector = document) {
     mainnavList.append(mainnavMoreLi);
   }
 
-  mainnavItemsHandle();
-  window.addEventListener("resize", mainnavItemsHandle);
+  handleMainnavItems();
+  window.addEventListener("resize", handleMainnavItems);
 
   mainnavMoreButton.addEventListener("click", (event) => {
     event.preventDefault();
-    // event.currentTarget.classList.toggle("is-active");
+    event.currentTarget.classList.toggle("is-active");
     OverlayOpener(mainnav, handleOpened);
-    const catalog = document.querySelector('#catalog');
-    catalog.querySelector('.catalog__content').classList.toggle('is-active');
   });
 
   function handleOpened(event) {
-    OverlayCloser(event, ".mainnav", handleOpened);
+    OverlayCloser(event, ".catalog__mainnav", handleOpened);
   }
 }
 
@@ -2352,17 +2350,19 @@ function Opener() {
     parent.classList.toggle("is-opened");
   });
 
-  const catalogButton = document.querySelector(".catalog__button");
+
+  // Открытие каталога
+  const catalogButton = document.querySelector(".mainnav__link--catalog");
   if (catalogButton) {
     catalogButton.addEventListener("click", (event) => {
       event.preventDefault();
-      const parentTarget = event.currentTarget.parentElement;
+      const parentTarget = event.currentTarget.closest('#catalog');
       OverlayOpener(parentTarget, handleCatalogOpened);
     });
   }
 
   function handleCatalogOpened(event) {
-    OverlayCloser(event, ".mainnav__catalog", handleCatalogOpened);
+    OverlayCloser(event, "#catalog", handleCatalogOpened);
   }
 
   const mobileMenu = document.querySelector("[data-mobile-menu=open]");
