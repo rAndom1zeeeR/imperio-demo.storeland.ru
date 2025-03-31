@@ -237,7 +237,8 @@
 
 
 /* Шапка. Меню */
-.mainnav {position: relative;max-width: calc(100% - 440px - 126px - 160px);}
+#header .mainnav {max-width: calc(100% - 440px - 126px - 160px);}
+.mainnav {position: relative;}
 .mainnav__list {
 	display: flex;
 	align-items: center;
@@ -375,7 +376,6 @@
 */
 .page-index #catalog {border-bottom: 0;}
 #catalog {border-bottom: 1px solid var(--color-border-secondary);}
-#catalog .mainnav__list {width: 100%;}
 .catalog__mainnav .mainnav__link {display: flex;padding: 16px;font-size: var(--text-size-large);line-height: var(--text-height-large);}
 .catalog__mainnav .mainnav__link--catalog {height: 100%;padding-inline: 24px;}
 .catalog__mainnav .mainnav__link--more.is-active svg {transform: rotate(180deg);}
