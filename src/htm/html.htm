@@ -38,7 +38,7 @@
 	<!-- Если отключен JS -->
 	<script>
 		document.addEventListener('DOMContentLoaded', () => document.body.classList.remove('is-nojs'));
-		document.body.classList.remove('is-loading');
+		window.onload = () => document.body.classList.remove('is-loading');
 	</script>
 	<style>
 		.nojs .preloader {
@@ -903,7 +903,11 @@
 			<div class="container">
 				<div class="swiper">
 					<div class="banners__items swiper-wrapper">
-						<div class="banners__item swiper-slide">
+						<div class="banners__item swiper-slide" data-slide="1">
+							<div class="banners__bg-block-1"></div>
+							<div class="banners__bg-block-2"></div>
+							<div class="banners__bg-block-3"></div>
+							<div class="banners__bg-block-4"></div>
 							<div class="banners__content">
 								<h3 class="banners__title">Нет причин откладывать покупку</h3>
 								<h4 class="banners__subtitle">У нас доспупна рассрочка без&nbsp;переплаты</h4>
@@ -915,7 +919,11 @@
 								<img src="{ASSETS_IMAGES_PATH}banner1.png?design=THEMENAME" alt="" loading="lazy" />
 							</div>
 						</div>
-						<div class="banners__item swiper-slide">
+						<div class="banners__item swiper-slide" data-slide="2">
+							<div class="banners__bg-block-1"></div>
+							<div class="banners__bg-block-2"></div>
+							<div class="banners__bg-block-3"></div>
+							<div class="banners__bg-block-4"></div>
 							<div class="banners__content">
 								<h3 class="banners__title">Бесплатный дизайн-проект</h3>
 								<h4 class="banners__subtitle">Быстрый подбор мебели для&nbsp;вашего интерьера</h4>
@@ -927,7 +935,11 @@
 								<img src="{ASSETS_IMAGES_PATH}banner2.png?design=THEMENAME" alt="" loading="lazy" />
 							</div>
 						</div>
-						<div class="banners__item swiper-slide">
+						<div class="banners__item swiper-slide" data-slide="3">
+							<div class="banners__bg-block-1"></div>
+							<div class="banners__bg-block-2"></div>
+							<div class="banners__bg-block-3"></div>
+							<div class="banners__bg-block-4"></div>
 							<div class="banners__content">
 								<h3 class="banners__title">Мебель по индивидуальным размерам</h3>
 								<h4 class="banners__subtitle">Бысплатный выезд опытного замерщика</h4>
@@ -939,7 +951,11 @@
 								<img src="{ASSETS_IMAGES_PATH}banner3.png?design=THEMENAME" alt="" loading="lazy" />
 							</div>
 						</div>
-						<div class="banners__item swiper-slide">
+						<div class="banners__item swiper-slide" data-slide="4">
+							<div class="banners__bg-block-1"></div>
+							<div class="banners__bg-block-2"></div>
+							<div class="banners__bg-block-3"></div>
+							<div class="banners__bg-block-4"></div>
 							<div class="banners__content">
 								<h3 class="banners__title">Бесплатный дизайн-проект</h3>
 								<h4 class="banners__subtitle">Быстрый подбор мебели для&nbsp;вашего интерьера</h4>
