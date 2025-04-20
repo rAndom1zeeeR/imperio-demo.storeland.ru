@@ -507,15 +507,12 @@
 							<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{related_views_goods.NAME}" loading="lazy" itemprop="image">
 						</a>
 						{% ELSE %}
-						<div class="product__image swiper swiper-{related_views_goods.ID}">
-							<div class="swiper-wrapper">
-								{% FOR images %}
-								<a class="swiper-slide product__img" href="{related_views_goods.URL_MIN_PRICE_NOW | url_amp}" title="{related_views_goods.images.NAME}" itemprop="url" data-id="{related_views_goods.images.ID}">
-									<img src="{related_views_goods.images.MEDIUM}" alt="{related_views_goods.images.NAME}" loading="lazy" itemprop="image">
-								</a>
-								{% ENDFOR %}
-							</div>
-							<div class="swiper-scrollbar"></div>
+						<div class="product__image">
+							{% FOR images %}
+							<a class="swiper-slide product__img" href="{related_views_goods.URL_MIN_PRICE_NOW | url_amp}" title="{related_views_goods.images.NAME}" itemprop="url" data-id="{related_views_goods.images.ID}">
+								<img src="{related_views_goods.images.MEDIUM}" alt="{related_views_goods.images.NAME}" loading="lazy" itemprop="image">
+							</a>
+							{% ENDFOR %}
 						</div>
 						{% ENDIF %}
 						<!-- Стикеры -->

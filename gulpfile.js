@@ -311,5 +311,5 @@ exports.download = parallel(checkConfig, downloadFiles);
 exports.styles = styles;
 exports.scripts = scripts;
 exports.images = images;
-exports.build = parallel(clean, checkConfig, html, fonts, stylesLibs, styles, scriptsLibs, scripts, images, stylesMin);
+exports.build = parallel(checkConfig, html, fonts, stylesLibs, styles, scriptsLibs, scripts, images, stylesMin);
 exports.default = parallel(checkConfig, styles, scripts, browsersync, startwatch);

@@ -500,15 +500,12 @@
 										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_sale_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
 									{% ELSE %}
-									<div class="product__image swiper swiper-{index_page_sale_goods.ID}">
-										<div class="swiper-wrapper">
-											{% FOR images %}
-											<a class="swiper-slide product__img" href="{index_page_sale_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_sale_goods.images.NAME}" itemprop="url" data-id="{index_page_sale_goods.images.ID}">
-												<img src="{index_page_sale_goods.images.MEDIUM}" alt="{index_page_sale_goods.images.NAME}" loading="lazy" itemprop="image">
-											</a>
-											{% ENDFOR %}
-										</div>
-										<div class="swiper-scrollbar"></div>
+									<div class="product__image">
+										{% FOR images %}
+										<a class="product__img" href="{index_page_sale_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_sale_goods.images.NAME}" data-id="{index_page_sale_goods.images.ID}">
+											<img src="{index_page_sale_goods.images.MEDIUM}" alt="{index_page_sale_goods.images.NAME}" loading="lazy" itemprop="image">
+										</a>
+										{% ENDFOR %}
 									</div>
 									{% ENDIF %}
 									<!-- Стикеры -->
@@ -724,15 +721,12 @@
 										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_favorites_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
 									{% ELSE %}
-									<div class="product__image swiper swiper-{index_page_favorites_goods.ID}">
-										<div class="swiper-wrapper">
-											{% FOR images %}
-											<a class="swiper-slide product__img" href="{index_page_favorites_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_favorites_goods.images.NAME}" itemprop="url" data-id="{index_page_favorites_goods.images.ID}">
-												<img src="{index_page_favorites_goods.images.MEDIUM}" alt="{index_page_favorites_goods.images.NAME}" loading="lazy" itemprop="image">
-											</a>
-											{% ENDFOR %}
-										</div>
-										<div class="swiper-scrollbar"></div>
+									<div class="product__image">
+										{% FOR images %}
+										<a class="product__img" href="{index_page_favorites_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_favorites_goods.images.NAME}" data-id="{index_page_favorites_goods.images.ID}">
+											<img src="{index_page_favorites_goods.images.MEDIUM}" alt="{index_page_favorites_goods.images.NAME}" loading="lazy" itemprop="image">
+										</a>
+										{% ENDFOR %}
 									</div>
 									{% ENDIF %}
 									<!-- Стикеры -->
@@ -995,15 +989,12 @@
 										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_new_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
 									{% ELSE %}
-									<div class="product__image swiper swiper-{index_page_new_goods.ID}">
-										<div class="swiper-wrapper">
-											{% FOR images %}
-											<a class="swiper-slide product__img" href="{index_page_new_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_new_goods.images.NAME}" itemprop="url" data-id="{index_page_new_goods.images.ID}">
-												<img src="{index_page_new_goods.images.MEDIUM}" alt="{index_page_new_goods.images.NAME}" loading="lazy" itemprop="image">
-											</a>
-											{% ENDFOR %}
-										</div>
-										<div class="swiper-scrollbar"></div>
+									<div class="product__image">
+										{% FOR images %}
+										<a class="product__img" href="{index_page_new_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_new_goods.images.NAME}" data-id="{index_page_new_goods.images.ID}">
+											<img src="{index_page_new_goods.images.MEDIUM}" alt="{index_page_new_goods.images.NAME}" loading="lazy" itemprop="image">
+										</a>
+										{% ENDFOR %}
 									</div>
 									{% ENDIF %}
 									<!-- Стикеры -->
@@ -1202,15 +1193,12 @@
 									<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_goods.NAME}" loading="lazy" itemprop="image">
 								</a>
 								{% ELSE %}
-								<div class="product__image swiper swiper-{index_page_goods.ID}">
-									<div class="swiper-wrapper">
-										{% FOR images %}
-										<a class="swiper-slide product__img" href="{index_page_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_goods.images.NAME}" itemprop="url" data-id="{index_page_goods.images.ID}">
-											<img src="{index_page_goods.images.MEDIUM}" alt="{index_page_goods.images.NAME}" loading="lazy" itemprop="image">
-										</a>
-										{% ENDFOR %}
-									</div>
-									<div class="swiper-scrollbar"></div>
+								<div class="product__image">
+									{% FOR images %}
+									<a class="product__img" href="{index_page_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_goods.images.NAME}" data-id="{index_page_goods.images.ID}">
+										<img src="{index_page_goods.images.MEDIUM}" alt="{index_page_goods.images.NAME}" loading="lazy" itemprop="image">
+									</a>
+									{% ENDFOR %}
 								</div>
 								{% ENDIF %}
 								<!-- Стикеры -->
@@ -1953,15 +1941,12 @@
 										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{recently_viewed_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
 									{% ELSE %}
-									<div class="product__image swiper swiper-{recently_viewed_goods.ID}">
-										<div class="swiper-wrapper">
-											{% FOR goods_images_list %}
-											<a class="swiper-slide product__img" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}" title="{recently_viewed_goods.goods_images_list.NAME}" itemprop="url" data-id="{recently_viewed_goods.goods_images_list.ID}">
-												<img src="{recently_viewed_goods.goods_images_list.MEDIUM}" alt="{recently_viewed_goods.goods_images_list.NAME}" loading="lazy" itemprop="image">
-											</a>
-											{% ENDFOR %}
-										</div>
-										<div class="swiper-scrollbar"></div>
+									<div class="product__image">
+										{% FOR goods_images_list %}
+										<a class="product__img" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}" title="{recently_viewed_goods.goods_images_list.NAME}" data-id="{recently_viewed_goods.goods_images_list.ID}">
+											<img src="{recently_viewed_goods.goods_images_list.MEDIUM}" alt="{recently_viewed_goods.goods_images_list.NAME}" loading="lazy" itemprop="image">
+										</a>
+										{% ENDFOR %}
 									</div>
 									{% ENDIF %}
 									<!-- Стикеры -->
@@ -2137,6 +2122,10 @@
 		{% IF index_page %}
 		<section id="subscribe" class="section">
 			<div class="subscribe__top">
+				<div class="subscribe__bg-block-1"></div>
+				<div class="subscribe__bg-block-2"></div>
+				<div class="subscribe__bg-block-3"></div>
+				<div class="subscribe__bg-block-4"></div>
 				<div class="container">
 					<h2 class="subscribe__title">Всегда на связи</h2>
 					<div class="subscribe__items">
@@ -2151,7 +2140,7 @@
 								<br />
 								<span>Тел.: 8 000 123-45-67</span>
 							</p>
-							<a class="subscribe__button button-underline" href="{CATALOG_URL}" title=""><span>Заказать обратный звонок</span></a>
+							<a class="subscribe__button button-underline" href="{FEEDBACK_URL}" data-dialog="#dialogCallback"><span>Заказать обратный звонок</span></a>
 						</div>
 						<div class="subscribe__item">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
@@ -2161,7 +2150,7 @@
 							</svg>
 							<h3 class="subscribe__subtitle">Ответы на часто задаваемые вопросы</h3>
 							<p class="subscribe__text">Мы собрали самые популярные вопросы пользователей в одном удобном разделе</p>
-							<a class="subscribe__button button-underline" href="{CATALOG_URL}" title=""><span>Узнать</span></a>
+							<a class="subscribe__button button-underline" href="{FEEDBACK_URL}" title=""><span>Узнать</span></a>
 						</div>
 						<div class="subscribe__item">
 							<ul class="social__links">

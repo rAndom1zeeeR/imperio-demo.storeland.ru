@@ -1040,7 +1040,7 @@ function Products() {
     // Запуск функции стикера цены.
     StickerSales(product);
     Attrs(product);
-    swiperProductImages('.swiper-' + product.getAttribute('data-id'))
+    // swiperProductImages('.swiper-' + product.getAttribute('data-id'))
   });
 
   // Показать/скрыть характеристики товара

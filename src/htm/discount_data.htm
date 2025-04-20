@@ -380,15 +380,12 @@
 						<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{goods.NAME}" loading="lazy" itemprop="image">
 					</a>
 					{% ELSE %}
-					<div class="product__image swiper swiper-{goods.ID}">
-						<div class="swiper-wrapper">
-							{% FOR images %}
-							<a class="swiper-slide product__img" href="{goods.URL_MIN_PRICE_NOW | url_amp}" title="{goods.images.NAME}" itemprop="url" data-id="{goods.images.ID}">
-								<img src="{goods.images.MEDIUM}" alt="{goods.images.NAME}" loading="lazy" itemprop="image">
-							</a>
-							{% ENDFOR %}
-						</div>
-						<div class="swiper-scrollbar"></div>
+					<div class="product__image">
+						{% FOR images %}
+						<a class="product__img" href="{goods.URL_MIN_PRICE_NOW | url_amp}" title="{goods.images.NAME}" data-id="{goods.images.ID}">
+							<img src="{goods.images.MEDIUM}" alt="{goods.images.NAME}" loading="lazy" itemprop="image">
+						</a>
+						{% ENDFOR %}
 					</div>
 					{% ENDIF %}
 					<!-- Стикеры -->

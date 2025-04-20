@@ -21,15 +21,12 @@
 						<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{favorites_goods.NAME}" loading="lazy" itemprop="image">
 					</a>
 					{% ELSE %}
-					<div class="product__image swiper swiper-{favorites_goods.ID}">
-						<div class="swiper-wrapper">
-							{% FOR goods_images_list %}
-							<a class="swiper-slide product__img" href="{favorites_goods.URL_MIN_PRICE_NOW | url_amp}" title="{favorites_goods.goods_images_list.NAME}" itemprop="url" data-id="{favorites_goods.goods_images_list.ID}">
-								<img src="{favorites_goods.goods_images_list.MEDIUM}" alt="{favorites_goods.goods_images_list.NAME}" loading="lazy" itemprop="image">
-							</a>
-							{% ENDFOR %}
-						</div>
-						<div class="swiper-scrollbar"></div>
+					<div class="product__image">
+						{% FOR goods_images_list %}
+						<a class="product__img" href="{favorites_goods.URL_MIN_PRICE_NOW | url_amp}" title="{favorites_goods.goods_images_list.NAME}" data-id="{favorites_goods.goods_images_list.ID}">
+							<img src="{favorites_goods.goods_images_list.MEDIUM}" alt="{favorites_goods.goods_images_list.NAME}" loading="lazy" itemprop="image">
+						</a>
+						{% ENDFOR %}
 					</div>
 					{% ENDIF %}
 					<!-- Стикеры -->
