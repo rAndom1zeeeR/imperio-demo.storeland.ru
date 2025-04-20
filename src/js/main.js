@@ -3370,6 +3370,7 @@ function Form(id, successMessage, errorMessage) {
   // Получаем элементы формы
   const formBlock = document.getElementById(id);
   const formElement = formBlock?.querySelector("form");
+  const formButton = formElement?.querySelector("button");
 
   // Проверяем наличие необходимых элементов
   if (!formBlock || !formElement) {
@@ -3417,6 +3418,7 @@ function Form(id, successMessage, errorMessage) {
     try {
       // Добавляем индикатор загрузки
       formBlock.classList.add("is-loading");
+      formButton.classList.add("is-loading");
 
       // Подготавливаем данные формы
       const formData = new FormData(formElement);
@@ -3440,6 +3442,7 @@ function Form(id, successMessage, errorMessage) {
     } finally {
       // Убираем индикатор загрузки
       formBlock.classList.remove("is-loading");
+      formButton.classList.remove("is-loading");
     }
   };
 

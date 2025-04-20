@@ -38,7 +38,7 @@
 	<!-- Если отключен JS -->
 	<script>
 		document.addEventListener('DOMContentLoaded', () => document.body.classList.remove('is-nojs'));
-		window.onload = () => document.body.classList.remove('is-loading');
+		document.body.classList.remove('is-loading');
 	</script>
 	<style>
 		.nojs .preloader {

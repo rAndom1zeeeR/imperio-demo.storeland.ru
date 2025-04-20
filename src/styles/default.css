@@ -183,7 +183,22 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 .button-disabled:active, .add-notify:active {background-color: var(--color-disabled);border-color: var(--color-disabled);}
 .button-outline {color: var(--color-text-primary);background-color: transparent;border: 1px solid var(--color-border-secondary);}
 .button-outline.is-active {color: white;background-color: var(--color-secondary);}
-.is-loading button {pointer-events: none;}
+button::before {opacity: 0;}
+button.is-loading {position: relative;pointer-events: none;}
+button.is-loading::before {
+	position: absolute;
+	top: 50%;
+	left: 12px;
+	width: 20px;
+	height: 20px;
+	border: 3px solid white;
+	border-top-color: var(--color-primary);
+	border-radius: 50%;
+	transform: translateY(-50%);
+	opacity: 1;
+	animation: spin 1s linear infinite;
+	content: '';
+}
 @media (hover: hover) and (pointer: fine) {
 	button:hover, .button:hover, .paymentFormSubmitLink:hover, .paymentFormTbodySubmitButton:hover {color: white;background-color: var(--color-secondary);border-color: var(--color-secondary);}
 	.button-secondary:hover {color: white;background-color: var(--color-text-primary);border-color: var(--color-border-tertiary);}
@@ -196,6 +211,10 @@ button:active, .button:active, .paymentFormSubmitLink:active, .paymentFormTbodyS
 	button, .button, .paymentFormSubmitLink, .paymentFormTbodySubmitButton {font-size: var(--text-size-large);}
 }
 
+/* Анимация вращения */
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
 
 /*
 ** Инпут поля
