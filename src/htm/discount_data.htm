@@ -187,7 +187,7 @@
 								<meta itemprop="reviewCount" content="{goods.OPINION_RATING_CNT_ALL}">
 								<span class="ratings__value" data-value="{goods.OPINION_RATING_VALUE}" style="width:{goods.OPINION_RATING_VALUE}0%"></span>
 							</span>
-							<span class="ratings__count">{goods.OPINION_RATING_CNT_ALL} отзыв{goods.OPINION_RATING_CNT_ALL | gen_word_end("а","ов","ов")}</span>
+							<span class="ratings__count">{goods.OPINION_RATING_CNT_ALL} отзыв{goods.OPINION_RATING_CNT_ALL | gen_word_end("","а","ов")}</span>
 							{% ELSE %}
 							<span class="ratings__value" style="width:0%"></span>
 							{% ENDIF %}

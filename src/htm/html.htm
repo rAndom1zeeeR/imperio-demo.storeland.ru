@@ -637,7 +637,7 @@
 												<meta itemprop="reviewCount" content="{index_page_sale_goods.OPINION_RATING_CNT_ALL}">
 												<span class="ratings__value" data-value="{index_page_sale_goods.OPINION_RATING_VALUE}" style="width:{index_page_sale_goods.OPINION_RATING_VALUE}0%"></span>
 											</span>
-											<span class="ratings__count">{index_page_sale_goods.OPINION_RATING_CNT_ALL}</span>
+											<span class="ratings__count">{index_page_sale_goods.OPINION_RATING_CNT_ALL} отзыв{index_page_sale_goods.OPINION_RATING_CNT_ALL | gen_word_end("","а","ов")}</span>
 											{% ELSE %}
 											<span class="ratings__value" style="width:0%"></span>
 											{% ENDIF %}
@@ -846,7 +846,7 @@
 												<meta itemprop="reviewCount" content="{index_page_favorites_goods.OPINION_RATING_CNT_ALL}">
 												<span class="ratings__value" data-value="{index_page_favorites_goods.OPINION_RATING_VALUE}" style="width:{index_page_favorites_goods.OPINION_RATING_VALUE}0%"></span>
 											</span>
-											<span class="ratings__count">{index_page_favorites_goods.OPINION_RATING_CNT_ALL}</span>
+											<span class="ratings__count">{index_page_favorites_goods.OPINION_RATING_CNT_ALL} отзыв{index_page_favorites_goods.OPINION_RATING_CNT_ALL | gen_word_end("","а","ов")}</span>
 											{% ELSE %}
 											<span class="ratings__value" style="width:0%"></span>
 											{% ENDIF %}
@@ -1114,7 +1114,7 @@
 												<meta itemprop="reviewCount" content="{index_page_new_goods.OPINION_RATING_CNT_ALL}">
 												<span class="ratings__value" data-value="{index_page_new_goods.OPINION_RATING_VALUE}" style="width:{index_page_new_goods.OPINION_RATING_VALUE}0%"></span>
 											</span>
-											<span class="ratings__count">{index_page_new_goods.OPINION_RATING_CNT_ALL}</span>
+											<span class="ratings__count">{index_page_new_goods.OPINION_RATING_CNT_ALL} отзыв{index_page_new_goods.OPINION_RATING_CNT_ALL | gen_word_end("","а","ов")}</span>
 											{% ELSE %}
 											<span class="ratings__value" style="width:0%"></span>
 											{% ENDIF %}
@@ -1316,7 +1316,7 @@
 											<meta itemprop="reviewCount" content="{index_page_goods.OPINION_RATING_CNT_ALL}">
 											<span class="ratings__value" data-value="{index_page_goods.OPINION_RATING_VALUE}" style="width:{index_page_goods.OPINION_RATING_VALUE}0%"></span>
 										</span>
-										<span class="ratings__count">{index_page_goods.OPINION_RATING_CNT_ALL}</span>
+										<span class="ratings__count">{index_page_goods.OPINION_RATING_CNT_ALL} отзыв{index_page_goods.OPINION_RATING_CNT_ALL | gen_word_end("","а","ов")}</span>
 										{% ELSE %}
 										<span class="ratings__value" style="width:0%"></span>
 										{% ENDIF %}
@@ -2066,7 +2066,7 @@
 												<meta itemprop="reviewCount" content="{recently_viewed_goods.OPINION_RATING_CNT_ALL}">
 												<span class="ratings__value" data-value="{recently_viewed_goods.OPINION_RATING_VALUE}" style="width:{recently_viewed_goods.OPINION_RATING_VALUE}0%"></span>
 											</span>
-											<span class="ratings__count">{recently_viewed_goods.OPINION_RATING_CNT_ALL}</span>
+											<span class="ratings__count">{recently_viewed_goods.OPINION_RATING_CNT_ALL} отзыв{recently_viewed_goods.OPINION_RATING_CNT_ALL | gen_word_end("","а","ов")}</span>
 											{% ELSE %}
 											<span class="ratings__value" style="width:0%"></span>
 											{% ENDIF %}
