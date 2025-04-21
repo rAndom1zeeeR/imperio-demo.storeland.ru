@@ -29,8 +29,8 @@
 			</div>
 			{% ELSE %}
 			<!-- Главное изображение -->
-			<div class="productView__image" data-fancybox="gallery" data-src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}">
-				<img src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}" alt="{GOODS_NAME}" loading="lazy">
+			<div class="productView__image" data-fancybox="gallery" data-src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}">
+				<img src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}" alt="{GOODS_NAME}" loading="lazy">
 			</div>
 			{% ENDIF %}
 		</div>
@@ -48,7 +48,7 @@
 				<input type="hidden" name="form[goods_sku]" value="{GOODS_MOD_ART_NUMBER}">
 				<input type="hidden" name="form[goods_mod_rest]" value="{GOODS_MOD_REST_VALUE}">
 				<input type="hidden" name="form[goods_image_id]" value="{GOODS_IMAGE_ID}">
-				<input type="hidden" name="form[goods_image]" value="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}">
+				<input type="hidden" name="form[goods_image]" value="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}">
 				<input type="hidden" name="form[goods_url]" value="{CURRENT_URL}">
 
 				<!-- Стикеры -->
@@ -372,7 +372,7 @@
 
 									<!-- Изображение -->
 									<a class="product__image" href="{related_goods.URL_MIN_PRICE_NOW | url_amp}">
-										<img src="{% IF related_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{related_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{related_goods.NAME}" loading="lazy" itemprop="image">
+										<img src="{% IF related_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{related_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{related_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
 
 									<!-- Информация товара -->
@@ -504,7 +504,7 @@
 					<div class="product__images">
 						{% IF goods.IMAGE_EMPTY %}
 						<a class="product__image" href="{related_views_goods.URL_MIN_PRICE_NOW | url_amp}">
-							<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{related_views_goods.NAME}" loading="lazy" itemprop="image">
+							<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO" alt="{related_views_goods.NAME}" loading="lazy" itemprop="image">
 						</a>
 						{% ELSE %}
 						<div class="product__image">
@@ -837,7 +837,7 @@
 					{ANTISPAM_CODE}
 					<div class="form__field form__field--goods">
 						<!-- <div class="form__image">
-							<img src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{GOODS_IMAGE_SMALL}{% ENDIF %}"
+							<img src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{GOODS_IMAGE_SMALL}{% ENDIF %}"
 									 alt="{GOODS_NAME}"
 									 loading="lazy">
 						</div> -->

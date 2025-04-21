@@ -7,7 +7,7 @@
 	{% IF cart_items.GOODS_MOD_ID = FORM_GOODS_MOD_ID || cart_items.GOODS_ID = FORM_GOODS_ID %}
 	<div class="cartItems">
 		<div class="cartItems__image">
-			<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_TITLE}" loading="lazy">
+			<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_TITLE}" loading="lazy">
 		</div>
 
 		<div class="cartItems__content">
@@ -45,7 +45,7 @@
 		{% FOR cart_items %}
 		<div class="addto__item" data-id="{cart_items.GOODS_ID}" data-mod-id="{cart_items.GOODS_MOD_ID}">
 			<div class="addto__image">
-				<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" loading="lazy">
+				<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" loading="lazy">
 			</div>
 
 			<div class="addto__content">

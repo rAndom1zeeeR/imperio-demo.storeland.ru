@@ -624,7 +624,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 	height: 16px;
 	margin-right: 8px;
 	background-color: white;
-	background-image: url('{ASSEST_IMAGES_PATH}icons-files-extensions.gif?design=THEMENAME');
+	background-image: url('{ASSEST_IMAGES_PATH}icons-files-extensions.gif?design=IMPERIO');
 	background-repeat: no-repeat;
 	background-position: left top;
 }

@@ -9,8 +9,8 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="icon" href="{ASSETS_IMAGES_PATH}favicon.ico?design=THEMENAME" type="image/x-icon">
-	<link rel="shortcut icon" href="{ASSETS_IMAGES_PATH}favicon.ico?design=THEMENAME" type="image/x-icon">
+	<link rel="icon" href="{ASSETS_IMAGES_PATH}favicon.ico?design=IMPERIO" type="image/x-icon">
+	<link rel="shortcut icon" href="{ASSETS_IMAGES_PATH}favicon.ico?design=IMPERIO" type="image/x-icon">
 
 	<!-- Open Graph -->
 	<meta property="og:title" content="{PAGE_TITLE}">
@@ -26,15 +26,15 @@
 	{% ENDIF %}
 
 	<!-- Основные Стили для всех страниц -->
-	<link rel="preload" href="/design/fonts.css?design=THEMENAME" as="style">
-	<link rel="preload" href="{ASSETS_STYLES_PATH}default.css?design=THEMENAME" as="style">
-	<link rel="preload" href="{ASSETS_JS_PATH}main.css?design=THEMENAME" as="style">
-	<link rel="stylesheet" type="text/css" href="/design/fonts.css?design=THEMENAME">
-	<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}default.css?design=THEMENAME">
-	<link rel="stylesheet" type="text/css" href="{ASSETS_JS_PATH}main.css?design=THEMENAME">
-	<!-- <link rel="stylesheet" type="text/css" href="{ASSETS_JS_PATH}main.min.css?design=THEMENAME"> -->
+	<link rel="preload" href="/design/fonts.css?design=IMPERIO" as="style">
+	<link rel="preload" href="{ASSETS_STYLES_PATH}default.css?design=IMPERIO" as="style">
+	<link rel="preload" href="{ASSETS_JS_PATH}main.css?design=IMPERIO" as="style">
+	<link rel="stylesheet" type="text/css" href="/design/fonts.css?design=IMPERIO">
+	<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}default.css?design=IMPERIO">
+	<link rel="stylesheet" type="text/css" href="{ASSETS_JS_PATH}main.css?design=IMPERIO">
+	<!-- <link rel="stylesheet" type="text/css" href="{ASSETS_JS_PATH}main.min.css?design=IMPERIO"> -->
 	<!-- Подключаемые скрипты -->
-	<script src="{ASSETS_JS_PATH}jquery.min.js?design=THEMENAME"></script>
+	<script src="{ASSETS_JS_PATH}jquery.min.js?design=IMPERIO"></script>
 	<!-- Если отключен JS -->
 	<script>
 		document.addEventListener('DOMContentLoaded', () => document.body.classList.remove('is-nojs'));
@@ -109,7 +109,7 @@
 					</div>
 					<div class="header__logo" itemscope itemtype="http://schema.org/Organization">
 						<a href="{INDEX_PAGE_URL}" itemprop="url">
-							<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="image" width="215" height="62" loading="lazy">
+							<img src="{ASSETS_IMAGES_PATH}logo.png?design=IMPERIO" alt="{SETTINGS_STORE_NAME}" itemprop="image" width="215" height="62" loading="lazy">
 							<meta itemprop="name" content="{SETTINGS_STORE_NAME}">
 							<meta itemprop="telephone" content="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
 							<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
@@ -327,7 +327,7 @@
 									</a>
 								</div>
 								<div class="slideshow__image">
-									<img src="{ASSETS_IMAGES_PATH}slide1.png?design=THEMENAME" alt="" loading="lazy" />
+									<img src="{ASSETS_IMAGES_PATH}slide1.png?design=IMPERIO" alt="" loading="lazy" />
 								</div>
 							</div>
 						</div>
@@ -345,7 +345,7 @@
 									</a>
 								</div>
 								<div class="slideshow__image">
-									<img src="{ASSETS_IMAGES_PATH}slide2.png?design=THEMENAME" alt="" loading="lazy" />
+									<img src="{ASSETS_IMAGES_PATH}slide2.png?design=IMPERIO" alt="" loading="lazy" />
 								</div>
 							</div>
 						</div>
@@ -362,7 +362,7 @@
 									</a>
 								</div>
 								<div class="slideshow__image">
-									<img src="{ASSETS_IMAGES_PATH}slide3.png?design=THEMENAME" alt="" loading="lazy" />
+									<img src="{ASSETS_IMAGES_PATH}slide3.png?design=IMPERIO" alt="" loading="lazy" />
 								</div>
 							</div>
 						</div>
@@ -393,7 +393,7 @@
 						{% IF catalog_full.LEVEL > 0 || catalog_full.HIDE %}{continue}{% ENDIF %}
 						<div class="categories__item swiper-slide">
 							<a class="categories__images" href="{catalog_full.URL}" title="Перейти к категории &laquo;{catalog_full.NAME}&raquo;">
-								<img src="{% IF catalog_full.IMAGE_MEDIUM %}{catalog_full.IMAGE_MEDIUM}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{catalog_full.NAME}" loading="lazy">
+								<img src="{% IF catalog_full.IMAGE_MEDIUM %}{catalog_full.IMAGE_MEDIUM}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ENDIF %}" alt="{catalog_full.NAME}" loading="lazy">
 							</a>
 							<div class="categories__name">
 								<span>{catalog_full.NAME}</span>
@@ -497,7 +497,7 @@
 								<div class="product__images">
 									{% IF index_page_sale_goods.IMAGE_EMPTY %}
 									<a class="product__image" href="{index_page_sale_goods.URL_MIN_PRICE_NOW | url_amp}">
-										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_sale_goods.NAME}" loading="lazy" itemprop="image">
+										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO" alt="{index_page_sale_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
 									{% ELSE %}
 									<div class="product__image">
@@ -718,7 +718,7 @@
 								<div class="product__images">
 									{% IF index_page_favorites_goods.IMAGE_EMPTY %}
 									<a class="product__image" href="{index_page_favorites_goods.URL_MIN_PRICE_NOW | url_amp}">
-										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_favorites_goods.NAME}" loading="lazy" itemprop="image">
+										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO" alt="{index_page_favorites_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
 									{% ELSE %}
 									<div class="product__image">
@@ -916,7 +916,7 @@
 								</button>
 							</div>
 							<div class="banners__image">
-								<img src="{ASSETS_IMAGES_PATH}banner1.png?design=THEMENAME" alt="" loading="lazy" />
+								<img src="{ASSETS_IMAGES_PATH}banner1.png?design=IMPERIO" alt="" loading="lazy" />
 							</div>
 						</div>
 						<div class="banners__item swiper-slide" data-slide="2">
@@ -929,7 +929,7 @@
 								</button>
 							</div>
 							<div class="banners__image">
-								<img src="{ASSETS_IMAGES_PATH}banner2.png?design=THEMENAME" alt="" loading="lazy" />
+								<img src="{ASSETS_IMAGES_PATH}banner2.png?design=IMPERIO" alt="" loading="lazy" />
 							</div>
 						</div>
 						<div class="banners__item swiper-slide" data-slide="3">
@@ -945,7 +945,7 @@
 								</button>
 							</div>
 							<div class="banners__image">
-								<img src="{ASSETS_IMAGES_PATH}banner3.png?design=THEMENAME" alt="" loading="lazy" />
+								<img src="{ASSETS_IMAGES_PATH}banner3.png?design=IMPERIO" alt="" loading="lazy" />
 							</div>
 						</div>
 						<div class="banners__item swiper-slide" data-slide="4">
@@ -961,7 +961,7 @@
 								</button>
 							</div>
 							<div class="banners__image">
-								<img src="{ASSETS_IMAGES_PATH}banner2.png?design=THEMENAME" alt="" loading="lazy" />
+								<img src="{ASSETS_IMAGES_PATH}banner2.png?design=IMPERIO" alt="" loading="lazy" />
 							</div>
 						</div>
 					</div>
@@ -999,7 +999,7 @@
 								<div class="product__images">
 									{% IF index_page_new_goods.IMAGE_EMPTY %}
 									<a class="product__image" href="{index_page_new_goods.URL_MIN_PRICE_NOW | url_amp}">
-										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_new_goods.NAME}" loading="lazy" itemprop="image">
+										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO" alt="{index_page_new_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
 									{% ELSE %}
 									<div class="product__image">
@@ -1203,7 +1203,7 @@
 							<div class="product__images">
 								{% IF index_page_goods.IMAGE_EMPTY %}
 								<a class="product__image" href="{index_page_goods.URL_MIN_PRICE_NOW | url_amp}">
-									<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{index_page_goods.NAME}" loading="lazy" itemprop="image">
+									<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO" alt="{index_page_goods.NAME}" loading="lazy" itemprop="image">
 								</a>
 								{% ELSE %}
 								<div class="product__image">
@@ -1495,7 +1495,7 @@
 							{% FOR news_list_all %}
 							<div class="swiper-slide news__item">
 								<div class="news__images">
-									<img src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{news_list_all.TITLE}" loading="lazy">
+									<img src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ENDIF %}" alt="{news_list_all.TITLE}" loading="lazy">
 								</div>
 
 								{% IF news_list_all.SHOW_TIME %}
@@ -1531,7 +1531,7 @@
 							<div class="swiper-slide">
 								<article class="news__item">
 									<div class="news__images">
-										<img src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{news_list_shop.TITLE}" loading="lazy">
+										<img src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ENDIF %}" alt="{news_list_shop.TITLE}" loading="lazy">
 									</div>
 
 									{% IF news_list_shop.SHOW_TIME %}
@@ -1568,7 +1568,7 @@
 							<div class="swiper-slide">
 								<article class="news__item">
 									<div class="news__images">
-										<img src="{% IF news_list_mass_media.IMG %}{news_list_mass_media.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{news_list_mass_media.TITLE}" loading="lazy">
+										<img src="{% IF news_list_mass_media.IMG %}{news_list_mass_media.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ENDIF %}" alt="{news_list_mass_media.TITLE}" loading="lazy">
 									</div>
 
 									{% IF news_list_mass_media.SHOW_TIME %}
@@ -1605,7 +1605,7 @@
 							<div class="swiper-slide">
 								<article class="news__item">
 									<div class="news__images">
-										<img src="{% IF news_list_articles.IMG %}{news_list_articles.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ENDIF %}" alt="{news_list_articles.TITLE}" loading="lazy">
+										<img src="{% IF news_list_articles.IMG %}{news_list_articles.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ENDIF %}" alt="{news_list_articles.TITLE}" loading="lazy">
 									</div>
 
 									{% IF news_list_articles.SHOW_TIME %}
@@ -1951,7 +1951,7 @@
 								<div class="product__images">
 									{% IF recently_viewed_goods.IMAGE_EMPTY %}
 									<a class="product__image" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}">
-										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME" alt="{recently_viewed_goods.NAME}" loading="lazy" itemprop="image">
+										<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO" alt="{recently_viewed_goods.NAME}" loading="lazy" itemprop="image">
 									</a>
 									{% ELSE %}
 									<div class="product__image">
@@ -2702,7 +2702,7 @@
 						{% FOR cart_items %}
 						<div class="addto__item" data-id="{cart_items.GOODS_ID}" data-mod-id="{cart_items.GOODS_MOD_ID}">
 							<div class="addto__image">
-								<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" loading="lazy">
+								<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" loading="lazy">
 							</div>
 
 							<div class="addto__content">
@@ -2784,7 +2784,7 @@
 						{% FOR compare_goods %}
 						<div class="addto__item" data-id="{compare_goods.ID}">
 							<div class="addto__image">
-								<img src="{% IF compare_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{compare_goods.IMAGE_ICON}{% ENDIF %}" alt="{compare_goods.NAME}" loading="lazy" />
+								<img src="{% IF compare_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{compare_goods.IMAGE_ICON}{% ENDIF %}" alt="{compare_goods.NAME}" loading="lazy" />
 							</div>
 
 							<div class="addto__content">
@@ -2839,7 +2839,7 @@
 						{% FOR favorites_goods %}
 						<div class="addto__item" data-id="{favorites_goods.ID}">
 							<div class="addto__image">
-								<img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{favorites_goods.IMAGE_ICON}{% ENDIF %}" alt="{favorites_goods.NAME}" loading="lazy" />
+								<img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{favorites_goods.IMAGE_ICON}{% ENDIF %}" alt="{favorites_goods.NAME}" loading="lazy" />
 							</div>
 
 							<div class="addto__content">
@@ -3249,24 +3249,24 @@
 		{% ENDIF %}
 
 		<!-- Слайдер цены -->
-		<script defer src="{ASSETS_JS_PATH}jqueryui.js?design=THEMENAME"></script>
+		<script defer src="{ASSETS_JS_PATH}jqueryui.js?design=IMPERIO"></script>
 		<!-- Маска ввода -->
-		<script defer src="{ASSETS_JS_PATH}jquery.maskedinput.min.js?design=THEMENAME"></script>
+		<script defer src="{ASSETS_JS_PATH}jquery.maskedinput.min.js?design=IMPERIO"></script>
 		<!-- Дата выбор -->
-		<script defer src="{ASSETS_JS_PATH}air-datepicker.js?design=THEMENAME"></script>
-		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}air-datepicker.css?design=THEMENAME">
+		<script defer src="{ASSETS_JS_PATH}air-datepicker.js?design=IMPERIO"></script>
+		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}air-datepicker.css?design=IMPERIO">
 		<!-- Модальные окна -->
-		<script defer src="{ASSETS_JS_PATH}fancybox.umd.js?design=THEMENAME"></script>
-		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}fancybox.css?design=THEMENAME">
+		<script defer src="{ASSETS_JS_PATH}fancybox.umd.js?design=IMPERIO"></script>
+		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}fancybox.css?design=IMPERIO">
 		<!-- Уведомления -->
-		<script defer src="{ASSETS_JS_PATH}sweetalert2.min.js?design=THEMENAME"></script>
-		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}sweetalert2.min.css?design=THEMENAME">
+		<script defer src="{ASSETS_JS_PATH}sweetalert2.min.js?design=IMPERIO"></script>
+		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}sweetalert2.min.css?design=IMPERIO">
 		<!-- Слайдер Swiper -->
-		<script defer src="{ASSETS_JS_PATH}swiper.min.js?design=THEMENAME"></script>
-		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}swiper.min.css?design=THEMENAME">
+		<script defer src="{ASSETS_JS_PATH}swiper.min.js?design=IMPERIO"></script>
+		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}swiper.min.css?design=IMPERIO">
 		<!-- Подключаемые скрипты -->
-		<script defer src="{ASSETS_JS_PATH}search.js?design=THEMENAME"></script>
-		<script defer src="{ASSETS_JS_PATH}main.js?design=THEMENAME"></script>
+		<script defer src="{ASSETS_JS_PATH}search.js?design=IMPERIO"></script>
+		<script defer src="{ASSETS_JS_PATH}main.js?design=IMPERIO"></script>
 	</div>
 </body>
 
