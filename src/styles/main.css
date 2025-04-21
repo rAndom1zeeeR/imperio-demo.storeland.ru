@@ -2154,11 +2154,13 @@
 		content: '';
 	}
 	.is-empty.mobile-nav__link::after {display: none;}
-	.mobile-nav__link:is(.menu, .account, .mobile-nav__link--gotop)::after {display: none;}
+	.mobile-nav__link:is(.menu, .account, .mobile-nav__link--go)::after {display: none;}
 	.mobile-nav__link .icon-hover__active {opacity: 1;}
 	.mobile-nav__link .icon-hover__inert {opacity: 0;}
 	.is-empty.mobile-nav__link .icon-hover__active {opacity: 0;}
 	.is-empty.mobile-nav__link .icon-hover__inert {opacity: 1;}
+	.mobile-nav__link--go:not(.is-visible) .mobile-nav__icon--gotop {display: none;}
+	.mobile-nav__link--go.is-visible .mobile-nav__icon--gohome {display: none;}
 	.mobile-nav__label {display: block;margin-top: 4px;font-size: var(--text-size-small);}
 	.mobile-nav__label--empty {display: none;}
 	.mobile-nav__label:empty {display: none;}

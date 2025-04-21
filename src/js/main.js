@@ -3511,6 +3511,96 @@ function toTop() {
   handleScroll();
 }
 
+function ScrollToTop() {
+  const button = document.querySelector('.mobile-nav__link--go');
+  const buttonText = button.querySelector('.mobile-nav__label');
+  const SCROLL_THRESHOLD = 200;
+  
+  // Функция для плавного скролла
+  function smoothScrollTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // Обработчик клика
+  function handleClick(event) {
+    event.preventDefault();
+    
+    if (window.scrollY > 0) {
+      smoothScrollTop();
+    } else {
+      window.location.href = '/';
+    }
+  }
+
+  // Обработчик нажатия клавиши
+  function handleKeyDown(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleClick(event);
+    }
+  }
+
+  // Обновление состояния кнопки
+  function updateButtonState() {
+    const isScrolled = window.scrollY > SCROLL_THRESHOLD;
+    
+    button.classList.toggle('is-visible', isScrolled);
+    buttonText.textContent = isScrolled ? 'Наверх' : 'Главная';
+    button.setAttribute('aria-label', 
+      isScrolled ? 'Прокрутить наверх' : 'Перейти на главную страницу'
+    );
+  }
+
+  // Оптимизированный обработчик скролла
+  const throttledScroll = () => {
+    let isWaiting = false;
+    
+    return () => {
+      if (!isWaiting) {
+        isWaiting = true;
+        
+        requestAnimationFrame(() => {
+          updateButtonState();
+          isWaiting = false;
+        });
+      }
+    };
+  };
+
+  // Инициализация
+  function init() {
+    if (!button) return;
+    
+    window.addEventListener('scroll', throttledScroll());
+    button.addEventListener('click', handleClick);
+    button.addEventListener('keydown', handleKeyDown);
+    
+    // Начальное состояние
+    updateButtonState();
+  }
+
+  // Очистка обработчиков при необходимости
+  function destroy() {
+    if (!button) return;
+    
+    window.removeEventListener('scroll', throttledScroll());
+    button.removeEventListener('click', handleClick);
+    button.removeEventListener('keydown', handleKeyDown);
+  }
+
+  return {
+    init,
+    destroy
+  };
+}
+
+// Инициализация
+const scrollToTop = ScrollToTop();
+scrollToTop.init();
+
 
 /**
  * Загрузка основных функций шаблона на всех страницах.
