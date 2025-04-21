@@ -2894,7 +2894,7 @@ function swiperBanners(selector) {
   const swiper = new Swiper(selector + " .swiper", {
     loop: false,
     autoplay: false,
-    autoHeight: true,
+    autoHeight: false,
     watchSlidesProgress: true,
     simulateTouch: true,
     grabCursor: true,

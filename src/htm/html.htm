@@ -921,9 +921,6 @@
 						</div>
 						<div class="banners__item swiper-slide" data-slide="2">
 							<div class="banners__bg-block-1"></div>
-							<div class="banners__bg-block-2"></div>
-							<div class="banners__bg-block-3"></div>
-							<div class="banners__bg-block-4"></div>
 							<div class="banners__content">
 								<h3 class="banners__title">Бесплатный дизайн-проект</h3>
 								<h4 class="banners__subtitle">Быстрый подбор мебели для&nbsp;вашего интерьера</h4>
@@ -2509,7 +2506,7 @@
 					</svg>
 					<span class="mobile-nav__label">Меню</span>
 				</a>
-				{% IF MOD_LNAME=user && ACT=favorites %}
+				{% IFNOT MOD_LNAME=user %}
 				<a class="mobile-nav__link favorites icon-hover{% IF FAVORITES_GOODS_COUNT = 0 %} is-empty{% ENDIF %}" href="{FAVORITES_URL}" title="Открыть Избранное" data-mobile-open="favorites">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
 						<path class="icon-hover__inert"
@@ -2518,6 +2515,7 @@
 									d="M747.999 85.91c75.659 0 145.031 28.058 195.34 79.004 52.769 53.44 80.66 126.59 80.66 211.543 0 101.902-64.756 214.012-192.467 333.214-115.786 108.069-242.69 183.925-266.953 198.035-10.105 5.876-32.588 18.85-32.588 18.85l-19.986 11.534-19.988-11.528a15829.444 15829.444 0 0 1-32.612-18.854c-24.263-14.109-151.161-89.958-266.949-198.038C64.752 590.468 0 478.359 0 376.456c0-84.953 27.892-158.104 80.66-211.541 50.31-50.948 119.682-79.006 195.341-79.006 105.882 0 187.48 50.97 235.999 147.423 48.519-96.453 130.118-147.423 235.999-147.423z" />
 					</svg>
 					<span class="mobile-nav__label">Избранное</span>
+					<data class="mobile-nav__count favorites-count" value="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</data>
 				</a>
 				{% ENDIF %}
 				{% IFNOT MOD_LNAME = cart %}
@@ -2530,6 +2528,7 @@
 					</svg>
 					<data class="mobile-nav__label cart-sum-discount" value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</data>
 					<span class="mobile-nav__label mobile-nav__label--empty">Корзина</span>
+					<data class="mobile-nav__count cart-count" value="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</data>
 				</a>
 				{% ENDIF %}
 				{% IFNOT MOD_LNAME = compare && SETTINGS_COMPARE_DISABLE=0 %}
@@ -2542,6 +2541,7 @@
 									d="M303.487 720.511A362.668 362.668 0 1 1 473.61 17.41a362.668 362.668 0 0 1 246.944 286.036c65.769 10.895 127.263 39.709 177.723 83.274s87.937 100.196 108.313 163.67a362.663 362.663 0 0 1-88.869 367.288 362.676 362.676 0 0 1-367.288 88.869 362.676 362.676 0 0 1-246.946-286.036zm87.681 3.713a277.343 277.343 0 0 0 69.226 128.262 277.347 277.347 0 0 0 270.447 77.236 277.32 277.32 0 0 0 126.521-72.36 277.325 277.325 0 0 0 70.568-272.261 277.347 277.347 0 0 0-75.444-124.707 277.343 277.343 0 0 0-128.262-69.226 362.74 362.74 0 0 1-105.122 227.934 362.746 362.746 0 0 1-227.934 105.122zm247.978-339.329a277.376 277.376 0 0 0-254.292 254.208 277.421 277.421 0 0 0 173.906-80.329 277.423 277.423 0 0 0 80.386-173.879z" />
 					</svg>
 					<span class="mobile-nav__label">Сравнение</span>
+					<data class="mobile-nav__count compare-count" value="{COMPARE_GOODS_COUNT}">{COMPARE_GOODS_COUNT}</data>
 				</a>
 				{% ENDIF %}
 				<a class="mobile-nav__link mobile-nav__link--gotop" href="#" title="Перейти Наверх">
