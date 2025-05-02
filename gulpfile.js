@@ -109,7 +109,7 @@ function scripts() {
 }
 
 function scriptsLibs() {
-  return src(["src/js/libs/*.js"]).pipe(concat("forall.min.js")).pipe(dest("build/static")).pipe(wait(WAIT_TIME)).pipe(browserSync.stream());
+  return src(["src/js/libs/*.js"]).pipe(dest("build/static")).pipe(wait(WAIT_TIME)).pipe(browserSync.stream());
 }
 
 function styles() {
@@ -117,11 +117,11 @@ function styles() {
 }
 
 function stylesLibs() {
-  return src(["src/styles/libs/*.css"]).pipe(plumber()).pipe(sourcemap.init()).pipe(csso()).pipe(concat("forall.min.css")).pipe(sourcemap.write(".")).pipe(dest("build/static")).pipe(wait(WAIT_TIME)).pipe(browserSync.stream());
+  return src(["src/styles/libs/*.css"]).pipe(dest("build/static")).pipe(wait(WAIT_TIME)).pipe(browserSync.stream());
 }
 
 function stylesMin() {
-  return src(["src/styles/*.css"]).pipe(plumber()).pipe(sourcemap.init()).pipe(csso()).pipe(concat("main.min.css")).pipe(sourcemap.write(".")).pipe(dest("build/static")).pipe(wait(WAIT_TIME)).pipe(browserSync.stream());
+  return src(["src/styles/*.css"]).pipe(dest("build/static")).pipe(wait(WAIT_TIME)).pipe(browserSync.stream());
 }
 
 function images() {

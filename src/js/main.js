@@ -390,6 +390,12 @@ function Mainnav(selector = document) {
   handleMainnavItems();
   window.addEventListener("resize", handleMainnavItems);
 
+  if (mainnavDropdown.hasChildNodes()) {
+    mainnavMore.removeAttribute("hidden");
+  } else {
+    mainnavMore.setAttribute("hidden", "");
+  }
+
   mainnavMore.addEventListener("click", (event) => {
     event.preventDefault();
     mainnavMore.classList.toggle("is-active");
@@ -472,7 +478,9 @@ function MainnavCatalog(selector = document) {
 
     // Добавляем кнопки в конце
     mainnavList.append(mainnavSaleLi);
-    mainnavList.append(mainnavMoreLi);
+    if (mainnavDropdown.hasChildNodes()) {
+      mainnavList.append(mainnavMoreLi);
+    }
   }
 
   handleMainnavItems();
