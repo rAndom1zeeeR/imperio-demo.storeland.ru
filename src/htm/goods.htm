@@ -502,19 +502,9 @@
 
 					<!-- Изображение -->
 					<div class="product__images">
-						{% IF goods.IMAGE_EMPTY %}
 						<a class="product__image" href="{related_views_goods.URL_MIN_PRICE_NOW | url_amp}">
-							<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO" alt="{related_views_goods.NAME}" loading="lazy" itemprop="image">
+							<img src="{% IF related_views_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{related_views_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{related_views_goods.NAME}" loading="lazy" itemprop="image">
 						</a>
-						{% ELSE %}
-						<div class="product__image">
-							{% FOR images %}
-							<a class="swiper-slide product__img" href="{related_views_goods.URL_MIN_PRICE_NOW | url_amp}" title="{related_views_goods.images.NAME}" itemprop="url" data-id="{related_views_goods.images.ID}">
-								<img src="{related_views_goods.images.MEDIUM}" alt="{related_views_goods.images.NAME}" loading="lazy" itemprop="image">
-							</a>
-							{% ENDFOR %}
-						</div>
-						{% ENDIF %}
 						<!-- Стикеры -->
 						{% IF related_views_goods.IS_NEW || related_views_goods.IS_TOP || related_views_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > related_views_goods.MIN_PRICE_NOW || related_views_goods.MIN_PRICE_OLD > related_views_goods.MIN_PRICE_NOW %}
 						<div class="product__sticker">

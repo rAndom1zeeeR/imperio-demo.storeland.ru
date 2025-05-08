@@ -16,19 +16,9 @@
 
 				<!-- Изображение -->
 				<div class="product__images">
-					{% IF favorites_goods.IMAGE_EMPTY %}
 					<a class="product__image" href="{favorites_goods.URL_MIN_PRICE_NOW | url_amp}">
-						<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO" alt="{favorites_goods.NAME}" loading="lazy" itemprop="image">
+						<img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{favorites_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{favorites_goods.NAME}" loading="lazy" itemprop="image">
 					</a>
-					{% ELSE %}
-					<div class="product__image">
-						{% FOR goods_images_list %}
-						<a class="product__img" href="{favorites_goods.URL_MIN_PRICE_NOW | url_amp}" title="{favorites_goods.goods_images_list.NAME}" data-id="{favorites_goods.goods_images_list.ID}">
-							<img src="{favorites_goods.goods_images_list.MEDIUM}" alt="{favorites_goods.goods_images_list.NAME}" loading="lazy" itemprop="image">
-						</a>
-						{% ENDFOR %}
-					</div>
-					{% ENDIF %}
 					<!-- Стикеры -->
 					{% IF favorites_goods.IS_NEW || favorites_goods.IS_TOP || favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > favorites_goods.MIN_PRICE_NOW || favorites_goods.MIN_PRICE_OLD > favorites_goods.MIN_PRICE_NOW %}
 					<div class="product__sticker">

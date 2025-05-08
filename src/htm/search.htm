@@ -366,19 +366,9 @@
 
 				<!-- Изображение -->
 				<div class="product__images">
-					{% IF goods.IMAGE_EMPTY %}
 					<a class="product__image" href="{goods.URL_MIN_PRICE_NOW | url_amp}">
-						<img src="{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO" alt="{goods.NAME}" loading="lazy" itemprop="image">
+						<img src="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{goods.NAME}" loading="lazy" itemprop="image">
 					</a>
-					{% ELSE %}
-					<div class="product__image">
-						{% FOR images %}
-						<a class="product__img" href="{goods.URL_MIN_PRICE_NOW | url_amp}" title="{goods.images.NAME}" data-id="{goods.images.ID}">
-							<img src="{goods.images.MEDIUM}" alt="{goods.images.NAME}" loading="lazy" itemprop="image">
-						</a>
-						{% ENDFOR %}
-					</div>
-					{% ENDIF %}
 					<!-- Стикеры -->
 					{% IF goods.IS_NEW || goods.IS_TOP || goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > goods.MIN_PRICE_NOW || goods.MIN_PRICE_OLD > goods.MIN_PRICE_NOW %}
 					<div class="product__sticker">

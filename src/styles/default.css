@@ -373,6 +373,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 	color: white;
 	font-weight: bold;
 	font-size: var(--text-size-small);
+	font-family: var(--font-secondary);
 	line-height: var(--text-height-small);
 	border-radius: var(--border-radius);
 }

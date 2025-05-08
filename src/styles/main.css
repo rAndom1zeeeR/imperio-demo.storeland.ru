@@ -950,6 +950,7 @@
 	border-radius: var(--border-radius);
 	aspect-ratio: 1.4 / 1;
 }
+.product__image::after {position: absolute;z-index: 2;background-color: var(--color-background);content: '';inset: 0;}
 .product__shop {position: relative;}
 .product__name {display: block;overflow: hidden;line-height: var(--text-height-medium);}
 .product__name span {
@@ -960,13 +961,19 @@
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 }
-.product__price {display: flex;}
-.price__now {font-size: var(--text-size-large);font-family: var(--font-secondary);white-space: nowrap;}
+.product__price {display: flex;align-items: center;}
+.price__now {
+	font-size: var(--text-size-large);
+	font-family: var(--font-secondary);
+	line-height: var(--text-height-large);
+	white-space: nowrap;
+}
 .price__old {
 	order: 2;
 	overflow: hidden;
 	font-size: var(--text-size-medium);
 	font-family: var(--font-secondary);
+	line-height: var(--text-height-large);
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	opacity: 0.5;
@@ -998,6 +1005,7 @@
 	color: white;
 	font-weight: bold;
 	font-size: var(--text-size-small);
+	font-family: var(--font-secondary);
 	line-height: var(--text-height-small);
 	background: var(--color-error);
 	border-radius: var(--border-radius);
@@ -1015,7 +1023,7 @@
 	.product__add {padding-inline: 24px;}
 }
 @media all and (min-width: 1024px) {
-	.product__date {top: auto;bottom: 8px;left: 8px;}
+	.product__date {top: auto;bottom: -12px;left: 8px;}
 	.product__add {padding-inline: 32px;}
 }
 @media all and (min-width: 1440px) {
@@ -1055,7 +1063,7 @@
 .products__grid .product__image {padding-bottom: 12px;}
 .products__grid .product__img {background-color: var(--color-background);}
 .products__grid .product__img + .product__img {display: none;}
-.products__grid .product__sticker {position: absolute;bottom: 8px;left: 0;z-index: 2;}
+.products__grid .product__sticker {position: absolute;bottom: -12px;left: 0;z-index: 2;}
 .products__grid .product__links {position: absolute;top: 0;right: 0;z-index: 2;}
 .products__grid .product__link {display: block;padding: 8px;}
 .products__grid .product__ratings {margin-top: 16px;}
@@ -1217,6 +1225,7 @@
 	transition: border-color var(--duration);
 }
 .categories__images {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -1224,7 +1233,7 @@
 	border-radius: var(--border-radius);
 	aspect-ratio: 1 / 1;
 }
-.categories__images::after {position: absolute;z-index: 2;content: '';inset: 0;}
+.categories__images::after {position: absolute;z-index: 2;background-color: var(--color-background);content: '';inset: 0;}
 .categories__name {
 	margin-top: 12px;
 	overflow: hidden;
