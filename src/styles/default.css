@@ -319,7 +319,6 @@ h6 {font-size: var(--heading-06);}
 	background-size: cover;
 	content: '';
 }
-.breadcrumbs li:last-of-type {font-weight: bold;}
 .breadcrumbs a {color: inherit;}
 .breadcrumbs a:active {color: var(--color-text-secondary);}
 @media (hover: hover) and (pointer: fine) {

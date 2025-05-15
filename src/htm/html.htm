@@ -2203,7 +2203,10 @@
 							<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
 							{ANTISPAM_CODE}
 							<p class="subscribe-form__text">Узнавайте первыми о наших скидках и предложениях!</p>
-							<input class="subscribe-form__input" type="email" name="form[callback_email]" value="{FORM_CALLBACK_EMAIL}" placeholder="Введите e-mail" autocomplete="off" required>
+							<div class="subscribe-form__field form__field--custom">
+								<input class="subscribe-form__input" type="email" name="form[callback_email]" value="{FORM_CALLBACK_EMAIL}" id="subscribe_mail" placeholder="Введите e-mail" autocomplete="off" required>
+								<label for="subscribe_mail">Введите e-mail</label>
+							</div>
 							<button class="subscribe-form__button" type="submit">Подписаться</button>
 							<small class="subscribe-form__pp">
 								Нажимая на кнопку, я&nbsp;соглашаюсь с&nbsp;условиями
