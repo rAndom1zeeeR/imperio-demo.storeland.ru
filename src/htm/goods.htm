@@ -421,7 +421,9 @@
 									</div>
 								</form>
 							</div>
-							{% IFNOT related_goods.last %}{related_goods.index | is_divided("3","</div><div class=swiper-slide>","")}{% ENDIF %}
+							{% IFNOT related_goods.last %}{related_goods.index | is_divided("3","
+						</div>
+						<div class=swiper-slide>","")}{% ENDIF %}
 							{% IF related_goods.last %}</div>{% ENDIF %}
 						{% ENDFOR %}
 					</div>
@@ -526,7 +528,7 @@
 							<!-- Если есть возможность добавить товар в Избранное -->
 							{% IF related_views_goods.IS_HAS_IN_FAVORITES_LIST %}
 							<a class="product__link add-favorites is-added icon-hover"
-								 data-action-is-add="0"
+								 data-add-favorites
 								 title="Убрать &laquo;{related_views_goods.NAME}&raquo; из Избранного"
 								 href="{FAVORITES_DELETE_URL}?id={related_views_goods.MIN_PRICE_NOW_ID}"
 								 rel="nofollow">
@@ -540,7 +542,7 @@
 							</a>
 							{% ELSE %}
 							<a class="product__link add-favorites icon-hover"
-								 data-action-is-add="1"
+								 data-add-favorites
 								 title="Добавить &laquo;{related_views_goods.NAME}&raquo; в Избранное"
 								 href="{FAVORITES_ADD_URL}?id={related_views_goods.MIN_PRICE_NOW_ID}"
 								 rel="nofollow">
@@ -557,6 +559,7 @@
 							<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 							{% IFNOT SETTINGS_COMPARE_DISABLE && related_views_goods.IS_HAS_IN_COMPARE_LIST %}
 							<a class="product__link add-compare is-added icon-hover"
+								 data-add-compare
 								 title="Убрать &laquo;{related_views_goods.NAME}&raquo; из списка сравнения с другими товарами"
 								 href="{COMPARE_DELETE_URL}?id={related_views_goods.MIN_PRICE_NOW_ID}"
 								 rel="nofollow">
@@ -571,6 +574,7 @@
 							</a>
 							{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 							<a class="product__link add-compare icon-hover"
+								 data-add-compare
 								 title="Добавить &laquo;{related_views_goods.NAME}&raquo; в список сравнения с другими товарами"
 								 href="{COMPARE_ADD_URL}?id={related_views_goods.MIN_PRICE_NOW_ID}"
 								 rel="nofollow">

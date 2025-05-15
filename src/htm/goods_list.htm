@@ -489,7 +489,7 @@
 										<!-- Если есть возможность добавить товар в Избранное -->
 										{% IF goods.IS_HAS_IN_FAVORITES_LIST %}
 										<a class="product__link add-favorites is-added icon-hover"
-											 data-action-is-add="0"
+											 data-add-favorites
 											 title="Убрать &laquo;{goods.NAME}&raquo; из Избранного"
 											 href="{FAVORITES_DELETE_URL}?id={goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -503,7 +503,7 @@
 										</a>
 										{% ELSE %}
 										<a class="product__link add-favorites icon-hover"
-											 data-action-is-add="1"
+											 data-add-favorites
 											 title="Добавить &laquo;{goods.NAME}&raquo; в Избранное"
 											 href="{FAVORITES_ADD_URL}?id={goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -519,7 +519,7 @@
 										<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 										{% IFNOT SETTINGS_COMPARE_DISABLE && goods.IS_HAS_IN_COMPARE_LIST %}
 										<a class="product__link add-compare is-added icon-hover"
-											 data-action-is-add="0"
+											 data-add-compare
 											 title="Убрать &laquo;{goods.NAME}&raquo; из списка сравнения с другими товарами"
 											 href="{COMPARE_DELETE_URL}?id={goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -534,7 +534,7 @@
 										</a>
 										{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 										<a class="product__link add-compare icon-hover"
-											 data-action-is-add="1"
+											 data-add-compare
 											 title="Добавить &laquo;{goods.NAME}&raquo; в список сравнения с другими товарами"
 											 href="{COMPARE_ADD_URL}?id={goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -627,7 +627,7 @@
 								<!-- Если есть возможность добавить товар в Избранное -->
 								{% IF goods.IS_HAS_IN_FAVORITES_LIST %}
 								<a class="product__link add-favorites is-added icon-hover"
-									 data-action-is-add="0"
+									 data-add-favorites
 									 title="Убрать &laquo;{goods.NAME}&raquo; из Избранного"
 									 href="{FAVORITES_DELETE_URL}?id={goods.MIN_PRICE_NOW_ID}"
 									 rel="nofollow">
@@ -641,7 +641,7 @@
 								</a>
 								{% ELSE %}
 								<a class="product__link add-favorites icon-hover"
-									 data-action-is-add="1"
+									 data-add-favorites
 									 title="Добавить &laquo;{goods.NAME}&raquo; в Избранное"
 									 href="{FAVORITES_ADD_URL}?id={goods.MIN_PRICE_NOW_ID}"
 									 rel="nofollow">
@@ -658,6 +658,7 @@
 								<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 								{% IFNOT SETTINGS_COMPARE_DISABLE && goods.IS_HAS_IN_COMPARE_LIST %}
 								<a class="product__link add-compare is-added icon-hover"
+									 data-add-compare
 									 title="Убрать &laquo;{goods.NAME}&raquo; из списка сравнения с другими товарами"
 									 href="{COMPARE_DELETE_URL}?id={goods.MIN_PRICE_NOW_ID}"
 									 rel="nofollow">
@@ -672,6 +673,7 @@
 								</a>
 								{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 								<a class="product__link add-compare icon-hover"
+									 data-add-compare
 									 title="Добавить &laquo;{goods.NAME}&raquo; в список сравнения с другими товарами"
 									 href="{COMPARE_ADD_URL}?id={goods.MIN_PRICE_NOW_ID}"
 									 rel="nofollow">

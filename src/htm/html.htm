@@ -518,7 +518,7 @@
 										<!-- Если есть возможность добавить товар в Избранное -->
 										{% IF index_page_sale_goods.IS_HAS_IN_FAVORITES_LIST %}
 										<a class="product__link add-favorites is-added icon-hover"
-											 data-action-is-add="0"
+											 data-add-favorites
 											 title="Убрать &laquo;{index_page_sale_goods.NAME}&raquo; из Избранного"
 											 href="{FAVORITES_DELETE_URL}?id={index_page_sale_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -532,7 +532,7 @@
 										</a>
 										{% ELSE %}
 										<a class="product__link add-favorites icon-hover"
-											 data-action-is-add="1"
+											 data-add-favorites
 											 title="Добавить &laquo;{index_page_sale_goods.NAME}&raquo; в Избранное"
 											 href="{FAVORITES_ADD_URL}?id={index_page_sale_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -549,6 +549,7 @@
 										<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 										{% IFNOT SETTINGS_COMPARE_DISABLE && index_page_sale_goods.IS_HAS_IN_COMPARE_LIST %}
 										<a class="product__link add-compare is-added icon-hover"
+											 data-add-compare
 											 title="Убрать &laquo;{index_page_sale_goods.NAME}&raquo; из списка сравнения с другими товарами"
 											 href="{COMPARE_DELETE_URL}?id={index_page_sale_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -564,6 +565,7 @@
 										</a>
 										{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 										<a class="product__link add-compare icon-hover"
+											 data-add-compare
 											 title="Добавить &laquo;{index_page_sale_goods.NAME}&raquo; в список сравнения с другими товарами"
 											 href="{COMPARE_ADD_URL}?id={index_page_sale_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -729,7 +731,7 @@
 										<!-- Если есть возможность добавить товар в Избранное -->
 										{% IF index_page_favorites_goods.IS_HAS_IN_FAVORITES_LIST %}
 										<a class="product__link add-favorites is-added icon-hover"
-											 data-action-is-add="0"
+											 data-add-favorites
 											 title="Убрать &laquo;{index_page_favorites_goods.NAME}&raquo; из Избранного"
 											 href="{FAVORITES_DELETE_URL}?id={index_page_favorites_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -743,7 +745,7 @@
 										</a>
 										{% ELSE %}
 										<a class="product__link add-favorites icon-hover"
-											 data-action-is-add="1"
+											 data-add-favorites
 											 title="Добавить &laquo;{index_page_favorites_goods.NAME}&raquo; в Избранное"
 											 href="{FAVORITES_ADD_URL}?id={index_page_favorites_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -760,6 +762,7 @@
 										<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 										{% IFNOT SETTINGS_COMPARE_DISABLE && index_page_favorites_goods.IS_HAS_IN_COMPARE_LIST %}
 										<a class="product__link add-compare is-added icon-hover"
+											 data-add-compare
 											 title="Убрать &laquo;{index_page_favorites_goods.NAME}&raquo; из списка сравнения с другими товарами"
 											 href="{COMPARE_DELETE_URL}?id={index_page_favorites_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -775,6 +778,7 @@
 										</a>
 										{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 										<a class="product__link add-compare icon-hover"
+											 data-add-compare
 											 title="Добавить &laquo;{index_page_favorites_goods.NAME}&raquo; в список сравнения с другими товарами"
 											 href="{COMPARE_ADD_URL}?id={index_page_favorites_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -1000,7 +1004,7 @@
 										<!-- Если есть возможность добавить товар в Избранное -->
 										{% IF index_page_new_goods.IS_HAS_IN_FAVORITES_LIST %}
 										<a class="product__link add-favorites is-added icon-hover"
-											 data-action-is-add="0"
+											 data-add-favorites
 											 title="Убрать &laquo;{index_page_new_goods.NAME}&raquo; из Избранного"
 											 href="{FAVORITES_DELETE_URL}?id={index_page_new_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -1014,7 +1018,7 @@
 										</a>
 										{% ELSE %}
 										<a class="product__link add-favorites icon-hover"
-											 data-action-is-add="1"
+											 data-add-favorites
 											 title="Добавить &laquo;{index_page_new_goods.NAME}&raquo; в Избранное"
 											 href="{FAVORITES_ADD_URL}?id={index_page_new_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -1031,6 +1035,7 @@
 										<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 										{% IFNOT SETTINGS_COMPARE_DISABLE && index_page_new_goods.IS_HAS_IN_COMPARE_LIST %}
 										<a class="product__link add-compare is-added icon-hover"
+											 data-add-compare
 											 title="Убрать &laquo;{index_page_new_goods.NAME}&raquo; из списка сравнения с другими товарами"
 											 href="{COMPARE_DELETE_URL}?id={index_page_new_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -1046,6 +1051,7 @@
 										</a>
 										{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 										<a class="product__link add-compare icon-hover"
+											 data-add-compare
 											 title="Добавить &laquo;{index_page_new_goods.NAME}&raquo; в список сравнения с другими товарами"
 											 href="{COMPARE_ADD_URL}?id={index_page_new_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -1167,6 +1173,11 @@
 							<input type="hidden" name="form[goods_name]" value="{index_page_goods.NAME}">
 							<input type="hidden" name="form[goods_desc]" value="{index_page_goods.DESCRIPTION_SHORT}" itemprop="description">
 							<input type="hidden" name="form[goods_sku]" value="{index_page_goods.ART_NUMBER}" itemprop="sku">
+							<input type="hidden" name="form[goods_image]" value="{index_page_goods.IMAGE_MEDIUM}">
+							<input type="hidden" name="form[goods_price_old]" value="{index_page_goods.MIN_PRICE_OLD}">
+							<input type="hidden" name="form[goods_price_now]" value="{index_page_goods.MIN_PRICE_NOW}">
+							<input type="hidden" name="form[goods_url]" value="{index_page_goods.URL_MIN_PRICE_NOW}">
+							<input type="hidden" name="form[del_url]" value="{FAVORITES_DELETE_URL}?id={index_page_goods.MIN_PRICE_NOW_ID}">
 
 							<!-- Изображение -->
 							<div class="product__images">
@@ -1194,7 +1205,7 @@
 									<!-- Если есть возможность добавить товар в Избранное -->
 									{% IF index_page_goods.IS_HAS_IN_FAVORITES_LIST %}
 									<a class="product__link add-favorites is-added icon-hover"
-										 data-action-is-add="0"
+										 data-add-favorites
 										 title="Убрать &laquo;{index_page_goods.NAME}&raquo; из Избранного"
 										 href="{FAVORITES_DELETE_URL}?id={index_page_goods.MIN_PRICE_NOW_ID}"
 										 rel="nofollow">
@@ -1208,7 +1219,7 @@
 									</a>
 									{% ELSE %}
 									<a class="product__link add-favorites icon-hover"
-										 data-action-is-add="1"
+										 data-add-favorites
 										 title="Добавить &laquo;{index_page_goods.NAME}&raquo; в Избранное"
 										 href="{FAVORITES_ADD_URL}?id={index_page_goods.MIN_PRICE_NOW_ID}"
 										 rel="nofollow">
@@ -1225,6 +1236,7 @@
 									<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 									{% IFNOT SETTINGS_COMPARE_DISABLE && index_page_goods.IS_HAS_IN_COMPARE_LIST %}
 									<a class="product__link add-compare is-added icon-hover"
+										 data-add-compare
 										 title="Убрать &laquo;{index_page_goods.NAME}&raquo; из списка сравнения с другими товарами"
 										 href="{COMPARE_DELETE_URL}?id={index_page_goods.MIN_PRICE_NOW_ID}"
 										 rel="nofollow">
@@ -1239,6 +1251,7 @@
 									</a>
 									{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 									<a class="product__link add-compare icon-hover"
+										 data-add-compare
 										 title="Добавить &laquo;{index_page_goods.NAME}&raquo; в список сравнения с другими товарами"
 										 href="{COMPARE_ADD_URL}?id={index_page_goods.MIN_PRICE_NOW_ID}"
 										 rel="nofollow">
@@ -1932,7 +1945,7 @@
 										<!-- Если есть возможность добавить товар в Избранное -->
 										{% IF recently_viewed_goods.IS_HAS_IN_FAVORITES_LIST %}
 										<a class="product__link add-favorites is-added icon-hover"
-											 data-action-is-add="0"
+											 data-add-favorites
 											 title="Убрать &laquo;{recently_viewed_goods.NAME}&raquo; из Избранного"
 											 href="{FAVORITES_DELETE_URL}?id={recently_viewed_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -1946,7 +1959,7 @@
 										</a>
 										{% ELSE %}
 										<a class="product__link add-favorites icon-hover"
-											 data-action-is-add="1"
+											 data-add-favorites
 											 title="Добавить &laquo;{recently_viewed_goods.NAME}&raquo; в Избранное"
 											 href="{FAVORITES_ADD_URL}?id={recently_viewed_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -1963,6 +1976,7 @@
 										<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 										{% IFNOT SETTINGS_COMPARE_DISABLE && recently_viewed_goods.IS_HAS_IN_COMPARE_LIST %}
 										<a class="product__link add-compare is-added icon-hover"
+											 data-add-compare
 											 title="Убрать &laquo;{recently_viewed_goods.NAME}&raquo; из списка сравнения с другими товарами"
 											 href="{COMPARE_DELETE_URL}?id={recently_viewed_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -1978,6 +1992,7 @@
 										</a>
 										{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 										<a class="product__link add-compare icon-hover"
+											 data-add-compare
 											 title="Добавить &laquo;{recently_viewed_goods.NAME}&raquo; в список сравнения с другими товарами"
 											 href="{COMPARE_ADD_URL}?id={recently_viewed_goods.MIN_PRICE_NOW_ID}"
 											 rel="nofollow">
@@ -2420,7 +2435,7 @@
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="20" height="20" aria-hidden="true">
 				<path
 							d="M557.928 977.454V158.899l246.125 246.364a46.522 46.522 0 0 0 15.094 10.435 46.45 46.45 0 0 0 17.949 3.773 46.462 46.462 0 0 0 33.284-13.629 46.582 46.582 0 0 0 13.618-33.316 46.585 46.585 0 0 0-3.773-17.966 46.469 46.469 0 0 0-10.421-15.109L544.304 13.63A46.463 46.463 0 0 0 511.426.001 46.477 46.477 0 0 0 478.55 13.63L153.051 339.451A46.569 46.569 0 0 0 140 372.188a46.585 46.585 0 0 0 13.619 32.512c8.622 8.627 20.285 13.522 32.476 13.629s23.936-4.588 32.707-13.066l246.124-246.364v818.555c0 12.345 4.9 24.184 13.619 32.913A46.49 46.49 0 0 0 511.426 1024c12.335 0 24.162-4.904 32.883-13.633s13.619-20.568 13.619-32.913z" />
-			</svg>			
+			</svg>
 		</a>
 
 		<!-- Мобильная навигация -->
@@ -2432,8 +2447,8 @@
 									d="M557.928 977.454V158.899l246.125 246.364a46.522 46.522 0 0 0 15.094 10.435 46.45 46.45 0 0 0 17.949 3.773 46.462 46.462 0 0 0 33.284-13.629 46.582 46.582 0 0 0 13.618-33.316 46.585 46.585 0 0 0-3.773-17.966 46.469 46.469 0 0 0-10.421-15.109L544.304 13.63A46.463 46.463 0 0 0 511.426.001 46.477 46.477 0 0 0 478.55 13.63L153.051 339.451A46.569 46.569 0 0 0 140 372.188a46.585 46.585 0 0 0 13.619 32.512c8.622 8.627 20.285 13.522 32.476 13.629s23.936-4.588 32.707-13.066l246.124-246.364v818.555c0 12.345 4.9 24.184 13.619 32.913A46.49 46.49 0 0 0 511.426 1024c12.335 0 24.162-4.904 32.883-13.633s13.619-20.568 13.619-32.913z" />
 					</svg>
 					<svg hidden class="mobile-nav__icon mobile-nav__icon--gohome" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-						<path d="M12 0.137695L0 12.1377V14.4077H2.90911V23.8623H10.1819V18.0441H13.8182V23.8623H21.0909V14.4077H24V12.1377L12 0.137695ZM18.9091 12.2259V21.6805H16V15.8623H8.00002V21.6805H5.09091V12.2259H2.99733L12 3.2232L21.0027 12.2259H18.9091Z" fill="#635258"/>
-					</svg>	
+						<path d="M12 0.137695L0 12.1377V14.4077H2.90911V23.8623H10.1819V18.0441H13.8182V23.8623H21.0909V14.4077H24V12.1377L12 0.137695ZM18.9091 12.2259V21.6805H16V15.8623H8.00002V21.6805H5.09091V12.2259H2.99733L12 3.2232L21.0027 12.2259H18.9091Z" fill="#635258" />
+					</svg>
 					<span class="mobile-nav__label">Главная</span>
 				</a>
 				<a class="mobile-nav__link menu" href="{CATALOG_URL}" title="Открыть Меню" data-mobile-open="menu">
@@ -2519,38 +2534,6 @@
 					</button>
 				</div>
 				<div class="sidebar__content mobile-menu__inner">
-					<div class="mobile-menu__search search">
-						<form class="search__form" action="{QUICK_SEARCH_URL}" method="get">
-							<input type="hidden" name="goods_search_field_id" value="0">
-							<input class="search__input" type="text" name="q" value="{FORM_SEARCH_Q}" placeholder="Поиск...">
-							<button class="search__submit button-secondary" type="submit" aria-label="Искать на сайте" title="Искать">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16" aria-hidden="true">
-									<path
-												d="M302.058 0C186.296 0 92.116 94.18 92.116 209.942c0 50.697 18.064 97.253 48.092 133.574L0 483.724 28.276 512l140.208-140.208c36.321 30.028 82.877 48.092 133.574 48.092C417.82 419.884 512 325.704 512 209.942S417.821 0 302.058 0zm0 379.895c-93.712 0-169.953-76.241-169.953-169.953S208.346 39.989 302.058 39.989s169.953 76.241 169.953 169.953-76.241 169.953-169.953 169.953z" />
-								</svg>
-								<span>Найти</span>
-							</button>
-							<button class="search__reset button-icon" type="button" aria-label="Сбросить поисковый запрос" title="Сбросить поисковый запрос">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="14" height="14" aria-hidden="true">
-									<path
-												d="m568.571 512.003 443.715-443.715c15.622-15.622 15.622-40.95 0-56.57s-40.954-15.622-56.57 0L511.999 455.433 68.286 11.718c-15.622-15.622-40.95-15.622-56.57 0s-15.622 40.95 0 56.57l443.713 443.713L11.716 955.716c-15.622 15.622-15.622 40.949 0 56.57a39.925 39.925 0 0 0 12.974 8.681 39.939 39.939 0 0 0 15.312 3.032 39.939 39.939 0 0 0 15.312-3.032 39.94 39.94 0 0 0 12.974-8.681l443.711-443.713 443.711 443.713c7.811 7.811 18.051 11.713 28.285 11.713 10.24 0 20.474-3.903 28.291-11.713 15.622-15.622 15.622-40.949 0-56.57L568.571 512.003z" />
-								</svg>
-							</button>
-							<span class="search__loader" aria-hidden="true">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-							</span>
-							<span class="search__label">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16" aria-hidden="true">
-									<path
-												d="M302.058 0C186.296 0 92.116 94.18 92.116 209.942c0 50.697 18.064 97.253 48.092 133.574L0 483.724 28.276 512l140.208-140.208c36.321 30.028 82.877 48.092 133.574 48.092C417.82 419.884 512 325.704 512 209.942S417.821 0 302.058 0zm0 379.895c-93.712 0-169.953-76.241-169.953-169.953S208.346 39.989 302.058 39.989s169.953 76.241 169.953 169.953-76.241 169.953-169.953 169.953z" />
-								</svg>
-							</span>
-						</form>
-					</div>
-
 					<div class="mobile-menu__catalog">
 						{% FOR catalog_full %}
 						{% IF catalog_full.FIRST %}<ul class="catalog__sub" data-level="{catalog_full.LEVEL}">{% ENDIF %}
@@ -2728,7 +2711,6 @@
 					</button>
 				</div>
 				<div class="sidebar__content compare addto__compare {% IF COMPARE_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
-					{% IFNOT compare_goods_empty %}
 					<div class="addto__items">
 						{% FOR compare_goods %}
 						<div class="addto__item" data-id="{compare_goods.ID}">
@@ -2763,8 +2745,6 @@
 							<span>Очистить</span>
 						</a>
 					</div>
-					{% ENDIF compare_goods_empty %}
-
 					<!-- Пустая корзина -->
 					<div class="addto__empty">В корзине пока ничего нет</div>
 				</div>
@@ -2783,7 +2763,6 @@
 					</button>
 				</div>
 				<div class="sidebar__content favorites addto__favorites {% IF FAVORITES_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
-					{% IFNOT favorites_goods_empty %}
 					<div class="addto__items">
 						{% FOR favorites_goods %}
 						<div class="addto__item" data-id="{favorites_goods.ID}">
@@ -2818,7 +2797,6 @@
 							<span>Очистить</span>
 						</a>
 					</div>
-					{% ENDIF favorites_goods_empty %}
 
 					<!-- Пустая корзина -->
 					<div class="addto__empty">В корзине пока ничего нет</div>
@@ -3208,8 +3186,8 @@
 		<script defer src="{ASSETS_JS_PATH}fancybox.umd.js?design=IMPERIO"></script>
 		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}fancybox.css?design=IMPERIO">
 		<!-- Уведомления -->
-		<script defer src="{ASSETS_JS_PATH}sweetalert2.min.js?design=IMPERIO"></script>
-		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}sweetalert2.min.css?design=IMPERIO">
+		<script defer src="{ASSETS_JS_PATH}sweetalert.js?design=IMPERIO"></script>
+		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}sweetalert.css?design=IMPERIO">
 		<!-- Слайдер Swiper -->
 		<script defer src="{ASSETS_JS_PATH}swiper.min.js?design=IMPERIO"></script>
 		<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}swiper.css?design=IMPERIO">

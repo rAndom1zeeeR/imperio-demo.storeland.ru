@@ -365,7 +365,16 @@
 .page-index #catalog {border-bottom: 0;}
 #catalog {border-bottom: 1px solid var(--color-border-secondary);}
 .catalog__mainnav .mainnav__link {display: flex;padding: 16px;font-size: var(--text-size-large);line-height: var(--text-height-large);}
-.catalog__mainnav .mainnav__link--catalog {height: 100%;padding-inline: 24px;}
+.catalog__mainnav .mainnav__link--catalog {
+	height: 100%;
+	color: var(--color-text-primary);
+	background-color: var(--color-background);
+	border: 1px solid var(--color-border-secondary);
+	border-top: 0;
+	border-bottom: 0;
+	border-radius: 0;
+	padding-inline: 24px;
+}
 .catalog__mainnav .mainnav__link--more.is-active svg {transform: rotate(180deg);}
 #catalog .mainnav__dropdown {
 	right: 0;
@@ -384,7 +393,6 @@
 		display: block;
 		width: calc(100% - 32px);
 		background-color: white;
-		border-bottom: 1px solid var(--color-border);
 	}
 	.catalog__link {display: block;padding: 6px;}
 	.catalog__link[data-level="0"] {width: 360px;padding: 16px 24px;transition: background-color var(--duration);}
@@ -978,7 +986,7 @@
 	text-overflow: ellipsis;
 	opacity: 0.5;
 }
-.price__old + .price__now {color: var(--color-error);}
+.price__old:not(:empty) + .price__now {color: var(--color-error);}
 .product__link:active {color: var(--color-text-primary);}
 .product__link span {display: none;}
 .product__add {font-size: var(--text-size-large);padding-inline: 16px;}
@@ -995,8 +1003,8 @@
 .product__item:active .product__addto {transform: scale(1, 1);}
 .product__date {
 	position: absolute;
-	top: 8px;
-	left: 8px;
+	top: 0;
+	left: 0;
 	z-index: 2;
 	display: flex;
 	gap: 3px;
@@ -1018,6 +1026,7 @@
 	.product__form:hover .product__addto {transform: scale(1, 1);}
 }
 @media all and (min-width: 480px) {
+	.product__date {top: 8px;left: 8px;}
 	.product__form {padding: 8px;}
 	.product__name {font-size: var(--text-size-large);line-height: var(--text-height-large);}
 	.product__add {padding-inline: 24px;}
@@ -1065,19 +1074,20 @@
 .products__grid .product__img + .product__img {display: none;}
 .products__grid .product__sticker {position: absolute;bottom: -12px;left: 0;z-index: 2;}
 .products__grid .product__links {position: absolute;top: 0;right: 0;z-index: 2;}
-.products__grid .product__link {display: block;padding: 8px;}
+.products__grid .product__link {display: block;padding: 4px;}
 .products__grid .product__ratings {margin-top: 16px;}
 .products__grid .ratings__count {top: 4px;font-size: var(--text-size-small);}
-.products__grid .product__price {flex-direction: column;gap: 8px 16px;margin-top: 8px;}
+.products__grid .product__price {flex-direction: column;gap: 4px 16px;align-items: flex-start;margin-top: 8px;}
 .products__grid .product__cart {margin-top: 16px;}
 @media (hover: hover) and (pointer: fine) {
 	.products__grid .product__image .swiper-scrollbar {opacity: 0;}
 	.products__grid .product__image:hover .swiper-scrollbar {opacity: 1;}
 }
 @media all and (min-width: 480px) {
+	.products__grid .product__link {padding: 8px;}
 	.products__grid .product__sticker {right: 12px;left: auto;}
 	.products__grid .product__name {height: 48px;}
-	.products__grid .product__price {flex-direction: row;margin-top: 12px;}
+	.products__grid .product__price {flex-direction: row;margin-top: 12px;column-gap: 8px;}
 }
 @media all and (min-width: 640px) {
 	.products__grid {grid-template-columns: repeat(3, calc(33.3333% - 8px));}
@@ -1753,10 +1763,11 @@
 	border-radius: var(--border-radius);
 }
 .productView__content {width: 100%;}
-.productView__form {display: flex;flex-wrap: wrap;gap: 24px;}
+.productView__form {display: flex;flex-wrap: wrap;gap: 12px;}
 .productView__name {width: 100%;overflow: hidden;line-height: 1.2;}
 .productView__articles {width: 100%;opacity: 0.5;}
-.productView__ratings {width: 100%;margin-top: -12px;}
+.productView__articles b {font-weight: normal;}
+.productView__ratings {width: 100%;}
 .productView__links {display: flex;gap: 16px;}
 .productView__link span {display: none;}
 .productView__price {display: flex;gap: 8px 24px;align-items: center;}
@@ -1806,6 +1817,11 @@
 @media (hover: hover) and (pointer: fine) {
 	.productView__campaign-link:hover {color: white;}
 	.productView__anchors-link:hover span + svg {margin-left: auto;fill: var(--color-secondary);}
+	.productView__link:hover {color: var(--color-text-primary);}
+}
+@media all and (min-width: 480px) {
+	.productView__form {gap: 24px;}
+	.productView__ratings {margin-top: -12px;}
 }
 
 /* Фиксированная карточка при скроле */
@@ -1845,6 +1861,8 @@
 .productViewMod .productView__anchors {display: none;}
 .productViewMod .productView__description {display: none;}
 .productViewMod #related-goods {display: none;}
+.productViewMod .productView__form {gap: 12px;}
+.productViewMod .productView__ratings {margin-top: 0;}
 
 /* Дополнительные изображения */
 .thumblist__item {
@@ -2052,6 +2070,7 @@
 .addto__item {position: relative;display: flex;padding: 24px;}
 .addto__item:not(:last-child) {border-bottom: 1px solid var(--color-border-secondary);}
 .addto__items {height: calc(100vh - 57px - 135px);overflow: hidden auto;}
+.is-empty .addto__items {display: none;}
 .addto__image {
 	display: flex;
 	flex-shrink: 0;
@@ -2186,7 +2205,7 @@
 /* Мобильное меню - контакты */
 .mobile-menu__contacts {padding: 16px 24px;background-color: var(--color-lightgray);}
 .mobile-menu .contacts__block:not(:first-child) {margin-top: 16px;}
-.mobile-menu .contacts__block {display: flex;gap: 8px 24px;}
+.mobile-menu .contacts__block {display: flex;flex-direction: column;gap: 8px 24px;}
 
 /* Кнопка обратного звонка */
 .mobile-menu .footer-contacts__callback {
@@ -2234,7 +2253,7 @@
 }
 .mobile-menu__catalog .catalog__link-icon {position: absolute;right: 8px;}
 .mobile-menu__contacts-callback {color: var(--color-primary);font-weight: bold;font-size: var(--text-size-regular);font-family: var(--font-secondary);}
-.mobile-menu__contacts .contacts__block {display: flex;gap: 8px 24px;}
+.mobile-menu__contacts .contacts__block {display: flex;flex-direction: column;gap: 8px 24px;}
 .mobile-menu__search {padding: 12px 20px 24px;}
 .mobile-menu__search .search__form {display: flex;}
 

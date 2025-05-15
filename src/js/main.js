@@ -451,8 +451,8 @@ function MainnavCatalog(selector = document) {
     mainnavSaleButton.append(mainnavSaleButtonSpan);
 
     mainnavList.append(mainnavMoreLi);
-    mainnavMoreLi.append(mainnavMoreButton);
-    mainnavMoreButton.append(mainnavMoreButtonSpan, mainnavMoreButtonSvg);
+    // mainnavMoreLi.append(mainnavMoreButton);
+    // mainnavMoreButton.append(mainnavMoreButtonSpan, mainnavMoreButtonSvg);
 
     // Измеряем ширину кнопок
     const saleButtonWidth = mainnavSaleLi.clientWidth;
@@ -460,7 +460,7 @@ function MainnavCatalog(selector = document) {
 
     // Удаляем кнопки для корректного расчета
     mainnavSaleLi.remove();
-    mainnavMoreLi.remove();
+    // mainnavMoreLi.remove();
 
     // Вычисляем доступную ширину с учетом кнопок
     const availableWidth = mainnavList.clientWidth - saleButtonWidth - moreButtonWidth;
@@ -486,15 +486,15 @@ function MainnavCatalog(selector = document) {
   handleMainnavItems();
   window.addEventListener("resize", handleMainnavItems);
 
-  mainnavMoreButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.currentTarget.classList.toggle("is-active");
-    OverlayOpener(mainnav, handleOpened);
-  });
+  // mainnavMoreButton.addEventListener("click", (event) => {
+  //   event.preventDefault();
+  //   event.currentTarget.classList.toggle("is-active");
+  //   OverlayOpener(mainnav, handleOpened);
+  // });
 
-  function handleOpened(event) {
-    OverlayCloser(event, ".catalog__mainnav", handleOpened);
-  }
+  // function handleOpened(event) {
+  //   OverlayCloser(event, ".catalog__mainnav", handleOpened);
+  // }
 }
 
 /**
@@ -520,6 +520,15 @@ function Addto(doc = document) {
     event.preventDefault();
     const currentTarget = event.currentTarget;
     const goods_href = currentTarget.getAttribute("href");
+    const goods_form = currentTarget.closest("form");
+    const goods_id = goods_form.querySelector("[name='form[goods_id]']").value;
+    const goods_image = goods_form.querySelector("[name='form[goods_image]']").value;
+    const goods_name = goods_form.querySelector("[name='form[goods_name]']").value;
+    const goods_price_old = goods_form.querySelector("[name='form[goods_price_old]']").value;
+    const goods_price_now = goods_form.querySelector("[name='form[goods_price_now]']").value;
+    const goods_url = goods_form.querySelector("[name='form[goods_url]']").value;
+    const goods_compare_url = goods_form.querySelector("[data-add-compare]").getAttribute("href");
+    const goods_favorites_url = goods_form.querySelector("[data-add-favorites]").getAttribute("href");
     const formData = new FormData();
     formData.append("ajax_q", "1");
 
@@ -533,9 +542,13 @@ function Addto(doc = document) {
           if (currentTarget.classList.contains("add-compare")) {
             handleAddtoLink(currentTarget, "compare", "сравнения");
             handleAddtoCount(data.compare_goods_count, ".compare");
+            const addtoItems = document.querySelector(".compare .addto__items");
+            addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_compare_url))
           } else {
             handleAddtoLink(currentTarget, "favorites", "избранного");
             handleAddtoCount(data.favorites_goods_count, ".favorites");
+            const addtoItems = document.querySelector(".favorites .addto__items");
+            addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_favorites_url))
           }
         } else {
           СreateNoty("error", data.message);
@@ -601,6 +614,53 @@ function Addto(doc = document) {
     element.classList.add("is-added");
     element.setAttribute("href", href);
     element.setAttribute("title", title);
+  }
+
+  // Создание старой цены
+  function createPriceOld(priceOld) {
+    if (priceOld === '0') return '';
+    return `<s class="price__old" data-price="${priceOld}">
+      <span title="${priceOld} российских рублей">
+        <span class="num">${getMoneyFormat(priceOld)}</span>
+        <span>р.</span>
+      </span>
+    </s>`
+  }
+  
+  // Создание новой цены
+  function createPriceNow(priceNow) {
+    return `<b class="price__now" data-price="${priceNow}">
+      <span title="${priceNow} российских рублей">
+        <span class="num">${getMoneyFormat(priceNow)}</span>
+        <span>р.</span>
+      </span>
+    </b>`
+  }
+
+  // Создание элемента списка
+  function createAddtoItem(goodsID, goodsImage, goodsName, goodsPriceOld, goodsPriceNow, goodsURL, delUrl){
+    const CURRENCY_CHAR_CODE = 'RUB';
+    return `
+      <div class="addto__item" data-id="${goodsID}">
+        <div class="addto__image">
+          <img src="${goodsImage}" alt="${goodsName}" loading="lazy" />
+        </div>
+
+        <div class="addto__content">
+          <a class="addto__name" href="${goodsURL}" title="Перейти на страницу товара">${goodsName}</a>
+          <div class="addto__price ${CURRENCY_CHAR_CODE}">
+            ${createPriceOld(goodsPriceOld)}
+            ${createPriceNow(goodsPriceNow)}
+          </div>
+        </div>
+
+        <a class="addto__remove button-icon" href="${delUrl}?id=${goodsID}" title="Удалить позицию ${goodsName}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+            <path d="M256 810.667c0 46.933 38.4 85.333 85.333 85.333h341.333c46.933 0 85.333-38.4 85.333-85.333v-512h-512v512zM341.333 384h341.333v426.667h-341.333v-426.667zM661.333 170.667l-42.667-42.667h-213.333l-42.667 42.667h-149.333v85.333h597.333v-85.333h-149.333z"></path>
+          </svg>
+        </a>
+      </div>
+    `
   }
 }
 
@@ -1414,7 +1474,9 @@ function Goods(doc) {
   SidebarOpener("#deliverys", ".delivery__open");
   // Запуск функции форматирования даты.
   const campaignDate = productViewBlock.querySelector(".productView__campaign time");
-  campaignDate.innerHTML = getDateMonthsName(campaignDate.getAttribute("datetime"));
+  if (campaignDate) {
+    campaignDate.innerHTML = getDateMonthsName(campaignDate.getAttribute("datetime"));
+  }
   // console.log("[DEBUG]: campaignDate", campaignDate);
 }
 
