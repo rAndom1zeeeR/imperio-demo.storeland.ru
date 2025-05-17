@@ -113,9 +113,10 @@
 				<input type="hidden" name="hash" value="{HASH}">
 				<input type="hidden" name="form[goods_id]" value="{goods.ID}">
 				<input type="hidden" name="form[goods_mod_id]" value="{goods.MIN_PRICE_NOW_ID}">
-				<input type="hidden" name="form[goods_name]" value="{goods.NAME}">
 				<input type="hidden" name="form[goods_desc]" value="{goods.DESCRIPTION_SHORT}" itemprop="description">
 				<input type="hidden" name="form[goods_sku]" value="{goods.ART_NUMBER}" itemprop="sku">
+				<input type="hidden" name="form[goods_image]" value="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}">
+				<input type="hidden" name="form[goods_url]" value="{goods.URL_MIN_PRICE_NOW | url_amp}">
 
 				<!-- Изображение -->
 				<a class="product__image" href="{goods.URL_MIN_PRICE_NOW | url_amp}">
@@ -325,7 +326,7 @@
 									<span>Уведомить</span>
 								</button>
 								{% ELSE %}
-								<a class="product__add button button-secondary icon-hover {% IF goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
+								<a class="product__add button icon-hover {% IF goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
 									 href="{% IF goods.COUNT_MODIFICATION > 1 %}{goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
 									 title="Добавить в корзину &laquo;{goods.NAME}&raquo;"
 									 rel="nofollow">
@@ -360,9 +361,10 @@
 				<input type="hidden" name="hash" value="{HASH}">
 				<input type="hidden" name="form[goods_id]" value="{goods.ID}">
 				<input type="hidden" name="form[goods_mod_id]" value="{goods.MIN_PRICE_NOW_ID}">
-				<input type="hidden" name="form[goods_name]" value="{goods.NAME}">
 				<input type="hidden" name="form[goods_desc]" value="{goods.DESCRIPTION_SHORT}" itemprop="description">
 				<input type="hidden" name="form[goods_sku]" value="{goods.ART_NUMBER}" itemprop="sku">
+				<input type="hidden" name="form[goods_image]" value="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}">
+				<input type="hidden" name="form[goods_url]" value="{goods.URL_MIN_PRICE_NOW | url_amp}">
 
 				<!-- Изображение -->
 				<div class="product__images">
@@ -390,7 +392,6 @@
 						<!-- Если есть возможность добавить товар в Избранное -->
 						{% IF goods.IS_HAS_IN_FAVORITES_LIST %}
 						<a class="product__link add-favorites is-added icon-hover"
-							 data-add-favorites
 							 title="Убрать &laquo;{goods.NAME}&raquo; из Избранного"
 							 href="{FAVORITES_DELETE_URL}?id={goods.MIN_PRICE_NOW_ID}"
 							 rel="nofollow">
@@ -404,7 +405,6 @@
 						</a>
 						{% ELSE %}
 						<a class="product__link add-favorites icon-hover"
-							 data-add-favorites
 							 title="Добавить &laquo;{goods.NAME}&raquo; в Избранное"
 							 href="{FAVORITES_ADD_URL}?id={goods.MIN_PRICE_NOW_ID}"
 							 rel="nofollow">
@@ -421,7 +421,6 @@
 						<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 						{% IFNOT SETTINGS_COMPARE_DISABLE && goods.IS_HAS_IN_COMPARE_LIST %}
 						<a class="product__link add-compare is-added icon-hover"
-							 data-add-compare
 							 title="Убрать &laquo;{goods.NAME}&raquo; из списка сравнения с другими товарами"
 							 href="{COMPARE_DELETE_URL}?id={goods.MIN_PRICE_NOW_ID}"
 							 rel="nofollow">
@@ -436,7 +435,6 @@
 						</a>
 						{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 						<a class="product__link add-compare icon-hover"
-							 data-add-compare
 							 title="Добавить &laquo;{goods.NAME}&raquo; в список сравнения с другими товарами"
 							 href="{COMPARE_ADD_URL}?id={goods.MIN_PRICE_NOW_ID}"
 							 rel="nofollow">

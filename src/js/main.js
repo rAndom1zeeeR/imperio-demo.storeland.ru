@@ -522,15 +522,28 @@ function Addto(doc = document) {
     const goods_href = currentTarget.getAttribute("href");
     const goods_form = currentTarget.closest("form");
     const goods_id = goods_form.querySelector("[name='form[goods_id]']").value;
-    const goods_image = goods_form.querySelector("[name='form[goods_image]']").value;
-    const goods_name = goods_form.querySelector("[name='form[goods_name]']").value;
-    const goods_price_old = goods_form.querySelector("[name='form[goods_price_old]']").value;
-    const goods_price_now = goods_form.querySelector("[name='form[goods_price_now]']").value;
+    const goods_mod_id = goods_form.querySelector("[name='form[goods_mod_id]']").value;
     const goods_url = goods_form.querySelector("[name='form[goods_url]']").value;
-    const goods_compare_url = goods_form.querySelector("[data-add-compare]").getAttribute("href");
-    const goods_favorites_url = goods_form.querySelector("[data-add-favorites]").getAttribute("href");
+    const goods_image = goods_form.querySelector("[name='form[goods_image]']").value;
+    const goods_name = goods_form.querySelector("[itemprop='name']").textContent;
+    const goods_price_old = goods_form.querySelector(".price__old").getAttribute("data-price");
+    const goods_price_now = goods_form.querySelector(".price__now").getAttribute("data-price");
+    const goods_compare_url = goods_form.querySelector(".add-compare").getAttribute("href");
+    const goods_favorites_url = goods_form.querySelector(".add-favorites").getAttribute("href");
     const formData = new FormData();
     formData.append("ajax_q", "1");
+
+    // Удаляет элемент с заданным data-id из коллекции элементов.
+    // Возвращает true, если элемент был найден и удалён, иначе false.
+    function RemoveElementById(items, id) {
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].getAttribute("data-id") == id) {
+          items[i].remove();
+          return true;
+        }
+      }
+      return false;
+    }
 
     // Отправка запроса
     getJsonFromPost(goods_href, formData)
@@ -543,12 +556,20 @@ function Addto(doc = document) {
             handleAddtoLink(currentTarget, "compare", "сравнения");
             handleAddtoCount(data.compare_goods_count, ".compare");
             const addtoItems = document.querySelector(".compare .addto__items");
-            addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_compare_url))
+            const addtoItem = document.querySelectorAll(".compare .addto__item");
+            let isRemoved = RemoveElementById(addtoItem, goods_id);
+            if (!isRemoved) {
+              addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_mod_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_compare_url))
+            }
           } else {
             handleAddtoLink(currentTarget, "favorites", "избранного");
             handleAddtoCount(data.favorites_goods_count, ".favorites");
             const addtoItems = document.querySelector(".favorites .addto__items");
-            addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_favorites_url))
+            const addtoItem = document.querySelectorAll(".favorites .addto__item");
+            let isRemoved = RemoveElementById(addtoItem, goods_id);
+            if (!isRemoved) {
+              addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_mod_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_favorites_url))
+            }
           }
         } else {
           СreateNoty("error", data.message);
@@ -575,7 +596,7 @@ function Addto(doc = document) {
   // Обновление ссылки
   function handleAddtoLink(currentTarget, type, label) {
     const form = currentTarget.closest("form");
-    const name = form.querySelector("[name='form[goods_name]']").value;
+    const name = form.querySelector("[itemprop='name']").textContent;
     const id = form.querySelector("[name='form[goods_id]']").value;
     const modId = form.querySelector("[name='form[goods_mod_id]']").value;
     const urlAdd = `/${type}/add?id=${modId}`;
@@ -626,7 +647,7 @@ function Addto(doc = document) {
       </span>
     </s>`
   }
-  
+
   // Создание новой цены
   function createPriceNow(priceNow) {
     return `<b class="price__now" data-price="${priceNow}">
@@ -638,10 +659,10 @@ function Addto(doc = document) {
   }
 
   // Создание элемента списка
-  function createAddtoItem(goodsID, goodsImage, goodsName, goodsPriceOld, goodsPriceNow, goodsURL, delUrl){
+  function createAddtoItem(goodsID, goodsModID, goodsImage, goodsName, goodsPriceOld, goodsPriceNow, goodsURL, delUrl) {
     const CURRENCY_CHAR_CODE = 'RUB';
     return `
-      <div class="addto__item" data-id="${goodsID}">
+      <div class="addto__item" data-id="${goodsID}" data-mod-id="${goodsModID}">
         <div class="addto__image">
           <img src="${goodsImage}" alt="${goodsName}" loading="lazy" />
         </div>
@@ -2008,7 +2029,7 @@ function CartClear() {
  * Использует функции: getUrlBody, getHtmlFromUrl, CartCountUppdate, CartCountendUppdate, CartDiscountUppdate
  */
 function CartRemove() {
-  const buttons = document.querySelectorAll(".addto__remove");
+  const buttons = document.querySelectorAll(".cart .addto__remove");
   if (buttons.length === 0) return;
 
   buttons.forEach((button) => {
@@ -2020,7 +2041,8 @@ function CartRemove() {
         const cartSumDiscounts = document.querySelectorAll(".cart-sum-discount");
         const addtoDiscounts = document.querySelectorAll(".addto__discount");
         const url = getUrlBody(button.getAttribute("href"));
-        const modId = button.closest("[data-mod-id]").getAttribute("data-mod-id");
+        const form = button.closest(".addto__item");
+        const modId = form.parentElement.getAttribute("data-mod-id");
         const qty = button.getAttribute("data-qty");
         const oldCount = cartCounts[0].value;
         const newCount = parseInt(oldCount) - parseInt(qty);
@@ -3585,7 +3607,7 @@ function ScrollToTop() {
   const button = document.querySelector('.mobile-nav__link--go');
   const buttonText = button.querySelector('.mobile-nav__label');
   const SCROLL_THRESHOLD = 200;
-  
+
   // Функция для плавного скролла
   function smoothScrollTop() {
     window.scrollTo({
@@ -3597,7 +3619,7 @@ function ScrollToTop() {
   // Обработчик клика
   function handleClick(event) {
     event.preventDefault();
-    
+
     if (window.scrollY > 0) {
       smoothScrollTop();
     } else {
@@ -3616,10 +3638,10 @@ function ScrollToTop() {
   // Обновление состояния кнопки
   function updateButtonState() {
     const isScrolled = window.scrollY > SCROLL_THRESHOLD;
-    
+
     button.classList.toggle('is-visible', isScrolled);
     buttonText.textContent = isScrolled ? 'Наверх' : 'Главная';
-    button.setAttribute('aria-label', 
+    button.setAttribute('aria-label',
       isScrolled ? 'Прокрутить наверх' : 'Перейти на главную страницу'
     );
   }
@@ -3627,11 +3649,11 @@ function ScrollToTop() {
   // Оптимизированный обработчик скролла
   const throttledScroll = () => {
     let isWaiting = false;
-    
+
     return () => {
       if (!isWaiting) {
         isWaiting = true;
-        
+
         requestAnimationFrame(() => {
           updateButtonState();
           isWaiting = false;
@@ -3643,11 +3665,11 @@ function ScrollToTop() {
   // Инициализация
   function init() {
     if (!button) return;
-    
+
     window.addEventListener('scroll', throttledScroll());
     button.addEventListener('click', handleClick);
     button.addEventListener('keydown', handleKeyDown);
-    
+
     // Начальное состояние
     updateButtonState();
   }
@@ -3655,7 +3677,7 @@ function ScrollToTop() {
   // Очистка обработчиков при необходимости
   function destroy() {
     if (!button) return;
-    
+
     window.removeEventListener('scroll', throttledScroll());
     button.removeEventListener('click', handleClick);
     button.removeEventListener('keydown', handleKeyDown);

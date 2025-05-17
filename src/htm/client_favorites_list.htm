@@ -10,9 +10,10 @@
 				<input type="hidden" name="hash" value="{HASH}">
 				<input type="hidden" name="form[goods_id]" value="{favorites_goods.ID}">
 				<input type="hidden" name="form[goods_mod_id]" value="{favorites_goods.MIN_PRICE_NOW_ID}">
-				<input type="hidden" name="form[goods_name]" value="{favorites_goods.NAME}">
 				<input type="hidden" name="form[goods_desc]" value="{favorites_goods.DESCRIPTION_SHORT}" itemprop="description">
 				<input type="hidden" name="form[goods_sku]" value="{favorites_goods.ART_NUMBER}" itemprop="sku">
+				<input type="hidden" name="form[goods_image]" value="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{favorites_goods.IMAGE_MEDIUM}{% ENDIF %}">
+				<input type="hidden" name="form[goods_url]" value="{favorites_goods.URL_MIN_PRICE_NOW | url_amp}">
 
 				<!-- Изображение -->
 				<div class="product__images">
