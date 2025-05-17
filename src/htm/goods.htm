@@ -421,9 +421,7 @@
 									</div>
 								</form>
 							</div>
-							{% IFNOT related_goods.last %}{related_goods.index | is_divided("3","
-						</div>
-						<div class=swiper-slide>","")}{% ENDIF %}
+							{% IFNOT related_goods.last %}{related_goods.index | is_divided("3","</div><div class=swiper-slide>","")}{% ENDIF %}
 							{% IF related_goods.last %}</div>{% ENDIF %}
 						{% ENDFOR %}
 					</div>
@@ -599,7 +597,7 @@
 								<path d="M547.546 546.133h-71.108v102.4a32.998 32.998 0 0 0 2.637 13.103 34.136 34.136 0 0 0 7.671 11.132l96.354 92.16 50.133-48.128-85.687-82.261v-88.405z" />
 							</svg>
 							<b>до</b>
-							<time datetime="{related_views_goods.MAX_DISCOUNT_EXPIRED_AT | date('Y-m-d')}">{related_views_goods.MAX_DISCOUNT_EXPIRED_AT | date('m.d.Y')}</time>
+							<time datetime="{related_views_goods.MAX_DISCOUNT_EXPIRED_AT | date('Y-m-d')}">{related_views_goods.MAX_DISCOUNT_EXPIRED_AT | date('d.m.Y')}</time>
 						</div>
 					</div>
 

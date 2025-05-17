@@ -15,8 +15,8 @@
 					<path d="M547.546 546.133h-71.108v102.4a32.998 32.998 0 0 0 2.637 13.103 34.136 34.136 0 0 0 7.671 11.132l96.354 92.16 50.133-48.128-85.687-82.261v-88.405z" />
 				</svg>
 				{% IF promotion_campaign.IS_WORK %}
-				<b>До</b>
-				<time datetime="{promotion_campaign.EXPIRED_TIME | date('Y-m-d')}">{promotion_campaign.EXPIRED_TIME | date('m.d.Y')}</time>
+				<span>до</span>
+				<time datetime="{promotion_campaign.EXPIRED_TIME | date('Y-m-d')}">{promotion_campaign.EXPIRED_TIME | date('d.m.Y')}</time>
 				{% ELSE %}
 				<span>акция завершена</span>
 				{% ENDIF %}

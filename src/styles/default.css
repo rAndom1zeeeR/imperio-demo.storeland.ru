@@ -92,7 +92,7 @@ button, .button, .paymentFormSubmitLink, .paymentFormTbodySubmitButton {
 	height: 50px;
 	color: white;
 	font-weight: 400;
-	font-size: var(--text-size-medium);
+	font-size: var(--text-size-large);
 	font-family: inherit;
 	background-color: var(--color-primary);
 	border: 1px solid var(--color-primary);
@@ -158,9 +158,6 @@ button.is-loading::before {
 	.button-link:hover {color: var(--color-secondary);background: none;}
 	.button-underline:hover {color: var(--color-secondary);background: none;}
 	.button-disabled:hover {background-color: var(--color-disabled);border-color: var(--color-disabled);}
-}
-@media all and (min-width: 1440px) {
-	button, .button, .paymentFormSubmitLink, .paymentFormTbodySubmitButton {font-size: var(--text-size-large);}
 }
 
 /* Анимация вращения */

@@ -3136,7 +3136,7 @@ function swiperViewed(selector) {
     simulateTouch: true,
     grabCursor: true,
     slidesPerView: 6,
-    spaceBetween: 16,
+    spaceBetween: 0,
     preloadImages: false,
     navigation: {
       nextEl: selector + " .swiper-button-next",
@@ -3160,7 +3160,7 @@ function swiperViewed(selector) {
         slidesPerView: 3,
       },
       640: {
-        slidesPerView: 3,
+        slidesPerView: 4,
       },
       768: {
         slidesPerView: 4,
@@ -3169,7 +3169,7 @@ function swiperViewed(selector) {
         slidesPerView: 4,
       },
       1440: {
-        slidesPerView: 5,
+        slidesPerView: 6,
       },
       1920: {
         slidesPerView: 6,
