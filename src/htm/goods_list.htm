@@ -26,9 +26,9 @@
 			<a class="categories__images" href="{nested_categories_list.URL}" title="Перейти к категории &laquo;{nested_categories_list.NAME}&raquo;">
 				<img src="{% IF nested_categories_list.IMAGE_MEDIUM %}{nested_categories_list.IMAGE_MEDIUM}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ENDIF %}" alt="{nested_categories_list.NAME}" loading="lazy">
 			</a>
-			<div class="categories__name">
+			<a class="categories__name" href="{nested_categories_list.URL}">
 				<span>{nested_categories_list.NAME}</span>
-			</div>
+			</a>
 		</li>
 		{% ENDFOR %}
 	</ul>
@@ -350,9 +350,10 @@
 						<input type="hidden" name="hash" value="{HASH}">
 						<input type="hidden" name="form[goods_id]" value="{goods.ID}">
 						<input type="hidden" name="form[goods_mod_id]" value="{goods.MIN_PRICE_NOW_ID}">
-						<input type="hidden" name="form[goods_name]" value="{goods.NAME}">
 						<input type="hidden" name="form[goods_desc]" value="{goods.DESCRIPTION_SHORT}" itemprop="description">
 						<input type="hidden" name="form[goods_sku]" value="{goods.ART_NUMBER}" itemprop="sku">
+						<input type="hidden" name="form[goods_image]" value="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}">
+						<input type="hidden" name="form[goods_url]" value="{goods.URL_MIN_PRICE_NOW | url_amp}">
 
 						<!-- Изображение -->
 						<a class="product__image" href="{goods.URL_MIN_PRICE_NOW | url_amp}">
@@ -597,13 +598,10 @@
 						<input type="hidden" name="hash" value="{HASH}">
 						<input type="hidden" name="form[goods_id]" value="{goods.ID}">
 						<input type="hidden" name="form[goods_mod_id]" value="{goods.MIN_PRICE_NOW_ID}">
-						<input type="hidden" name="form[goods_name]" value="{goods.NAME}">
 						<input type="hidden" name="form[goods_desc]" value="{goods.DESCRIPTION_SHORT}" itemprop="description">
 						<input type="hidden" name="form[goods_sku]" value="{goods.ART_NUMBER}" itemprop="sku">
-						<input type="hidden" name="form[goods_image]" value="{index_page_goods.IMAGE_MEDIUM}">
-						<input type="hidden" name="form[goods_price_old]" value="{index_page_goods.MIN_PRICE_OLD}">
-						<input type="hidden" name="form[goods_price_now]" value="{index_page_goods.MIN_PRICE_NOW}">
-						<input type="hidden" name="form[goods_url]" value="{index_page_goods.URL_MIN_PRICE_NOW}">
+						<input type="hidden" name="form[goods_image]" value="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}">
+						<input type="hidden" name="form[goods_url]" value="{goods.URL_MIN_PRICE_NOW | url_amp}">
 
 						<!-- Изображение -->
 						<div class="product__images">
@@ -631,7 +629,6 @@
 								<!-- Если есть возможность добавить товар в Избранное -->
 								{% IF goods.IS_HAS_IN_FAVORITES_LIST %}
 								<a class="product__link add-favorites is-added icon-hover"
-									 data-add-favorites
 									 title="Убрать &laquo;{goods.NAME}&raquo; из Избранного"
 									 href="{FAVORITES_DELETE_URL}?id={goods.MIN_PRICE_NOW_ID}"
 									 rel="nofollow">
@@ -645,7 +642,6 @@
 								</a>
 								{% ELSE %}
 								<a class="product__link add-favorites icon-hover"
-									 data-add-favorites
 									 title="Добавить &laquo;{goods.NAME}&raquo; в Избранное"
 									 href="{FAVORITES_ADD_URL}?id={goods.MIN_PRICE_NOW_ID}"
 									 rel="nofollow">
@@ -662,7 +658,6 @@
 								<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
 								{% IFNOT SETTINGS_COMPARE_DISABLE && goods.IS_HAS_IN_COMPARE_LIST %}
 								<a class="product__link add-compare is-added icon-hover"
-									 data-add-compare
 									 title="Убрать &laquo;{goods.NAME}&raquo; из списка сравнения с другими товарами"
 									 href="{COMPARE_DELETE_URL}?id={goods.MIN_PRICE_NOW_ID}"
 									 rel="nofollow">
@@ -677,7 +672,6 @@
 								</a>
 								{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
 								<a class="product__link add-compare icon-hover"
-									 data-add-compare
 									 title="Добавить &laquo;{goods.NAME}&raquo; в список сравнения с другими товарами"
 									 href="{COMPARE_ADD_URL}?id={goods.MIN_PRICE_NOW_ID}"
 									 rel="nofollow">

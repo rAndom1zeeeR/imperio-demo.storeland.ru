@@ -405,9 +405,9 @@
 							<a class="categories__images" href="{catalog_full.URL}" title="Перейти к категории &laquo;{catalog_full.NAME}&raquo;">
 								<img src="{% IF catalog_full.IMAGE_MEDIUM %}{catalog_full.IMAGE_MEDIUM}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ENDIF %}" alt="{catalog_full.NAME}" loading="lazy">
 							</a>
-							<div class="categories__name">
+							<a class="categories__name" href="{catalog_full.URL}">
 								<span>{catalog_full.NAME}</span>
-							</div>
+							</a>
 						</div>
 						{% ENDFOR %}
 					</div>
@@ -499,9 +499,10 @@
 								<input type="hidden" name="hash" value="{HASH}">
 								<input type="hidden" name="form[goods_id]" value="{index_page_sale_goods.ID}">
 								<input type="hidden" name="form[goods_mod_id]" value="{index_page_sale_goods.MIN_PRICE_NOW_ID}">
-								<input type="hidden" name="form[goods_name]" value="{index_page_sale_goods.NAME}">
 								<input type="hidden" name="form[goods_desc]" value="{index_page_sale_goods.DESCRIPTION_SHORT}" itemprop="description">
 								<input type="hidden" name="form[goods_sku]" value="{index_page_sale_goods.ART_NUMBER}" itemprop="sku">
+								<input type="hidden" name="form[goods_image]" value="{% IF index_page_sale_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{index_page_sale_goods.IMAGE_MEDIUM}{% ENDIF %}">
+								<input type="hidden" name="form[goods_url]" value="{index_page_sale_goods.URL_MIN_PRICE_NOW | url_amp}">
 
 								<!-- Изображение -->
 								<div class="product__images">
@@ -712,9 +713,10 @@
 								<input type="hidden" name="hash" value="{HASH}">
 								<input type="hidden" name="form[goods_id]" value="{index_page_favorites_goods.ID}">
 								<input type="hidden" name="form[goods_mod_id]" value="{index_page_favorites_goods.MIN_PRICE_NOW_ID}">
-								<input type="hidden" name="form[goods_name]" value="{index_page_favorites_goods.NAME}">
 								<input type="hidden" name="form[goods_desc]" value="{index_page_favorites_goods.DESCRIPTION_SHORT}" itemprop="description">
 								<input type="hidden" name="form[goods_sku]" value="{index_page_favorites_goods.ART_NUMBER}" itemprop="sku">
+								<input type="hidden" name="form[goods_image]" value="{% IF index_page_favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{index_page_favorites_goods.IMAGE_MEDIUM}{% ENDIF %}">
+								<input type="hidden" name="form[goods_url]" value="{index_page_favorites_goods.URL_MIN_PRICE_NOW | url_amp}">
 
 								<!-- Изображение -->
 								<div class="product__images">
@@ -985,9 +987,10 @@
 								<input type="hidden" name="hash" value="{HASH}">
 								<input type="hidden" name="form[goods_id]" value="{index_page_new_goods.ID}">
 								<input type="hidden" name="form[goods_mod_id]" value="{index_page_new_goods.MIN_PRICE_NOW_ID}">
-								<input type="hidden" name="form[goods_name]" value="{index_page_new_goods.NAME}">
 								<input type="hidden" name="form[goods_desc]" value="{index_page_new_goods.DESCRIPTION_SHORT}" itemprop="description">
 								<input type="hidden" name="form[goods_sku]" value="{index_page_new_goods.ART_NUMBER}" itemprop="sku">
+								<input type="hidden" name="form[goods_image]" value="{% IF index_page_new_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{index_page_new_goods.IMAGE_MEDIUM}{% ENDIF %}">
+								<input type="hidden" name="form[goods_url]" value="{index_page_new_goods.URL_MIN_PRICE_NOW | url_amp}">
 
 								<!-- Изображение -->
 								<div class="product__images">
@@ -1181,14 +1184,10 @@
 							<input type="hidden" name="hash" value="{HASH}">
 							<input type="hidden" name="form[goods_id]" value="{index_page_goods.ID}">
 							<input type="hidden" name="form[goods_mod_id]" value="{index_page_goods.MIN_PRICE_NOW_ID}">
-							<input type="hidden" name="form[goods_name]" value="{index_page_goods.NAME}">
 							<input type="hidden" name="form[goods_desc]" value="{index_page_goods.DESCRIPTION_SHORT}" itemprop="description">
 							<input type="hidden" name="form[goods_sku]" value="{index_page_goods.ART_NUMBER}" itemprop="sku">
 							<input type="hidden" name="form[goods_image]" value="{index_page_goods.IMAGE_MEDIUM}">
-							<input type="hidden" name="form[goods_price_old]" value="{index_page_goods.MIN_PRICE_OLD}">
-							<input type="hidden" name="form[goods_price_now]" value="{index_page_goods.MIN_PRICE_NOW}">
 							<input type="hidden" name="form[goods_url]" value="{index_page_goods.URL_MIN_PRICE_NOW}">
-							<input type="hidden" name="form[del_url]" value="{FAVORITES_DELETE_URL}?id={index_page_goods.MIN_PRICE_NOW_ID}">
 
 							<!-- Изображение -->
 							<div class="product__images">
@@ -1926,9 +1925,10 @@
 								<input type="hidden" name="hash" value="{HASH}">
 								<input type="hidden" name="form[goods_id]" value="{recently_viewed_goods.ID}">
 								<input type="hidden" name="form[goods_mod_id]" value="{recently_viewed_goods.MIN_PRICE_NOW_ID}">
-								<input type="hidden" name="form[goods_name]" value="{recently_viewed_goods.NAME}">
 								<input type="hidden" name="form[goods_desc]" value="{recently_viewed_goods.DESCRIPTION_SHORT}" itemprop="description">
 								<input type="hidden" name="form[goods_sku]" value="{recently_viewed_goods.ART_NUMBER}" itemprop="sku">
+								<input type="hidden" name="form[goods_image]" value="{% IF recently_viewed_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{recently_viewed_goods.IMAGE_MEDIUM}{% ENDIF %}">
+								<input type="hidden" name="form[goods_url]" value="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}">
 
 								<!-- Изображение -->
 								<div class="product__images">
@@ -2714,7 +2714,7 @@
 				<div class="sidebar__content compare addto__compare {% IF COMPARE_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
 					<div class="addto__items">
 						{% FOR compare_goods %}
-						<div class="addto__item" data-id="{compare_goods.ID}">
+						<div class="addto__item" data-id="{compare_goods.ID}" data-mod-id="{compare_goods.MIN_PRICE_NOW_ID}">
 							<div class="addto__image">
 								<img src="{% IF compare_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{compare_goods.IMAGE_ICON}{% ENDIF %}" alt="{compare_goods.NAME}" loading="lazy" />
 							</div>
@@ -2766,7 +2766,7 @@
 				<div class="sidebar__content favorites addto__favorites {% IF FAVORITES_GOODS_COUNT = 0 %}is-empty{% ENDIF %}">
 					<div class="addto__items">
 						{% FOR favorites_goods %}
-						<div class="addto__item" data-id="{favorites_goods.ID}">
+						<div class="addto__item" data-id="{favorites_goods.ID}" data-mod-id="{favorites_goods.MIN_PRICE_NOW_ID}">
 							<div class="addto__image">
 								<img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{favorites_goods.IMAGE_ICON}{% ENDIF %}" alt="{favorites_goods.NAME}" loading="lazy" />
 							</div>
