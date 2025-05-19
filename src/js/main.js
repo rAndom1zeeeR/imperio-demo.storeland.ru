@@ -523,7 +523,14 @@ function Addto(doc = document) {
     const goods_form = currentTarget.closest("form");
     const goods_id = goods_form.querySelector("[name='form[goods_id]']").value;
     const goods_mod_id = goods_form.querySelector("[name='form[goods_mod_id]']").value;
+    const goods_mod_id = goods_form.querySelector("[name='form[goods_mod_id]']").value;
     const goods_url = goods_form.querySelector("[name='form[goods_url]']").value;
+    const goods_image = goods_form.querySelector("[name='form[goods_image]']").value;
+    const goods_name = goods_form.querySelector("[itemprop='name']").textContent;
+    const goods_price_old = goods_form.querySelector(".price__old").getAttribute("data-price");
+    const goods_price_now = goods_form.querySelector(".price__now").getAttribute("data-price");
+    const goods_compare_url = goods_form.querySelector(".add-compare").getAttribute("href");
+    const goods_favorites_url = goods_form.querySelector(".add-favorites").getAttribute("href");
     const goods_image = goods_form.querySelector("[name='form[goods_image]']").value;
     const goods_name = goods_form.querySelector("[itemprop='name']").textContent;
     const goods_price_old = goods_form.querySelector(".price__old").getAttribute("data-price");
