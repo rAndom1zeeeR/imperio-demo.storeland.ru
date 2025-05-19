@@ -642,9 +642,9 @@ function Addto(doc = document) {
   // Обновление ссылки удаления
   function handleAddtoDelete(selector) {
     const removeButtons = document.querySelectorAll(selector + ' .addto__remove');
+    let isConfirm = false;
 
     removeButtons.forEach(button => {
-      button.removeEventListener('click', handleButtonAddtoDelete);
       button.addEventListener('click', handleButtonAddtoDelete);
     });
     
@@ -657,8 +657,8 @@ function Addto(doc = document) {
       formData.append("ajax_q", "1");
   
       const counts = document.querySelectorAll(selector + " .addto__count");
-      const url = button.getAttribute("href");
-      const item = button.closest(".addto__item");
+      const url = event.currentTarget.getAttribute("href");
+      const item = event.currentTarget.closest(".addto__item");
       const modId = item.getAttribute("data-mod-id");
       const newCount = parseInt(counts[0].value) - 1;
   
@@ -686,6 +686,8 @@ function Addto(doc = document) {
             container.classList.add("is-empty");
           });
         }
+
+        isConfirm = true;
       } catch (error) {
         console.error("[ERROR]: Error при удалении товара", error);
       }
