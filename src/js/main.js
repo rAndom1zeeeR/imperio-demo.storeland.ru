@@ -514,6 +514,10 @@ function Addto(doc = document) {
     button.addEventListener("click", handleAddtoClick);
   });
 
+
+  handleAddtoDelete(".compare");
+  handleAddtoDelete(".favorites");
+
   // Обработка клика
   function handleAddtoClick(event) {
     // console.log("[DEBUG]: handleAddtoClick event", event);
@@ -523,14 +527,7 @@ function Addto(doc = document) {
     const goods_form = currentTarget.closest("form");
     const goods_id = goods_form.querySelector("[name='form[goods_id]']").value;
     const goods_mod_id = goods_form.querySelector("[name='form[goods_mod_id]']").value;
-    const goods_mod_id = goods_form.querySelector("[name='form[goods_mod_id]']").value;
     const goods_url = goods_form.querySelector("[name='form[goods_url]']").value;
-    const goods_image = goods_form.querySelector("[name='form[goods_image]']").value;
-    const goods_name = goods_form.querySelector("[itemprop='name']").textContent;
-    const goods_price_old = goods_form.querySelector(".price__old").getAttribute("data-price");
-    const goods_price_now = goods_form.querySelector(".price__now").getAttribute("data-price");
-    const goods_compare_url = goods_form.querySelector(".add-compare").getAttribute("href");
-    const goods_favorites_url = goods_form.querySelector(".add-favorites").getAttribute("href");
     const goods_image = goods_form.querySelector("[name='form[goods_image]']").value;
     const goods_name = goods_form.querySelector("[itemprop='name']").textContent;
     const goods_price_old = goods_form.querySelector(".price__old").getAttribute("data-price");
@@ -567,7 +564,9 @@ function Addto(doc = document) {
             let isRemoved = RemoveElementById(addtoItem, goods_id);
             if (!isRemoved) {
               addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_mod_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_compare_url))
-              handleAddtoDelete(".compare");
+              // Получаем только что добавленный элемент
+              const newItem = addtoItems.firstElementChild;
+              handleAddtoDelete(".compare", newItem);
             }
           } else {
             handleAddtoCartLink(currentTarget, "favorites", "избранного");
@@ -577,7 +576,9 @@ function Addto(doc = document) {
             let isRemoved = RemoveElementById(addtoItem, goods_id);
             if (!isRemoved) {
               addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_mod_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_favorites_url))
-              handleAddtoDelete(".favorites");
+              // Получаем только что добавленный элемент
+              const newItem = addtoItems.firstElementChild;
+              handleAddtoDelete(".favorites", newItem);
             }
           }
         } else {
@@ -646,54 +647,38 @@ function Addto(doc = document) {
     element.setAttribute("title", title);
   }
 
-  // Обновление ссылки удаления
-  function handleAddtoDelete(selector) {
-    const removeButtons = document.querySelectorAll(selector + ' .addto__remove');
-    let isConfirm = false;
+  // Добавление обработчика удаления для одной кнопки
+  function addDeleteHandler(button, selector) {
+    button.addEventListener('click', handleButtonAddtoDelete);
 
-    removeButtons.forEach(button => {
-      button.addEventListener('click', handleButtonAddtoDelete);
-    });
-    
     async function handleButtonAddtoDelete(event) {
       event.preventDefault();
-  
       if (!confirm("Вы точно хотите удалить товар?")) return;
-  
       const formData = new FormData();
       formData.append("ajax_q", "1");
-  
       const counts = document.querySelectorAll(selector + " .addto__count");
       const url = event.currentTarget.getAttribute("href");
       const item = event.currentTarget.closest(".addto__item");
       const modId = item.getAttribute("data-mod-id");
       const newCount = parseInt(counts[0].value) - 1;
-  
       try {
         const data = await getJsonFromPost(url, formData);
-        
         if (data.status !== "ok") {
           console.error("[ERROR]: Error data.status", data.status);
           return;
         }
-  
         item.remove();
         handleAddtoLink(selector, data.message, modId);
-  
-        // Обновляем счетчики в зависимости от типа (compare или favorites)
         if (data.compare_goods_count) {
           CountUppdate(counts, data.compare_goods_count);
         } else if (data.favorites_goods_count) {
           CountUppdate(counts, data.favorites_goods_count);
         }
-  
-        // Если товаров не осталось, добавляем класс is-empty
         if (newCount === 0) {
           document.querySelectorAll(selector).forEach(container => {
             container.classList.add("is-empty");
           });
         }
-
         isConfirm = true;
       } catch (error) {
         console.error("[ERROR]: Error при удалении товара", error);
@@ -701,6 +686,17 @@ function Addto(doc = document) {
     }
   }
 
+  // Обновление ссылки удаления
+  function handleAddtoDelete(selector, context = document) {
+    const removeButtons = context.querySelectorAll(selector + ' .addto__remove');
+    removeButtons.forEach(button => {
+      // Чтобы не навешивать повторно, проверим наличие обработчика через свойство
+      if (!button._hasDeleteHandler) {
+        addDeleteHandler(button, selector);
+        button._hasDeleteHandler = true;
+      }
+    });
+  }
 
   // Обновление ссылки
   function handleAddtoLink(selector, title, modId) {
@@ -712,17 +708,14 @@ function Addto(doc = document) {
       const itemMod = item.querySelector("[name='form[goods_mod_id]']");
       const itemModId = itemMod.value;
 
-      console.log("[DEBUG]: itemModId", itemModId == modId, itemModId,modId);
+      // console.log("[DEBUG]: itemModId", itemModId == modId, itemModId,modId);
       if (itemModId == modId) {
         handleAddtoCartLinkAdd(element, urlAdd, title)
-        console.log("[DEBUG]: itemModId", itemModId);
-        console.log("[DEBUG]: id", modId);
+        // console.log("[DEBUG]: itemModId", itemModId);
+        // console.log("[DEBUG]: id", modId);
       }
     });
   };
-
-  handleAddtoDelete(".compare");
-  handleAddtoDelete(".favorites");
 
   // Создание старой цены
   function createPriceOld(priceOld) {
