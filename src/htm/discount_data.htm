@@ -128,9 +128,11 @@
 				<input type="hidden" name="form[goods_url]" value="{goods.URL_MIN_PRICE_NOW | url_amp}">
 
 				<!-- Изображение -->
-				<a class="product__image" href="{goods.URL_MIN_PRICE_NOW | url_amp}">
-					<img src="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{goods.NAME}" loading="lazy" itemprop="image">
-				</a>
+				<div class="product__images">
+					<a class="product__image" href="{goods.URL_MIN_PRICE_NOW | url_amp}">
+						<img src="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{goods.NAME}" loading="lazy" itemprop="image">
+					</a>
+				</div>
 
 				<!-- Информация товара -->
 				<div class="product__shop">

@@ -563,7 +563,7 @@ function Addto(doc = document) {
             const addtoItem = document.querySelectorAll(".compare .addto__item");
             let isRemoved = RemoveElementById(addtoItem, goods_id);
             if (!isRemoved) {
-              addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_mod_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_compare_url))
+              addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_mod_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, `/compare/delete`));
               // Получаем только что добавленный элемент
               const newItem = addtoItems.firstElementChild;
               handleAddtoDelete(".compare", newItem);
@@ -575,7 +575,7 @@ function Addto(doc = document) {
             const addtoItem = document.querySelectorAll(".favorites .addto__item");
             let isRemoved = RemoveElementById(addtoItem, goods_id);
             if (!isRemoved) {
-              addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_mod_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, goods_favorites_url))
+              addtoItems.insertAdjacentHTML('afterbegin', createAddtoItem(goods_id, goods_mod_id, goods_image, goods_name, goods_price_old, goods_price_now, goods_url, `/favorites/delete`));
               // Получаем только что добавленный элемент
               const newItem = addtoItems.firstElementChild;
               handleAddtoDelete(".favorites", newItem);
@@ -647,6 +647,18 @@ function Addto(doc = document) {
     element.setAttribute("title", title);
   }
 
+  // Обновление ссылки удаления
+  function handleAddtoDelete(selector, context = document) {
+    const removeButtons = context.querySelectorAll(selector + ' .addto__remove');
+    removeButtons.forEach(button => {
+      // Чтобы не навешивать повторно, проверим наличие обработчика через свойство
+      if (!button._hasDeleteHandler) {
+        addDeleteHandler(button, selector);
+        button._hasDeleteHandler = true;
+      }
+    });
+  }
+
   // Добавление обработчика удаления для одной кнопки
   function addDeleteHandler(button, selector) {
     button.addEventListener('click', handleButtonAddtoDelete);
@@ -668,7 +680,6 @@ function Addto(doc = document) {
           return;
         }
         item.remove();
-        handleAddtoLink(selector, data.message, modId);
         if (data.compare_goods_count) {
           CountUppdate(counts, data.compare_goods_count);
         } else if (data.favorites_goods_count) {
@@ -679,23 +690,11 @@ function Addto(doc = document) {
             container.classList.add("is-empty");
           });
         }
-        isConfirm = true;
+        handleAddtoLink(selector, data.message, modId);
       } catch (error) {
         console.error("[ERROR]: Error при удалении товара", error);
       }
     }
-  }
-
-  // Обновление ссылки удаления
-  function handleAddtoDelete(selector, context = document) {
-    const removeButtons = context.querySelectorAll(selector + ' .addto__remove');
-    removeButtons.forEach(button => {
-      // Чтобы не навешивать повторно, проверим наличие обработчика через свойство
-      if (!button._hasDeleteHandler) {
-        addDeleteHandler(button, selector);
-        button._hasDeleteHandler = true;
-      }
-    });
   }
 
   // Обновление ссылки
@@ -755,7 +754,7 @@ function Addto(doc = document) {
           </div>
         </div>
 
-        <a class="addto__remove button-icon" href="${delUrl}?id=${goodsID}" title="Удалить позицию ${goodsName}">
+        <a class="addto__remove button-icon" href="${delUrl}?id=${goodsModID}" title="Удалить позицию ${goodsName}">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
             <path d="M256 810.667c0 46.933 38.4 85.333 85.333 85.333h341.333c46.933 0 85.333-38.4 85.333-85.333v-512h-512v512zM341.333 384h341.333v426.667h-341.333v-426.667zM661.333 170.667l-42.667-42.667h-213.333l-42.667 42.667h-149.333v85.333h597.333v-85.333h-149.333z"></path>
           </svg>
