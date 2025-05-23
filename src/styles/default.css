@@ -381,9 +381,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 .sticker--best::before {content: 'Хит';}
 .sticker--new {background: var(--color-secondary);}
 .sticker--new::before {content: 'Новинка';}
-@media all and (max-width: 479px) {
-	.sticker:nth-child(n+3) {display: none;}
-}
+
 
 /*
 ** Количество

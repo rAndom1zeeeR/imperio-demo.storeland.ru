@@ -238,11 +238,11 @@
 								</button>
 								<input class="qty__input"
 											 type="number"
-											 name="form[goods_mod_id][{GOODS_MOD_ID}]"
-											 {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE %}max="{GOODS_MOD_REST_VALUE}" {% ENDIF %}
+											 name="form[goods_mod_id][{goods.MIN_PRICE_NOW_ID}]"
+											 {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE %}max="{goods.MIN_REST_VALUE}" {% ENDIF %}
 											 min="1"
 											 value="1"
-											 title="Количество, {GOODS_MOD_MEASURE_NAME}">
+											 title="Количество">
 								<button class="qty__select qty__select--plus" type="button" title="Увеличить количество">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="12" height="12" aria-hidden="true">
 										<path d="M960 448H576V64c0-35.346-28.654-64-64-64s-64 28.654-64 64v384H64c-35.346 0-64 28.654-64 64s28.654 64 64 64h384v384c0 35.345 28.654 64 64 64s64-28.655 64-64V576h384c35.345 0 64-28.654 64-64s-28.655-64-64-64z" />
@@ -328,7 +328,7 @@
 									<span>Уведомить</span>
 								</button>
 								{% ELSE %}
-								<a class="product__add button icon-hover {% IF goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
+								<a class="product__add button icon-hover add-cart"
 									 href="{% IF goods.COUNT_MODIFICATION > 1 %}{goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
 									 title="Добавить в корзину &laquo;{goods.NAME}&raquo;"
 									 rel="nofollow">

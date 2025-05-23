@@ -1210,7 +1210,7 @@ function Products() {
     // Запуск функции стикера цены.
     StickerSales(product);
     Attrs(product);
-    // swiperProductImages('.swiper-' + product.getAttribute('data-id'))
+    Quantity(product);
   });
 
   // Показать/скрыть характеристики товара
@@ -1729,7 +1729,7 @@ function Opinions() {
  * Использует функции: СreateNoty
  */
 function Quantity(doc = document) {
-  // console.log("[DEBUG]: Quantity doc", doc);
+  console.log("[DEBUG]: Quantity doc", doc);
   const qtys = doc.querySelector(".qty");
   if (!qtys) return;
   const minus = qtys.querySelector(".qty__select--minus");
@@ -1738,11 +1738,13 @@ function Quantity(doc = document) {
 
   minus.addEventListener("click", () => {
     const val = parseInt(input.value) - 1;
+    console.log("[DEBUG]: minus val", val);
     handleValueInput(val, input);
   });
 
   plus.addEventListener("click", () => {
     const val = parseInt(input.value) + 1;
+    console.log("[DEBUG]: plus val", val);
     handleValueInput(val, input);
   });
 

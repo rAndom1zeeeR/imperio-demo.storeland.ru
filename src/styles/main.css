@@ -625,7 +625,7 @@
 */
 #banners {--swiper-scrollbar-sides-offset: 0px;}
 .banners__items {align-items: stretch;padding-bottom: 16px;}
-.banners__item.swiper-slide {display: flex;min-height: 320px;}
+.banners__item.swiper-slide {display: flex;height: auto;min-height: 320px;}
 .banners__content {position: relative;z-index: 1;order: 2;}
 .banners__title {font-size: 18px;line-height: 22px;}
 .banners__subtitle {margin-top: 8px;font-size: 14px;line-height: 1.2;}
@@ -958,7 +958,7 @@
 ** Товарная карточка
 */
 .product__item {position: relative;overflow: visible;}
-.product__form {position: relative;padding: 6px;border: 1px solid transparent;border-radius: var(--border-radius);transition: border-color var(--duration), background-color var(--duration);}
+.product__form {position: relative;border: 1px solid transparent;border-radius: var(--border-radius);transition: border-color var(--duration), background-color var(--duration);}
 .is-loading .product__form {display: inline-block;width: 100%;}
 .product__images {position: relative;margin-bottom: 20px;}
 .product__image {
@@ -1114,6 +1114,7 @@
 }
 @media all and (max-width: 479px) {
 	.products__grid .product__name {height: 40px;}
+	.products__grid .sticker {padding: 4px;}
 }
 
 
@@ -1165,7 +1166,7 @@
 	.products__list.products__list--small .product__image {width: 130px;height: 92px;}
 }
 @media all and (min-width: 640px) {
-	.products__list .product__image {width: 192px;min-height: 178px;}
+	.products__list .product__image {width: 178px;min-height: 178px;}
 	.products__list .product__shop-inner {padding: 12px 24px;}
 	.products__list .product__actions {padding-inline: 24px;}
 }
@@ -1394,7 +1395,7 @@
 	font-family: var(--font-secondary);
 }
 .sidebar__header-close {height: auto;margin-left: auto;}
-.sidebar__content {display: flex;flex-direction: column;height: calc(100dvh - 56px - 32px);overflow: hidden auto;-webkit-overflow-scrolling: auto;}
+.sidebar__content {display: flex;flex-direction: column;height: calc(100dvh - 56px - 42px);overflow: hidden auto;-webkit-overflow-scrolling: auto;}
 .sidebar__content::-webkit-scrollbar {width: var(--scrollbar-width-thin);}
 .sidebar__content::-webkit-scrollbar-thumb {background: var(--color-border);}
 .sidebar__content::-webkit-scrollbar-track {background: var(--color-border-secondary);}
@@ -1402,33 +1403,33 @@
 	.sidebar__content {height: calc(100dvh - 56px - 64px);}
 }
 @media all and (min-width: 1024px) {
-	.sidebar__content {height: calc(100dvh - 57px);}
+	.sidebar__content {height: calc(100dvh - 56px);}
 }
 
 /*
 ** Фильтры
 */
-.filter__list {margin: 0;padding: 16px 24px;border: none;border-top: 1px solid var(--color-border);}
+.filter__list {margin: 0;padding: 16px 24px;border: none;border-top: 1px solid var(--color-border-secondary);}
 .filter__title {
 	display: flex;
 	align-items: center;
 	font-weight: bold;
-	font-size: var(--heading-05);
+	font-size: var(--heading-06);
 	word-break: break-all;
 	overflow-wrap: break-word;
 	cursor: pointer
 }
 .filter__title svg {flex-shrink: 0;margin-left: auto;}
+.filter__title b {display: none;margin-left: 4px;font-size: var(--text-size-small);}
 .filter__list.has-filters .filter__title svg {transform: rotate(180deg);}
-.filter__items {max-height: 140px;margin-top: 16px;overflow: hidden auto;-webkit-overflow-scrolling: auto;}
+.filter__items {max-height: 272px;margin-top: 16px;overflow: hidden auto;-webkit-overflow-scrolling: auto;}
 .filter__items::-webkit-scrollbar {width: var(--scrollbar-width-thin);}
-.filter__items::-webkit-scrollbar-thumb {background: var(--color-border);}
-.filter__items::-webkit-scrollbar-track {background: var(--color-border-secondary);}
 .filter__item {display: flex;align-items: center;margin-bottom: 16px;}
 .filter__item.is-disabled {opacity: 0.5;pointer-events: none;}
 .filter__items .filter__item:last-child {margin-bottom: 4px;}
 .filter__label {padding-left: 12px;}
-.filters__buttons {text-align: center;}
+.filters__form {height: calc(100dvh - 53px);overflow: hidden auto;-webkit-overflow-scrolling: auto;}
+.filters__buttons {flex-shrink: 0;text-align: center;}
 .filter__content {display: none;}
 .filter__list.has-filters .filter__content {display: block;}
 .filter__count {font-size: var(--text-size-regular);}
@@ -1450,7 +1451,7 @@
 .filters-price .filter__content {display: block;}
 .filters-price__blocks {display: flex;gap: 32px;justify-content: space-between;}
 .filters-price__block {display: flex;flex-grow: 1;gap: 8px;align-items: center;}
-.filters-price__block input[type="number"] {width: 100px;text-align: center;padding-inline: 8px;}
+.filters-price__block input[type="number"] {text-align: center;padding-inline: 8px;}
 .filters-price__block input[type="number"]::-webkit-inner-spin-button, 
 .filters-price__block input[type="number"]::-webkit-outer-spin-button {-webkit-appearance: none;appearance: none;}
 .filters-price__buttons {display: none;justify-content: space-between;margin-top: 16px;}
@@ -2262,14 +2263,20 @@
 /*
 ** Мобильное меню
 */
-.mobile-menu__nav {max-height: 30dvh;margin-top: 12px;overflow: hidden auto;}
+.mobile-menu__nav {flex-shrink: 0;height: 122px;overflow: hidden auto;}
 .mobile-menu__nav::-webkit-scrollbar {width: var(--scrollbar-width-thin);}
-.mobile-menu__list {margin: 0;padding: 0 16px;list-style: none;}
-.mobile-menu__link {display: flex;padding-block: 8px;}
+.mobile-menu__list {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 16px;
+	list-style: none;
+}
+.mobile-menu__link {display: flex;padding: 8px;}
 .mobile-menu__catalog {
 	position: relative;
 	flex-grow: 1;
-	height: calc(70dvh - 96px - 24px - 74px);
+	height: calc(100dvh - 122px - 112px);
 	margin-bottom: 12px;
 	padding-inline: 20px;
 	overflow: hidden auto;
@@ -2296,6 +2303,7 @@
 .mobile-menu__catalog .catalog__link[data-level="0"] {font-weight: 600;}
 .mobile-menu__contacts-callback {color: var(--color-primary);font-weight: bold;font-size: var(--text-size-regular);font-family: var(--font-secondary);}
 .mobile-menu__contacts .contacts__block {display: flex;flex-direction: column;gap: 8px 24px;}
+.mobile-menu__contacts .contacts__block:not(:first-child) {margin-top: 16px;}
 .mobile-menu__search {padding: 12px 20px 24px;}
 .mobile-menu__search .search__form {display: flex;}
 
