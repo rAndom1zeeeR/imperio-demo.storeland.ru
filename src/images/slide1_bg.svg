@@ -1,0 +1,16 @@
+<svg width="1920" height="500" viewBox="0 0 1920 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1920" height="500" fill="#D1ECD9"/>
+<mask id="mask0_167_10" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="500">
+<rect width="1920" height="500" fill="#FFEEF5"/>
+</mask>
+<g mask="url(#mask0_167_10)">
+<mask id="mask1_167_10" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-10" y="0" width="1920" height="500">
+<rect x="-10" width="1920" height="500" rx="4" fill="#E6EAFB"/>
+</mask>
+<g mask="url(#mask1_167_10)">
+<rect x="775.679" y="215.64" width="1000" height="250" rx="125" transform="rotate(-10.3493 775.679 215.64)" fill="#C1E8CC"/>
+<rect x="901.594" y="-39.9407" width="1000" height="250" rx="125" transform="rotate(-10.3493 901.594 -39.9407)" fill="#C1E8CC"/>
+<rect x="649.763" y="471.221" width="1000" height="250" rx="125" transform="rotate(-10.3493 649.763 471.221)" fill="#C1E8CC"/>
+</g>
+</g>
+</svg>
