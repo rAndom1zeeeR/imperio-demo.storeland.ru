@@ -2358,6 +2358,17 @@
 	.toTop {display: none;}
 }
 
+/*
+** Noty
+*/
+body.swal2-toast-shown .swal2-container.swal2-backdrop-show {width: 440px;}
+.noty__block {display: flex;flex-direction: column;gap: 4px;}
+.noty__goods {margin: 0;}
+.noty__message {margin: 0;text-transform: lowercase;text-decoration: underline;}
+.noty__message::first-letter {text-transform: uppercase;}
+.swal2-icon-success .noty__message {color: var(--color-primary);}
+.swal2-icon-error .noty__message {color: var(--color-error);}
+
 
 /*
 ** Видимость элементов

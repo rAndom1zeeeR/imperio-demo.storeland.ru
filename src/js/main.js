@@ -128,8 +128,8 @@ function OverlayOpener(content, handler) {
  * Используется в функциях: handleAddtoPost, handleAddtoCartUpdate, handleValueMax
  */
 function СreateNoty(type, content) {
-  // console.log("[DEBUG]: type", type);
-  // console.log("[DEBUG]: content", content);
+  console.log("[DEBUG]: type", type);
+  console.log("[DEBUG]: content", parseNotyMessage(content));
   const Toast = Swal.mixin({
     toast: true,
     position: "bottom",
@@ -144,8 +144,32 @@ function СreateNoty(type, content) {
   });
   Toast.fire({
     icon: type,
-    html: content,
+    html: `<div class="noty__block">
+      <p class="noty__goods">${parseNotyMessage(content).goods}</p>
+      <p class="noty__message">${parseNotyMessage(content).message}</p>
+    </div>`,
   });
+}
+
+function parseNotyMessage(str) {
+  // Регулярное выражение для поиска названия товара в кавычках «...»
+  const regex = /&laquo;([^&raquo;]+)&raquo;/;
+  const match = str.match(regex);
+
+  // Если совпадение найдено
+  if (match) {
+    const goods = match[1]; // Название товара (первая группа захвата)
+    const message = str
+      .replace(regex, '') // Удаляем часть с кавычками из сообщения
+      .replace(/^Товар\s*/i, '') // Удаляем слово "Товар" в начале, если есть
+      .replace(/\s+/g, ' ') // Заменяем множественные пробелы на один
+      .trim(); // Удаляем пробелы в начале и конце
+
+    return { goods, message };
+  }
+
+  // Если кавычек нет, вернем исходную строку как message
+  return { goods: '', message: str };
 }
 
 /**
@@ -803,7 +827,7 @@ function AddtoCart(doc = document) {
       handleAddtoCartAdded(button, goodsID);
     });
 
-    function handleAddtoCartAdded(button, goodsID){
+    function handleAddtoCartAdded(button, goodsID) {
       const form = button.closest("form");
       const buttonID = form.querySelector("[name='form[goods_mod_id]']").value;
       if (buttonID === goodsID) {
