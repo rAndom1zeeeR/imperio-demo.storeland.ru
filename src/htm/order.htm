@@ -173,16 +173,16 @@
             <label class="order-delivery__name" for="deliveryId{order_delivery.ID}">{order_delivery.NAME}</label>
           </div>
 
-          <!-- Описание -->
-          {% IF order_delivery.DESC %}
-          <div class="order-delivery__desc">{order_delivery.DESC}</div>
-          {% ENDIF %}
-
           <!-- Стоимость -->
           <div class="order-delivery__price {CURRENCY_CHAR_CODE}">
             <span>Стоимость доставки:</span>
             <b>{order_delivery.END_PRICE | money_format}</b>
           </div>
+
+          <!-- Описание -->
+          {% IF order_delivery.DESC %}
+          <div class="order-delivery__desc">{order_delivery.DESC}</div>
+          {% ENDIF %}
 
           <!-- Зоны доставки -->
           {% IFNOT order_delivery.zone_list_empty %}

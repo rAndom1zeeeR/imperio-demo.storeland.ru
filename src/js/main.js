@@ -783,6 +783,7 @@ function AddtoCart(doc = document) {
     const currentTarget = event.currentTarget;
     const form = currentTarget.closest("form");
     const url = form.getAttribute("action");
+    const goodsID = form.querySelector("[name='form[goods_mod_id]']").value;
     const formData = new FormData(form);
     formData.append("ajax_q", "1");
     // Отправка запроса
@@ -793,12 +794,27 @@ function AddtoCart(doc = document) {
       CartClear();
     });
     // console.log("[DEBUG]: event", event.currentTarget);
-    event.currentTarget.parentElement.classList.add("has-in-cart");
+    event.currentTarget.parentElement.classList.add("is-added");
+
+    document.querySelectorAll(".add-cart").forEach((button) => {
+      handleAddtoCartAdded(button, goodsID);
+    });
+    document.querySelectorAll(".add-mod").forEach((button) => {
+      handleAddtoCartAdded(button, goodsID);
+    });
+
+    function handleAddtoCartAdded(button, goodsID){
+      const form = button.closest("form");
+      const buttonID = form.querySelector("[name='form[goods_mod_id]']").value;
+      if (buttonID === goodsID) {
+        button.classList.add("is-added");
+      }
+    }
   }
 
   // Обновление корзины
   function handleAddtoCartUpdate(data) {
-    // console.log("[DEBUG]: handleAddtoCartUpdate data", data);
+    console.log("[DEBUG]: handleAddtoCartUpdate data", data);
     const cartAddto = document.querySelector(".addto__cart");
     const cartAddtoData = data.querySelector("#newCartData");
     const cartSumDiscounts = document.querySelectorAll(".cart-sum-discount");
@@ -941,6 +957,7 @@ function AddtoOrder(doc = document) {
             Passwords();
             OrderCoupons();
             CartMinSum();
+            $(".form__phone").mask("+7 (999) 999-9999");
             const form = document.querySelector(".orderfast__form");
             ValidateRequired(form);
             new AirDatepicker("#order_delivery_convenient_date", {
@@ -1529,8 +1546,8 @@ function Goods(doc) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        console.log("[DEBUG]: entry", entry);
-        console.log("[DEBUG]: entry.isIntersecting", entry.isIntersecting);
+        // console.log("[DEBUG]: entry", entry);
+        // console.log("[DEBUG]: entry.isIntersecting", entry.isIntersecting);
         if (!entry.isIntersecting) {
           productViewFixed.hidden = false; // Показываем плашку
         } else {
@@ -1729,7 +1746,7 @@ function Opinions() {
  * Использует функции: СreateNoty
  */
 function Quantity(doc = document) {
-  console.log("[DEBUG]: Quantity doc", doc);
+  // console.log("[DEBUG]: Quantity doc", doc);
   const qtys = doc.querySelector(".qty");
   if (!qtys) return;
   const minus = qtys.querySelector(".qty__select--minus");
@@ -2012,6 +2029,7 @@ function Cart() {
         Orderfast();
         Passwords();
         OrderCoupons();
+        $(".form__phone").mask("+7 (999) 999-9999");
         container.classList.remove("is-loading");
         contrainerAjax.removeAttribute("hidden");
         new AirDatepicker("#order_delivery_convenient_date", {
@@ -2366,8 +2384,10 @@ function Orderfast(doc = document) {
   }
 
   function handleFormDeliveryZoneId(selected) {
-    // console.log("[DEBUG]: selected", selected);
-    document.querySelector("[name='form[delivery][zone_id]']").value = selected ? selected.value : "";
+    const zone = document.querySelector("[name='form[delivery][zone_id]']");
+    if (zone) {
+      zone.value = selected ? selected.value : "";
+    }
   }
 
   function handleFormPaymentId(selected) {

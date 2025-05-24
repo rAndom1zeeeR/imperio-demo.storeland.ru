@@ -344,7 +344,7 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 /*
 ** Политика конфиденциальности
 */
-.form__pp {display: block;}
+.form__pp {display: block;font-size: var(--text-size-regular);}
 .form__pp a {color: currentcolor;text-decoration: underline;}
 .form__pp a:active {color: var(--color-secondary);}
 @media (hover: hover) and (pointer: fine) {
@@ -720,10 +720,10 @@ fieldset.form__fields {margin: 0;padding: 0;border: 0;}
 /*
 ** Модальные окна
 */
-dialog {padding: 0;border: 0;border-radius: var(--border-radius);}
+dialog {padding: 0;color: var(--color-text-secondary);border: 0;border-radius: var(--border-radius);}
 dialog::backdrop {z-index: 3;}
 .dialog__container {max-width: 680px;padding: 40px;}
-.dialog__title {margin-bottom: 20px;color: var(--color-text-primary);}
+.dialog__title {margin-bottom: 20px;}
 .dialog__close {
 	position: absolute;
 	top: 12px;
@@ -837,7 +837,7 @@ dialog .form__button {width: 100%;}
 .stages__list  {margin: 0;padding: 0;list-style: none;}
 .stages__item + .stages__item {margin-top: 12px;}
 .stages__link {display: flex;gap: 8px;align-items: center;}
-.order-delivery__title {display: flex;gap: 8px;align-items: center;margin-bottom: 12px;}
+.order-delivery__title {display: flex;flex-wrap: wrap;gap: 8px;align-items: center;}
 .order-delivery-zone__list {margin-top: 16px;}
 .order-delivery-zone__item {display: flex;align-items: center;margin-top: 12px;}
 .order-delivery-zone__name {padding-inline: 8px;}

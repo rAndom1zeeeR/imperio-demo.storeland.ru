@@ -9,7 +9,7 @@
 				<div class="swiper">
 					<div class="thumblist__items swiper-wrapper">
 						{% FOR goods_images %}
-						<a class="thumblist__item swiper-slide" href="{goods_images.LARGE}" data-fancybox="gallery2" data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
+						<a class="thumblist__item swiper-slide" href="{goods_images.LARGE}" data-fancybox="gallery" data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
 							<img class="thumblist__img" src="{goods_images.MEDIUM}" alt="{goods_images.NAME}" loading="lazy">
 						</a>
 						{% ENDFOR %}
@@ -18,7 +18,7 @@
 				</div>
 				<div class="thumblist__items">
 					{% FOR goods_images %}
-					<a class="thumblist__item {% IF goods_images.index = 1 %}productView__image{% ENDIF %}" href="{goods_images.LARGE}" data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
+					<a class="thumblist__item {% IF goods_images.index = 1 %}productView__image{% ENDIF %}" data-fancybox="gallery" href="{goods_images.LARGE}" data-src="{goods_images.LARGE}" data-id="{goods_images.ID}">
 						<img class="thumblist__img" src="{goods_images.MEDIUM}" alt="{goods_images.NAME}" loading="lazy">
 					</a>
 					{% ENDFOR %}
@@ -832,14 +832,9 @@
 					<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
 					{ANTISPAM_CODE}
 					<div class="form__field form__field--goods">
-						<!-- <div class="form__image">
-							<img src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=IMPERIO{% ELSE %}{GOODS_IMAGE_SMALL}{% ENDIF %}"
-									 alt="{GOODS_NAME}"
-									 loading="lazy">
-						</div> -->
 						<div class="form__name">
 							<span>Оцените товар</span>
-							<b>&laquo;{GOODS_NAME}&raquo;</b>
+							<span>&laquo;{GOODS_NAME}&raquo;</span>
 						</div>
 					</div>
 
@@ -1049,16 +1044,16 @@
 					<span class="goods-delivery__name">{goods_delivery.NAME}</span>
 				</div>
 
+				<p class="goods-delivery__rules {CURRENCY_CHAR_CODE}">
+					<span>Стоимость доставки:</span>
+					<b class="goods-delivery__price {CURRENCY_CHAR_CODE}">{goods_delivery.PRICE | money_format}</b>
+				</p>
+
 				{% IF goods_delivery.DESC || goods_delivery.rules_empty=0 || goods_delivery.zone_list_empty=0 %}
 				<div class="goods-delivery__content">
 					{% IF goods_delivery.DESC %}
 					<div class="goods-delivery__desc">{goods_delivery.DESC}</div>
 					{% ENDIF %}
-
-					<p class="goods-delivery__rules {CURRENCY_CHAR_CODE}">
-						<span>Стоимость доставки:</span>
-						<b class="goods-delivery__price {CURRENCY_CHAR_CODE}">{goods_delivery.PRICE | money_format}</b>
-					</p>
 
 					{% IFNOT goods_delivery.rules_empty %}
 					<p class="goods-delivery__sublabel">Стоимость доставки зависит от суммы заказа</p>
