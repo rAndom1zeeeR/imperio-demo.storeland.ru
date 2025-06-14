@@ -10,7 +10,6 @@
 		<form id="orderform" class="orderfast__form" action="{ORDER_STAGE_CONFIRM_WITHOUT_DOMAIN_URL}" method="post">
 			<input type="hidden" name="hash" value="{HASH}">
 			<input type="hidden" name="form[payment][id]" value="{ORDER_FORM_PAYMENT_ID}">
-			<!-- <input type="hidden" name="form[delivery][zone_id]" value="{ORDER_FORM_DELIVERY_ZONE_ID}"> -->
 			<!-- Корзина: Минимальная сумма заказа -->
 			{% IF SETTINGS_STORE_ORDER_MIN_ORDER_PRICE %}
 			<div class="orderfast__block cartTotal__min is-hide">
@@ -206,7 +205,7 @@
 								<label class="order-delivery__name" for="deliveryId{order_delivery.ID}">{order_delivery.NAME}</label>
 							</div>
 
-							<div class="order-delivery__price {CURRENCY_CHAR_CODE}">
+							<div class="order-delivery__price {CURRENCY_CHAR_CODE}" data-price="{order_delivery.END_PRICE}">
 								<label>Стоимость доставки:</label>
 								<b>{% IF order_delivery.END_PRICE = 0 %}Бесплатно{% ELSE %}{order_delivery.END_PRICE | money_format}{% ENDIF %}</b>
 							</div>
@@ -226,7 +225,7 @@
 												 data-id="{order_delivery.ID}"
 												 data-price="{order_delivery.zone_list.END_PRICE}"
 												 {% IF order_delivery.zone_list.ID=ORDER_FORM_DELIVERY_ZONE_ID %}
-												 checked="checked"
+												 checked="checked" rel="true"
 												 {% ENDIF %} />
 									<label class="order-delivery-zone__name" for="deliveryZoneId{order_delivery.zone_list.ID}">{order_delivery.zone_list.NAME}</label>
 									<span class="order-delivery-zone__price">{order_delivery.zone_list.END_PRICE | money_format}</span>
@@ -477,7 +476,7 @@
 				<h5 class="orderfast__title">Применить промокод</h5>
 				<div class="orderfast__content">
 					<!-- Если скидки по купонам активированы в панели управления магазином -->
-					<div class="coupon">
+					<div class="coupon__order">
 						<input type="hidden" name="form[coupon]" value="{CART_SUM_NOW}">
 						<input class="coupon__input" type="text" name="form[coupon_code]" value="{ORDER_FORM_COUPON_CODE}" placeholder="Промокод" />
 						<button class="coupon__button" type="button" title="Применить" aria-label="Применить купон">

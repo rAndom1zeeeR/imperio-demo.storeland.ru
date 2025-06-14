@@ -158,7 +158,7 @@
 					<!-- Корзина: Итого -->
 					<div class="cartTotal__item cartTotal__total">
 						<span class="cartTotal__label">Итого:</span>
-						<data class="cartTotal__price cart-total {CURRENCY_CHAR_CODE}" value="{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT}">{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT | money_format}</data>
+						<data class="cartTotal__price cart-total {CURRENCY_CHAR_CODE}" value="{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT}" data-delivery-total>{CART_SUM_NOW_WITH_DELIVERY_AND_DISCOUNT | money_format}</data>
 						<data hidden class="cartTotal__price cart-sum" value="{CART_SUM_NOW}">{CART_SUM_NOW | money_format}</data>
 						<data hidden class="cartTotal__price cart-sum-discount" value="{CART_SUM_NOW_WITH_DISCOUNT}">{CART_SUM_NOW_WITH_DISCOUNT | money_format}</data>
 					</div>

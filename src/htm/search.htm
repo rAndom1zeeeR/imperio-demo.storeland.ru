@@ -328,7 +328,7 @@
 									<span>Уведомить</span>
 								</button>
 								{% ELSE %}
-								<a class="product__add button icon-hover add-cart"
+								<a class="product__add button icon-hover {% IF goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
 									 href="{% IF goods.COUNT_MODIFICATION > 1 %}{goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
 									 title="Добавить в корзину &laquo;{goods.NAME}&raquo;"
 									 rel="nofollow">

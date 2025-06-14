@@ -2260,33 +2260,16 @@ function Orderfast(doc = document) {
   const container = doc.querySelector(".orderfast__container");
   // console.log("[DEBUG]: container", container);
   if (!container) return;
-  // const form = container.querySelector("form");
-  const deliverySelect = container.querySelector(".order-delivery__select");
-  const deliveryZones = container.querySelectorAll(".order-delivery-zone__selects");
-  const deliveryZoneSelects = container.querySelectorAll(".order-delivery-zone__select");
-  const deliveryZoneSelected = container.querySelector(".order-delivery-zone__selects:not(.is-hide) .order-delivery-zone__select");
-  const deliveryPrices = container.querySelectorAll(".order-delivery__total b");
   const deliveryDescs = container.querySelectorAll(".order-delivery__description");
-  const deliveryZoneRules = container.querySelectorAll(".order-delivery__rules");
-  const paymentSelects = container.querySelectorAll(".order-payments__selects");
-  const paymentSelected = container.querySelector(".order-payments__selects:not(.is-hide) select");
   const paymentItems = container.querySelectorAll(".order-payment__item");
-  const paymentDescs = container.querySelectorAll(".order-payment__desc");
+  // const paymentDescs = container.querySelectorAll(".order-payment__desc");
   const deliveryInputs = container.querySelectorAll(".order-delivery__radio");
   const deliveryZoneItems = container.querySelectorAll(".order-delivery-zone__radio");
   const deliveryItem = container.querySelector(".order-delivery__item");
   const deliveryItemZone = deliveryItem.querySelector(".order-delivery-zone__radio");
 
   // Запуск функций при загрузке страницы
-  // handleVisibility(deliveryZones, deliverySelect.value);
-  // handleVisibility(deliveryDescs, deliverySelect.value);
-  handleFormDeliveryZoneId(deliveryZoneSelected);
-  // handleVisibility(paymentItems, paymentItems[0].getAttribute("data-id"));
   handleVisibility(paymentItems, paymentItems[0].getAttribute("data-id"));
-  // handleVisibility(paymentSelects, deliverySelect.value);
-  // handleVisibility(paymentSelects, deliverySelect.value);
-  // handleVisibility(paymentDescs, paymentSelectedItem.getAttribute("data-id"));
-  // handleFormPaymentId(paymentSelected);
 
   paymentItems.forEach((item) => {
     if (!item.classList.contains("is-hide")) {
@@ -2294,26 +2277,39 @@ function Orderfast(doc = document) {
     }
   });
 
-  deliveryInputs.forEach((item) => {
-    item.addEventListener("click", (event) => {
-      deliveryZoneItems.forEach((item) => (item.checked = false));
-      handleDeliveryInputsClick(event.currentTarget, ".order-delivery-zone__radio");
+  if (deliveryZoneItems) {
+    deliveryInputs.forEach((item) => {
+      item.addEventListener("click", (event) => {
+          deliveryZoneItems.forEach((item) => (item.checked = false));
+          handleDeliveryInputsClick(event.currentTarget, ".order-delivery-zone__radio");
+      });
     });
-  });
+  }
 
-  deliveryZoneItems.forEach((item) => {
-    item.addEventListener("click", (event) => {
-      handleDeliveryInputsClick(event.currentTarget, ".order-delivery__radio");
+  if (deliveryZoneItems) {
+    deliveryZoneItems.forEach((item) => {
+      item.addEventListener("click", (event) => {
+        handleDeliveryInputsClick(event.currentTarget, ".order-delivery__radio");
+      });
     });
-  });
+  }
 
   // Обработчик клика на доставку
   function handleDeliveryInputsClick(target, selector) {
     const item = target.closest(".order-delivery__item");
-    // console.log("[DEBUG]: handleDeliveryInputsClick item", item);
+    console.log("[DEBUG]: handleDeliveryInputsClick item", item);
+    console.log("[DEBUG]: target", target);
     const input = item.querySelector(selector);
+    console.log("[DEBUG]: input", input);
+    console.log("[DEBUG]: 2selector", selector);
+    const deliveryPriceContent = item.querySelector('.order-delivery__price b');
     if (input) input.checked = true;
-    handleDeliveryPrice(deliveryPrices, target.getAttribute("data-price"));
+    if (target.getAttribute("data-price")) {
+      handleDeliveryPrice([deliveryPriceContent], target.getAttribute("data-price"));
+    } else {
+      const newPrice = target.querySelector('.order-delivery__price');
+      handleDeliveryPrice([deliveryPriceContent], newPrice.getAttribute("data-price"));
+    }
     handleVisibility(paymentItems, item.getAttribute("data-id"));
     paymentItems.forEach((item) => {
       if (item.classList.contains("is-hide")) {
@@ -2334,62 +2330,16 @@ function Orderfast(doc = document) {
     handleDeliveryInputsClick(deliveryItem, ".order-delivery__radio");
   }
 
-  // Способы доставки
-  if (deliverySelect) {
-    deliverySelect.addEventListener("change", (event) => {
-      const select = event.target;
-      handleVisibility(deliveryZones, select.value);
-      handleVisibility(deliveryDescs, select.value);
-      handleDeliveryPrice(deliveryPrices, select[select.selectedIndex].getAttribute("data-price"));
-      deliveryZoneSelects.forEach((selects) => handleDeliveryZone(selects));
-      handleVisibility(paymentSelects, deliverySelect.value);
-      const deliveryZoneSelected = document.querySelector(".order-delivery-zone__selects:not(.is-hide) .order-delivery-zone__select");
-      // console.log("[DEBUG]: deliveryZoneSelected", deliveryZoneSelected);
-      handleFormDeliveryZoneId(deliveryZoneSelected);
-    });
-  }
-
-  // Зоны доставки
-  if (deliveryZoneSelects) {
-    deliveryZoneSelects.forEach((selects) => {
-      handleDeliveryZone(selects);
-      selects.addEventListener("change", (event) => {
-        const select = event.target;
-        console.log("[DEBUG]: select", select);
-        handleDeliveryPrice(deliveryPrices, select[select.selectedIndex].getAttribute("data-price"));
-        handleVisibility(deliveryZoneRules, select.value);
-        handleFormDeliveryZoneId(select);
-      });
-    });
-  }
-
-  // Способы оплаты
-  if (paymentSelects) {
-    paymentSelects.forEach((selects) => {
-      selects.addEventListener("change", (event) => {
-        handleFormPaymentId(event.target);
-        handleVisibility(paymentDescs, event.target.value);
-      });
-    });
-  }
-
-  function handleDeliveryZone(selects) {
-    // console.log("[DEBUG]: selects2", selects);
-    // console.log("[DEBUG]: selects3", selects.parentElement.classList.contains("is-hide"));
-    if (!selects.parentElement.classList.contains("is-hide")) {
-      handleDeliveryPrice(deliveryPrices, selects.options[selects.selectedIndex].getAttribute("data-price"));
-      handleVisibility(deliveryZoneRules, selects.value);
-    } else {
-      handleDeliveryPrice(deliveryPrices, deliverySelect.options[selects.selectedIndex].getAttribute("data-price"));
-    }
-  }
-
   function handleDeliveryPrice(elements, value) {
     console.log("[DEBUG]: element", elements);
     console.log("[DEBUG]: value", value);
     const price = document.createElement("span");
-    price.classList.add("num");
-    price.append(getMoneyFormat(value));
+    if (value == 0) {
+      price.append("Бесплатно");
+    } else {
+      price.classList.add("num");
+      price.append(getMoneyFormat(value));
+    }
     elements.forEach((element) => (element.innerHTML = price.outerHTML));
     console.log("[DEBUG]: price", price);
     // обновления цены доставки
@@ -2405,17 +2355,6 @@ function Orderfast(doc = document) {
     cartTotals.forEach((total) => {
       total.querySelector(".num").innerHTML = getMoneyFormat(priceTotal);
     });
-  }
-
-  function handleFormDeliveryZoneId(selected) {
-    const zone = document.querySelector("[name='form[delivery][zone_id]']");
-    if (zone) {
-      zone.value = selected ? selected.value : "";
-    }
-  }
-
-  function handleFormPaymentId(selected) {
-    document.querySelector("[name='form[payment][id]']").value = selected.value;
   }
 
   function handleVisibility(elements, value) {
@@ -2435,9 +2374,11 @@ function Orderfast(doc = document) {
  * Использует функции: getHtmlFromPost
  */
 function OrderCoupons() {
-  const coupons = document.querySelectorAll(".coupon");
+  const coupons = document.querySelectorAll(".coupon__order");
+  // console.log("[DEBUG]: coupons", coupons);
   if (coupons.length === 0) return;
   coupons.forEach((coupon) => {
+    // console.log("[DEBUG]: coupon", coupon);
     const couponInput = coupon.querySelector(".coupon__input");
     const couponReset = coupon.querySelector(".coupon__reset");
     const couponSubmit = coupon.querySelector(".coupon__button");
@@ -2452,14 +2393,17 @@ function OrderCoupons() {
       const value = couponInput.value;
       const url = "/order/stage/confirm";
       const formData = new FormData();
-      const deliveryZoneId = document.querySelector("[name='form[delivery][zone_id]']");
-      const deliveryId = document.querySelector("[name='form[delivery][id]']");
+      const deliveryZoneId = document.querySelector(".order-delivery-zone__radio:checked");
+      const deliveryId = document.querySelector(".order-delivery__radio:checked");
       formData.append("ajax_q", "1");
       formData.append("only_body", "1");
       formData.append("form[coupon_code]", value);
-      formData.append("form[delivery][zone_id]", deliveryZoneId.value);
-      formData.append("form[delivery][id]", deliveryId.value);
-      console.log("[DEBUG]: formData", formData);
+      if (deliveryZoneId) {
+        formData.append("form[delivery][id]", deliveryId.value);
+      }
+      if (deliveryZoneId) {
+        formData.append("form[delivery][zone_id]", deliveryZoneId.value);
+      }
 
       getHtmlFromPost(url, formData).then((data) => {
         handleCouponUpdate(data, coupon);
@@ -2467,7 +2411,7 @@ function OrderCoupons() {
     }
 
     function handleCouponChange(event) {
-      // event.target.setAttribute("value", event.target.value);
+      event.target.setAttribute("value", event.target.value);
       document.querySelectorAll(".coupon__input").forEach((input) => input.setAttribute("value", event.target.value));
       handleCouponVisibility(coupon, event.target.value, "is-reset");
     }
@@ -2484,8 +2428,8 @@ function OrderCoupons() {
         console.log("[DEBUG]: input", input);
       });
       coupon.classList.remove("is-reset", "is-error", "is-success");
-      console.log("[DEBUG]: cartCoupons", cartCoupons);
-      console.log("[DEBUG]: coupon", coupon);
+      // console.log("[DEBUG]: cartCoupons", cartCoupons);
+      // console.log("[DEBUG]: coupon", coupon);
       cartTotals.forEach((total) => {
         total.innerHTML = cartSum.innerHTML;
         total.value = cartSum.value;
@@ -2512,7 +2456,7 @@ function OrderCoupons() {
     // const delivery = data.querySelector(".order-delivery");
     const input = coupon.querySelector(".coupon__input");
 
-    console.log("[DEBUG]: discount", discount);
+    // console.log("[DEBUG]: discount", discount);
     if (discount) {
       const discountName = discount.querySelector(".order-discount__label");
       const discountValue = discount.querySelector(".order-discount__value");
