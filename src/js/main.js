@@ -2262,11 +2262,12 @@ function Orderfast(doc = document) {
   if (!container) return;
   const deliveryDescs = container.querySelectorAll(".order-delivery__description");
   const paymentItems = container.querySelectorAll(".order-payment__item");
-  // const paymentDescs = container.querySelectorAll(".order-payment__desc");
+  const paymentDescs = container.querySelectorAll(".order-payment__desc");
   const deliveryInputs = container.querySelectorAll(".order-delivery__radio");
   const deliveryZoneItems = container.querySelectorAll(".order-delivery-zone__radio");
   const deliveryItem = container.querySelector(".order-delivery__item");
-  const deliveryItemZone = deliveryItem.querySelector(".order-delivery-zone__radio");
+
+  if (!deliveryItem) return;
 
   // Запуск функций при загрузке страницы
   handleVisibility(paymentItems, paymentItems[0].getAttribute("data-id"));
@@ -2321,6 +2322,7 @@ function Orderfast(doc = document) {
   }
 
   // Первый запуск функций
+  const deliveryItemZone = deliveryItem.querySelector(".order-delivery-zone__radio");
   if (deliveryItemZone) {
     handleDeliveryInputsClick(deliveryItem, ".order-delivery-zone__radio");
     setTimeout(() => {
