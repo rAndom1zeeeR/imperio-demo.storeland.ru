@@ -2260,12 +2260,10 @@ function Orderfast(doc = document) {
   const container = doc.querySelector(".orderfast__container");
   // console.log("[DEBUG]: container", container);
   if (!container) return;
-  const deliveryDescs = container.querySelectorAll(".order-delivery__description");
   const paymentItems = container.querySelectorAll(".order-payment__item");
-  const paymentDescs = container.querySelectorAll(".order-payment__desc");
+  const deliveryItem = container.querySelector(".order-delivery__item");
   const deliveryInputs = container.querySelectorAll(".order-delivery__radio");
   const deliveryZoneItems = container.querySelectorAll(".order-delivery-zone__radio");
-  const deliveryItem = container.querySelector(".order-delivery__item");
 
   if (!deliveryItem) return;
 
@@ -2285,9 +2283,7 @@ function Orderfast(doc = document) {
           handleDeliveryInputsClick(event.currentTarget, ".order-delivery-zone__radio");
       });
     });
-  }
-
-  if (deliveryZoneItems) {
+    
     deliveryZoneItems.forEach((item) => {
       item.addEventListener("click", (event) => {
         handleDeliveryInputsClick(event.currentTarget, ".order-delivery__radio");
@@ -2298,11 +2294,7 @@ function Orderfast(doc = document) {
   // Обработчик клика на доставку
   function handleDeliveryInputsClick(target, selector) {
     const item = target.closest(".order-delivery__item");
-    console.log("[DEBUG]: handleDeliveryInputsClick item", item);
-    console.log("[DEBUG]: target", target);
     const input = item.querySelector(selector);
-    console.log("[DEBUG]: input", input);
-    console.log("[DEBUG]: 2selector", selector);
     const deliveryPriceContent = item.querySelector('.order-delivery__price b');
     if (input) input.checked = true;
     if (target.getAttribute("data-price")) {
@@ -2333,8 +2325,8 @@ function Orderfast(doc = document) {
   }
 
   function handleDeliveryPrice(elements, value) {
-    console.log("[DEBUG]: element", elements);
-    console.log("[DEBUG]: value", value);
+    // console.log("[DEBUG]: element", elements);
+    // console.log("[DEBUG]: value", value);
     const price = document.createElement("span");
     if (value == 0) {
       price.append("Бесплатно");
@@ -2343,7 +2335,6 @@ function Orderfast(doc = document) {
       price.append(getMoneyFormat(value));
     }
     elements.forEach((element) => (element.innerHTML = price.outerHTML));
-    console.log("[DEBUG]: price", price);
     // обновления цены доставки
     const cartDeliverys = document.querySelectorAll(".cart-delivery");
     cartDeliverys.forEach((delivery) => {
